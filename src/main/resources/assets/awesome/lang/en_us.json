@@ -1,0 +1,12 @@
+{
+  "block.awesome.awesome": "Awesome",
+  "item.awesome.raw_titanium": "Raw Titanium",
+  "item.awesome.titanium_ingot": "Titanium Ingot",
+  "item.awesome.titanium_nugget": "Titanium Nugget",
+  "block.awesome.titanium_block": "Titanium Block",
+  "block.awesome.titanium_ore": "Titanium Ore",
+  "block.awesome.deepslate_titanium_ore": "Deepslate Titanium Ore",
+  "block.awesome.netherrack_titanium_ore": "Netherrack Titanium Ore",
+  "block.awesome.raw_titanium_block": "Raw Titanium Block",
+  "itemGroup.awesome.titanium": "Titanium"
+}

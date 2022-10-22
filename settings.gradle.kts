@@ -1,4 +1,4 @@
-rootProject.name = "AwesomeCore"
+rootProject.name = "Awesome"
 pluginManagement {
     repositories {
         maven("https://maven.fabricmc.net/") {
