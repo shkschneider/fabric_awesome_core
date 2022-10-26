@@ -8,7 +8,8 @@ group = property("maven_group")!!
 version = property("mod_version")!!
 
 repositories {
-    // https://docs.gradle.org/current/userguide/declaring_repositories.html
+    maven(url = "https://maven.shedaniel.me")
+    maven(url = "https://maven.architectury.dev")
 }
 
 dependencies {
@@ -17,6 +18,9 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${property("fabric_loader")}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${property("fabric_kotlin")}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${property("fabric_api")}")
+    // https://linkie.shedaniel.me/dependencies
+    modRuntimeOnly("me.shedaniel:RoughlyEnoughItems-fabric:9.1.562")
+    modRuntimeOnly("dev.architectury:architectury-fabric:6.3.49")
 }
 
 tasks {
