@@ -8,6 +8,7 @@ group = property("maven_group")!!
 version = property("mod_version")!!
 
 repositories {
+    maven(url = "https://www.cursemaven.com")
     maven(url = "https://maven.shedaniel.me")
     maven(url = "https://maven.architectury.dev")
 }
@@ -21,6 +22,8 @@ dependencies {
     // https://linkie.shedaniel.me/dependencies
     modRuntimeOnly("me.shedaniel:RoughlyEnoughItems-fabric:9.1.562")
     modRuntimeOnly("dev.architectury:architectury-fabric:6.3.49")
+    // https://www.cursemaven.com/
+    modRuntimeOnly("curse.maven:jade-324717:4041679")
 }
 
 tasks {

@@ -1,6 +1,7 @@
 {
-  "itemGroup.awesome.awesome": "Awesome",
+  "block.awesome.awesome": "Awesome",
   "gamerule.keepxp": "Keep XP",
   "item.awesome.redstone_dust": "Redstone Dust",
-  "item.awesome.redstone_flux": "Redstone Flux"
+  "item.awesome.redstone_flux": "Redstone Flux",
+  "itemGroup.awesome.awesome": "Awesome"
 }
