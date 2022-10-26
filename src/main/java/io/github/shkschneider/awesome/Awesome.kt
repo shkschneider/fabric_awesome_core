@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome
 
-import io.github.shkschneider.awesome.titanium.Titanium
 import net.fabricmc.api.ModInitializer
 
 class Awesome : ModInitializer {
@@ -13,7 +12,6 @@ class Awesome : ModInitializer {
 
     override fun onInitialize() {
         Logger.debug("Awesome!")
-        Titanium()
         AwesomeItemGroups()
     }
 

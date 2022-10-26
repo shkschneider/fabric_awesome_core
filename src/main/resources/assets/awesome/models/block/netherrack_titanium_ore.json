@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures":{
-    "all": "awesome:block/netherrack_titanium_ore"
-  }
-}
