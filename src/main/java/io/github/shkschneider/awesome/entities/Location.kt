@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.entities
 
-import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.AwesomeUtils
 import net.minecraft.entity.Entity
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.util.Identifier
@@ -29,32 +29,32 @@ data class Location(
 fun <T : IEntityData> T.writeLocation(prefix: String): Location? {
     val entity = (this as? Entity) ?: return null
     return Location(entity.world.registryKey.value.toString(), entity.x, entity.y, entity.z, entity.yaw, entity.pitch).also {
-        data.putString(Awesome.id("${prefix}_dim"), entity.world.registryKey.value.toString())
-        data.putDouble(Awesome.id("${prefix}_x"), entity.x)
-        data.putDouble(Awesome.id("${prefix}_y"), entity.y)
-        data.putDouble(Awesome.id("${prefix}_z"), entity.z)
-        data.putFloat(Awesome.id("${prefix}_yaw"), entity.yaw)
-        data.putFloat(Awesome.id("${prefix}_pitch"), entity.pitch)
+        data.putString(AwesomeUtils.key(prefix, "dim"), entity.world.registryKey.value.toString())
+        data.putDouble(AwesomeUtils.key(prefix, "x"), entity.x)
+        data.putDouble(AwesomeUtils.key(prefix, "y"), entity.y)
+        data.putDouble(AwesomeUtils.key(prefix, "z"), entity.z)
+        data.putFloat(AwesomeUtils.key(prefix, "yaw"), entity.yaw)
+        data.putFloat(AwesomeUtils.key(prefix, "pitch"), entity.pitch)
     }
 }
 
 fun NbtCompound.readLocation(prefix: String): Location? {
-    if (!contains(Awesome.id("${prefix}_dim")) || !contains(Awesome.id("${prefix}_x")) || !contains(Awesome.id("${prefix}_y")) || !contains(Awesome.id("${prefix}_z"))) return null
+    if (!contains(AwesomeUtils.key(prefix, "dim")) || !contains(AwesomeUtils.key(prefix, "x")) || !contains(AwesomeUtils.key(prefix, "y")) || !contains(AwesomeUtils.key(prefix, "z"))) return null
     return Location(
-        getString(Awesome.id("${prefix}_dim")),
-        getDouble(Awesome.id("${prefix}_x")),
-        getDouble(Awesome.id("${prefix}_y")),
-        getDouble(Awesome.id("${prefix}_z")),
-        getFloat(Awesome.id("${prefix}_yaw")),
-        getFloat(Awesome.id("${prefix}_pitch")),
+        getString(AwesomeUtils.key(prefix, "dim")),
+        getDouble(AwesomeUtils.key(prefix, "x")),
+        getDouble(AwesomeUtils.key(prefix, "y")),
+        getDouble(AwesomeUtils.key(prefix, "z")),
+        getFloat(AwesomeUtils.key(prefix, "yaw")),
+        getFloat(AwesomeUtils.key(prefix, "pitch")),
     )
 }
 
 fun NbtCompound.clearLocation(prefix: String) {
-    remove(Awesome.id("${prefix}_dim"))
-    remove(Awesome.id("${prefix}_x"))
-    remove(Awesome.id("${prefix}_y"))
-    remove(Awesome.id("${prefix}_z"))
-    remove(Awesome.id("${prefix}_yaw"))
-    remove(Awesome.id("${prefix}_pitch"))
+    remove(AwesomeUtils.key(prefix, "dim"))
+    remove(AwesomeUtils.key(prefix, "x"))
+    remove(AwesomeUtils.key(prefix, "y"))
+    remove(AwesomeUtils.key(prefix, "z"))
+    remove(AwesomeUtils.key(prefix, "yaw"))
+    remove(AwesomeUtils.key(prefix, "pitch"))
 }

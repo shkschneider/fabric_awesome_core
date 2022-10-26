@@ -17,8 +17,6 @@ class Awesome : ModInitializer {
 
         val GROUP = FabricItemGroupBuilder.build(Identifier(ID, ID)) { ItemStack(AwesomeMaterials.redstoneFlux) }
 
-        fun id(t: String) = "${ID}_${t}"
-
     }
 
     override fun onInitialize() {
