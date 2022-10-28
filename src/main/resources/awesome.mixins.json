@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BlockGetDroppedStacksMixing",
+    "BowItemArrowCountMixin",
     "BrewingRecipeRegistryMixin",
     "EntityNbtMixin",
     "PlayerEntityDamageMixin",
