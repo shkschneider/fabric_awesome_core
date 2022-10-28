@@ -1,6 +1,7 @@
 {
-  "block.awesome.awesome": "Awesome",
   "gamerule.keepxp": "Keep XP",
+  "gamerule.pvp": "Player vs Player",
+  "gamerule.sleepingHeals": "Sleeping Heals",
   "item.awesome.redstone_dust": "Redstone Dust",
   "item.awesome.redstone_flux": "Redstone Flux",
   "itemGroup.awesome.awesome": "Awesome"

@@ -9,7 +9,8 @@
     "ServerPlayerEntityMixin"
   ],
   "client": [
-    "TitleScreenMixin"
+    "SplashOverlayMixin",
+    "LevelPropertiesMixin"
   ],
   "server": [],
   "injectors": {
