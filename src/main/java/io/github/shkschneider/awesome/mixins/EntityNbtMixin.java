@@ -10,7 +10,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@SuppressWarnings("UnusedMixin")
+/**
+ * Thanks to Kaupenjoe
+ * Link: https://www.youtube.com/c/TKaupenjoe
+ */
 @Mixin(Entity.class)
 public abstract class EntityNbtMixin implements IEntityData {
 

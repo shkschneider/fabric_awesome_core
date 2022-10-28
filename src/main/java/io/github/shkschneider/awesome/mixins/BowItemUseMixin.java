@@ -13,7 +13,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-// https://github.com/ClusterFluxMC/extension
+/**
+ * Author: ClusterFluxMC
+ * License: MIT
+ * Source: https://github.com/ClusterFluxMC/extension
+ */
 @Mixin(BowItem.class)
 public class BowItemUseMixin {
 

@@ -13,7 +13,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
-// https://github.com/LordDeatHunter/SilkSpawners
+/**
+ * Author: LordDeatHunter
+ * License: MIT
+ * Source: https://github.com/LordDeatHunter/SilkSpawners
+ */
 @Mixin(Item.class)
 public class ItemAppendTooltipMixin {
 

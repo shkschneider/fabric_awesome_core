@@ -11,7 +11,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-// https://github.com/LordDeatHunter/SilkSpawners
+/**
+ * Author: LordDeatHunter
+ * License: MIT
+ * Source: https://github.com/LordDeatHunter/SilkSpawners
+ */
 @Mixin(SpawnerBlock.class)
 public class SpawnerBlockOnStacksDroppedMixin {
 

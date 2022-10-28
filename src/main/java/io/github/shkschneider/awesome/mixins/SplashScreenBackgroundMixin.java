@@ -12,7 +12,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.IntSupplier;
 
-// https://github.com/A5b84/dark-loading-screen
+/**
+ * Author: A5b84
+ * License: LGPL3
+ * Source: https://github.com/A5b84/dark-loading-screen
+ */
 @Mixin(SplashOverlay.class)
 public class SplashScreenBackgroundMixin {
 

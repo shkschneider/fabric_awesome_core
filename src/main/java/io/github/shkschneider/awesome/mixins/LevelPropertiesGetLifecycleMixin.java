@@ -9,7 +9,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-// https://github.com/Parzivail-Modding-Team/HereBeNoDragons
+/**
+ * Author: Parzivail-Modding-Team
+ * License: LGPL3
+ * Source: https://github.com/Parzivail-Modding-Team/HereBeNoDragons
+ */
 @Mixin(LevelProperties.class)
 public class LevelPropertiesGetLifecycleMixin {
 

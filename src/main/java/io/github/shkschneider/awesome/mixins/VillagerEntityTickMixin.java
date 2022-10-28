@@ -7,7 +7,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-// https://github.com/ClusterFluxMC/extension
+/**
+ * Author: ClusterFluxMC
+ * License: MIT
+ * Source: https://github.com/ClusterFluxMC/extension
+ */
 @Mixin(VillagerEntity.class)
 public class VillagerEntityTickMixin {
 

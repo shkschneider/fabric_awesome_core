@@ -13,7 +13,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-// https://github.com/Hyperbean18/Villagers-Follow-Emeralds-Fabric
+/**
+ * Author: Hyperbean18
+ * License: MIT
+ * Source: https://github.com/Hyperbean18/Villagers-Follow-Emeralds-Fabric
+ */
 @Mixin(VillagerEntity.class)
 abstract class VillagerEntityInitMixin extends MerchantEntity {
 

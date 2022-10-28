@@ -6,6 +6,10 @@ import net.minecraft.recipe.BrewingRecipeRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
+/**
+ * Thanks to Kaupenjoe
+ * Link: https://www.youtube.com/c/TKaupenjoe
+ */
 @Mixin(BrewingRecipeRegistry.class)
 public interface BrewingRecipeRegistryMixin {
 
