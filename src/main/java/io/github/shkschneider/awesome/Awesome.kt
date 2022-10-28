@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome
 
 import io.github.shkschneider.awesome.commands.AwesomeCommands
+import io.github.shkschneider.awesome.effects.AwesomeEffects
 import io.github.shkschneider.awesome.events.AwesomeEvents
 import io.github.shkschneider.awesome.gamerules.AwesomeGameRules
 import io.github.shkschneider.awesome.materials.AwesomeMaterials
@@ -22,6 +23,7 @@ class Awesome : ModInitializer {
     override fun onInitialize() {
         Logger.debug("Awesome!")
         AwesomeCommands()
+        AwesomeEffects()
         AwesomeEvents()
         AwesomeGameRules()
         AwesomeMaterials()

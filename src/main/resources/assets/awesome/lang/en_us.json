@@ -1,8 +1,14 @@
 {
+  "effect.minecraft.experience1": "Experience (1)",
+  "effect.minecraft.experience9": "Experience (9)",
   "gamerule.keepxp": "Keep XP",
   "gamerule.pvp": "Player vs Player",
   "gamerule.sleepingHeals": "Sleeping Heals",
   "item.awesome.redstone_dust": "Redstone Dust",
   "item.awesome.redstone_flux": "Redstone Flux",
+  "item.minecraft.lingering_potion.effect.experience": "Lingering Potion of Experience",
+  "item.minecraft.potion.effect.experience": "Experience Potion",
+  "item.minecraft.redstone": "Redstone",
+  "item.minecraft.splash_potion.effect.experience": "Splash Potion of Experience",
   "itemGroup.awesome.awesome": "Awesome"
 }

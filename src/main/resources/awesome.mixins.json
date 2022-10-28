@@ -6,7 +6,8 @@
   "mixins": [
     "EntityMixin",
     "PlayerEntityMixin",
-    "ServerPlayerEntityMixin"
+    "ServerPlayerEntityMixin",
+    "BrewingRecipeRegistryMixin"
   ],
   "client": [
     "SplashOverlayMixin",
