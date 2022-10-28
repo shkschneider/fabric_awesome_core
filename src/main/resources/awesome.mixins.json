@@ -5,14 +5,17 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BlockGetDroppedStacksMixing",
-    "BowItemArrowCountMixin",
+    "BowItemUseMixin",
     "BrewingRecipeRegistryMixin",
     "EntityNbtMixin",
     "PlayerEntityDamageMixin",
-    "ServerPlayerEntityCopyFromMixin"
+    "ServerPlayerEntityCopyFromMixin",
+    "VillagerEntityInitMixin",
+    "VillagerEntityTickMixin"
   ],
   "client": [
     "LevelPropertiesGetLifecycleMixin",
+    "MinecraftCreateUserApiServiceMixin",
     "SplashScreenBackgroundMixin"
   ],
   "server": [],

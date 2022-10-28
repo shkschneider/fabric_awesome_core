@@ -15,10 +15,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 // https://github.com/ClusterFluxMC/extension
 @Mixin(BowItem.class)
-public class BowItemArrowCountMixin {
+public class BowItemUseMixin {
 
     @Inject(method="use(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/TypedActionResult;", at=@At("HEAD"), cancellable=true)
-    private void arrowCount(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
+    private void use(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
         final ItemStack stack = user.getStackInHand(hand);
         if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0) {
             user.setCurrentHand(hand);
