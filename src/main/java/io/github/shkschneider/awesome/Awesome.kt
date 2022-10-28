@@ -5,6 +5,7 @@ import io.github.shkschneider.awesome.effects.AwesomeEffects
 import io.github.shkschneider.awesome.enchantments.AwesomeEnchantments
 import io.github.shkschneider.awesome.events.AwesomeEvents
 import io.github.shkschneider.awesome.gamerules.AwesomeGameRules
+import io.github.shkschneider.awesome.loots.AwesomeLoots
 import io.github.shkschneider.awesome.materials.AwesomeMaterials
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
@@ -28,6 +29,7 @@ class Awesome : ModInitializer {
         AwesomeEnchantments()
         AwesomeEvents()
         AwesomeGameRules()
+        AwesomeLoots()
         AwesomeMaterials()
     }
 

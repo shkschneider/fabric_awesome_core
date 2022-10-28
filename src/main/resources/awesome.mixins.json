@@ -8,8 +8,10 @@
     "BowItemUseMixin",
     "BrewingRecipeRegistryMixin",
     "EntityNbtMixin",
+    "ItemAppendTooltipMixin",
     "PlayerEntityDamageMixin",
     "ServerPlayerEntityCopyFromMixin",
+    "SpawnerBlockOnStacksDroppedMixin",
     "VillagerEntityInitMixin",
     "VillagerEntityTickMixin"
   ],
