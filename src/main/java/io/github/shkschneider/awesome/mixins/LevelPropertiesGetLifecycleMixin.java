@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 // https://github.com/Parzivail-Modding-Team/HereBeNoDragons
 @Mixin(LevelProperties.class)
-public class LevelPropertiesMixin {
+public class LevelPropertiesGetLifecycleMixin {
 
     @Shadow
     @Final

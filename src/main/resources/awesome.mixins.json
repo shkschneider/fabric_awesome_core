@@ -4,14 +4,15 @@
   "package": "io.github.shkschneider.awesome.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "EntityMixin",
-    "PlayerEntityMixin",
-    "ServerPlayerEntityMixin",
-    "BrewingRecipeRegistryMixin"
+    "BlockGetDroppedStacksMixing",
+    "BrewingRecipeRegistryMixin",
+    "EntityNbtMixin",
+    "PlayerEntityDamageMixin",
+    "ServerPlayerEntityCopyFromMixin"
   ],
   "client": [
-    "SplashOverlayMixin",
-    "LevelPropertiesMixin"
+    "LevelPropertiesGetLifecycleMixin",
+    "SplashScreenBackgroundMixin"
   ],
   "server": [],
   "injectors": {

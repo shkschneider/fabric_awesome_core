@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @SuppressWarnings("UnusedMixin")
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin {
+public abstract class PlayerEntityDamageMixin {
 
     @Shadow
     public float experienceProgress;
@@ -30,7 +30,6 @@ public abstract class PlayerEntityMixin {
         return AwesomeGameRules.INSTANCE.keepXp();
     }
 
-    // TODO https://github.com/Max094Reikeb/NotEnoughGamerules/commit/fed3b9fbf7f0f48131ad29be875201876519e799
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     private void damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> info) {
         PlayerEntity player = (PlayerEntity) (Object) this;

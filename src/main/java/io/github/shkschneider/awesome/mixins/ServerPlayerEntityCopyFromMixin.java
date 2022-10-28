@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @SuppressWarnings("UnusedMixin")
 @Mixin(ServerPlayerEntity.class)
-public abstract class ServerPlayerEntityMixin extends PlayerEntityMixin {
+public abstract class ServerPlayerEntityCopyFromMixin extends PlayerEntityDamageMixin {
 
     @Inject(method = "copyFrom", at = @At("TAIL"))
     private void copyFrom(ServerPlayerEntity oldPlayer, boolean alive, CallbackInfo ci) {

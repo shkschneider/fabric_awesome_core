@@ -1,6 +1,13 @@
 {
   "effect.minecraft.experience1": "Experience (1)",
   "effect.minecraft.experience9": "Experience (9)",
+  "effect.minecraft.magnetism": "Magnetism",
+  "effect.minecraft.paralysis": "Paralysis",
+  "enchantment.awesome.experience": "Experience",
+  "enchantment.awesome.ice_aspect": "Ice Aspect",
+  "enchantment.awesome.magnetism": "Magnetism",
+  "enchantment.awesome.poison_aspect": "Poison Aspect",
+  "enchantment.awesome.vein_mining": "Vein Mining",
   "gamerule.keepxp": "Keep XP",
   "gamerule.pvp": "Player vs Player",
   "gamerule.sleepingHeals": "Sleeping Heals",

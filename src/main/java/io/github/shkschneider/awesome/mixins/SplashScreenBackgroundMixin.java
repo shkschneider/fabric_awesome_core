@@ -14,7 +14,7 @@ import java.util.function.IntSupplier;
 
 // https://github.com/A5b84/dark-loading-screen
 @Mixin(SplashOverlay.class)
-public class SplashOverlayMixin {
+public class SplashScreenBackgroundMixin {
 
     @Mutable
     @Shadow

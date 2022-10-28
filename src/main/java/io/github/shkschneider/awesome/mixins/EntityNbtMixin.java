@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @SuppressWarnings("UnusedMixin")
 @Mixin(Entity.class)
-public abstract class EntityMixin implements IEntityData {
+public abstract class EntityNbtMixin implements IEntityData {
 
     private NbtCompound data;
 
