@@ -1,14 +1,14 @@
 package io.github.shkschneider.awesome.commands
 
-import com.mojang.brigadier.Command
 import com.mojang.brigadier.context.CommandContext
+import io.github.shkschneider.awesome.AwesomePermissions
 import io.github.shkschneider.awesome.entities.IEntityData
-import io.github.shkschneider.awesome.entities.readLocation
-import io.github.shkschneider.awesome.entities.writeLocation
+import io.github.shkschneider.awesome.custom.readLocation
+import io.github.shkschneider.awesome.custom.writeLocation
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text
 
-class HomeCommand : Command<ServerCommandSource> {
+class HomeCommand : AwesomeCommand("home", AwesomePermissions.Commands) {
 
     override fun run(context: CommandContext<ServerCommandSource>?): Int {
         val player = context?.source?.player ?: return -1

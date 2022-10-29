@@ -8,24 +8,25 @@ import net.minecraft.util.registry.Registry
 
 sealed class AwesomeEffect(
     open val id: String,
-    val type: StatusEffectCategory,
+    type: StatusEffectCategory,
     color: Int = type.formatting.colorValue ?: 0x000000,
 ) : StatusEffect(type, color) {
 
-    class Instant(
+    abstract class Instant(
         override val id: String,
         type: StatusEffectCategory,
         color: Int = type.formatting.colorValue ?: 0x000000,
-        val effect: (livingEntity: LivingEntity, level: Int) -> Unit,
     ) : AwesomeEffect(id, type, color) {
 
-        init {
+        operator fun invoke() {
             Registry.register(Registry.STATUS_EFFECT, id, this)
         }
 
+        abstract fun invoke(source: Entity?, attacker: Entity?, target: LivingEntity, amplifier: Int, proximity: Double)
+
         override fun applyInstantEffect(source: Entity?, attacker: Entity?, target: LivingEntity, amplifier: Int, proximity: Double) {
             if (target.world.isClient) return super.applyInstantEffect(source, attacker, target, amplifier, proximity)
-            effect(target, amplifier)
+            invoke(source, attacker, target, amplifier, proximity)
             super.applyInstantEffect(source, attacker, target, amplifier, proximity)
         }
 
@@ -35,22 +36,23 @@ sealed class AwesomeEffect(
 
     }
 
-    class Continuous(
+    abstract class Continuous(
         override val id: String,
         type: StatusEffectCategory,
         color: Int = type.formatting.colorValue ?: 0x000000,
-        val effect: (livingEntity: LivingEntity, level: Int) -> Unit,
     ) : AwesomeEffect(id, type, color) {
 
-        init {
+        operator fun invoke() {
             Registry.register(Registry.STATUS_EFFECT, id, this)
         }
 
         override fun applyUpdateEffect(entity: LivingEntity, amplifier: Int) {
             if (entity.world.isClient) return super.applyUpdateEffect(entity, amplifier)
-            effect(entity, amplifier)
+            invoke(entity, amplifier)
             super.applyUpdateEffect(entity, amplifier)
         }
+
+        abstract fun invoke(entity: LivingEntity, amplifier: Int)
 
         override fun canApplyUpdateEffect(duration: Int, amplifier: Int): Boolean {
             return true

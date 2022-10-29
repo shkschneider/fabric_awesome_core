@@ -7,15 +7,14 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
 
-class AwesomeCommand<T : Command<ServerCommandSource>>(
-    permission: AwesomePermissions,
-    command: String,
-    callback: T,
-) {
+abstract class AwesomeCommand(
+    open val command: String,
+    open val permission: AwesomePermissions,
+) : Command<ServerCommandSource> {
 
     init {
         CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource?>, _, _ ->
-            dispatcher.register(CommandManager.literal(command).requires { it.hasPermissionLevel(permission.level) }.executes(callback::run))
+            dispatcher.register(CommandManager.literal(command).requires { it.hasPermissionLevel(permission.level) }.executes(::run))
         })
     }
 

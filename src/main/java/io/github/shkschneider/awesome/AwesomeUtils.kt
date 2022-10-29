@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome
 
-import io.github.shkschneider.awesome.entities.Location
+import io.github.shkschneider.awesome.custom.Location
 import kotlin.math.pow
 import kotlin.math.sqrt
 

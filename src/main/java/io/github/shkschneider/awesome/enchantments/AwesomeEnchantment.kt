@@ -9,22 +9,23 @@ import net.minecraft.entity.LivingEntity
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 
-class AwesomeEnchantment(
+abstract class AwesomeEnchantment(
     val id: String,
     rarity: Rarity,
     private val levels: Pair<Int, Int>,
     target: EnchantmentTarget,
     slots: List<EquipmentSlot>,
-    private val effect: (livingEntity: LivingEntity, entity: Entity, level: Int) -> Unit,
 ) : Enchantment(rarity, target, slots.toTypedArray()) {
 
-    init {
+    operator fun invoke() {
         Registry.register(Registry.ENCHANTMENT, Identifier(Awesome.ID, id), this)
     }
 
+    abstract fun invoke(livingEntity: LivingEntity, entity: Entity, level: Int)
+
     override fun onTargetDamaged(user: LivingEntity, target: Entity, level: Int) {
         if (!user.world.isClient) {
-            effect(user, target, level)
+            invoke(user, target, level)
         }
         super.onTargetDamaged(user, target, level)
     }

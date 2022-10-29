@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.mixins;
 
 import io.github.shkschneider.awesome.gamerules.AwesomeGameRules;
+import io.github.shkschneider.awesome.gamerules.PvpGameRule;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.GameRules;
@@ -27,14 +28,14 @@ public abstract class PlayerEntityDamageMixin {
 
     @Redirect(method = "getXpToDrop", at = @At(value = "FIELD", target = "Lnet/minecraft/world/GameRules;KEEP_INVENTORY:Lnet/minecraft/world/GameRules$Key;", opcode = Opcodes.GETSTATIC))
     private GameRules.Key<GameRules.BooleanRule> getXpToDrop() {
-        return AwesomeGameRules.INSTANCE.keepXp();
+        return AwesomeGameRules.INSTANCE.getKeepXp();
     }
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     private void damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> info) {
         PlayerEntity player = (PlayerEntity) (Object) this;
-        if (AwesomeGameRules.INSTANCE.pvp(player.world)) {
-            AwesomeGameRules.INSTANCE.pvp(player, source, info);
+        if (PvpGameRule.INSTANCE.invoke(player.world)) {
+            PvpGameRule.INSTANCE.invoke(player, source, info);
         }
     }
 

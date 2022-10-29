@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.events
+package io.github.shkschneider.awesome.custom
 
 import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.effects.AwesomeEffects
@@ -12,9 +12,17 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-class Magnetism : PlayerBlockBreakEvents.After {
+object Magnetism {
 
-    override fun afterBlockBreak(world: World, player: PlayerEntity, pos: BlockPos, state: BlockState, blockEntity: BlockEntity?) {
+    operator fun invoke() = Unit
+
+    init {
+        PlayerBlockBreakEvents.AFTER.register(PlayerBlockBreakEvents.After { _: World, player: PlayerEntity, _: BlockPos, _: BlockState, _: BlockEntity? ->
+            invoke(player)
+        })
+    }
+
+    operator fun invoke(player: PlayerEntity) {
         val magnetism = EnchantmentHelper.getLevel(AwesomeEnchantments.magnetism, player.mainHandStack)
         if (!player.isSneaking && magnetism > 0) {
             player.addStatusEffect(

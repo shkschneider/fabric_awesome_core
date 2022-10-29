@@ -1,10 +1,10 @@
 package io.github.shkschneider.awesome.commands
 
-import com.mojang.brigadier.Command
 import com.mojang.brigadier.context.CommandContext
+import io.github.shkschneider.awesome.AwesomePermissions
 import net.minecraft.server.command.ServerCommandSource
 
-class FlyCommand : Command<ServerCommandSource> {
+class FlyCommand : AwesomeCommand("fly", AwesomePermissions.Moderator) {
 
     override fun run(context: CommandContext<ServerCommandSource>?): Int {
         val player = context?.source?.player ?: return -1

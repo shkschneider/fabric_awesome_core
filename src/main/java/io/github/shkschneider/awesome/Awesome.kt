@@ -3,9 +3,7 @@ package io.github.shkschneider.awesome
 import io.github.shkschneider.awesome.commands.AwesomeCommands
 import io.github.shkschneider.awesome.effects.AwesomeEffects
 import io.github.shkschneider.awesome.enchantments.AwesomeEnchantments
-import io.github.shkschneider.awesome.events.AwesomeEvents
 import io.github.shkschneider.awesome.gamerules.AwesomeGameRules
-import io.github.shkschneider.awesome.loots.AwesomeLoots
 import io.github.shkschneider.awesome.materials.AwesomeMaterials
 import io.github.shkschneider.awesome.worldgen.AwesomeWorldGen
 import net.fabricmc.api.ModInitializer
@@ -24,13 +22,12 @@ class Awesome : ModInitializer {
     }
 
     override fun onInitialize() {
-        Logger.debug("Awesome!")
+        println("Awesome!")
         AwesomeCommands()
         AwesomeEffects()
         AwesomeEnchantments()
-        AwesomeEvents()
         AwesomeGameRules()
-        AwesomeLoots()
+        AwesomeMaterials()
         AwesomeMaterials()
         AwesomeWorldGen()
     }
