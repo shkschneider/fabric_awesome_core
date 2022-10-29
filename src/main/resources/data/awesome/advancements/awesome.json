@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": { "item": "awesome:redstone_flux" },
+    "title": { "translate": "advancements.awesome.title" },
+    "description": { "translate": "advancements.awesome.description" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "awesome": {
+      "conditions": {
+        "items": [
+          { "items": [ "awesome:redstone_flux" ] }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  }
+}
