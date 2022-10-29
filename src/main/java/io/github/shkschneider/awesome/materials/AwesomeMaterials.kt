@@ -3,6 +3,7 @@ package io.github.shkschneider.awesome.materials
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.materials.redstone.RedstoneDust
 import io.github.shkschneider.awesome.materials.redstone.RedstoneFlux
+import io.github.shkschneider.awesome.materials.randomium.Randomium
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.block.Block
 import net.minecraft.item.BlockItem
@@ -15,6 +16,10 @@ object AwesomeMaterials {
 
     val redstoneDust = RedstoneDust()
     val redstoneFlux = RedstoneFlux()
+
+    val randomiumOre = Randomium.RandomiumOre()
+    val deepslateRandomiumOre = Randomium.DeepslateRandomiumOre()
+    val endRandomiumOre = Randomium.EndRandomiumOre()
 
     operator fun invoke() = Unit
 
