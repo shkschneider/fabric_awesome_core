@@ -61,19 +61,6 @@ class CollectorBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Colle
                 itemStack.count += itemEntity.stack.count
                 itemEntity.setDespawnImmediately()
             }
-//            (0 until Collector.IO).map { entity.items[it] }.forEachIndexed { i, itemStack ->
-//                if (itemStack.isEmpty) {
-//                    entity.items[i] = itemEntity.stack.copy()
-//                    itemEntity.stack.count = 0
-//                } else if (itemStack.item == itemEntity.stack.item && itemStack.count < itemStack.maxCount) {
-//                    entity.items[i].count += itemStack.count
-//                    itemEntity.setDespawnImmediately()
-//                }
-//                if (itemEntity.stack.count == 0) {
-//                    itemEntity.setDespawnImmediately()
-//                    return@forEachIndexed
-//                }
-//            }
         }
 
     }

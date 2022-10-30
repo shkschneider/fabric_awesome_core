@@ -2,11 +2,13 @@ package io.github.shkschneider.awesome.machines.smelter
 
 import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.entities.ImplementedInventory
+import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipeHelper
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventories
+import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.screen.NamedScreenHandlerFactory
@@ -20,7 +22,7 @@ import net.minecraft.world.World
 
 class SmelterBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Smelter.ENTITY, pos, state), NamedScreenHandlerFactory, ImplementedInventory {
 
-    override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(Smelter.IO.values().size, ItemStack.EMPTY)
+    override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(Smelter.SLOTS.first + Smelter.SLOTS.second, ItemStack.EMPTY)
 
     private var lit = false
     private var inputProgress = -1
@@ -71,47 +73,35 @@ class SmelterBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Smelter
 
     companion object {
 
-        // FIXME does not lit out when empty
         fun tick(world: World, pos: BlockPos, state: BlockState, entity: SmelterBlockEntity) {
-            if (world.isClient) return
-            if (entity.inputProgress > 0) {
-                entity.inputProgress--
-            }
-            if (entity.outputProgress > 0) entity.outputProgress--
-            // abort
-            if (entity.getStack(Smelter.IO.InputTop.ordinal).isEmpty || entity.getStack(Smelter.IO.OutputRight.ordinal).count == entity.getStack(Smelter.IO.OutputRight.ordinal).maxCount) {
-                entity.outputProgress = -1
-                return
-            }
-            // done
-            if (entity.outputProgress == 0) {
-                entity.removeStack(Smelter.IO.InputTop.ordinal, Smelter.IO.InputTop.items.count)
-                entity.setStack(Smelter.IO.OutputRight.ordinal, ItemStack(Smelter.IO.OutputRight.items.item, entity.getStack(Smelter.IO.OutputRight.ordinal).count + Smelter.IO.OutputRight.items.count))
-                entity.outputProgress = -1
-            }
-            // stand-by
-            if (entity.outputProgress < 0) {
-                val inputTop = entity.getStack(Smelter.IO.InputTop.ordinal)
-                val inputBottom = entity.getStack(Smelter.IO.InputBottom.ordinal)
-                val outputRight = entity.getStack(Smelter.IO.OutputRight.ordinal)
-                if (
-                    inputTop.item == Smelter.IO.InputTop.items.item && inputTop.count >= Smelter.IO.InputTop.items.count
-                    && entity.inputProgress > 0 || inputBottom.isEmpty.not()
-                    && (outputRight.isEmpty || (outputRight.item == Smelter.IO.OutputRight.items.item && outputRight.count + Smelter.IO.OutputRight.items.count <= outputRight.maxCount))
-                ) {
-                    // new
-                    if (entity.inputProgress <= 0) {
-                        entity.removeStack(Smelter.IO.InputBottom.ordinal, Smelter.IO.InputBottom.items.count)
-                        entity.inputProgress = Smelter.Properties.InputProgress.time
+            if (world.isClient()) return
+            val helper = AwesomeRecipeHelper(entity as Inventory, Smelter.SLOTS, SmelterRecipes())
+            if (entity.inputProgress > 0) entity.inputProgress--
+            val recipe = helper.getRecipe()
+            if (recipe != null) {
+                when {
+                    entity.outputProgress < 0 -> {
+                        if (entity.inputProgress <= 0) {
+                            if (helper.burn(recipe)) {
+                                entity.inputProgress = Smelter.Properties.InputProgress.time
+                                world.setBlockState(pos, state.with(Properties.LIT, true))
+                                markDirty(world, pos, state)
+                            } else {
+                                world.setBlockState(pos, state.with(Properties.LIT, false))
+                                markDirty(world, pos, state)
+                                return
+                            }
+                        }
+                        entity.outputProgress = Smelter.Properties.OutputProgress.time
                     }
-                    entity.outputProgress = Smelter.Properties.OutputProgress.time
-                    world.setBlockState(pos, state.with(Properties.LIT, true))
-                    markDirty(world, pos, state)
-                } else {
-                    // nothing
-                    world.setBlockState(pos, state.with(Properties.LIT, false))
-                    markDirty(world, pos, state)
+                    entity.outputProgress == 0 -> {
+                        helper.craft(recipe)
+                        entity.outputProgress = -1
+                    }
+                    else -> entity.outputProgress--
                 }
+            } else {
+                entity.outputProgress = -1
             }
         }
 

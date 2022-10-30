@@ -1,5 +1,7 @@
 package io.github.shkschneider.awesome.machines.collector
 
+import io.github.shkschneider.awesome.custom.addPlayerHotbar
+import io.github.shkschneider.awesome.custom.addPlayerInventory
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventory
@@ -14,7 +16,6 @@ class CollectorScreenHandler(
 ) : ScreenHandler(Collector.SCREEN, syncId) {
 
     init {
-        checkSize(inventory, Collector.IO)
         inventory.onOpen(playerInventory.player)
         addSlot(Slot(inventory, 0, 62, 17))
         addSlot(Slot(inventory, 1, 80, 17))
@@ -25,7 +26,8 @@ class CollectorScreenHandler(
         addSlot(Slot(inventory, 6, 62, 53))
         addSlot(Slot(inventory, 7, 80, 53))
         addSlot(Slot(inventory, 8, 98, 53))
-        addPlayerSlots(playerInventory)
+        addPlayerInventory(playerInventory, ::addSlot)
+        addPlayerHotbar(playerInventory, ::addSlot)
     }
 
     override fun transferSlot(player: PlayerEntity, invSlot: Int): ItemStack {
@@ -39,19 +41,6 @@ class CollectorScreenHandler(
 
     override fun canUse(player: PlayerEntity): Boolean {
         return inventory.canPlayerUse(player)
-    }
-
-    private fun addPlayerSlots(playerInventory: PlayerInventory) {
-        // inventory
-        for (i in 0..2) {
-            for (l in 0..8) {
-                addSlot(Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18))
-            }
-        }
-        // hotbar
-        for (i in 0..8) {
-            addSlot(Slot(playerInventory, i, 8 + i * 18, 142))
-        }
     }
 
 }

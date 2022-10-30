@@ -2,7 +2,6 @@ package io.github.shkschneider.awesome.machines.crusher
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
-import io.github.shkschneider.awesome.materials.AwesomeMaterials
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
@@ -11,8 +10,6 @@ import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.client.gui.screen.ingame.HandledScreens
 import net.minecraft.inventory.SimpleInventory
 import net.minecraft.item.BlockItem
-import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
 import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.registry.Registry
@@ -20,11 +17,7 @@ import net.minecraft.util.registry.Registry
 object Crusher {
 
     const val ID = "crusher"
-
-    internal enum class IO(val items: ItemStack) {
-        InputLeft(ItemStack(Items.REDSTONE, 1)),
-        OutputRight(ItemStack(AwesomeMaterials.redstoneDust, 9)),
-    }
+    val SLOTS = 1 to 1
 
     internal enum class Properties(val time: Int) {
         OutputProgress(20),
@@ -44,7 +37,7 @@ object Crusher {
     )
 
     val SCREEN: ScreenHandlerType<CrusherScreenHandler> = ScreenHandlerType { syncId, playerInventory ->
-        CrusherScreenHandler(syncId, playerInventory, SimpleInventory(IO.values().size), ArrayPropertyDelegate(Properties.values().size))
+        CrusherScreenHandler(syncId, playerInventory, SimpleInventory(SLOTS.first + SLOTS.second), ArrayPropertyDelegate(Properties.values().size))
     }
 
     operator fun invoke() {
@@ -55,6 +48,7 @@ object Crusher {
         HandledScreens.register(SCREEN) { handler, inventory, title ->
             CrusherScreen(handler, inventory, title)
         }
+        CrusherRecipes()
     }
 
 }
