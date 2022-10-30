@@ -1,7 +1,7 @@
 {
-  "type": "minecraft:smelting",
-  "ingredient": { "item": "awesome:redstone_dust" },
+  "type": "minecraft:blasting",
+  "ingredient": { "item": "awesome:redstone_flux_dust" },
   "experience": 0.1,
-  "cookingtime": 20,
+  "cookingtime": 200,
   "result": "awesome:redstone_flux"
 }

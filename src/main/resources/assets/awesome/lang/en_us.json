@@ -22,11 +22,13 @@
   "gamerule.keepxp": "Keep XP",
   "gamerule.pvp": "Player vs Player",
   "gamerule.sleepingHeals": "Sleeping Heals",
-  "item.awesome.redstone_dust": "Redstone Dust",
+  "item.awesome.crushed_lapis_lazuli": "Crushed Lapis Lazuli",
+  "item.awesome.crushed_redstone": "Crushed Redstone",
+  "item.awesome.lapis_lazuli_dust": "Lapis Lazuli Dust",
   "item.awesome.redstone_flux": "Redstone Flux",
+  "item.awesome.redstone_flux_dust": "Redstone Flux Dust",
   "item.minecraft.lingering_potion.effect.experience": "Lingering Potion of Experience",
   "item.minecraft.potion.effect.experience": "Experience Potion",
-  "item.minecraft.redstone": "Redstone",
   "item.minecraft.splash_potion.effect.experience": "Splash Potion of Experience",
   "itemGroup.awesome.awesome": "Awesome"
 }

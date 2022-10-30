@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures":{
-    "layer0": "awesome:item/redstone_dust"
+    "layer0": "awesome:item/lapis_lazuli_dust"
   }
 }

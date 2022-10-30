@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.item.Item
 import net.minecraft.util.Rarity
 
-class RedstoneDust : Item(
+class LapisLazuliDust : Item(
     FabricItemSettings()
         .maxCount(AwesomeUtils.STACK)
         .group(Awesome.GROUP)
@@ -16,7 +16,7 @@ class RedstoneDust : Item(
 
     companion object {
 
-        const val ID = "redstone_dust"
+        const val ID = "lapis_lazuli_dust"
 
     }
 
