@@ -20,7 +20,7 @@ class BackCommand : AwesomeCommand("back", AwesomePermissions.Commands) {
         }
         data.clearLocation("back")
         context.source.sendFeedback(Text.of("Teleporting back $location..."), false)
-        player.teleport(player.server.getWorld(location.worldRegistryKey), location.x, location.y, location.z, location.yaw, location.pitch)
+        player.teleport(player.server.getWorld(location.worldRegistryKey), location.x + 0.5, location.y + 0.25, location.z + 0.5, location.yaw, location.pitch)
         return 1
     }
 

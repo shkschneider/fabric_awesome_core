@@ -4,6 +4,7 @@ import io.github.shkschneider.awesome.commands.AwesomeCommands
 import io.github.shkschneider.awesome.effects.AwesomeEffects
 import io.github.shkschneider.awesome.enchantments.AwesomeEnchantments
 import io.github.shkschneider.awesome.gamerules.AwesomeGameRules
+import io.github.shkschneider.awesome.machines.AwesomeMachines
 import io.github.shkschneider.awesome.materials.AwesomeMaterials
 import io.github.shkschneider.awesome.worldgen.AwesomeWorldGen
 import net.fabricmc.api.ModInitializer
@@ -15,7 +16,7 @@ class Awesome : ModInitializer {
 
     companion object {
 
-        const val ID = "awesome"
+        val ID = "awesome".lowercase()
 
         val GROUP = FabricItemGroupBuilder.build(Identifier(ID, ID)) { ItemStack(AwesomeMaterials.redstoneFlux) }
 
@@ -27,7 +28,7 @@ class Awesome : ModInitializer {
         AwesomeEffects()
         AwesomeEnchantments()
         AwesomeGameRules()
-        AwesomeMaterials()
+        AwesomeMachines()
         AwesomeMaterials()
         AwesomeWorldGen()
     }

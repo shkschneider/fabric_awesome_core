@@ -22,7 +22,7 @@ class HomeCommand : AwesomeCommand("home", AwesomePermissions.Commands) {
         player.writeLocation("back")
         // home
         context.source.sendFeedback(Text.of("Teleporting home $location..."), false)
-        player.teleport(player.server.getWorld(location.worldRegistryKey), location.x, location.y, location.z, location.yaw, location.pitch)
+        player.teleport(player.server.getWorld(location.worldRegistryKey), location.x + 0.5, location.y + 0.25, location.z + 0.5, location.yaw, location.pitch)
         return 1
     }
 

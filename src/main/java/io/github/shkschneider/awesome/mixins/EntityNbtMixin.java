@@ -29,14 +29,14 @@ public abstract class EntityNbtMixin implements IEntityData {
     @Inject(method = "writeNbt", at = @At("HEAD"))
     protected void writeNbt(NbtCompound nbt, CallbackInfoReturnable info) {
         if (data != null) {
-            nbt.put(Awesome.ID, data);
+            nbt.put(Awesome.Companion.getID(), data);
         }
     }
 
     @Inject(method = "readNbt", at = @At("HEAD"))
     protected void readNbt(NbtCompound nbt, CallbackInfo info) {
-        if (nbt.contains(Awesome.ID, 10)) {
-            data = nbt.getCompound(Awesome.ID);
+        if (nbt.contains(Awesome.Companion.getID(), 10)) {
+            data = nbt.getCompound(Awesome.Companion.getID());
         }
     }
 
