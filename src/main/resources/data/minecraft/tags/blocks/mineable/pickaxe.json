@@ -2,6 +2,8 @@
   "values": [
     "awesome:deepslate_randomium_ore",
     "awesome:end_randomium_ore",
-    "awesome:randomium_ore"
+    "awesome:frame",
+    "awesome:randomium_ore",
+    "awesome:tesseract"
   ]
 }

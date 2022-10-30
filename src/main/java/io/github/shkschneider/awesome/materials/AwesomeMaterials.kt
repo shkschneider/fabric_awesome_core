@@ -1,9 +1,11 @@
 package io.github.shkschneider.awesome.materials
 
 import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.materials.frame.FrameBlock
+import io.github.shkschneider.awesome.materials.randomium.Randomium
 import io.github.shkschneider.awesome.materials.redstone.RedstoneDust
 import io.github.shkschneider.awesome.materials.redstone.RedstoneFlux
-import io.github.shkschneider.awesome.materials.randomium.Randomium
+import io.github.shkschneider.awesome.materials.tesseract.TesseractBlock
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.block.Block
 import net.minecraft.item.BlockItem
@@ -20,6 +22,9 @@ object AwesomeMaterials {
     val randomiumOre = Randomium.RandomiumOre()
     val deepslateRandomiumOre = Randomium.DeepslateRandomiumOre()
     val endRandomiumOre = Randomium.EndRandomiumOre()
+
+    val frame = FrameBlock()
+    val tesseract = TesseractBlock()
 
     operator fun invoke() = Unit
 
