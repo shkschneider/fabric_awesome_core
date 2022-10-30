@@ -1,13 +1,12 @@
 package io.github.shkschneider.awesome.machines.smelter
 
 import com.mojang.blaze3d.systems.RenderSystem
-import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.AwesomeUtils
 import net.minecraft.client.gui.screen.ingame.HandledScreen
 import net.minecraft.client.render.GameRenderer
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.text.Text
-import net.minecraft.util.Identifier
 
 class SmelterScreen(handler: SmelterScreenHandler, playerInventory: PlayerInventory, title: Text) :
     HandledScreen<SmelterScreenHandler>(handler, playerInventory, title) {
@@ -22,7 +21,7 @@ class SmelterScreen(handler: SmelterScreenHandler, playerInventory: PlayerInvent
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader)
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
-        RenderSystem.setShaderTexture(0, Identifier(Awesome.ID, TEXTURE))
+        RenderSystem.setShaderTexture(0, AwesomeUtils.identifier(TEXTURE))
         val x = (width - backgroundWidth) / 2
         val y = (height - backgroundHeight) / 2
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight)

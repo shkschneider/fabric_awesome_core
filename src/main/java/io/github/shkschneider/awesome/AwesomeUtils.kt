@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome
 
 import io.github.shkschneider.awesome.custom.Location
+import net.minecraft.util.Identifier
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -9,6 +10,10 @@ object AwesomeUtils {
     const val TICK = 20
 
     const val STACK = 64
+
+    fun id(id: String) = "${Awesome.ID}:$id"
+
+    fun identifier(id: String) = Identifier(id(id))
 
     fun key(vararg k: String) = "${Awesome.ID}_${k.joinToString(separator = "_") { it.lowercase() }}"
 

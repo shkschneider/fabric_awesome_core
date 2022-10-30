@@ -14,7 +14,11 @@ class RedstoneFlux : Item(
         .rarity(Rarity.UNCOMMON)
 ) {
 
-    val ID = "redstone_flux"
+    companion object {
+
+        const val ID = "redstone_flux"
+
+    }
 
     init {
         AwesomeMaterials.invoke(ID, this)

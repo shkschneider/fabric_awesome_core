@@ -1,12 +1,11 @@
 package io.github.shkschneider.awesome.enchantments
 
-import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.AwesomeUtils
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentTarget
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.LivingEntity
-import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 
 abstract class AwesomeEnchantment(
@@ -18,7 +17,7 @@ abstract class AwesomeEnchantment(
 ) : Enchantment(rarity, target, slots.toTypedArray()) {
 
     operator fun invoke() {
-        Registry.register(Registry.ENCHANTMENT, Identifier(Awesome.ID, id), this)
+        Registry.register(Registry.ENCHANTMENT, AwesomeUtils.identifier(id), this)
     }
 
     abstract fun invoke(livingEntity: LivingEntity, entity: Entity, level: Int)

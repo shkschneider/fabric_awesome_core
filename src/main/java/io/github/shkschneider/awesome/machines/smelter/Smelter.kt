@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.machines.smelter
 
 import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.materials.AwesomeMaterials
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -14,7 +15,6 @@ import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.ScreenHandlerType
-import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 
 object Smelter {
@@ -33,18 +33,12 @@ object Smelter {
     }
 
     val BLOCK: SmelterBlock = Registry.register(
-        Registry.BLOCK, Identifier(Awesome.ID, ID),
+        Registry.BLOCK, AwesomeUtils.identifier(ID),
         SmelterBlock(FabricBlockSettings.copyOf(Blocks.BLAST_FURNACE))
-    ).also { block ->
-        Registry.register(
-            Registry.ITEM, Identifier(Awesome.ID, ID),
-            BlockItem(block, FabricItemSettings().group(Awesome.GROUP))
-        )
-    }
+    )
 
     val ENTITY: BlockEntityType<SmelterBlockEntity> = Registry.register(
-        Registry.BLOCK_ENTITY_TYPE,
-        Identifier(Awesome.ID, ID),
+        Registry.BLOCK_ENTITY_TYPE, AwesomeUtils.identifier(ID),
         FabricBlockEntityTypeBuilder.create(
             { pos, state -> SmelterBlockEntity(pos, state) },
             BLOCK
@@ -56,6 +50,10 @@ object Smelter {
     }
 
     operator fun invoke() {
+        Registry.register(
+            Registry.ITEM, AwesomeUtils.identifier(ID),
+            BlockItem(BLOCK, FabricItemSettings().group(Awesome.GROUP))
+        )
         HandledScreens.register(SCREEN) { handler, playerInventory, title ->
             SmelterScreen(handler, playerInventory, title)
         }

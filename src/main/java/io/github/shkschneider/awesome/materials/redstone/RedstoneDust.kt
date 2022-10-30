@@ -14,7 +14,11 @@ class RedstoneDust : Item(
         .rarity(Rarity.COMMON)
 ) {
 
-    val ID = "redstone_dust"
+    companion object {
+
+        const val ID = "redstone_dust"
+
+    }
 
     init {
         AwesomeMaterials.invoke(ID, this)
