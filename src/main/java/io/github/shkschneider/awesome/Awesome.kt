@@ -1,6 +1,13 @@
 package io.github.shkschneider.awesome
 
+import io.github.shkschneider.awesome.commands.AwesomeCommands
+import io.github.shkschneider.awesome.events.AwesomeEvents
+import io.github.shkschneider.awesome.gamerules.AwesomeGameRules
+import io.github.shkschneider.awesome.materials.AwesomeMaterials
 import net.fabricmc.api.ModInitializer
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
+import net.minecraft.item.ItemStack
+import net.minecraft.util.Identifier
 
 class Awesome : ModInitializer {
 
@@ -8,11 +15,18 @@ class Awesome : ModInitializer {
 
         const val ID = "awesome"
 
+        val GROUP = FabricItemGroupBuilder.build(Identifier(ID, ID)) { ItemStack(AwesomeMaterials.redstoneFlux) }
+
+        fun id(t: String) = "${ID}_${t}"
+
     }
 
     override fun onInitialize() {
         Logger.debug("Awesome!")
-        AwesomeItemGroups()
+        AwesomeCommands()
+        AwesomeEvents()
+        AwesomeGameRules()
+        AwesomeMaterials()
     }
 
 }
