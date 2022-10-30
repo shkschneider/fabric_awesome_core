@@ -20,7 +20,7 @@ class InfuserScreen(handler: InfuserScreenHandler, playerInventory: PlayerInvent
     }
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
-        RenderSystem.setShader { GameRenderer.getPositionTexShader() }
+        RenderSystem.setShader(GameRenderer::getPositionTexShader)
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
         RenderSystem.setShaderTexture(0, Identifier(Awesome.ID, TEXTURE))
         val x = (width - backgroundWidth) / 2

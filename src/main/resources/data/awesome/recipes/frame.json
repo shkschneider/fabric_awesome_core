@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "111",
+    "1 1",
+    "111"
+  ],
+  "key": {
+    "1": { "item": "minecraft:iron_ingot" }
+  },
+  "result": {
+    "item": "awesome:frame",
+    "count": 1
+  }
+}
