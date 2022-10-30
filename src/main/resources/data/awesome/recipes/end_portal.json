@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "111",
+    "121",
+    "111"
+  ],
+  "key": {
+    "1": { "item": "minecraft:end_stone" },
+    "2": { "item": "minecraft:ender_pearl" }
+  },
+  "result": {
+    "item": "minecraft:end_portal_frame",
+    "count": 1
+  }
+}
