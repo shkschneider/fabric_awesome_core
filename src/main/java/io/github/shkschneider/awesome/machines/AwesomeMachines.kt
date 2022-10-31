@@ -7,11 +7,12 @@ import io.github.shkschneider.awesome.machines.smelter.Smelter
 
 object AwesomeMachines {
 
-    operator fun invoke() {
-        Collector()
-        Crusher()
-        Infuser()
-        Smelter()
-    }
+    val collector = Collector()
+
+    val crusher = Crusher()
+    val infuser = Infuser()
+    val smelter = Smelter()
+
+    operator fun invoke() = Unit
 
 }

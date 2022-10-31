@@ -1,44 +1,55 @@
 package io.github.shkschneider.awesome.machines.smelter
 
-import com.mojang.blaze3d.systems.RenderSystem
-import io.github.shkschneider.awesome.AwesomeUtils
-import net.minecraft.client.gui.screen.ingame.HandledScreen
-import net.minecraft.client.render.GameRenderer
+import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
+import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
+import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.inventory.Inventory
+import net.minecraft.item.ItemStack
+import net.minecraft.screen.PropertyDelegate
+import net.minecraft.screen.slot.Slot
 import net.minecraft.text.Text
 
-class SmelterScreen(handler: SmelterScreenHandler, playerInventory: PlayerInventory, title: Text) :
-    HandledScreen<SmelterScreenHandler>(handler, playerInventory, title) {
-
-    private val TEXTURE = "textures/gui/${Smelter.ID}.png"
-
-    override fun init() {
-        super.init()
-        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2
-    }
+class SmelterScreen(
+    handler: Handler,
+    playerInventory: PlayerInventory,
+    title: Text,
+) : AwesomeMachineScreen<SmelterScreen.Handler>(Smelter.ID, handler, playerInventory, title) {
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader)
-        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
-        RenderSystem.setShaderTexture(0, AwesomeUtils.identifier(TEXTURE))
-        val x = (width - backgroundWidth) / 2
-        val y = (height - backgroundHeight) / 2
-        drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight)
+        super.drawBackground(matrices, delta, mouseX, mouseY)
         if (handler.inputProgress > 0) {
-            val progress = handler.inputProgress * 13 / Smelter.Properties.InputProgress.time
+            val progress = handler.inputProgress * 13 / Smelter.Process.Input.time
             drawTexture(matrices, x + 56, y + 36 + 12 - progress, 176, 12 - progress, 14, progress + 1)
         }
         if (handler.outputProgress > 0) {
-            val progress = (Smelter.Properties.OutputProgress.time - handler.outputProgress) * 24 / Smelter.Properties.OutputProgress.time
+            val progress = (Smelter.Process.Output.time - handler.outputProgress) * 24 / Smelter.Process.Output.time
             drawTexture(matrices, x + 79, y + 34, 176, 14, progress + 1, 16)
         }
     }
 
-    override fun render(matrices: MatrixStack, mouseX: Int, mouseY: Int, delta: Float) {
-        renderBackground(matrices)
-        super.render(matrices, mouseX, mouseY, delta)
-        drawMouseoverTooltip(matrices, mouseX, mouseY)
+    class Handler(
+        syncId: Int,
+        playerInventory: PlayerInventory,
+        inventory: Inventory,
+        properties: PropertyDelegate,
+    ) : AwesomeMachineScreenHandler(
+        AwesomeMachines.smelter.screen, syncId, playerInventory, inventory, properties
+    ) {
+
+        init {
+            addProperties(properties)
+            addSlot(Slot(inventory, 0, 56, 17))
+            addSlot(Slot(inventory, 1, 56, 53))
+            addSlot(Slot(inventory, 2, 112 + 4, 31 + 4))
+            addPlayerSlots()
+        }
+
+        override fun canInsertIntoSlot(stack: ItemStack, slot: Slot): Boolean {
+            return super.canInsertIntoSlot(stack, slot)
+        }
+
     }
 
 }

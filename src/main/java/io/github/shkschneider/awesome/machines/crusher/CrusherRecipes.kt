@@ -9,7 +9,7 @@ import net.minecraft.recipe.Recipe
 
 object CrusherRecipes {
 
-    val CRUSHING = AwesomeRecipeType<Recipe<CrusherBlockEntity>>()
+    val CRUSHING = AwesomeRecipeType<Recipe<CrusherBlock.Entity>>()
 
     val lapisLazuliDust = AwesomeRecipe(CRUSHING, null, listOf(ItemStack(Items.LAPIS_LAZULI, 1)), ItemStack(AwesomeMaterials.lapisLazuliDust, 9))
 

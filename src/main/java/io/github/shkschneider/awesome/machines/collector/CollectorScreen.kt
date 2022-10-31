@@ -1,36 +1,48 @@
 package io.github.shkschneider.awesome.machines.collector
 
-import com.mojang.blaze3d.systems.RenderSystem
-import io.github.shkschneider.awesome.AwesomeUtils
-import net.minecraft.client.gui.screen.ingame.HandledScreen
-import net.minecraft.client.render.GameRenderer
-import net.minecraft.client.util.math.MatrixStack
+import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
+import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
+import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.inventory.Inventory
+import net.minecraft.item.ItemStack
+import net.minecraft.screen.PropertyDelegate
+import net.minecraft.screen.slot.Slot
 import net.minecraft.text.Text
 
-class CollectorScreen(handler: CollectorScreenHandler, playerInventory: PlayerInventory, title: Text) :
-    HandledScreen<CollectorScreenHandler>(handler, playerInventory, title) {
+class CollectorScreen(
+    handler: Handler,
+    playerInventory: PlayerInventory,
+    title: Text,
+) : AwesomeMachineScreen<CollectorScreen.Handler>(Collector.ID, handler, playerInventory, title) {
 
-    private val TEXTURE = "textures/gui/${Collector.ID}.png"
+    class Handler(
+        syncId: Int,
+        playerInventory: PlayerInventory,
+        inventory: Inventory,
+        properties: PropertyDelegate,
+    ) : AwesomeMachineScreenHandler(
+        AwesomeMachines.collector.screen, syncId, playerInventory, inventory, properties
+    ) {
 
-    override fun init() {
-        super.init()
-        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2
-    }
+        init {
+            addProperties(properties)
+            addSlot(Slot(inventory, 0, 62, 17))
+            addSlot(Slot(inventory, 1, 80, 17))
+            addSlot(Slot(inventory, 2, 98, 17))
+            addSlot(Slot(inventory, 3, 62, 35))
+            addSlot(Slot(inventory, 4, 80, 35))
+            addSlot(Slot(inventory, 5, 98, 35))
+            addSlot(Slot(inventory, 6, 62, 53))
+            addSlot(Slot(inventory, 7, 80, 53))
+            addSlot(Slot(inventory, 8, 98, 53))
+            addPlayerSlots()
+        }
 
-    override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader)
-        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
-        RenderSystem.setShaderTexture(0, AwesomeUtils.identifier(TEXTURE))
-        val x = (width - backgroundWidth) / 2
-        val y = (height - backgroundHeight) / 2
-        drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight)
-    }
+        override fun canInsertIntoSlot(stack: ItemStack, slot: Slot): Boolean {
+            return super.canInsertIntoSlot(stack, slot)
+        }
 
-    override fun render(matrices: MatrixStack, mouseX: Int, mouseY: Int, delta: Float) {
-        renderBackground(matrices)
-        super.render(matrices, mouseX, mouseY, delta)
-        drawMouseoverTooltip(matrices, mouseX, mouseY)
     }
 
 }

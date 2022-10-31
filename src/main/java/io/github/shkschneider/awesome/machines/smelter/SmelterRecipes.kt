@@ -9,7 +9,7 @@ import net.minecraft.recipe.Recipe
 
 object SmelterRecipes {
 
-    val SMELTING = AwesomeRecipeType<Recipe<SmelterBlockEntity>>()
+    val SMELTING = AwesomeRecipeType<Recipe<SmelterBlock.Entity>>()
 
     val redstoneFlux = AwesomeRecipe(SMELTING, Items.COAL, listOf(ItemStack(AwesomeMaterials.redstoneFluxDust, 1)), ItemStack(AwesomeMaterials.redstoneFlux, 1))
 
