@@ -16,7 +16,6 @@ class AwesomeRecipeHelper(
         check(recipes.isNotEmpty())
         if (recipes.any { it.fuel != null }) check(recipes.all { it.fuel != null })
         check(recipes.all { it.inputs.isEmpty().not() })
-        check(recipes.all { it.output.count == recipes.first().output.count })
     }
 
     private val fueld = recipes.any { it.fuel != null }

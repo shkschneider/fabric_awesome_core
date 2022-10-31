@@ -2,13 +2,20 @@ package io.github.shkschneider.awesome.materials
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.materials.coal.CoalDust
+import io.github.shkschneider.awesome.materials.coal.CrushedCoal
+import io.github.shkschneider.awesome.materials.copper.CopperDust
+import io.github.shkschneider.awesome.materials.copper.CrushedCopper
+import io.github.shkschneider.awesome.materials.diamond.DiamondDust
+import io.github.shkschneider.awesome.materials.emerald.EmeraldDust
 import io.github.shkschneider.awesome.materials.frame.FrameBlock
+import io.github.shkschneider.awesome.materials.gold.CrushedGold
+import io.github.shkschneider.awesome.materials.gold.GoldDust
+import io.github.shkschneider.awesome.materials.iron.CrushedIron
+import io.github.shkschneider.awesome.materials.iron.IronDust
+import io.github.shkschneider.awesome.materials.lapis.LapisDust
 import io.github.shkschneider.awesome.materials.randomium.Randomium
-import io.github.shkschneider.awesome.materials.redstone.CrushedLapisLazuli
-import io.github.shkschneider.awesome.materials.redstone.CrushedRedstone
-import io.github.shkschneider.awesome.materials.redstone.LapisLazuliDust
 import io.github.shkschneider.awesome.materials.redstone.RedstoneFlux
-import io.github.shkschneider.awesome.materials.redstone.RedstoneFluxDust
 import io.github.shkschneider.awesome.materials.tesseract.TesseractBlock
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.block.Block
@@ -20,18 +27,30 @@ import net.minecraft.util.registry.Registry
 
 object AwesomeMaterials {
 
-    val crushedRedstone = CrushedRedstone()
-    val redstoneDust = Items.REDSTONE
+    val crushedCopper = CrushedCopper()
+    val copperDust = CopperDust()
 
-    val crushedLapisLazuli = CrushedLapisLazuli()
-    val lapisLazuliDust = LapisLazuliDust()
+    val crushedCoal = CrushedCoal()
+    val coalDust = CoalDust()
 
-    val redstoneFluxDust = RedstoneFluxDust()
-    val redstoneFlux = RedstoneFlux()
+    val diamondDust = DiamondDust()
+
+    val emeraldDust = EmeraldDust()
+
+    val crushedGold = CrushedGold()
+    val goldDust = GoldDust()
+
+    val crushedIron = CrushedIron()
+    val ironDust = IronDust()
+
+    val lapisDust = LapisDust()
 
     val randomiumOre = Randomium.RandomiumOre()
     val deepslateRandomiumOre = Randomium.DeepslateRandomiumOre()
     val endRandomiumOre = Randomium.EndRandomiumOre()
+
+    val redstoneDust = Items.REDSTONE
+    val redstoneFlux = RedstoneFlux()
 
     val frame = FrameBlock()
     val tesseract = TesseractBlock()

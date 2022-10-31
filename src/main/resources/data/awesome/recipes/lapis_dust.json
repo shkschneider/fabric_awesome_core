@@ -3,5 +3,5 @@
   "ingredient": { "item": "minecraft:lapis_lazuli" },
   "experience": 0.1,
   "cookingtime": 20,
-  "result": "awesome:lapis_lazuli_dust"
+  "result": "awesome:lapis_dust"
 }

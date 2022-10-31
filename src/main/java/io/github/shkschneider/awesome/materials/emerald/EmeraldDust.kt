@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.materials.redstone
+package io.github.shkschneider.awesome.materials.emerald
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.item.Item
 import net.minecraft.util.Rarity
 
-class LapisLazuliDust : Item(
+class EmeraldDust : Item(
     FabricItemSettings()
         .maxCount(AwesomeUtils.STACK)
         .group(Awesome.GROUP)
@@ -16,7 +16,7 @@ class LapisLazuliDust : Item(
 
     companion object {
 
-        const val ID = "lapis_lazuli_dust"
+        const val ID = "emerald_dust"
 
     }
 
