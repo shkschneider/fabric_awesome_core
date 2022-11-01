@@ -2,12 +2,11 @@ package io.github.shkschneider.awesome.machines.recipes
 
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
-import net.minecraft.screen.slot.Slot
 
 class AwesomeRecipeHelper(
     private val inventory: Inventory,
     private val slots: Pair<Int, Int>,
-    private val recipes: List<AwesomeRecipe<*>>,
+    private val recipes: List<AwesomeRecipe<out Inventory>>,
 ) {
 
     init {
@@ -37,12 +36,12 @@ class AwesomeRecipeHelper(
         recipes.firstOrNull { recipe ->
             recipe.inputs.all { input ->
                 getInputs().any { it.second.item == input.item && it.second.count >= input.count }
-            }
+            } && recipe.inputs.sumOf { it.count } <= getInputs().sumOf { it.second.count }
         }?.takeIf { recipe ->
             getOutputs().any { it.second.isEmpty || (it.second.item == recipe.output.item && it.second.count + recipe.output.count <= it.second.maxCount) }
         }
 
-    fun burn(recipe: AwesomeRecipe<*>): Boolean {
+    fun burn(recipe: AwesomeRecipe<out Inventory>): Boolean {
         val fuel = getFuel()
         return if (fuel == null) {
             true
@@ -54,7 +53,7 @@ class AwesomeRecipeHelper(
         }
     }
 
-    fun craft(recipe: AwesomeRecipe<*>) {
+    fun craft(recipe: AwesomeRecipe<out Inventory>) {
         getInputs().forEachIndexed { i, _ ->
             inventory.removeStack(i, recipe.inputs.first().count)
         }

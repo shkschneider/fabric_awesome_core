@@ -32,6 +32,7 @@ object CrusherRecipes {
     val ironDustFromCrushed = AwesomeRecipe(CRUSHING, null, listOf(ItemStack(AwesomeMaterials.crushedIron, 2)), ItemStack(AwesomeMaterials.ironDust, 1))
 
     val diamondDustFromCoalBlock = AwesomeRecipe(CRUSHING, null, listOf(ItemStack(Items.COAL_BLOCK, 1)), ItemStack(AwesomeMaterials.diamondDust, 1))
+    val redstoneFromNetherrack = AwesomeRecipe(CRUSHING, null, listOf(ItemStack(Items.NETHERRACK, 64)), ItemStack(AwesomeMaterials.redstoneDust, 9))
 
     operator fun invoke(): List<AwesomeRecipe<CrusherBlock.Entity>> = mutableListOf(
         // Vanilla
@@ -49,6 +50,7 @@ object CrusherRecipes {
         goldDustFromCrushed,
         ironDustFromCrushed,
     ).apply {
+        if (AwesomeConfig.redstoneFromCrushingNetherrack) add(redstoneFromNetherrack)
         if (AwesomeConfig.diamondDustFromCrushingCoalBlock) add(diamondDustFromCoalBlock)
     }
 

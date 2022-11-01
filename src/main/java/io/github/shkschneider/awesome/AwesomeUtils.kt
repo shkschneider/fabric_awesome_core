@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome
 
 import io.github.shkschneider.awesome.custom.Location
+import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -29,6 +30,13 @@ object AwesomeUtils {
         return sqrt(
             (l1.x - l2.x).pow(2) + (l1.y - l2.y).pow(2) + (l1.z - l2.z).pow(2)
         )
+    }
+
+    // NOTE: this might contain more than STACK elements
+    fun List<ItemStack>.uniq(): List<ItemStack> = buildList {
+        forEach { stack ->
+            add(ItemStack(stack.item, filter { it.item == stack.item }.sumOf { it.count }))
+        }
     }
 
 }

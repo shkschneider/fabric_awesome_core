@@ -24,6 +24,9 @@
 - Base: 1ingot (crushing) 1dust (smelting) 1ingot
 - Tier0: 1raw (smelting) 1ingot
 - Tier1: 1raw (crushing) 4crushed (crushing) 2dust (smelting) 2ingot
+- Tier2: 1raw (crushing) 4crushed (infusing) 4dust (smelting) 4ingot
+- Bonus: 64netherrack (crushing) 9redstone
+- Bonus: 1coalblock (crushing) 1diamonddust (smelting) 1diamond
 
 ## License
 

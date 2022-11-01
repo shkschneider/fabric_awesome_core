@@ -7,7 +7,7 @@ object AwesomeConfig {
     const val oreDropXpWithExperienceEnchantment = true
     const val experiencePotions = true
     const val randomiumWorldGen = true
-    const val redstoneFromInfusingStoneAndRedDye = true
+    const val redstoneFromCrushingNetherrack = true
     const val silkTouchSpawners = true
     const val trueInfinityBow = true
     const val veinMiningEnchantment = true
