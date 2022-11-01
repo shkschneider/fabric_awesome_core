@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.machines.crusher
 
+import io.github.shkschneider.awesome.AwesomeConfig
 import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipe
 import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipeType
 import io.github.shkschneider.awesome.materials.AwesomeMaterials
@@ -32,7 +33,7 @@ object CrusherRecipes {
 
     val diamondDustFromCoalBlock = AwesomeRecipe(CRUSHING, null, listOf(ItemStack(Items.COAL_BLOCK, 1)), ItemStack(AwesomeMaterials.diamondDust, 1))
 
-    operator fun invoke() = listOf(
+    operator fun invoke(): List<AwesomeRecipe<CrusherBlock.Entity>> = mutableListOf(
         // Vanilla
         copperDustFromIngot,
         diamondDustFromGem,
@@ -47,7 +48,8 @@ object CrusherRecipes {
         copperDustFromCrushed,
         goldDustFromCrushed,
         ironDustFromCrushed,
-        diamondDustFromCoalBlock,
-    )
+    ).apply {
+        if (AwesomeConfig.diamondDustFromCrushingCoalBlock) add(diamondDustFromCoalBlock)
+    }
 
 }

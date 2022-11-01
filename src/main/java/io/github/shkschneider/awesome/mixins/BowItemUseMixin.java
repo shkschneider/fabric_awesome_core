@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.mixins;
 
+import io.github.shkschneider.awesome.AwesomeConfig;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,10 +24,14 @@ public class BowItemUseMixin {
 
     @Inject(method="use(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/TypedActionResult;", at=@At("HEAD"), cancellable=true)
     private void use(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
-        final ItemStack stack = user.getStackInHand(hand);
-        if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0) {
-            user.setCurrentHand(hand);
-            cir.setReturnValue(TypedActionResult.pass(stack));
+        if (!AwesomeConfig.trueInfinityBow) {
+            cir.setReturnValue(cir.getReturnValue());
+        } else {
+            final ItemStack stack = user.getStackInHand(hand);
+            if (EnchantmentHelper.getLevel(Enchantments.INFINITY, stack) > 0) {
+                user.setCurrentHand(hand);
+                cir.setReturnValue(TypedActionResult.pass(stack));
+            }
         }
     }
 

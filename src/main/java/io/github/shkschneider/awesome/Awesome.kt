@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome
 
 import io.github.shkschneider.awesome.commands.AwesomeCommands
+import io.github.shkschneider.awesome.custom.SilkTouchSpawners
 import io.github.shkschneider.awesome.effects.AwesomeEffects
 import io.github.shkschneider.awesome.enchantments.AwesomeEnchantments
 import io.github.shkschneider.awesome.gamerules.AwesomeGameRules
@@ -31,6 +32,7 @@ class Awesome : ModInitializer {
         AwesomeMachines()
         AwesomeMaterials()
         AwesomeWorldGen()
+        if (AwesomeConfig.silkTouchSpawners) SilkTouchSpawners()
     }
 
 }

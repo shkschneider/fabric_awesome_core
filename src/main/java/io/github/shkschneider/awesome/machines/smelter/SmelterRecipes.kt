@@ -20,7 +20,7 @@ object SmelterRecipes {
     val ironIngotFromDust = AwesomeRecipe(SMELTING, AwesomeMaterials.redstoneFlux, listOf(ItemStack(AwesomeMaterials.ironDust, 1)), ItemStack(Items.IRON_INGOT, 1))
     val lapisFromDust = AwesomeRecipe(SMELTING, AwesomeMaterials.redstoneFlux, listOf(ItemStack(AwesomeMaterials.lapisDust, 1)), ItemStack(Items.LAPIS_LAZULI, 1))
 
-    operator fun invoke() = listOf(
+    operator fun invoke(): List<AwesomeRecipe<SmelterBlock.Entity>> = listOf(
         // Vanilla
         copperIngotFromDust,
         diamondFromDust,

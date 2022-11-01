@@ -1,19 +1,23 @@
 package io.github.shkschneider.awesome.gamerules
 
-import io.github.shkschneider.awesome.custom.SilkTouchSpawners
+import io.github.shkschneider.awesome.AwesomeConfig
 import net.minecraft.world.GameRules
 import net.minecraft.world.GameRules.BooleanRule
-import net.minecraft.world.World
 
 object AwesomeGameRules {
 
-    val keepXp: GameRules.Key<BooleanRule> = KeepXpGameRule()
-    val oreXp: GameRules.Key<BooleanRule> = OreXpGameRule()
-    val pvp: GameRules.Key<BooleanRule> = PvpGameRule()
-    val sleepingHeals: GameRules.Key<BooleanRule> = SleepingHealsGameRule()
+    lateinit var keepXp: GameRules.Key<BooleanRule>
+    lateinit var oreXp: GameRules.Key<BooleanRule>
+    lateinit var pvp: GameRules.Key<BooleanRule>
+    lateinit var sleepingHeals: GameRules.Key<BooleanRule>
 
     operator fun invoke() {
-        SilkTouchSpawners()
+        keepXp = KeepXpGameRule()
+        if (AwesomeConfig.oreDropXpWithExperienceEnchantment) {
+            oreXp = OreXpGameRule()
+        }
+        pvp = PvpGameRule()
+        sleepingHeals = SleepingHealsGameRule()
     }
 
     // operator fun invoke(world: World, key: GameRules.Key<BooleanRule>) = world.gameRules.getBoolean(key)
