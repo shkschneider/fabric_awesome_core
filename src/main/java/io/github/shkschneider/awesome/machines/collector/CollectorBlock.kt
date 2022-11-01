@@ -14,8 +14,9 @@ class CollectorBlock(settings: Settings) : AwesomeMachineBlock<CollectorBlock.En
     tickerProvider = { AwesomeMachines.collector },
 ) {
 
+    @Suppress("USELESS_CAST")
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
-        Collector.ID, AwesomeMachines.collector.entityType as BlockEntityType<CollectorBlock.Entity>,
+        Collector.ID, AwesomeMachines.collector.entityType as BlockEntityType<Entity>,
         pos, state,
         Collector.SLOTS.first + Collector.SLOTS.second,
         screenHandlerProvider = { syncId, playerInventory, inventory, properties ->

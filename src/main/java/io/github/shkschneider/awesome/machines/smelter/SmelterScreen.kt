@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.PropertyDelegate
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.screen.slot.Slot
 import net.minecraft.text.Text
 
@@ -29,13 +30,14 @@ class SmelterScreen(
         }
     }
 
+    @Suppress("USELESS_CAST")
     class Handler(
         syncId: Int,
         playerInventory: PlayerInventory,
         inventory: Inventory,
         properties: PropertyDelegate,
     ) : AwesomeMachineScreenHandler(
-        AwesomeMachines.smelter.screen, syncId, playerInventory, inventory, properties
+        AwesomeMachines.smelter.screen as ScreenHandlerType<Handler>, syncId, playerInventory, inventory, properties
     ) {
 
         init {

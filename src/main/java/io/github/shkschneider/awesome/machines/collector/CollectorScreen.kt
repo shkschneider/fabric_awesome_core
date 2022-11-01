@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.PropertyDelegate
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.screen.slot.Slot
 import net.minecraft.text.Text
 
@@ -16,13 +17,14 @@ class CollectorScreen(
     title: Text,
 ) : AwesomeMachineScreen<CollectorScreen.Handler>(Collector.ID, handler, playerInventory, title) {
 
+    @Suppress("USELESS_CAST")
     class Handler(
         syncId: Int,
         playerInventory: PlayerInventory,
         inventory: Inventory,
         properties: PropertyDelegate,
     ) : AwesomeMachineScreenHandler(
-        AwesomeMachines.collector.screen, syncId, playerInventory, inventory, properties
+        AwesomeMachines.collector.screen as ScreenHandlerType<Handler>, syncId, playerInventory, inventory, properties
     ) {
 
         init {

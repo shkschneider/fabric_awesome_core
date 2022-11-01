@@ -14,8 +14,9 @@ class SmelterBlock(settings: Settings) : AwesomeMachineBlock<SmelterBlock.Entity
     tickerProvider = { AwesomeMachines.smelter },
 ) {
 
+    @Suppress("USELESS_CAST")
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
-        Smelter.ID, AwesomeMachines.smelter.entityType as BlockEntityType<SmelterBlock.Entity>,
+        Smelter.ID, AwesomeMachines.smelter.entityType as BlockEntityType<Entity>,
         pos, state,
         Smelter.SLOTS.first + Smelter.SLOTS.second,
         screenHandlerProvider = { syncId, playerInventory, inventory, properties ->

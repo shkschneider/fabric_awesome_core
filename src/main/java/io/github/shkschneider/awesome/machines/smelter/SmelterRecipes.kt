@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.machines.smelter
 
+import io.github.shkschneider.awesome.AwesomeConfig
 import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipe
 import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipeType
 import io.github.shkschneider.awesome.materials.AwesomeMaterials
@@ -11,8 +12,8 @@ object SmelterRecipes {
 
     val SMELTING = AwesomeRecipeType<Recipe<SmelterBlock.Entity>>()
 
-    private val RECIPES = listOf(
-        // Dust -> Ingot/Gem
+    private val RECIPES = mutableListOf(
+        // Dust -> Ingot/Gem (no redstone)
         AwesomeRecipe(SMELTING, AwesomeMaterials.redstoneFlux, listOf(ItemStack(AwesomeMaterials.coalDust, 1)), ItemStack(Items.COAL, 1)),
         AwesomeRecipe(SMELTING, AwesomeMaterials.redstoneFlux, listOf(ItemStack(AwesomeMaterials.copperDust, 1)), ItemStack(Items.COPPER_INGOT, 1)),
         AwesomeRecipe(SMELTING, AwesomeMaterials.redstoneFlux, listOf(ItemStack(AwesomeMaterials.diamondDust, 1)), ItemStack(Items.DIAMOND, 1)),
@@ -29,8 +30,14 @@ object SmelterRecipes {
         AwesomeRecipe(SMELTING, AwesomeMaterials.redstoneFlux, listOf(ItemStack(Items.RAW_COPPER_BLOCK, 1)), ItemStack(Items.COPPER_BLOCK, 1)),
         AwesomeRecipe(SMELTING, AwesomeMaterials.redstoneFlux, listOf(ItemStack(Items.RAW_GOLD_BLOCK, 1)), ItemStack(Items.GOLD_BLOCK, 1)),
         AwesomeRecipe(SMELTING, AwesomeMaterials.redstoneFlux, listOf(ItemStack(Items.RAW_IRON_BLOCK, 1)), ItemStack(Items.IRON_BLOCK, 1)),
-    )
+    ).apply {
+        if (AwesomeConfig.redstoneFluxFromRandomiumOre) {
+            add(AwesomeRecipe(SMELTING, AwesomeMaterials.redstoneFlux, listOf(ItemStack(AwesomeMaterials.deepslateRandomiumOre, 1)), ItemStack(AwesomeMaterials.redstoneFlux, 1)))
+            add(AwesomeRecipe(SMELTING, AwesomeMaterials.redstoneFlux, listOf(ItemStack(AwesomeMaterials.endRandomiumOre, 1)), ItemStack(AwesomeMaterials.redstoneFlux, 1)))
+            add(AwesomeRecipe(SMELTING, AwesomeMaterials.redstoneFlux, listOf(ItemStack(AwesomeMaterials.randomiumOre, 1)), ItemStack(AwesomeMaterials.redstoneFlux, 1)))
+        }
+    }
 
-    operator fun invoke() = RECIPES
+    operator fun invoke() = RECIPES.toList()
 
 }

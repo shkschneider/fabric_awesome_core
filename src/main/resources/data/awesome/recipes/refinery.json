@@ -7,11 +7,11 @@
   ],
   "key": {
     "1": { "item": "minecraft:iron_ingot" },
-    "2": { "item": "minecraft:anvil" },
+    "2": { "item": "minecraft:frame" },
     "3": { "item": "minecraft:iron_block" }
   },
   "result": {
-    "item": "awesome:crusher",
+    "item": "awesome:smelter",
     "count": 1
   }
 }

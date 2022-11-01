@@ -14,8 +14,9 @@ class InfuserBlock(settings: Settings) : AwesomeMachineBlock<InfuserBlock.Entity
     tickerProvider = { AwesomeMachines.infuser },
 ) {
 
+    @Suppress("USELESS_CAST")
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
-        Infuser.ID, AwesomeMachines.infuser.entityType as BlockEntityType<InfuserBlock.Entity>,
+        Infuser.ID, AwesomeMachines.infuser.entityType as BlockEntityType<Entity>,
         pos, state,
         Infuser.SLOTS.first + Infuser.SLOTS.second,
         screenHandlerProvider = { syncId, playerInventory, inventory, properties ->

@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.machines.crusher
+package io.github.shkschneider.awesome.machines.refinery
 
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
@@ -12,17 +12,21 @@ import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.screen.slot.Slot
 import net.minecraft.text.Text
 
-class CrusherScreen(
+class RefineryScreen(
     handler: Handler,
     playerInventory: PlayerInventory,
     title: Text,
-) : AwesomeMachineScreen<CrusherScreen.Handler>(Crusher.ID, handler, playerInventory, title) {
+) : AwesomeMachineScreen<RefineryScreen.Handler>(Refinery.ID, handler, playerInventory, title) {
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
+        if (handler.inputProgress > 0) {
+            val progress = handler.inputProgress * 13 / Refinery.Process.Input.time
+            drawTexture(matrices, x + 56, y + 36 + 12 - progress, 176, 12 - progress, 14, progress + 1)
+        }
         if (handler.outputProgress > 0) {
-            val progress = (Crusher.Process.Output.time - handler.outputProgress) * 24 / Crusher.Process.Output.time
-            drawTexture(matrices, x + 102, y + 47, 176, 14, progress + 1, 16)
+            val progress = (Refinery.Process.Output.time - handler.outputProgress) * 24 / Refinery.Process.Output.time
+            drawTexture(matrices, x + 79, y + 34, 176, 14, progress + 1, 16)
         }
     }
 
@@ -33,13 +37,14 @@ class CrusherScreen(
         inventory: Inventory,
         properties: PropertyDelegate,
     ) : AwesomeMachineScreenHandler(
-        AwesomeMachines.crusher.screen as ScreenHandlerType<Handler>, syncId, playerInventory, inventory, properties
+        AwesomeMachines.refinery.screen as ScreenHandlerType<Handler>, syncId, playerInventory, inventory, properties
     ) {
 
         init {
             addProperties(properties)
-            addSlot(Slot(inventory, 0, 76, 47))
-            addSlot(Slot(inventory, 1, 134, 47))
+            addSlot(Slot(inventory, 0, 56, 17))
+            addSlot(Slot(inventory, 1, 56, 53))
+            addSlot(Slot(inventory, 2, 112 + 4, 31 + 4))
             addPlayerSlots()
         }
 

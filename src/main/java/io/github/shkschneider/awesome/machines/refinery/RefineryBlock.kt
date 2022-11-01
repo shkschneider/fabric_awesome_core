@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.machines.crusher
+package io.github.shkschneider.awesome.machines.refinery
 
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlockEntity
@@ -7,20 +7,20 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.util.math.BlockPos
 
-class CrusherBlock(settings: Settings) : AwesomeMachineBlock<CrusherBlock.Entity>(
+class RefineryBlock(settings: Settings) : AwesomeMachineBlock<RefineryBlock.Entity>(
     settings,
-    entityTypeProvider = { AwesomeMachines.crusher.entityType },
+    entityTypeProvider = { AwesomeMachines.refinery.entityType },
     blockEntityProvider = { pos, state -> Entity(pos, state) },
-    tickerProvider = { AwesomeMachines.crusher },
+    tickerProvider = { AwesomeMachines.refinery },
 ) {
 
     @Suppress("USELESS_CAST")
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
-        Crusher.ID, AwesomeMachines.crusher.entityType as BlockEntityType<Entity>,
+        Refinery.ID, AwesomeMachines.refinery.entityType as BlockEntityType<Entity>,
         pos, state,
-        Crusher.SLOTS.first + Crusher.SLOTS.second,
+        Refinery.SLOTS.first + Refinery.SLOTS.second,
         screenHandlerProvider = { syncId, playerInventory, inventory, properties ->
-            CrusherScreen.Handler(syncId, playerInventory, inventory, properties)
+            RefineryScreen.Handler(syncId, playerInventory, inventory, properties)
         },
     )
 

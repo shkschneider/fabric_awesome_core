@@ -4,13 +4,14 @@ import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipe
 import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipeType
 import io.github.shkschneider.awesome.materials.AwesomeMaterials
 import net.minecraft.item.ItemStack
+import net.minecraft.item.Items
 import net.minecraft.recipe.Recipe
 
 object InfuserRecipes {
 
     val INFUSING = AwesomeRecipeType<Recipe<InfuserBlock.Entity>>()
 
-    private val RECIPES = listOf(
+    private val RECIPES = mutableListOf(
         // Powder -> Dust
         AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.coalPowder, 2), ItemStack.EMPTY), ItemStack(AwesomeMaterials.coalDust, 2)),
         AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.copperPowder, 2), ItemStack.EMPTY), ItemStack(AwesomeMaterials.copperDust, 2)),
@@ -25,6 +26,6 @@ object InfuserRecipes {
         AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.lapisDust, 1), ItemStack(AwesomeMaterials.redstoneDust, 1)), ItemStack(AwesomeMaterials.redstoneFlux, 2)),
     )
 
-    operator fun invoke() = RECIPES
+    operator fun invoke() = RECIPES.toList()
 
 }
