@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.materials.iron
+package io.github.shkschneider.awesome.materials.redstone
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.item.Item
 import net.minecraft.util.Rarity
 
-class CrushedIron : Item(
+class RedstonePowder : Item(
     FabricItemSettings()
         .maxCount(AwesomeUtils.STACK)
         .group(Awesome.GROUP)
@@ -16,7 +16,7 @@ class CrushedIron : Item(
 
     companion object {
 
-        const val ID = "crushed_iron"
+        const val ID = "redstone_powder"
 
     }
 

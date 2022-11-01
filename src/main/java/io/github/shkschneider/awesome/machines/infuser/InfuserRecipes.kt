@@ -10,17 +10,21 @@ object InfuserRecipes {
 
     val INFUSING = AwesomeRecipeType<Recipe<InfuserBlock.Entity>>()
 
-    val copperDust = AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.crushedCopper, 2), ItemStack.EMPTY), ItemStack(AwesomeMaterials.copperDust, 2))
-    val goldDust = AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.crushedGold, 2), ItemStack.EMPTY), ItemStack(AwesomeMaterials.goldDust, 2))
-    val ironDust = AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.crushedIron, 2), ItemStack.EMPTY), ItemStack(AwesomeMaterials.ironDust, 2))
-
-    val redstoneFluxDust = AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.lapisDust, 1), ItemStack(AwesomeMaterials.redstoneDust, 1)), ItemStack(AwesomeMaterials.redstoneFlux, 2))
-
-    operator fun invoke(): List<AwesomeRecipe<InfuserBlock.Entity>> = mutableListOf(
-        copperDust,
-        goldDust,
-        ironDust,
-        redstoneFluxDust,
+    private val RECIPES = listOf(
+        // Powder -> Dust
+        AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.coalPowder, 2), ItemStack.EMPTY), ItemStack(AwesomeMaterials.coalDust, 2)),
+        AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.copperPowder, 2), ItemStack.EMPTY), ItemStack(AwesomeMaterials.copperDust, 2)),
+        AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.diamondPowder, 2), ItemStack.EMPTY), ItemStack(AwesomeMaterials.diamondDust, 2)),
+        AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.emeraldPowder, 2), ItemStack.EMPTY), ItemStack(AwesomeMaterials.emeraldDust, 2)),
+        AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.goldPowder, 2), ItemStack.EMPTY), ItemStack(AwesomeMaterials.goldDust, 2)),
+        AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.ironPowder, 2), ItemStack.EMPTY), ItemStack(AwesomeMaterials.ironDust, 2)),
+        AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.lapisPowder, 2), ItemStack.EMPTY), ItemStack(AwesomeMaterials.lapisDust, 2)),
+        AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.quartzPowder, 2), ItemStack.EMPTY), ItemStack(AwesomeMaterials.quartzDust, 2)),
+        AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.redstonePowder, 2), ItemStack.EMPTY), ItemStack(AwesomeMaterials.redstoneDust, 2)),
+        // RedstoneFlux
+        AwesomeRecipe(INFUSING, null, listOf(ItemStack(AwesomeMaterials.lapisDust, 1), ItemStack(AwesomeMaterials.redstoneDust, 1)), ItemStack(AwesomeMaterials.redstoneFlux, 2)),
     )
+
+    operator fun invoke() = RECIPES
 
 }

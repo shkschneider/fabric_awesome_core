@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.materials.copper
+package io.github.shkschneider.awesome.materials.diamond
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.item.Item
 import net.minecraft.util.Rarity
 
-class CrushedCopper : Item(
+class DiamondChip : Item(
     FabricItemSettings()
         .maxCount(AwesomeUtils.STACK)
         .group(Awesome.GROUP)
@@ -16,7 +16,7 @@ class CrushedCopper : Item(
 
     companion object {
 
-        const val ID = "crushed_copper"
+        const val ID = "diamond_chip"
 
     }
 

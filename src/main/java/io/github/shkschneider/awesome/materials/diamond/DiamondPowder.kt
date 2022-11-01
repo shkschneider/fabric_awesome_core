@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.materials.gold
+package io.github.shkschneider.awesome.materials.diamond
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.item.Item
 import net.minecraft.util.Rarity
 
-class CrushedGold : Item(
+class DiamondPowder : Item(
     FabricItemSettings()
         .maxCount(AwesomeUtils.STACK)
         .group(Awesome.GROUP)
@@ -16,7 +16,7 @@ class CrushedGold : Item(
 
     companion object {
 
-        const val ID = "crushed_gold"
+        const val ID = "diamond_powder"
 
     }
 

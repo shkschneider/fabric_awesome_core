@@ -3,19 +3,34 @@ package io.github.shkschneider.awesome.materials
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.materials.coal.CoalDust
-import io.github.shkschneider.awesome.materials.coal.CrushedCoal
+import io.github.shkschneider.awesome.materials.coal.CoalChip
+import io.github.shkschneider.awesome.materials.coal.CoalPowder
 import io.github.shkschneider.awesome.materials.copper.CopperDust
-import io.github.shkschneider.awesome.materials.copper.CrushedCopper
+import io.github.shkschneider.awesome.materials.copper.CopperPowder
+import io.github.shkschneider.awesome.materials.copper.CopperChip
+import io.github.shkschneider.awesome.materials.diamond.DiamondChip
 import io.github.shkschneider.awesome.materials.diamond.DiamondDust
+import io.github.shkschneider.awesome.materials.diamond.DiamondPowder
+import io.github.shkschneider.awesome.materials.emerald.EmeraldChip
 import io.github.shkschneider.awesome.materials.emerald.EmeraldDust
+import io.github.shkschneider.awesome.materials.emerald.EmeraldPowder
 import io.github.shkschneider.awesome.materials.frame.FrameBlock
-import io.github.shkschneider.awesome.materials.gold.CrushedGold
+import io.github.shkschneider.awesome.materials.gold.GoldChip
 import io.github.shkschneider.awesome.materials.gold.GoldDust
-import io.github.shkschneider.awesome.materials.iron.CrushedIron
+import io.github.shkschneider.awesome.materials.gold.GoldPowder
+import io.github.shkschneider.awesome.materials.iron.IronChip
 import io.github.shkschneider.awesome.materials.iron.IronDust
+import io.github.shkschneider.awesome.materials.iron.IronPowder
+import io.github.shkschneider.awesome.materials.lapis.LapisChip
 import io.github.shkschneider.awesome.materials.lapis.LapisDust
+import io.github.shkschneider.awesome.materials.lapis.LapisPowder
+import io.github.shkschneider.awesome.materials.quartz.QuartzChip
+import io.github.shkschneider.awesome.materials.quartz.QuartzDust
+import io.github.shkschneider.awesome.materials.quartz.QuartzPowder
 import io.github.shkschneider.awesome.materials.randomium.Randomium
+import io.github.shkschneider.awesome.materials.redstone.RedstoneChip
 import io.github.shkschneider.awesome.materials.redstone.RedstoneFlux
+import io.github.shkschneider.awesome.materials.redstone.RedstonePowder
 import io.github.shkschneider.awesome.materials.tesseract.TesseractBlock
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.block.Block
@@ -27,30 +42,46 @@ import net.minecraft.util.registry.Registry
 
 object AwesomeMaterials {
 
-    val crushedCopper = CrushedCopper()
+    val copperChip = CopperChip()
     val copperDust = CopperDust()
+    val copperPowder = CopperPowder()
 
-    val crushedCoal = CrushedCoal()
+    val coalChip = CoalChip()
     val coalDust = CoalDust()
+    val coalPowder = CoalPowder()
 
+    val diamondChip = DiamondChip()
     val diamondDust = DiamondDust()
+    val diamondPowder = DiamondPowder()
 
+    val emeraldChip = EmeraldChip()
     val emeraldDust = EmeraldDust()
+    val emeraldPowder = EmeraldPowder()
 
-    val crushedGold = CrushedGold()
+    val goldChip = GoldChip()
     val goldDust = GoldDust()
+    val goldPowder = GoldPowder()
 
-    val crushedIron = CrushedIron()
+    val ironChip = IronChip()
     val ironDust = IronDust()
+    val ironPowder = IronPowder()
 
+    val lapisChip = LapisChip()
     val lapisDust = LapisDust()
+    val lapisPowder = LapisPowder()
+
+    val quartzChip = QuartzChip()
+    val quartzDust = QuartzDust()
+    val quartzPowder = QuartzPowder()
 
     val randomiumOre = Randomium.RandomiumOre()
     val deepslateRandomiumOre = Randomium.DeepslateRandomiumOre()
     val endRandomiumOre = Randomium.EndRandomiumOre()
 
+    val redstoneChip = RedstoneChip()
     val redstoneDust = Items.REDSTONE
     val redstoneFlux = RedstoneFlux()
+    val redstonePowder = RedstonePowder()
 
     val frame = FrameBlock()
     val tesseract = TesseractBlock()
