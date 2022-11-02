@@ -18,7 +18,7 @@ class CollectorBlock(settings: Settings) : AwesomeMachineBlock<CollectorBlock.En
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
         Collector.ID, AwesomeMachines.collector.entityType as BlockEntityType<Entity>,
         pos, state,
-        Collector.SLOTS.first + Collector.SLOTS.second,
+        Collector.SLOTS,
         screenHandlerProvider = { syncId, playerInventory, inventory, properties ->
             CollectorScreen.Handler(syncId, playerInventory, inventory, properties)
         },

@@ -24,11 +24,11 @@ abstract class AwesomeMachineBlockEntity(
     type: BlockEntityType<out AwesomeMachineBlockEntity>,
     pos: BlockPos,
     private val state: BlockState,
-    slots: Int,
+    slots: AwesomeMachine.Slots,
     private val screenHandlerProvider: (syncId: Int, playerInventory: PlayerInventory, inventory: Inventory, properties: PropertyDelegate) -> AwesomeMachineScreenHandler,
 ) : BlockEntity(type, pos, state), NamedScreenHandlerFactory, ImplementedInventory {
 
-    override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(slots, ItemStack.EMPTY)
+    override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(slots.size, ItemStack.EMPTY)
 
     var inputProgress = -1
     var outputProgress = -1

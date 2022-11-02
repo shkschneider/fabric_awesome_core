@@ -12,7 +12,7 @@ import net.minecraft.world.World
 
 class Crusher : AwesomeMachine<CrusherBlock, CrusherBlock.Entity, CrusherScreen.Handler>(
     id = AwesomeUtils.identifier(ID),
-    slots = SLOTS.first + SLOTS.second,
+    slots = SLOTS,
     blockProvider = {
         CrusherBlock(FabricBlockSettings.copyOf(Blocks.FURNACE).luminance(0))
     },
@@ -30,7 +30,7 @@ class Crusher : AwesomeMachine<CrusherBlock, CrusherBlock.Entity, CrusherScreen.
     companion object {
 
         const val ID = "crusher"
-        val SLOTS = 1 to 1
+        val SLOTS = Slots(inputs = 1)
 
     }
 

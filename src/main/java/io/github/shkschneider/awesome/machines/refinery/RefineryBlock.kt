@@ -18,7 +18,7 @@ class RefineryBlock(settings: Settings) : AwesomeMachineBlock<RefineryBlock.Enti
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
         Refinery.ID, AwesomeMachines.refinery.entityType as BlockEntityType<Entity>,
         pos, state,
-        Refinery.SLOTS.first + Refinery.SLOTS.second,
+        Refinery.SLOTS,
         screenHandlerProvider = { syncId, playerInventory, inventory, properties ->
             RefineryScreen.Handler(syncId, playerInventory, inventory, properties)
         },

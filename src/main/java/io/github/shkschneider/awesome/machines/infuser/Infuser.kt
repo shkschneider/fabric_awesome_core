@@ -12,7 +12,7 @@ import net.minecraft.world.World
 
 class Infuser : AwesomeMachine<InfuserBlock, InfuserBlock.Entity, InfuserScreen.Handler>(
     id = AwesomeUtils.identifier(ID),
-    slots = SLOTS.first + SLOTS.second,
+    slots = SLOTS,
     blockProvider = {
         InfuserBlock(FabricBlockSettings.copyOf(Blocks.FURNACE).luminance(0))
     },
@@ -30,7 +30,7 @@ class Infuser : AwesomeMachine<InfuserBlock, InfuserBlock.Entity, InfuserScreen.
     companion object {
 
         const val ID = "infuser"
-        val SLOTS = 2 to 1
+        val SLOTS = Slots(inputs = 2)
 
     }
 

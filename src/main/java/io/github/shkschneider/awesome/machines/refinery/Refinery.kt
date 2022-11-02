@@ -12,7 +12,7 @@ import net.minecraft.world.World
 
 class Refinery : AwesomeMachine<RefineryBlock, RefineryBlock.Entity, RefineryScreen.Handler>(
     id = AwesomeUtils.identifier(ID),
-    slots = SLOTS.first + SLOTS.second,
+    slots = SLOTS,
     blockProvider = {
         RefineryBlock(FabricBlockSettings.copyOf(Blocks.FURNACE).luminance(0))
     },
@@ -30,7 +30,7 @@ class Refinery : AwesomeMachine<RefineryBlock, RefineryBlock.Entity, RefineryScr
     companion object {
 
         const val ID = "refinery"
-        val SLOTS = 2 to 1
+        val SLOTS = Slots(inputs = 1)
 
     }
 

@@ -15,7 +15,7 @@ import net.minecraft.world.World
 
 class Collector : AwesomeMachine<CollectorBlock, CollectorBlock.Entity, CollectorScreen.Handler>(
     id = AwesomeUtils.identifier(ID),
-    slots = SLOTS.first + SLOTS.second,
+    slots = SLOTS,
     blockProvider = {
         CollectorBlock(FabricBlockSettings.copyOf(Blocks.FURNACE).luminance(0))
     },
@@ -33,7 +33,7 @@ class Collector : AwesomeMachine<CollectorBlock, CollectorBlock.Entity, Collecto
     companion object {
 
         const val ID = "collector"
-        val SLOTS = 0 to 1
+        val SLOTS = Slots(inputs = 0, fuel = null, outputs = 9)
 
     }
 

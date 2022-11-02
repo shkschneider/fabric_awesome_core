@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack
 
 class AwesomeMachineTicker(
     private val entity: AwesomeMachineBlockEntity,
-    private val slots: Pair<Int, Int>,
+    private val slots: AwesomeMachine.Slots,
     private val recipes: List<AwesomeRecipe<out Inventory>>,
 ) {
 
@@ -19,7 +19,6 @@ class AwesomeMachineTicker(
     }
 
     private val inventory = entity as Inventory
-    private val fueled = recipes.all { it.fuel != null }
 
     init {
         check(recipes.isNotEmpty())
@@ -27,15 +26,16 @@ class AwesomeMachineTicker(
     }
 
     fun getFuel(): Pair<Int, ItemStack>? {
-        TODO()
+        if (slots.fuel == null) return null
+        return slots.inputs to inventory.getStack(slots.inputs)
     }
 
     fun getInputs(): List<Pair<Int, ItemStack>> =
-        (0 until slots.first).mapIndexed { i, slot -> i to inventory.getStack(slot) }
+        (0 until slots.inputs).mapIndexed { i, slot -> i to inventory.getStack(slot) }
 
     fun getOutputs(): List<Pair<Int, ItemStack>> {
-        val offset = slots.first + if (fueled) 1 else 0
-        return (offset until slots.first + slots.second).mapIndexed { i, slot ->  offset + i to inventory.getStack(slot) }
+        val offset = slots.inputs + if (slots.fuel != null) 1 else 0
+        return (offset until slots.size).mapIndexed { i, slot ->  offset + i to inventory.getStack(slot) }
     }
 
     fun getRecipe() =

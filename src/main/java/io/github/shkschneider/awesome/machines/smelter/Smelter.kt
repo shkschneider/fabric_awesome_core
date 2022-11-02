@@ -12,7 +12,7 @@ import net.minecraft.world.World
 
 class Smelter : AwesomeMachine<SmelterBlock, SmelterBlock.Entity, SmelterScreen.Handler>(
     id = AwesomeUtils.identifier(ID),
-    slots = SLOTS.first + SLOTS.second,
+    slots = SLOTS,
     blockProvider = {
         SmelterBlock(FabricBlockSettings.copyOf(Blocks.FURNACE).luminance(0))
     },
@@ -30,7 +30,7 @@ class Smelter : AwesomeMachine<SmelterBlock, SmelterBlock.Entity, SmelterScreen.
     companion object {
 
         const val ID = "smelter"
-        val SLOTS = 2 to 1
+        val SLOTS = Slots(inputs = 1)
 
     }
 
