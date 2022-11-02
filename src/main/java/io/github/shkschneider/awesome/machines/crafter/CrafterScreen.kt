@@ -1,12 +1,11 @@
 package io.github.shkschneider.awesome.machines.crafter
 
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
 import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.inventory.Inventory
-import net.minecraft.item.ItemStack
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.screen.slot.Slot
@@ -22,25 +21,24 @@ class CrafterScreen(
     @Suppress("USELESS_CAST")
     class Handler(
         syncId: Int,
-        playerInventory: PlayerInventory,
-        inventory: Inventory,
+        inventories: InputOutput.Inventories,
         properties: PropertyDelegate,
     ) : AwesomeMachineScreenHandler(
-        AwesomeMachines.crafter.screen as ScreenHandlerType<Handler>, syncId, playerInventory, inventory, properties
+        AwesomeMachines.crafter.screen as ScreenHandlerType<Handler>, syncId, inventories, properties
     ) {
 
         init {
             addProperties(properties)
-            addSlot(Slot(inventory, 0, 30, 17))
-            addSlot(Slot(inventory, 1, 48, 17))
-            addSlot(Slot(inventory, 2, 66, 17))
-            addSlot(Slot(inventory, 3, 30, 35))
-            addSlot(Slot(inventory, 4, 48, 35))
-            addSlot(Slot(inventory, 5, 66, 35))
-            addSlot(Slot(inventory, 6, 30, 53))
-            addSlot(Slot(inventory, 7, 48, 53))
-            addSlot(Slot(inventory, 8, 66, 53))
-            addSlot(Slot(inventory, 9, 120 + 4, 31 + 4))
+            addSlot(Slot(inventories.internal, 0, 30, 17))
+            addSlot(Slot(inventories.internal, 1, 48, 17))
+            addSlot(Slot(inventories.internal, 2, 66, 17))
+            addSlot(Slot(inventories.internal, 3, 30, 35))
+            addSlot(Slot(inventories.internal, 4, 48, 35))
+            addSlot(Slot(inventories.internal, 5, 66, 35))
+            addSlot(Slot(inventories.internal, 6, 30, 53))
+            addSlot(Slot(inventories.internal, 7, 48, 53))
+            addSlot(Slot(inventories.internal, 8, 66, 53))
+            addSlot(Slot(inventories.internal, 9, 120 + 4, 31 + 4))
             addPlayerSlots()
         }
 
@@ -50,10 +48,6 @@ class CrafterScreen(
             } else {
                 super.onSlotClick(slotIndex, button, actionType, player)
             }
-        }
-
-        override fun canInsertIntoSlot(stack: ItemStack, slot: Slot): Boolean {
-            return super.canInsertIntoSlot(stack, slot)
         }
 
     }

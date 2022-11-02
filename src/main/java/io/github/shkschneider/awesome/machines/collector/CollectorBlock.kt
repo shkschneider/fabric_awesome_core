@@ -20,8 +20,8 @@ class CollectorBlock(settings: Settings) : AwesomeMachineBlock<CollectorBlock.En
         Collector.ID, AwesomeMachines.collector.entityType as BlockEntityType<Entity>,
         pos, state,
         Collector.SLOTS,
-        screenHandlerProvider = { syncId, playerInventory, inventory, properties ->
-            CollectorScreen.Handler(syncId, playerInventory, inventory, properties)
+        screenHandlerProvider = { syncId, inventories, properties ->
+            CollectorScreen.Handler(syncId, inventories, properties)
         },
         canInsert = emptyList(),
         canExtract = listOf(Direction.DOWN to true),

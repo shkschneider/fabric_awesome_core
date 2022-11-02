@@ -19,8 +19,8 @@ class CrafterBlock(settings: Settings) : AwesomeMachineBlock<CrafterBlock.Entity
         Crafter.ID, AwesomeMachines.crafter.entityType as BlockEntityType<Entity>,
         pos, state,
         Crafter.SLOTS,
-        screenHandlerProvider = { syncId, playerInventory, inventory, properties ->
-            CrafterScreen.Handler(syncId, playerInventory, inventory, properties)
+        screenHandlerProvider = { syncId, inventories, properties ->
+            CrafterScreen.Handler(syncId, inventories, properties)
         },
     )
 

@@ -1,14 +1,12 @@
 package io.github.shkschneider.awesome.machines.infuser
 
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
 import io.github.shkschneider.awesome.machines.AwesomeMachineTicker
 import io.github.shkschneider.awesome.machines.AwesomeMachines
-import io.github.shkschneider.awesome.machines.smelter.Smelter
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.inventory.Inventory
-import net.minecraft.item.ItemStack
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.screen.slot.Slot
@@ -35,24 +33,19 @@ class InfuserScreen(
     @Suppress("USELESS_CAST")
     class Handler(
         syncId: Int,
-        playerInventory: PlayerInventory,
-        inventory: Inventory,
+        inventories: InputOutput.Inventories,
         properties: PropertyDelegate,
     ) : AwesomeMachineScreenHandler(
-        AwesomeMachines.infuser.screen as ScreenHandlerType<Handler>, syncId, playerInventory, inventory, properties
+        AwesomeMachines.infuser.screen as ScreenHandlerType<Handler>, syncId, inventories, properties
     ) {
 
         init {
             addProperties(properties)
-            addSlot(Slot(inventory, 0, 66, 16)) // input
-            addSlot(Slot(inventory, 1, 66, 50)) // input
-            addSlot(Slot(inventory, 2, 18, 50)) // fuel
-            addSlot(Slot(inventory, 2, 114 + 4, 31 + 4)) // output
+            addSlot(Slot(inventories.internal, 0, 66, 16)) // input
+            addSlot(Slot(inventories.internal, 1, 66, 50)) // input
+            addSlot(Slot(inventories.internal, 2, 18, 50)) // fuel
+            addSlot(Slot(inventories.internal, 2, 114 + 4, 31 + 4)) // output
             addPlayerSlots()
-        }
-
-        override fun canInsertIntoSlot(stack: ItemStack, slot: Slot): Boolean {
-            return super.canInsertIntoSlot(stack, slot)
         }
 
     }

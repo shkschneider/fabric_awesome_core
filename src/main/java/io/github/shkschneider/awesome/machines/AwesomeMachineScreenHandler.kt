@@ -1,8 +1,7 @@
 package io.github.shkschneider.awesome.machines
 
+import io.github.shkschneider.awesome.custom.InputOutput
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandler
@@ -12,9 +11,8 @@ import net.minecraft.screen.slot.Slot
 abstract class AwesomeMachineScreenHandler(
     screen: ScreenHandlerType<*>,
     syncId: Int,
-    private val playerInventory: PlayerInventory,
-    val inventory: Inventory,
-    val properties: PropertyDelegate,
+    private val inventories: InputOutput.Inventories,
+    private val properties: PropertyDelegate,
 ) : ScreenHandler(screen, syncId) {
 
     val inputProgress: Int get() = properties[0]
@@ -22,7 +20,7 @@ abstract class AwesomeMachineScreenHandler(
 
     init {
         // addProperties(properties)
-        inventory.onOpen(playerInventory.player)
+        inventories.internal.onOpen(inventories.player.player)
         // addSlot(...)
         // addPlayerSlots()
     }
@@ -32,12 +30,12 @@ abstract class AwesomeMachineScreenHandler(
         // inventory
         for (i in 0..2) {
             for (l in 0..8) {
-                addSlot(Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18))
+                addSlot(Slot(inventories.player, l + i * 9 + 9, 8 + l * 18, 84 + i * 18))
             }
         }
         // hotbar
         for (i in 0..8) {
-            addSlot(Slot(playerInventory, i, 8 + i * 18, 142))
+            addSlot(Slot(inventories.player, i, 8 + i * 18, 142))
         }
     }
 
@@ -46,11 +44,11 @@ abstract class AwesomeMachineScreenHandler(
         var stack = ItemStack.EMPTY
         slots.getOrNull(i)?.takeIf { it.hasStack() }?.let { slot ->
             stack = slot.stack.copy()
-            if (i < inventory.size()) {
-                if (!insertItem(slot.stack, inventory.size(), slots.size, true)) {
+            if (i < inventories.internal.size()) {
+                if (!insertItem(slot.stack, inventories.internal.size(), slots.size, true)) {
                     return ItemStack.EMPTY
                 }
-            } else if (!insertItem(slot.stack, 0, inventory.size(), false)) {
+            } else if (!insertItem(slot.stack, 0, inventories.internal.size(), false)) {
                 return ItemStack.EMPTY
             }
             if (slot.stack.isEmpty) slot.stack = ItemStack.EMPTY
@@ -60,7 +58,7 @@ abstract class AwesomeMachineScreenHandler(
     }
 
     override fun canInsertIntoSlot(slot: Slot): Boolean {
-        return slot.index in (0 until inventory.size())
+        return slot.index in (0 until inventories.internal.size())
     }
 
     override fun canInsertIntoSlot(stack: ItemStack, slot: Slot): Boolean {
@@ -70,7 +68,7 @@ abstract class AwesomeMachineScreenHandler(
     }
 
     override fun canUse(player: PlayerEntity): Boolean {
-        return inventory.canPlayerUse(player)
+        return inventories.internal.canPlayerUse(player)
     }
 
 }

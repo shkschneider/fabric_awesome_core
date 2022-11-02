@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.machines.crafter
 
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
@@ -20,15 +21,15 @@ class Crafter : AwesomeMachine<CrafterBlock, CrafterBlock.Entity, CrafterScreen.
     screenProvider = { handler, inventory, title ->
         CrafterScreen(handler, inventory, title)
     },
-    screenHandlerProvider = { syncId, playerInventory, inventory, properties ->
-        CrafterScreen.Handler(syncId, playerInventory, inventory, properties)
+    screenHandlerProvider = { syncId, inventories, properties ->
+        CrafterScreen.Handler(syncId, inventories, properties)
     },
 ) {
 
     companion object {
 
         const val ID = "crafter"
-        val SLOTS = Slots(inputs = 9, fuel = null, outputs = 1)
+        val SLOTS = InputOutput.Slots(inputs = 9, fuel = null, outputs = 1)
 
     }
 

@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.machines.smelter
 
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineTicker
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -22,15 +23,15 @@ class Smelter : AwesomeMachine<SmelterBlock, SmelterBlock.Entity, SmelterScreen.
     screenProvider = { handler, inventory, title ->
         SmelterScreen(handler, inventory, title)
     },
-    screenHandlerProvider = { syncId, playerInventory, inventory, properties ->
-        SmelterScreen.Handler(syncId, playerInventory, inventory, properties)
+    screenHandlerProvider = { syncId, inventories, properties ->
+        SmelterScreen.Handler(syncId, inventories, properties)
     },
 ) {
 
     companion object {
 
         const val ID = "smelter"
-        val SLOTS = Slots(inputs = 1)
+        val SLOTS = InputOutput.Slots(inputs = 1)
 
     }
 

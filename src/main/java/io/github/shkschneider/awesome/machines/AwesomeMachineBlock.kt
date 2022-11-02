@@ -22,11 +22,11 @@ import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-abstract class AwesomeMachineBlock<E : BlockEntity>(
+abstract class AwesomeMachineBlock<BE : BlockEntity>(
     settings: Settings,
-    private val entityTypeProvider: () -> BlockEntityType<E>,
-    private val blockEntityProvider: (BlockPos, BlockState) -> E,
-    private val tickerProvider: () -> BlockEntityTicker<E>,
+    private val entityTypeProvider: () -> BlockEntityType<BE>,
+    private val blockEntityProvider: (BlockPos, BlockState) -> BE,
+    private val tickerProvider: () -> BlockEntityTicker<BE>,
 ) : BlockWithEntity(settings), BlockEntityProvider {
 
     override fun getRenderType(state: BlockState): BlockRenderType {
@@ -71,14 +71,14 @@ abstract class AwesomeMachineBlock<E : BlockEntity>(
         return ActionResult.SUCCESS
     }
 
-    override fun createBlockEntity(pos: BlockPos, state: BlockState): E {
+    override fun createBlockEntity(pos: BlockPos, state: BlockState): BE {
         return blockEntityProvider(pos, state)
     }
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : BlockEntity> getTicker(_world: World, _state: BlockState, type: BlockEntityType<T>): BlockEntityTicker<T>? {
         return checkType(type, type) { world, pos, state, entity ->
-            tickerProvider().tick(world, pos, state, entity as E)
+            tickerProvider().tick(world, pos, state, entity as BE)
         }
     }
 

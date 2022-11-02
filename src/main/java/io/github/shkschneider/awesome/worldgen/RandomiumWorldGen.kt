@@ -13,7 +13,6 @@ import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.OreConfiguredFeatures
 import net.minecraft.world.gen.feature.OreFeatureConfig
 import net.minecraft.world.gen.feature.PlacedFeatures
-import net.minecraft.world.gen.heightprovider.HeightProvider
 import net.minecraft.world.gen.placementmodifier.CountPlacementModifier
 import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier
 

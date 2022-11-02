@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage
 import net.minecraft.util.math.Direction
 
+@Suppress("UnstableApiUsage")
 class AwesomeMachineStorage(
     private val facing: Direction,
     private val canInsert: List<Pair<Direction, Boolean>>,

@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.machines.infuser
 
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineTicker
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -22,15 +23,15 @@ class Infuser : AwesomeMachine<InfuserBlock, InfuserBlock.Entity, InfuserScreen.
     screenProvider = { handler, inventory, title ->
         InfuserScreen(handler, inventory, title)
     },
-    screenHandlerProvider = { syncId, playerInventory, inventory, properties ->
-        InfuserScreen.Handler(syncId, playerInventory, inventory, properties)
+    screenHandlerProvider = { syncId, inventories, properties ->
+        InfuserScreen.Handler(syncId, inventories, properties)
     },
 ) {
 
     companion object {
 
         const val ID = "infuser"
-        val SLOTS = Slots(inputs = 2)
+        val SLOTS = InputOutput.Slots(inputs = 2)
 
     }
 

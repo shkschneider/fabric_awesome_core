@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.entities.ImplementedInventory
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage
@@ -29,10 +30,10 @@ abstract class AwesomeMachineBlockEntity(
     type: BlockEntityType<out AwesomeMachineBlockEntity>,
     pos: BlockPos,
     private val state: BlockState,
-    private val slots: AwesomeMachine.Slots,
+    slots: InputOutput.Slots,
     private val canInsert: List<Pair<Direction, Boolean>> = emptyList(),
     private val canExtract: List<Pair<Direction, Boolean>> = emptyList(),
-    private val screenHandlerProvider: (syncId: Int, playerInventory: PlayerInventory, inventory: Inventory, properties: PropertyDelegate) -> AwesomeMachineScreenHandler,
+    private val screenHandlerProvider: (syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) -> AwesomeMachineScreenHandler,
 ) : BlockEntity(type, pos, state), NamedScreenHandlerFactory, ImplementedInventory, SidedStorageBlockEntity {
 
     override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(slots.size, ItemStack.EMPTY)
@@ -73,9 +74,10 @@ abstract class AwesomeMachineBlockEntity(
     }
 
     override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): ScreenHandler {
-        return screenHandlerProvider(syncId, playerInventory, this as Inventory, properties)
+        return screenHandlerProvider(syncId, InputOutput.Inventories(this as Inventory, playerInventory), properties)
     }
 
+    @Suppress("UnstableApiUsage")
     override fun getItemStorage(side: Direction): Storage<ItemVariant> {
         val facing = world?.getBlockState(pos)?.get(Properties.FACING) ?: side
         return AwesomeMachineStorage(facing, canInsert, canExtract)

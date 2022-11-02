@@ -2,13 +2,9 @@ package io.github.shkschneider.awesome.gamerules
 
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry
-import net.minecraft.entity.Entity
-import net.minecraft.entity.damage.DamageSource
-import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.GameRules
 import net.minecraft.world.World
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 
 object KeepXpGameRule {
 

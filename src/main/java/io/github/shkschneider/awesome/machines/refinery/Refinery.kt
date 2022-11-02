@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.machines.refinery
 
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineTicker
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -22,15 +23,15 @@ class Refinery : AwesomeMachine<RefineryBlock, RefineryBlock.Entity, RefineryScr
     screenProvider = { handler, inventory, title ->
         RefineryScreen(handler, inventory, title)
     },
-    screenHandlerProvider = { syncId, playerInventory, inventory, properties ->
-        RefineryScreen.Handler(syncId, playerInventory, inventory, properties)
+    screenHandlerProvider = { syncId, inventories, properties ->
+        RefineryScreen.Handler(syncId, inventories, properties)
     },
 ) {
 
     companion object {
 
         const val ID = "refinery"
-        val SLOTS = Slots(inputs = 1)
+        val SLOTS = InputOutput.Slots(inputs = 1)
 
     }
 

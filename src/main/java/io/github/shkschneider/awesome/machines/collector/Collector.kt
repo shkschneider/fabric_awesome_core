@@ -2,6 +2,7 @@ package io.github.shkschneider.awesome.machines.collector
 
 import com.google.common.base.Predicates
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
@@ -25,15 +26,15 @@ class Collector : AwesomeMachine<CollectorBlock, CollectorBlock.Entity, Collecto
     screenProvider = { handler, inventory, title ->
         CollectorScreen(handler, inventory, title)
     },
-    screenHandlerProvider = { syncId, playerInventory, inventory, properties ->
-        CollectorScreen.Handler(syncId, playerInventory, inventory, properties)
+    screenHandlerProvider = { syncId, inventories, properties ->
+        CollectorScreen.Handler(syncId, inventories, properties)
     },
 ) {
 
     companion object {
 
         const val ID = "collector"
-        val SLOTS = Slots(inputs = 0, fuel = null, outputs = 9)
+        val SLOTS = InputOutput.Slots(inputs = 0, fuel = null, outputs = 9)
 
     }
 

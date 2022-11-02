@@ -1,13 +1,14 @@
 package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipe
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 
 class AwesomeMachineTicker(
     private val entity: AwesomeMachineBlockEntity,
-    private val slots: AwesomeMachine.Slots,
+    private val slots: InputOutput.Slots,
     private val recipes: List<AwesomeRecipe<out Inventory>>,
 ) {
 

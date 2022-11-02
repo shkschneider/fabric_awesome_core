@@ -1,9 +1,9 @@
 package io.github.shkschneider.awesome.commands
 
 import com.mojang.brigadier.context.CommandContext
-import io.github.shkschneider.awesome.custom.Permissions
 import io.github.shkschneider.awesome.custom.Location.Companion.readLocation
 import io.github.shkschneider.awesome.custom.Location.Companion.writeLocation
+import io.github.shkschneider.awesome.custom.Permissions
 import io.github.shkschneider.awesome.entities.IEntityData
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text

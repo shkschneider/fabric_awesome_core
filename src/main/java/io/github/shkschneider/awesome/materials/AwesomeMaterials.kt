@@ -2,12 +2,12 @@ package io.github.shkschneider.awesome.materials
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
-import io.github.shkschneider.awesome.materials.coal.CoalDust
 import io.github.shkschneider.awesome.materials.coal.CoalChip
+import io.github.shkschneider.awesome.materials.coal.CoalDust
 import io.github.shkschneider.awesome.materials.coal.CoalPowder
+import io.github.shkschneider.awesome.materials.copper.CopperChip
 import io.github.shkschneider.awesome.materials.copper.CopperDust
 import io.github.shkschneider.awesome.materials.copper.CopperPowder
-import io.github.shkschneider.awesome.materials.copper.CopperChip
 import io.github.shkschneider.awesome.materials.diamond.DiamondChip
 import io.github.shkschneider.awesome.materials.diamond.DiamondDust
 import io.github.shkschneider.awesome.materials.diamond.DiamondPowder
