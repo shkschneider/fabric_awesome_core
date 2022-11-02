@@ -6,6 +6,7 @@ import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
 
 class CollectorBlock(settings: Settings) : AwesomeMachineBlock<CollectorBlock.Entity>(
     settings,
@@ -22,6 +23,8 @@ class CollectorBlock(settings: Settings) : AwesomeMachineBlock<CollectorBlock.En
         screenHandlerProvider = { syncId, playerInventory, inventory, properties ->
             CollectorScreen.Handler(syncId, playerInventory, inventory, properties)
         },
+        canInsert = emptyList(),
+        canExtract = listOf(Direction.DOWN to true),
     )
 
 }
