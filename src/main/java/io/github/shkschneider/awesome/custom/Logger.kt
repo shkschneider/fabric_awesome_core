@@ -1,5 +1,6 @@
-package io.github.shkschneider.awesome
+package io.github.shkschneider.awesome.custom
 
+import io.github.shkschneider.awesome.Awesome
 import org.slf4j.LoggerFactory
 
 object Logger {

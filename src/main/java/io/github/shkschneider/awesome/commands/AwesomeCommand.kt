@@ -2,14 +2,14 @@ package io.github.shkschneider.awesome.commands
 
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
-import io.github.shkschneider.awesome.AwesomePermissions
+import io.github.shkschneider.awesome.custom.Permissions
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
 
 abstract class AwesomeCommand(
     open val command: String,
-    open val permission: AwesomePermissions,
+    open val permission: Permissions,
 ) : Command<ServerCommandSource> {
 
     init {

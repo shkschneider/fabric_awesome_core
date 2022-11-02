@@ -27,6 +27,7 @@ class Awesome : ModInitializer {
     override fun onInitialize() {
         println("$NAME!")
         AwesomeCommands()
+        // AwesomeDimensions()
         AwesomeEffects()
         AwesomeEnchantments()
         AwesomeGameRules()
