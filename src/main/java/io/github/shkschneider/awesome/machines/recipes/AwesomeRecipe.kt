@@ -13,8 +13,8 @@ import net.minecraft.world.World
 
 class AwesomeRecipe<T : Inventory>(
     private val type: AwesomeRecipeType<Recipe<T>>,
-    val fuel: Item?,
     val inputs: List<ItemStack>,
+    val fuel: Item?,
     private val output: ItemStack,
 ) : Recipe<T> {
 

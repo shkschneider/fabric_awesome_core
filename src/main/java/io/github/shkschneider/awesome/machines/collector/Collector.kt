@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.entity.ItemEntity
+import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Box
@@ -47,13 +48,20 @@ class Collector : AwesomeMachine<CollectorBlock, CollectorBlock.Entity, Collecto
 
     // TODO try to take 1 Item per tick, not an entire ItemStack?
     private fun collect(entity: CollectorBlock.Entity, itemEntity: ItemEntity) {
-        val itemStack = entity.items.firstOrNull { it == ItemStack.EMPTY }
-            ?: entity.items.firstOrNull { it.item == itemEntity.stack.item }
-            ?: return
-        if (itemStack.count < itemStack.maxCount) {
-            itemStack.count += itemEntity.stack.count
+        (0 until (entity as Inventory).size()).map { entity.getStack(it) }.forEachIndexed { i, stack ->
+            if (itemEntity.stack.count == 0) return@forEachIndexed
+            if (stack.isEmpty) {
+                entity.setStack(i, itemEntity.stack.copy())
+            } else if (stack.item == itemEntity.stack.item && stack.count < stack.maxCount) {
+                (stack.count until stack.maxCount).forEach {
+                    entity.setStack(i, ItemStack(stack.item, ++stack.count))
+                    itemEntity.stack.count--
+                }
+            }
+        }
+        if (itemEntity.stack.isEmpty) {
             itemEntity.setDespawnImmediately()
         }
     }
-    
+
 }
