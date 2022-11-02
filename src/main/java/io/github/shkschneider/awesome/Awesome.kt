@@ -17,14 +17,15 @@ class Awesome : ModInitializer {
 
     companion object {
 
-        val ID = "awesome".lowercase()
+        val ID = Awesome::class.java.simpleName.lowercase()
+        val NAME = ID.replaceFirstChar { it.uppercase() }
 
         val GROUP = FabricItemGroupBuilder.build(Identifier(ID, ID)) { ItemStack(AwesomeMaterials.redstoneFlux) }
 
     }
 
     override fun onInitialize() {
-        println("Awesome!")
+        println("$NAME!")
         AwesomeCommands()
         AwesomeEffects()
         AwesomeEnchantments()

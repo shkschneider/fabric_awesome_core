@@ -17,7 +17,8 @@
   "client": [
     "LevelPropertiesGetLifecycleMixin",
     "MinecraftCreateUserApiServiceMixin",
-    "SplashScreenBackgroundMixin"
+    "SplashScreenBackgroundMixin",
+    "SplashTextResourceSupplierMixin"
   ],
   "server": [],
   "injectors": {
