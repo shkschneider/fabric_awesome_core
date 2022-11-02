@@ -1,7 +1,9 @@
 package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.materials.AwesomeMaterials
+import net.fabricmc.api.EnvType
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.minecraft.block.Block
@@ -26,11 +28,11 @@ import net.minecraft.util.registry.Registry
 
 abstract class AwesomeMachine<B : Block, E : BlockEntity, SH : ScreenHandler>(
     id: Identifier,
-    slots: Slots,
+    private val slots: Slots,
     blockProvider: () -> B,
     blockEntityProvider: (BlockPos, BlockState) -> E,
-    screenProvider: (SH, PlayerInventory, Text) -> HandledScreen<SH>,
-    screenHandlerProvider: (Int, PlayerInventory, Inventory, ArrayPropertyDelegate) -> SH,
+    private val screenProvider: (SH, PlayerInventory, Text) -> HandledScreen<SH>,
+    private val screenHandlerProvider: (Int, PlayerInventory, Inventory, ArrayPropertyDelegate) -> SH,
 ) : BlockEntityTicker<E> {
 
     val block: B =
@@ -41,17 +43,21 @@ abstract class AwesomeMachine<B : Block, E : BlockEntity, SH : ScreenHandler>(
         FabricBlockEntityTypeBuilder.create(blockEntityProvider, this.block).build(null)
     )
 
-    val screen: ScreenHandlerType<SH> = ScreenHandlerType { syncId, playerInventory ->
-        screenHandlerProvider(syncId, playerInventory, SimpleInventory(slots.size), ArrayPropertyDelegate(2))
-    }
+    lateinit var _screen: ScreenHandlerType<SH>
+    val screen get() = _screen
 
     init {
         Registry.register(
             Registry.ITEM, id,
             BlockItem(this.block, FabricItemSettings().group(Awesome.GROUP))
         )
-        HandledScreens.register(this.screen) { handler, inventory, title ->
-            screenProvider(handler, inventory, title)
+        if (AwesomeUtils.environmentType() == EnvType.CLIENT) {
+            _screen = ScreenHandlerType { syncId, playerInventory ->
+                screenHandlerProvider(syncId, playerInventory, SimpleInventory(slots.size), ArrayPropertyDelegate(2))
+            }
+            HandledScreens.register(this.screen) { handler, inventory, title ->
+                screenProvider(handler, inventory, title)
+            }
         }
     }
 

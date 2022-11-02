@@ -1,6 +1,8 @@
 package io.github.shkschneider.awesome
 
 import io.github.shkschneider.awesome.custom.Location
+import net.fabricmc.api.EnvType
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
 import kotlin.math.pow
@@ -11,6 +13,8 @@ object AwesomeUtils {
     const val TICK = 20
 
     const val STACK = 64
+
+    fun environmentType(): EnvType = FabricLoader.getInstance().environmentType
 
     fun id(id: String) = "${Awesome.ID}:$id"
 

@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 
 object PvpGameRule {
 
-    operator fun invoke() = GameRuleRegistry.register("pvp", GameRules.Category.PLAYER, GameRuleFactory.createBooleanRule(true))
+    operator fun invoke() = GameRuleRegistry.register("pvp", GameRules.Category.PLAYER, GameRuleFactory.createBooleanRule(false))
 
     operator fun invoke(world: World) = world.gameRules.getBoolean(AwesomeGameRules.pvp)
 

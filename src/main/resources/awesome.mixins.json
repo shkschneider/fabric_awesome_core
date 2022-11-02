@@ -14,13 +14,15 @@
     "VillagerEntityInitMixin",
     "VillagerEntityTickMixin"
   ],
+  "server": [
+    "PlayerManagerMixin"
+  ],
   "client": [
     "LevelPropertiesGetLifecycleMixin",
     "MinecraftCreateUserApiServiceMixin",
     "SplashScreenBackgroundMixin",
     "SplashTextResourceSupplierMixin"
   ],
-  "server": [],
   "injectors": {
     "defaultRequire": 1
   }

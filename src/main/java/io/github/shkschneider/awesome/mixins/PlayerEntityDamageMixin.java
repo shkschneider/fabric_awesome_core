@@ -33,7 +33,7 @@ public abstract class PlayerEntityDamageMixin {
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     private void damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> info) {
         PlayerEntity player = (PlayerEntity) (Object) this;
-        if (PvpGameRule.INSTANCE.invoke(player.world)) {
+        if (!PvpGameRule.INSTANCE.invoke(player.world)) {
             PvpGameRule.INSTANCE.invoke(player, source, info);
         }
     }
