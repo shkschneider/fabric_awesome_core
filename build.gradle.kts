@@ -35,7 +35,6 @@ dependencies {
 
 tasks {
     build {
-        dependsOn(":incrementPatch")
         doLast {
             println("Build: ${project.name}-${project.version}.jar")
         }
