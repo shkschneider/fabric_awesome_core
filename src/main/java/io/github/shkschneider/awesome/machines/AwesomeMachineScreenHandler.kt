@@ -39,21 +39,27 @@ abstract class AwesomeMachineScreenHandler(
         }
     }
 
-    // https://fabricmc.net/wiki/tutorial:containers
-    // FIXME do not insert anything anywhere
+    /**
+     * Thanks to Kaupenjoe
+     * Link: https://www.youtube.com/c/TKaupenjoe
+     * Link: https://fabricmc.net/wiki/tutorial:containers
+     * Link: https://github.com/FabricMC/yarn/issues/2944
+     *
+     */
     override fun transferSlot(player: PlayerEntity, i: Int): ItemStack {
-        var stack = ItemStack.EMPTY
-        slots.getOrNull(i)?.takeIf { it.hasStack() }?.let { slot ->
-            stack = slot.stack.copy()
-            if (i < inventories.internal.size()) {
-                if (!insertItem(slot.stack, inventories.internal.size(), slots.size, true)) {
-                    return ItemStack.EMPTY
-                }
-            } else if (!insertItem(slot.stack, 0, inventories.internal.size(), false)) {
+        val slot = slots.getOrNull(i)?.takeIf { it.hasStack() } ?: return ItemStack.EMPTY
+        val stack = slot.stack.copy()
+        if (i < inventories.internal.size()) {
+            if (!insertItem(slot.stack, inventories.internal.size(), slots.size, true)) {
                 return ItemStack.EMPTY
             }
-            if (slot.stack.isEmpty) slot.stack = ItemStack.EMPTY
-            else slot.markDirty()
+        } else if (!insertItem(slot.stack, 0, inventories.internal.size(), false)) {
+            return ItemStack.EMPTY
+        }
+        if (slot.stack.isEmpty) {
+            slot.stack = ItemStack.EMPTY
+        } else {
+            slot.markDirty()
         }
         return stack
     }
