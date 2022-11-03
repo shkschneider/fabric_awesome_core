@@ -32,16 +32,13 @@ class Smelter : AwesomeMachine<SmelterBlock, SmelterBlock.Entity, SmelterScreen.
 
         const val ID = "smelter"
         val SLOTS = InputOutput.Slots(inputs = 1)
+        val RECIPES = SmelterRecipes()
 
-    }
-
-    init {
-        SmelterRecipes()
     }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, entity: SmelterBlock.Entity) {
         if (world.isClient()) return
-        AwesomeMachineTicker(entity, SLOTS, SmelterRecipes())(
+        AwesomeMachineTicker(entity, SLOTS, RECIPES)(
             on = { entity.setPropertyState(Properties.LIT, true) },
             off = { entity.setPropertyState(Properties.LIT, false) },
         )

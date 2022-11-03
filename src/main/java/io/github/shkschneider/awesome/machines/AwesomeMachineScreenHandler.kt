@@ -40,6 +40,7 @@ abstract class AwesomeMachineScreenHandler(
     }
 
     // https://fabricmc.net/wiki/tutorial:containers
+    // FIXME do not insert anything anywhere
     override fun transferSlot(player: PlayerEntity, i: Int): ItemStack {
         var stack = ItemStack.EMPTY
         slots.getOrNull(i)?.takeIf { it.hasStack() }?.let { slot ->
@@ -55,16 +56,6 @@ abstract class AwesomeMachineScreenHandler(
             else slot.markDirty()
         }
         return stack
-    }
-
-    override fun canInsertIntoSlot(slot: Slot): Boolean {
-        return slot.index in (0 until inventories.internal.size())
-    }
-
-    override fun canInsertIntoSlot(stack: ItemStack, slot: Slot): Boolean {
-        return canInsertIntoSlot(slot)
-                && (slot.stack.isEmpty
-                || (slot.stack.item == stack.item && slot.stack.count < slot.stack.maxCount))
     }
 
     override fun canUse(player: PlayerEntity): Boolean {

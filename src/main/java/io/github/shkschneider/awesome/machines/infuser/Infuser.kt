@@ -32,16 +32,13 @@ class Infuser : AwesomeMachine<InfuserBlock, InfuserBlock.Entity, InfuserScreen.
 
         const val ID = "infuser"
         val SLOTS = InputOutput.Slots(inputs = 2)
+        val RECIPES = InfuserRecipes()
 
-    }
-
-    init {
-        InfuserRecipes()
     }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, entity: InfuserBlock.Entity) {
         if (world.isClient()) return
-        AwesomeMachineTicker(entity, SLOTS, InfuserRecipes())(
+        AwesomeMachineTicker(entity, SLOTS, RECIPES)(
             on = { entity.setPropertyState(Properties.LIT, true) },
             off = { entity.setPropertyState(Properties.LIT, false) },
         )

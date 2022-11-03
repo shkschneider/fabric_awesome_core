@@ -8,9 +8,9 @@ import net.minecraft.recipe.Recipe
 
 object InfuserRecipes {
 
-    val INFUSING = AwesomeRecipeType<Recipe<InfuserBlock.Entity>>()
+    private val INFUSING = AwesomeRecipeType<Recipe<InfuserBlock.Entity>>()
 
-    private val RECIPES = mutableListOf(
+    operator fun invoke(): List<AwesomeRecipe<InfuserBlock.Entity>> = mutableListOf(
         // Powder -> Dust
         AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.coalPowder, 2), ItemStack.EMPTY), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.coalDust, 2)),
         AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.copperPowder, 2), ItemStack.EMPTY), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.copperDust, 2)),
@@ -24,7 +24,5 @@ object InfuserRecipes {
         // RedstoneFlux
         AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.lapisDust, 1), ItemStack(AwesomeMaterials.redstoneDust, 1)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.redstoneFlux, 2)),
     )
-
-    operator fun invoke() = RECIPES.toList()
 
 }

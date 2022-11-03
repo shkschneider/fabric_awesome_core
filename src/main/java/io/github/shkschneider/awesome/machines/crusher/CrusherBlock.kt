@@ -17,8 +17,7 @@ class CrusherBlock(settings: Settings) : AwesomeMachineBlock<CrusherBlock.Entity
     @Suppress("USELESS_CAST")
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
         Crusher.ID, AwesomeMachines.crusher.entityType as BlockEntityType<Entity>,
-        pos, state,
-        Crusher.SLOTS,
+        pos, state, Crusher.SLOTS, Crusher.RECIPES,
         screenHandlerProvider = { syncId, inventories, properties ->
             CrusherScreen.Handler(syncId, inventories, properties)
         },

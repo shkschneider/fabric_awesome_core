@@ -32,16 +32,13 @@ class Crusher : AwesomeMachine<CrusherBlock, CrusherBlock.Entity, CrusherScreen.
 
         const val ID = "crusher"
         val SLOTS = InputOutput.Slots(inputs = 1)
+        val RECIPES = CrusherRecipes()
 
-    }
-
-    init {
-        CrusherRecipes()
     }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, entity: CrusherBlock.Entity) {
         if (world.isClient()) return
-        AwesomeMachineTicker(entity, SLOTS, CrusherRecipes())(
+        AwesomeMachineTicker(entity, SLOTS, RECIPES)(
             on = { entity.setPropertyState(Properties.LIT, true) },
             off = { entity.setPropertyState(Properties.LIT, false) },
         )

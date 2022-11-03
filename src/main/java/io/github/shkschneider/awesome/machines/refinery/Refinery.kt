@@ -4,6 +4,7 @@ import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineTicker
+import io.github.shkschneider.awesome.machines.infuser.InfuserRecipes
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
@@ -32,16 +33,13 @@ class Refinery : AwesomeMachine<RefineryBlock, RefineryBlock.Entity, RefineryScr
 
         const val ID = "refinery"
         val SLOTS = InputOutput.Slots(inputs = 1)
+        val RECIPES = InfuserRecipes()
 
-    }
-
-    init {
-        RefineryRecipes()
     }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, entity: RefineryBlock.Entity) {
         if (world.isClient()) return
-        AwesomeMachineTicker(entity, SLOTS, RefineryRecipes())(
+        AwesomeMachineTicker(entity, SLOTS, RECIPES)(
             on = { entity.setPropertyState(Properties.LIT, true) },
             off = { entity.setPropertyState(Properties.LIT, false) },
         )

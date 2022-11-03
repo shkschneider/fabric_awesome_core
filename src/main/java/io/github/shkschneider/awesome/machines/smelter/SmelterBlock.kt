@@ -17,8 +17,7 @@ class SmelterBlock(settings: Settings) : AwesomeMachineBlock<SmelterBlock.Entity
     @Suppress("USELESS_CAST")
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
         Smelter.ID, AwesomeMachines.smelter.entityType as BlockEntityType<Entity>,
-        pos, state,
-        Smelter.SLOTS,
+        pos, state, Smelter.SLOTS, Smelter.RECIPES,
         screenHandlerProvider = { syncId, inventories, properties ->
             SmelterScreen.Handler(syncId, inventories, properties)
         },

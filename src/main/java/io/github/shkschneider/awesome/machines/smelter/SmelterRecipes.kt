@@ -10,9 +10,9 @@ import net.minecraft.recipe.Recipe
 
 object SmelterRecipes {
 
-    val SMELTING = AwesomeRecipeType<Recipe<SmelterBlock.Entity>>()
+    private val SMELTING = AwesomeRecipeType<Recipe<SmelterBlock.Entity>>()
 
-    private val RECIPES = mutableListOf(
+    operator fun invoke(): List<AwesomeRecipe<SmelterBlock.Entity>> = mutableListOf(
         // Dust -> Ingot/Gem (no redstone)
         AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeMaterials.coalDust, 1)), AwesomeMaterials.redstoneFlux, ItemStack(Items.COAL, 1)),
         AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeMaterials.copperDust, 1)), AwesomeMaterials.redstoneFlux, ItemStack(Items.COPPER_INGOT, 1)),
@@ -37,7 +37,5 @@ object SmelterRecipes {
             add(AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeMaterials.randomiumOre, 1)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.redstoneFlux, 1)))
         }
     }
-
-    operator fun invoke() = RECIPES.toList()
 
 }

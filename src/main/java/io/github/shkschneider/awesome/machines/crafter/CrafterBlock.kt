@@ -17,8 +17,7 @@ class CrafterBlock(settings: Settings) : AwesomeMachineBlock<CrafterBlock.Entity
     @Suppress("USELESS_CAST")
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
         Crafter.ID, AwesomeMachines.crafter.entityType as BlockEntityType<Entity>,
-        pos, state,
-        Crafter.SLOTS,
+        pos, state, Crafter.SLOTS, emptyList(),
         screenHandlerProvider = { syncId, inventories, properties ->
             CrafterScreen.Handler(syncId, inventories, properties)
         },

@@ -9,9 +9,9 @@ import net.minecraft.recipe.Recipe
 
 object RefineryRecipes {
 
-    val REFINING = AwesomeRecipeType<Recipe<RefineryBlock.Entity>>()
+    private val REFINING = AwesomeRecipeType<Recipe<RefineryBlock.Entity>>()
 
-    private val RECIPES = mutableListOf(
+    operator fun invoke(): List<AwesomeRecipe<RefineryBlock.Entity>> = mutableListOf(
         // Ore -> Chip
         AwesomeRecipe(REFINING, listOf(ItemStack(Items.COAL_ORE, 1)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.coalChip, 16)),
         AwesomeRecipe(REFINING, listOf(ItemStack(Items.COPPER_ORE, 1)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.copperChip, 16)),
@@ -32,7 +32,5 @@ object RefineryRecipes {
         AwesomeRecipe(REFINING, listOf(ItemStack(Items.NETHER_QUARTZ_ORE, 1)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.quartzChip, 16)),
         AwesomeRecipe(REFINING, listOf(ItemStack(Items.REDSTONE_ORE, 1)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.redstoneChip, 16)),
     )
-
-    operator fun invoke() = RECIPES.toList()
 
 }

@@ -17,8 +17,7 @@ class RefineryBlock(settings: Settings) : AwesomeMachineBlock<RefineryBlock.Enti
     @Suppress("USELESS_CAST")
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
         Refinery.ID, AwesomeMachines.refinery.entityType as BlockEntityType<Entity>,
-        pos, state,
-        Refinery.SLOTS,
+        pos, state, Refinery.SLOTS, emptyList(/*FIXME*/),
         screenHandlerProvider = { syncId, inventories, properties ->
             RefineryScreen.Handler(syncId, inventories, properties)
         },

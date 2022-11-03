@@ -15,6 +15,12 @@ object InputOutput {
 
         val size: Int = inputs + (if (fuel != null) 1 else 0) + outputs
 
+        fun isInput(slot: Int) = slot in (0 until inputs)
+
+        fun isFuel(slot: Int) = fuel != null && slot == inputs
+
+        fun isOutput(slot: Int) = slot in (inputs until size)
+
     }
 
     class Inventories(

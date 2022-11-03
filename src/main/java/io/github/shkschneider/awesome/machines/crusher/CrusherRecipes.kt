@@ -10,9 +10,9 @@ import net.minecraft.recipe.Recipe
 
 object CrusherRecipes {
 
-    val CRUSHING = AwesomeRecipeType<Recipe<CrusherBlock.Entity>>()
+    private val CRUSHING = AwesomeRecipeType<Recipe<CrusherBlock.Entity>>()
 
-    private val RECIPES = mutableListOf(
+    operator fun invoke(): List<AwesomeRecipe<CrusherBlock.Entity>> = mutableListOf(
         // Ingot/Gem -> Dust
         AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.COAL, 1)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.coalDust, 1)),
         AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.COPPER_INGOT, 1)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.copperDust, 1)),
@@ -54,7 +54,5 @@ object CrusherRecipes {
             add(AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.NETHERRACK, 64)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.redstoneDust, 9)))
         }
     }
-
-    operator fun invoke() = RECIPES.toList()
 
 }

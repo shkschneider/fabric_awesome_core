@@ -1,11 +1,11 @@
 package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.custom.Faces
+import io.github.shkschneider.awesome.custom.Faces.Companion.relativeFace
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.entities.ImplementedInventory
-import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant
-import net.fabricmc.fabric.api.transfer.v1.storage.Storage
-import net.fabricmc.fabric.api.transfer.v1.storage.base.SidedStorageBlockEntity
+import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipe
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
@@ -13,13 +13,13 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.Inventory
+import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.state.property.BooleanProperty
-import net.minecraft.state.property.Properties
 import net.minecraft.text.Text
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
@@ -30,13 +30,16 @@ abstract class AwesomeMachineBlockEntity(
     type: BlockEntityType<out AwesomeMachineBlockEntity>,
     pos: BlockPos,
     private val state: BlockState,
-    slots: InputOutput.Slots,
-    private val canInsert: List<Pair<Direction, Boolean>> = emptyList(),
-    private val canExtract: List<Pair<Direction, Boolean>> = emptyList(),
+    private val slots: InputOutput.Slots,
+    private val recipes: List<AwesomeRecipe<out AwesomeMachineBlockEntity>>,
     private val screenHandlerProvider: (syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) -> AwesomeMachineScreenHandler,
-) : BlockEntity(type, pos, state), NamedScreenHandlerFactory, ImplementedInventory, SidedStorageBlockEntity {
+) : BlockEntity(type, pos, state), NamedScreenHandlerFactory, ImplementedInventory, SidedInventory {
+
+    //region ImplementedInventory
 
     override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(slots.size, ItemStack.EMPTY)
+
+    //endregion
 
     var inputProgress = -1
     var outputProgress = -1
@@ -69,6 +72,31 @@ abstract class AwesomeMachineBlockEntity(
         markDirty(world, pos, state)
     }
 
+    //region SidedInventory
+
+    override fun getAvailableSlots(side: Direction?): IntArray {
+        return (0 until slots.size).toList().toIntArray()
+    }
+
+    override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean {
+        dir ?: return false
+        val face = dir.relativeFace(state)
+        return slots.isOutput(slot).not()
+                && (face == Faces.Top || face is Faces.Side)
+                && recipes.any { recipe -> recipe.inputs.any { it.item == stack.item } }
+    }
+
+    override fun canExtract(slot: Int, stack: ItemStack, dir: Direction): Boolean {
+        val face = dir.relativeFace(state)
+        return slots.isOutput(slot)
+                && face == Faces.Bottom
+                && recipes.any { recipe -> recipe.output.item == stack.item }
+    }
+
+    //endregion
+
+    //region NamedScreenHandlerFactory
+
     override fun getDisplayName(): Text {
         return Text.translatable(AwesomeUtils.translatable("block", id))
     }
@@ -77,11 +105,7 @@ abstract class AwesomeMachineBlockEntity(
         return screenHandlerProvider(syncId, InputOutput.Inventories(this as Inventory, playerInventory), properties)
     }
 
-    @Suppress("UnstableApiUsage")
-    override fun getItemStorage(side: Direction): Storage<ItemVariant> {
-        val facing = world?.getBlockState(pos)?.get(Properties.FACING) ?: side
-        return AwesomeMachineStorage(facing, canInsert, canExtract)
-    }
+    //endregion
 
     override fun writeNbt(nbt: NbtCompound) {
         super.writeNbt(nbt)
