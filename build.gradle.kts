@@ -2,10 +2,17 @@ plugins {
     kotlin("jvm") version "1.7.20"
     id("fabric-loom") version "1.0-SNAPSHOT"
     `maven-publish`
+    id("net.thauvin.erik.gradle.semver") version "1.0.4"
+}
+semver {
+    properties = "version.properties"
+    semverKey = "version"
+    preReleaseKey = "release"
+    buildMetaKey = "meta"
 }
 
 group = property("maven_group")!!
-version = property("mod_version")!!
+version = semver.version
 
 repositories {
     maven(url = "https://www.cursemaven.com")
@@ -22,11 +29,17 @@ dependencies {
     // https://linkie.shedaniel.me/dependencies
     modRuntimeOnly("me.shedaniel:RoughlyEnoughItems-fabric:9.1.562")
     modRuntimeOnly("dev.architectury:architectury-fabric:6.3.49")
-    // https://www.cursemaven.com/
+    // https://www.cursemaven.com
     modRuntimeOnly("curse.maven:jade-324717:4041679")
 }
 
 tasks {
+    build {
+        dependsOn(":incrementPatch")
+        doLast {
+            println("Build: ${project.name}-${project.version}.jar")
+        }
+    }
     processResources {
         inputs.property("version", project.version)
         filesMatching("fabric.mod.json") {
