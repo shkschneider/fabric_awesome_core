@@ -1,7 +1,6 @@
 package io.github.shkschneider.awesome.worldgen
 
 import io.github.shkschneider.awesome.materials.AwesomeMaterials
-import io.github.shkschneider.awesome.materials.randomium.Randomium
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors
 import net.minecraft.block.Blocks
@@ -18,7 +17,7 @@ import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier
 
 object RandomiumWorldGen {
 
-    const val ID = Randomium.ID
+    const val ID = AwesomeMaterials.Randomium.ID
 
     operator fun invoke() {
         Overworld()
@@ -38,8 +37,8 @@ object RandomiumWorldGen {
 
         operator fun invoke() {
             val config = OreFeatureConfig(listOf(
-                OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, AwesomeMaterials.randomiumOre.defaultState),
-                OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, AwesomeMaterials.deepslateRandomiumOre.defaultState),
+                OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, AwesomeMaterials.Randomium.ore.defaultState),
+                OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, AwesomeMaterials.Randomium.deepslateOre.defaultState),
             ), VEIN_SIZE)
             val modifiers = listOf(
                 CountPlacementModifier.of(VEINS_PER_CHUNK),
@@ -68,7 +67,7 @@ object RandomiumWorldGen {
 
         operator fun invoke() {
             val config = OreFeatureConfig(listOf(
-                OreFeatureConfig.createTarget(BlockMatchRuleTest(Blocks.END_STONE), AwesomeMaterials.endRandomiumOre.defaultState),
+                OreFeatureConfig.createTarget(BlockMatchRuleTest(Blocks.END_STONE), AwesomeMaterials.Randomium.endOre.defaultState),
             ), VEIN_SIZE)
             val modifiers = listOf(
                 CountPlacementModifier.of(VEINS_PER_CHUNK),

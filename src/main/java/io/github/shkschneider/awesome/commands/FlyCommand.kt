@@ -1,21 +1,24 @@
 package io.github.shkschneider.awesome.commands
 
 import com.mojang.brigadier.context.CommandContext
+import io.github.shkschneider.awesome.core.AwesomeCommand
 import io.github.shkschneider.awesome.custom.Permissions
 import net.minecraft.server.command.ServerCommandSource
 
 class FlyCommand : AwesomeCommand("fly", Permissions.Moderator) {
 
-    override fun run(context: CommandContext<ServerCommandSource>?): Int {
-        val player = context?.source?.player ?: return -1
-        if (player.abilities.allowFlying) {
+    override fun run(context: CommandContext<ServerCommandSource>): Int {
+        val player = context.source?.player ?: return sendError(context.source, code = -1)
+        if (!player.abilities.allowFlying) {
+            player.abilities.allowFlying = true
+            sendFeedback(context.source, "${player.name.string} can now fly!", broadcastToOps = true)
+        } else {
             player.abilities.allowFlying = false
             player.abilities.flying = false
-        } else {
-            player.abilities.allowFlying = true
+            sendFeedback(context.source, "${player.name.string} cannot fly anymore!", broadcastToOps = true)
         }
         player.sendAbilitiesUpdate()
-        return 1
+        return SUCCESS
     }
 
 }

@@ -4,7 +4,7 @@ import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.Faces.Companion.relativeFace
 import io.github.shkschneider.awesome.custom.InputOutput
-import io.github.shkschneider.awesome.entities.ImplementedInventory
+import io.github.shkschneider.awesome.custom.ImplementedInventory
 import io.github.shkschneider.awesome.recipes.AwesomeRecipe
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
@@ -35,11 +35,7 @@ abstract class AwesomeMachineBlockEntity(
     private val screenHandlerProvider: (syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) -> AwesomeMachineScreenHandler,
 ) : BlockEntity(type, pos, state), NamedScreenHandlerFactory, ImplementedInventory, SidedInventory {
 
-    //region ImplementedInventory
-
-    override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(slots.size, ItemStack.EMPTY)
-
-    //endregion
+    //region properties
 
     var inputProgress = -1
     var outputProgress = -1
@@ -72,7 +68,11 @@ abstract class AwesomeMachineBlockEntity(
         markDirty(world, pos, state)
     }
 
-    //region SidedInventory
+    //endregion
+
+    //region Inventory
+
+    override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(slots.size, ItemStack.EMPTY)
 
     override fun getAvailableSlots(side: Direction?): IntArray {
         return (0 until slots.size).toList().toIntArray()
@@ -95,7 +95,7 @@ abstract class AwesomeMachineBlockEntity(
 
     //endregion
 
-    //region NamedScreenHandlerFactory
+    //region ScreenHandler
 
     override fun getDisplayName(): Text {
         return Text.translatable(AwesomeUtils.translatable("block", id))

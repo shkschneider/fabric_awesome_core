@@ -2,7 +2,7 @@
 	"textures": {
 		"1": "minecraft:block/crying_obsidian",
 		"2": "minecraft:block/redstone_block",
-		"particle": "minecraft:particle/crying_obsidian"
+		"particle": "minecraft:particle/glow"
 	},
 	"elements": [
 		{

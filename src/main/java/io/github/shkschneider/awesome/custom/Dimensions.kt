@@ -13,9 +13,9 @@ object Dimensions {
         val identifier = dimensionKey.value
         return when (identifier.namespace) {
             "minecraft" -> when (identifier.path) {
-                "nether" -> NETHER
-                "overworld" -> OVERWORLD
-                "end" -> END
+                World.NETHER.value.namespace -> NETHER
+                World.OVERWORLD.value.namespace -> OVERWORLD
+                World.END.value.namespace -> END
                 else -> throw IllegalStateException()
             }
             else -> UNKNOWN
@@ -23,7 +23,7 @@ object Dimensions {
     }
 
     fun World.spawn() =
-        Location(dimensionKey.value.toString(), levelProperties.spawnX.toDouble(), levelProperties.spawnY.toDouble(), levelProperties.spawnZ.toDouble())
+        Location(registryKey, levelProperties.spawnX.toDouble(), levelProperties.spawnY.toDouble(), levelProperties.spawnZ.toDouble())
 
     operator fun invoke() = Unit
 

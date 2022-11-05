@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.custom
 
 import io.github.shkschneider.awesome.Awesome
-import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.core.Minecraft
 import io.github.shkschneider.awesome.effects.AwesomeEffects
 import io.github.shkschneider.awesome.enchantments.AwesomeEnchantments
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
@@ -30,7 +30,7 @@ object Magnetism {
         val magnetism = EnchantmentHelper.getLevel(AwesomeEnchantments.magnetism, player.mainHandStack)
         if (!player.isSneaking && magnetism > 0) {
             player.addStatusEffect(
-                StatusEffectInstance(AwesomeEffects.magnetism, AwesomeUtils.TICK / 2 * magnetism, magnetism)
+                StatusEffectInstance(AwesomeEffects.magnetism, Minecraft.TICK / 2 * magnetism, magnetism)
             )
         }
     }

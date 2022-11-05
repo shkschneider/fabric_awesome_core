@@ -1,16 +1,12 @@
 package io.github.shkschneider.awesome.gamerules
 
-import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory
-import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry
+import io.github.shkschneider.awesome.core.AwesomeRegistries
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.GameRules
-import net.minecraft.world.World
 
 object KeepXpGameRule {
 
-    operator fun invoke() = GameRuleRegistry.register("keepXp", GameRules.Category.PLAYER, GameRuleFactory.createBooleanRule(true))
-
-    operator fun invoke(world: World) = world.gameRules.getBoolean(AwesomeGameRules.keepXp)
+    operator fun invoke() = AwesomeRegistries.gameRule("keepXp", GameRules.Category.PLAYER, true)
 
     operator fun invoke(oldPlayer: ServerPlayerEntity, newPlayer: ServerPlayerEntity) {
         newPlayer.experienceLevel = oldPlayer.experienceLevel

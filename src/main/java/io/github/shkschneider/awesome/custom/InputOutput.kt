@@ -9,7 +9,7 @@ object InputOutput {
 
     class Slots(
         val inputs: Int,
-        val fuel: ItemStack? = ItemStack(AwesomeMaterials.redstoneFlux, 1),
+        val fuel: ItemStack? = ItemStack(AwesomeMaterials.Redstone.flux, 1),
         val outputs: Int = 1,
     ) {
 

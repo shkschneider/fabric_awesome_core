@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.enchantments
 
 import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.core.AwesomeEnchantment
 
 object AwesomeEnchantments {
 

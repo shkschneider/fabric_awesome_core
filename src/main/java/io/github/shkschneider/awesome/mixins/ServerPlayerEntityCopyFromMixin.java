@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.mixins;
 
+import io.github.shkschneider.awesome.gamerules.AwesomeGameRules;
 import io.github.shkschneider.awesome.gamerules.KeepXpGameRule;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,7 +13,7 @@ public abstract class ServerPlayerEntityCopyFromMixin extends PlayerEntityDamage
 
     @Inject(method = "copyFrom", at = @At("TAIL"))
     private void copyFrom(ServerPlayerEntity oldPlayer, boolean alive, CallbackInfo ci) {
-        if (KeepXpGameRule.INSTANCE.invoke(oldPlayer.world)) {
+        if (oldPlayer.world.getGameRules().getBoolean(AwesomeGameRules.INSTANCE.getKeepXp())) {
             ServerPlayerEntity newPlayer = (ServerPlayerEntity) (Object) this;
             KeepXpGameRule.INSTANCE.invoke(oldPlayer, newPlayer);
         }

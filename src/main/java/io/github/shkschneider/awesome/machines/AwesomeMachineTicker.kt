@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.core.Minecraft
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.recipes.AwesomeRecipe
 import net.minecraft.inventory.Inventory
@@ -101,7 +102,7 @@ class AwesomeMachineTicker(
     }
 
     fun withoutFuel(on: () -> Unit, off: () -> Unit) {
-        entity.inputProgress = AwesomeUtils.TICK
+        entity.inputProgress = Minecraft.TICK
         val recipe = getRecipe()
         if (recipe != null) {
             when {

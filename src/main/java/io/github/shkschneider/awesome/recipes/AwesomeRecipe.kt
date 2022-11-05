@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.recipes
 
+import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
-import io.github.shkschneider.awesome.machines.crusher.Crusher
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
@@ -36,7 +36,7 @@ class AwesomeRecipe<T : Inventory>(
     }
 
     override fun getId(): Identifier {
-        return AwesomeUtils.identifier(Crusher.ID)
+        return AwesomeUtils.identifier("${Awesome.ID}_${output.item.name.string}")
     }
 
     override fun getSerializer(): RecipeSerializer<*> {

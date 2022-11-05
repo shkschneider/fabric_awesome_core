@@ -12,17 +12,17 @@ object InfuserRecipes {
 
     operator fun invoke(): List<AwesomeRecipe<InfuserBlock.Entity>> = mutableListOf(
         // Powder -> Dust
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.coalPowder, 2), ItemStack.EMPTY), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.coalDust, 2)),
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.copperPowder, 2), ItemStack.EMPTY), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.copperDust, 2)),
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.diamondPowder, 2), ItemStack.EMPTY), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.diamondDust, 2)),
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.emeraldPowder, 2), ItemStack.EMPTY), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.emeraldDust, 2)),
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.goldPowder, 2), ItemStack.EMPTY), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.goldDust, 2)),
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.ironPowder, 2), ItemStack.EMPTY), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.ironDust, 2)),
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.lapisPowder, 2), ItemStack.EMPTY), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.lapisDust, 2)),
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.quartzPowder, 2), ItemStack.EMPTY), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.quartzDust, 2)),
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.redstonePowder, 2), ItemStack.EMPTY), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.redstoneDust, 2)),
+        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.Coal.powder, 2), ItemStack.EMPTY), AwesomeMaterials.Redstone.flux, ItemStack(AwesomeMaterials.Coal.dust, 2)),
+        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.Copper.powder, 2), ItemStack.EMPTY), AwesomeMaterials.Redstone.flux, ItemStack(AwesomeMaterials.Copper.dust, 2)),
+        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.Diamond.powder, 2), ItemStack.EMPTY), AwesomeMaterials.Redstone.flux, ItemStack(AwesomeMaterials.Diamond.dust, 2)),
+        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.Emerald.powder, 2), ItemStack.EMPTY), AwesomeMaterials.Redstone.flux, ItemStack(AwesomeMaterials.Emerald.dust, 2)),
+        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.Gold.powder, 2), ItemStack.EMPTY), AwesomeMaterials.Redstone.flux, ItemStack(AwesomeMaterials.Gold.dust, 2)),
+        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.Iron.powder, 2), ItemStack.EMPTY), AwesomeMaterials.Redstone.flux, ItemStack(AwesomeMaterials.Iron.dust, 2)),
+        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.Lapis.powder, 2), ItemStack.EMPTY), AwesomeMaterials.Redstone.flux, ItemStack(AwesomeMaterials.Lapis.dust, 2)),
+        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.Quartz.powder, 2), ItemStack.EMPTY), AwesomeMaterials.Redstone.flux, ItemStack(AwesomeMaterials.Quartz.dust, 2)),
+        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.Redstone.powder, 2), ItemStack.EMPTY), AwesomeMaterials.Redstone.flux, ItemStack(AwesomeMaterials.Redstone.dust, 2)),
         // RedstoneFlux
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.lapisDust, 1), ItemStack(AwesomeMaterials.redstoneDust, 1)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.redstoneFlux, 2)),
+        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeMaterials.Lapis.dust, 1), ItemStack(AwesomeMaterials.Redstone.dust, 1)), AwesomeMaterials.Redstone.flux, ItemStack(AwesomeMaterials.Redstone.flux, 2)),
     )
 
 }

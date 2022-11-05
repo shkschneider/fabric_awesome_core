@@ -1,6 +1,8 @@
 package io.github.shkschneider.awesome.enchantments
 
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.core.AwesomeEnchantment
+import io.github.shkschneider.awesome.core.Minecraft
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentTarget
 import net.minecraft.enchantment.Enchantments
@@ -12,7 +14,7 @@ import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.entity.player.PlayerEntity
 
 class PoisonAspectEnchantment : AwesomeEnchantment(
-    id = "poison_aspect",
+    id = AwesomeUtils.identifier("poison_aspect"),
     Enchantments.FIRE_ASPECT.rarity,
     levels = 1 to Enchantments.FIRE_ASPECT.maxLevel,
     EnchantmentTarget.WEAPON,
@@ -21,7 +23,7 @@ class PoisonAspectEnchantment : AwesomeEnchantment(
 
     override fun invoke(livingEntity: LivingEntity, entity: Entity, level: Int) {
         if (livingEntity is PlayerEntity && !livingEntity.world.isClient && !livingEntity.isSneaking) {
-            (entity as? LivingEntity)?.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, AwesomeUtils.TICK, level))
+            (entity as? LivingEntity)?.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, Minecraft.TICK, level))
         }
     }
 

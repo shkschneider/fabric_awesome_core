@@ -2,6 +2,7 @@ package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.core.Minecraft
 import io.github.shkschneider.awesome.custom.InputOutput
 import net.fabricmc.api.EnvType
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
@@ -41,7 +42,7 @@ abstract class AwesomeMachine<B : Block, BE : BlockEntity, SH : ScreenHandler>(
         FabricBlockEntityTypeBuilder.create(blockEntityProvider, this.block).build(null)
     )
 
-    lateinit var _screen: ScreenHandlerType<SH>
+    private lateinit var _screen: ScreenHandlerType<SH>
     val screen get() = _screen
 
     init {
@@ -49,7 +50,7 @@ abstract class AwesomeMachine<B : Block, BE : BlockEntity, SH : ScreenHandler>(
             Registry.ITEM, id,
             BlockItem(this.block, FabricItemSettings().group(Awesome.GROUP))
         )
-        if (AwesomeUtils.environmentType() == EnvType.CLIENT) {
+        if (Minecraft.isClient) {
             _screen = ScreenHandlerType { syncId, playerInventory ->
                 screenHandlerProvider(syncId, InputOutput.Inventories(SimpleInventory(slots.size), playerInventory), ArrayPropertyDelegate(2))
             }

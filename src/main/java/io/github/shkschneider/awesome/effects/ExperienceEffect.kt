@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.effects
 
+import io.github.shkschneider.awesome.core.AwesomeEffect
 import net.minecraft.entity.Entity
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.effect.StatusEffectCategory

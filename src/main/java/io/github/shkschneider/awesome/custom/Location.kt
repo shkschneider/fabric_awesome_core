@@ -1,16 +1,16 @@
 package io.github.shkschneider.awesome.custom
 
 import io.github.shkschneider.awesome.AwesomeUtils
-import io.github.shkschneider.awesome.entities.IEntityData
 import net.minecraft.entity.Entity
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 import net.minecraft.util.registry.RegistryKey
 import net.minecraft.world.World
+import kotlin.math.roundToInt
 
 data class Location(
-    val dim: String, // RegistryKey<World>
+    val key: RegistryKey<World>,
     val x: Double,
     val y: Double,
     val z: Double,
@@ -18,18 +18,19 @@ data class Location(
     val pitch: Float = 0F,
 ) {
 
-    val key: RegistryKey<World> get() =
-        RegistryKey.of(Registry.WORLD_KEY, Identifier.tryParse(dim))
-
     override fun toString(): String {
-        return "$dim@${x.toInt()},${y.toInt()},${z.toInt()}"
+        return "${key.value.path}:${x.roundToInt()},${y.roundToInt()},${z.roundToInt()}"
     }
+
+    fun safe() = copy(x = x.roundToInt().toDouble(), y = y.roundToInt().toDouble(), z = z.roundToInt().toDouble())
+
+    fun offset() = safe().copy(x = x + 0.5, y = y + 0.25, z = z + 0.5)
 
     companion object {
 
         fun <T : IEntityData> T.writeLocation(prefix: String): Location? {
             val entity = (this as? Entity) ?: return null
-            return Location(entity.world.registryKey.value.toString(), entity.x, entity.y, entity.z, entity.yaw, entity.pitch).also {
+            return Location(entity.world.registryKey, entity.x, entity.y, entity.z, entity.yaw, entity.pitch).also {
                 data.putString(AwesomeUtils.key(prefix, "dim"), entity.world.registryKey.value.toString())
                 data.putDouble(AwesomeUtils.key(prefix, "x"), entity.x)
                 data.putDouble(AwesomeUtils.key(prefix, "y"), entity.y)
@@ -40,10 +41,14 @@ data class Location(
         }
 
         fun NbtCompound.readLocation(prefix: String): Location? {
-            if (!contains(AwesomeUtils.key(prefix, "dim")) || !contains(AwesomeUtils.key(prefix, "x")) || !contains(
-                    AwesomeUtils.key(prefix, "y")) || !contains(AwesomeUtils.key(prefix, "z"))) return null
+            if (
+                !contains(AwesomeUtils.key(prefix, "dim"))
+                || !contains(AwesomeUtils.key(prefix, "x"))
+                || !contains(AwesomeUtils.key(prefix, "y"))
+                || !contains(AwesomeUtils.key(prefix, "z"))
+            ) return null
             return Location(
-                getString(AwesomeUtils.key(prefix, "dim")),
+                RegistryKey.of(Registry.WORLD_KEY, Identifier.tryParse(getString(AwesomeUtils.key(prefix, "dim")))),
                 getDouble(AwesomeUtils.key(prefix, "x")),
                 getDouble(AwesomeUtils.key(prefix, "y")),
                 getDouble(AwesomeUtils.key(prefix, "z")),

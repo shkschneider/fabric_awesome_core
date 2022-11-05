@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.effects
 
 import com.google.common.base.Predicates
+import io.github.shkschneider.awesome.core.AwesomeEffect
 import net.minecraft.entity.ItemEntity
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.effect.StatusEffectCategory

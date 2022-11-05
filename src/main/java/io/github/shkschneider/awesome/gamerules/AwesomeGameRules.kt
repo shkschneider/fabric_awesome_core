@@ -2,24 +2,25 @@ package io.github.shkschneider.awesome.gamerules
 
 import io.github.shkschneider.awesome.Awesome
 import net.minecraft.world.GameRules
-import net.minecraft.world.GameRules.BooleanRule
 
 object AwesomeGameRules {
 
-    lateinit var keepXp: GameRules.Key<BooleanRule>
-    lateinit var oreXp: GameRules.Key<BooleanRule>
-    lateinit var pvp: GameRules.Key<BooleanRule>
-    lateinit var sleepingHeals: GameRules.Key<BooleanRule>
+    private lateinit var _keepXp: GameRules.Key<GameRules.BooleanRule>
+    val keepXp get() = _keepXp
+    private lateinit var _oreXp: GameRules.Key<GameRules.BooleanRule>
+    val oreXp get() = _oreXp
+    private lateinit var _pvp: GameRules.Key<GameRules.BooleanRule>
+    val pvp get() = _pvp
+    private lateinit var _sleepingHeals: GameRules.Key<GameRules.BooleanRule>
+    val sleepingHeals get() = _sleepingHeals
 
     operator fun invoke() {
-        keepXp = KeepXpGameRule()
+        _keepXp = KeepXpGameRule()
         if (Awesome.CONFIG.oreDropXpWithExperienceEnchantment) {
-            oreXp = OreXpGameRule()
+            _oreXp = OreXpGameRule()
         }
-        pvp = PvpGameRule()
-        sleepingHeals = SleepingHealsGameRule()
+        _pvp = PvpGameRule()
+        _sleepingHeals = SleepingHealsGameRule()
     }
-
-    // operator fun invoke(world: World, key: GameRules.Key<BooleanRule>) = world.gameRules.getBoolean(key)
 
 }
