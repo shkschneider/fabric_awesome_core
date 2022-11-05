@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.enchantments
 
-import io.github.shkschneider.awesome.AwesomeConfig
+import io.github.shkschneider.awesome.Awesome
 
 object AwesomeEnchantments {
 
@@ -11,15 +11,15 @@ object AwesomeEnchantments {
     lateinit var veinMining: AwesomeEnchantment
 
     operator fun invoke() {
-        if (AwesomeConfig.oreDropXpWithExperienceEnchantment) {
+        if (Awesome.CONFIG.oreDropXpWithExperienceEnchantment) {
             experience = ExperienceEnchantment()
         }
         iceAspect = IceAspectEnchantment()
-        if (AwesomeConfig.magnetismEnchantment) {
+        if (Awesome.CONFIG.magnetismEnchantment) {
             magnetism = MagnetismEnchantment()
         }
         poisonAspect = PoisonAspectEnchantment()
-        if (AwesomeConfig.veinMiningEnchantment) {
+        if (Awesome.CONFIG.veinMiningEnchantment) {
             veinMining = VeinMiningEnchantment()
         }
     }

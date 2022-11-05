@@ -1,11 +1,11 @@
 package io.github.shkschneider.awesome.worldgen
 
-import io.github.shkschneider.awesome.AwesomeConfig
+import io.github.shkschneider.awesome.Awesome
 
 object AwesomeWorldGen {
 
     operator fun invoke() {
-        if (AwesomeConfig.randomiumWorldGen) {
+        if (Awesome.CONFIG.randomiumWorldGen) {
             RandomiumWorldGen()
         }
     }

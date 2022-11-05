@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.machines.crusher
 
-import io.github.shkschneider.awesome.AwesomeConfig
+import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipe
 import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipeType
 import io.github.shkschneider.awesome.materials.AwesomeMaterials
@@ -47,10 +47,10 @@ object CrusherRecipes {
         AwesomeRecipe(CRUSHING, listOf(ItemStack(AwesomeMaterials.quartzPowder, 2)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.quartzDust, 1)),
         AwesomeRecipe(CRUSHING, listOf(ItemStack(AwesomeMaterials.redstonePowder, 2)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.redstoneDust, 1)),
     ).apply {
-        if (AwesomeConfig.diamondDustFromCrushingCoalBlock) {
+        if (Awesome.CONFIG.diamondDustFromCrushingCoalBlock) {
             add(AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.COAL_BLOCK, 1)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.diamondDust, 1)))
         }
-        if (AwesomeConfig.redstoneFromCrushingNetherrack) {
+        if (Awesome.CONFIG.redstoneFromCrushingNetherrack) {
             add(AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.NETHERRACK, 64)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.redstoneDust, 9)))
         }
     }

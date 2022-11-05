@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.gamerules
 
-import io.github.shkschneider.awesome.AwesomeConfig
+import io.github.shkschneider.awesome.Awesome
 import net.minecraft.world.GameRules
 import net.minecraft.world.GameRules.BooleanRule
 
@@ -13,7 +13,7 @@ object AwesomeGameRules {
 
     operator fun invoke() {
         keepXp = KeepXpGameRule()
-        if (AwesomeConfig.oreDropXpWithExperienceEnchantment) {
+        if (Awesome.CONFIG.oreDropXpWithExperienceEnchantment) {
             oreXp = OreXpGameRule()
         }
         pvp = PvpGameRule()

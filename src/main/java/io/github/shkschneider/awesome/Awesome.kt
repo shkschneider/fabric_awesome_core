@@ -1,6 +1,8 @@
 package io.github.shkschneider.awesome
 
+import com.google.gson.annotations.SerializedName
 import io.github.shkschneider.awesome.commands.AwesomeCommands
+import io.github.shkschneider.awesome.custom.AwesomeConfig
 import io.github.shkschneider.awesome.custom.SilkTouchSpawners
 import io.github.shkschneider.awesome.effects.AwesomeEffects
 import io.github.shkschneider.awesome.enchantments.AwesomeEnchantments
@@ -22,6 +24,8 @@ class Awesome : ModInitializer {
 
         val GROUP = FabricItemGroupBuilder.build(Identifier(ID, ID)) { ItemStack(AwesomeMaterials.redstoneFlux) }
 
+        val CONFIG = AwesomeConfig<Config>(ID)(Config::class.java)
+
     }
 
     override fun onInitialize() {
@@ -34,7 +38,35 @@ class Awesome : ModInitializer {
         AwesomeMachines()
         AwesomeMaterials()
         AwesomeWorldGen()
-        if (AwesomeConfig.silkTouchSpawners) SilkTouchSpawners()
+        if (CONFIG.silkTouchSpawners) SilkTouchSpawners()
     }
+
+
+    data class Config(
+        @SerializedName("diamondDustFromCrushingCoalBlock")
+        val diamondDustFromCrushingCoalBlock: Boolean = true,
+        @SerializedName("experiencePotions")
+        val experiencePotions: Boolean = true,
+        @SerializedName("magnetismEnchantment")
+        val magnetismEnchantment: Boolean = true,
+        @SerializedName("oreDropXpWithExperienceEnchantment")
+        val oreDropXpWithExperienceEnchantment: Boolean = true,
+        @SerializedName("randomiumWorldGen")
+        val randomiumWorldGen: Boolean = true,
+        @SerializedName("redstoneFluxFromRandomiumOre")
+        val redstoneFluxFromRandomiumOre: Boolean = true,
+        @SerializedName("redstoneFromCrushingNetherrack")
+        val redstoneFromCrushingNetherrack: Boolean = true,
+        @SerializedName("silkTouchSpawners")
+        val silkTouchSpawners: Boolean = true,
+        @SerializedName("trueInfinityBow")
+        val trueInfinityBow: Boolean = true,
+        @SerializedName("veinMiningEnchantment")
+        val veinMiningEnchantment: Boolean = true,
+        @SerializedName("villagersFollowEmeraldBlock")
+        val villagersFollowEmeraldBlock: Boolean = true,
+        @SerializedName("villagersInfiniteTrading")
+        val villagersInfiniteTrading: Boolean = true,
+    )
 
 }

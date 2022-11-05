@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.custom
 
-import io.github.shkschneider.awesome.AwesomeConfig
+import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.enchantments.AwesomeEnchantments
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
@@ -23,13 +23,13 @@ object VeinMining {
     operator fun invoke() = Unit
 
     init {
-        if (AwesomeConfig.veinMiningEnchantment) {
+        if (Awesome.CONFIG.veinMiningEnchantment) {
             PlayerBlockBreakEvents.AFTER.register(PlayerBlockBreakEvents.After(VeinMining::invoke))
         }
     }
 
     operator fun invoke(world: World, player: PlayerEntity, pos: BlockPos, state: BlockState, blockEntity: BlockEntity?) {
-        if (!AwesomeConfig.veinMiningEnchantment) throw IllegalStateException()
+        if (!Awesome.CONFIG.veinMiningEnchantment) throw IllegalStateException()
         val veinMining = EnchantmentHelper.getLevel(AwesomeEnchantments.veinMining, player.mainHandStack)
         if (!isVeinMining && !player.isSneaking && veinMining > 0) {
             if (state.block is OreBlock && state.isIn(BlockTags.PICKAXE_MINEABLE)) {
@@ -42,7 +42,7 @@ object VeinMining {
 
     // TODO iterate while touching a similar item, not in a cube around
     private fun veinMining(world: World, pos: BlockPos, playerEntity: PlayerEntity, level: Int, item: Item) {
-        if (!AwesomeConfig.veinMiningEnchantment) throw IllegalStateException()
+        if (!Awesome.CONFIG.veinMiningEnchantment) throw IllegalStateException()
         isVeinMining = true
         val start = pos.mutableCopy().add(-level, -level, -level)
         val end = pos.mutableCopy().add(level, level, level)

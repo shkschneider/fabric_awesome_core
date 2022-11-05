@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.machines.smelter
 
-import io.github.shkschneider.awesome.AwesomeConfig
+import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipe
 import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipeType
 import io.github.shkschneider.awesome.materials.AwesomeMaterials
@@ -31,7 +31,7 @@ object SmelterRecipes {
         AwesomeRecipe(SMELTING, listOf(ItemStack(Items.RAW_GOLD_BLOCK, 1)), AwesomeMaterials.redstoneFlux, ItemStack(Items.GOLD_BLOCK, 1)),
         AwesomeRecipe(SMELTING, listOf(ItemStack(Items.RAW_IRON_BLOCK, 1)), AwesomeMaterials.redstoneFlux, ItemStack(Items.IRON_BLOCK, 1)),
     ).apply {
-        if (AwesomeConfig.redstoneFluxFromRandomiumOre) {
+        if (Awesome.CONFIG.redstoneFluxFromRandomiumOre) {
             add(AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeMaterials.deepslateRandomiumOre, 1)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.redstoneFlux, 1)))
             add(AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeMaterials.endRandomiumOre, 1)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.redstoneFlux, 1)))
             add(AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeMaterials.randomiumOre, 1)), AwesomeMaterials.redstoneFlux, ItemStack(AwesomeMaterials.redstoneFlux, 1)))

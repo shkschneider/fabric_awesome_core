@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.gamerules
 
-import io.github.shkschneider.awesome.AwesomeConfig
+import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.enchantments.AwesomeEnchantments
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory
@@ -22,7 +22,7 @@ object OreXpGameRule {
     operator fun invoke(world: World): Boolean = world.gameRules.getBoolean(AwesomeGameRules.oreXp)
 
     init {
-        if (AwesomeConfig.oreDropXpWithExperienceEnchantment) {
+        if (Awesome.CONFIG.oreDropXpWithExperienceEnchantment) {
             PlayerBlockBreakEvents.AFTER.register(PlayerBlockBreakEvents.After { world: World, player: PlayerEntity, _: BlockPos, state: BlockState, _: BlockEntity? ->
                 if (invoke(world)) {
                     invoke(player, state)

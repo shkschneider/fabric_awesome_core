@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.custom
 
-import io.github.shkschneider.awesome.AwesomeConfig
+import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.effects.AwesomeEffects
 import io.github.shkschneider.awesome.enchantments.AwesomeEnchantments
@@ -18,7 +18,7 @@ object Magnetism {
     operator fun invoke() = Unit
 
     init {
-        if (AwesomeConfig.magnetismEnchantment) {
+        if (Awesome.CONFIG.magnetismEnchantment) {
             PlayerBlockBreakEvents.AFTER.register(PlayerBlockBreakEvents.After { _: World, player: PlayerEntity, _: BlockPos, _: BlockState, _: BlockEntity? ->
                 invoke(player)
             })
@@ -26,7 +26,7 @@ object Magnetism {
     }
 
     operator fun invoke(player: PlayerEntity) {
-        if (!AwesomeConfig.magnetismEnchantment) throw IllegalStateException()
+        if (!Awesome.CONFIG.magnetismEnchantment) throw IllegalStateException()
         val magnetism = EnchantmentHelper.getLevel(AwesomeEnchantments.magnetism, player.mainHandStack)
         if (!player.isSneaking && magnetism > 0) {
             player.addStatusEffect(

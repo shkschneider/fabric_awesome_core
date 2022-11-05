@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.effects.potions
 
-import io.github.shkschneider.awesome.AwesomeConfig
+import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.effects.AwesomeEffects
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.item.Items
@@ -12,7 +12,7 @@ object AwesomePotions {
 
     operator fun invoke(): List<AwesomePotion> = mutableListOf<AwesomePotion>(
     ).apply {
-        if (AwesomeConfig.experiencePotions) {
+        if (Awesome.CONFIG.experiencePotions) {
             add(experience1)
             add(experience9)
         }

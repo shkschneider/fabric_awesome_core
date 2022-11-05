@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.mixins;
 
-import io.github.shkschneider.awesome.AwesomeConfig;
+import io.github.shkschneider.awesome.Awesome;
 import net.minecraft.entity.passive.VillagerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,7 +21,7 @@ public class VillagerEntityTickMixin {
 
     @Inject(method = "tick", at = @At("HEAD"))
     public void tick(CallbackInfo info) {
-        if (AwesomeConfig.villagersInfiniteTrading) {
+        if (Awesome.Companion.getCONFIG().getVillagersInfiniteTrading()) {
             restocksToday = 0;
             ((VillagerEntity) (Object) this).restock();
         }
