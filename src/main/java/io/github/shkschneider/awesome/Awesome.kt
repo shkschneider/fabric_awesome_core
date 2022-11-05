@@ -7,6 +7,7 @@ import io.github.shkschneider.awesome.custom.SilkTouchSpawners
 import io.github.shkschneider.awesome.effects.AwesomeEffects
 import io.github.shkschneider.awesome.enchantments.AwesomeEnchantments
 import io.github.shkschneider.awesome.gamerules.AwesomeGameRules
+import io.github.shkschneider.awesome.items.AwesomeItems
 import io.github.shkschneider.awesome.machines.AwesomeMachines
 import io.github.shkschneider.awesome.materials.AwesomeMaterials
 import io.github.shkschneider.awesome.worldgen.AwesomeWorldGen
@@ -35,6 +36,7 @@ class Awesome : ModInitializer {
         AwesomeEffects()
         AwesomeEnchantments()
         AwesomeGameRules()
+        AwesomeItems()
         AwesomeMachines()
         AwesomeMaterials()
         AwesomeWorldGen()
@@ -43,30 +45,19 @@ class Awesome : ModInitializer {
 
 
     data class Config(
-        @SerializedName("diamondDustFromCrushingCoalBlock")
-        val diamondDustFromCrushingCoalBlock: Boolean = true,
-        @SerializedName("experiencePotions")
-        val experiencePotions: Boolean = true,
-        @SerializedName("magnetismEnchantment")
-        val magnetismEnchantment: Boolean = true,
-        @SerializedName("oreDropXpWithExperienceEnchantment")
-        val oreDropXpWithExperienceEnchantment: Boolean = true,
-        @SerializedName("randomiumWorldGen")
-        val randomiumWorldGen: Boolean = true,
-        @SerializedName("redstoneFluxFromRandomiumOre")
-        val redstoneFluxFromRandomiumOre: Boolean = true,
-        @SerializedName("redstoneFromCrushingNetherrack")
-        val redstoneFromCrushingNetherrack: Boolean = true,
-        @SerializedName("silkTouchSpawners")
-        val silkTouchSpawners: Boolean = true,
-        @SerializedName("trueInfinityBow")
-        val trueInfinityBow: Boolean = true,
-        @SerializedName("veinMiningEnchantment")
-        val veinMiningEnchantment: Boolean = true,
-        @SerializedName("villagersFollowEmeraldBlock")
-        val villagersFollowEmeraldBlock: Boolean = true,
-        @SerializedName("villagersInfiniteTrading")
-        val villagersInfiniteTrading: Boolean = true,
+        @SerializedName("diamondDustFromCrushingCoalBlock") val diamondDustFromCrushingCoalBlock: Boolean = true,
+        @SerializedName("experiencePotions") val experiencePotions: Boolean = true,
+        @SerializedName("imprisoner") val imprisoner: Boolean = true,
+        @SerializedName("magnetismEnchantment") val magnetismEnchantment: Boolean = true,
+        @SerializedName("oreDropXpWithExperienceEnchantment") val oreDropXpWithExperienceEnchantment: Boolean = true,
+        @SerializedName("randomiumWorldGen") val randomiumWorldGen: Boolean = true,
+        @SerializedName("redstoneFluxFromRandomiumOre") val redstoneFluxFromRandomiumOre: Boolean = true,
+        @SerializedName("redstoneFromCrushingNetherrack") val redstoneFromCrushingNetherrack: Boolean = true,
+        @SerializedName("silkTouchSpawners") val silkTouchSpawners: Boolean = true,
+        @SerializedName("trueInfinityBow") val trueInfinityBow: Boolean = true,
+        @SerializedName("veinMiningEnchantment") val veinMiningEnchantment: Boolean = true,
+        @SerializedName("villagersFollowEmeraldBlock") val villagersFollowEmeraldBlock: Boolean = true,
+        @SerializedName("villagersInfiniteTrading") val villagersInfiniteTrading: Boolean = true,
     )
 
 }

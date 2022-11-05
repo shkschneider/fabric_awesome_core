@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.machines.recipes
+package io.github.shkschneider.awesome.recipes
 
 import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.machines.crusher.Crusher

@@ -2,7 +2,7 @@ package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.custom.InputOutput
-import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipe
+import io.github.shkschneider.awesome.recipes.AwesomeRecipe
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 

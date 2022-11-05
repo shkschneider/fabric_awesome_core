@@ -1,8 +1,8 @@
 package io.github.shkschneider.awesome.machines.smelter
 
 import io.github.shkschneider.awesome.Awesome
-import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipe
-import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipeType
+import io.github.shkschneider.awesome.recipes.AwesomeRecipe
+import io.github.shkschneider.awesome.recipes.AwesomeRecipeType
 import io.github.shkschneider.awesome.materials.AwesomeMaterials
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items

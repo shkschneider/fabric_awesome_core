@@ -40,3 +40,5 @@ This project is licensed under MIT.
 ### Resources
 
 - https://www.iconfinder.com/icons/185599/3d_dirt_icon
+- https://pngimg.com/imgs/fantasy/pokeball/
+- GregTech 5 & CE

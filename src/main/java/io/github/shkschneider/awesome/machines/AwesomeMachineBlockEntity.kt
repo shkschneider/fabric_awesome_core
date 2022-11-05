@@ -5,7 +5,7 @@ import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.Faces.Companion.relativeFace
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.entities.ImplementedInventory
-import io.github.shkschneider.awesome.machines.recipes.AwesomeRecipe
+import io.github.shkschneider.awesome.recipes.AwesomeRecipe
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType

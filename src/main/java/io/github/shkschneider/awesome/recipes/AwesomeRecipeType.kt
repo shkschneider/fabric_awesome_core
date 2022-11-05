@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.machines.recipes
+package io.github.shkschneider.awesome.recipes
 
 import net.minecraft.recipe.Recipe
 import net.minecraft.recipe.RecipeType

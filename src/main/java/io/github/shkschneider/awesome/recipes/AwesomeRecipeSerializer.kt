@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.machines.recipes
+package io.github.shkschneider.awesome.recipes
 
 import com.google.gson.JsonObject
 import net.minecraft.item.ItemStack
