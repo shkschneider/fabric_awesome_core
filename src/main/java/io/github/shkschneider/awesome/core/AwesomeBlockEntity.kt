@@ -1,15 +1,20 @@
 package io.github.shkschneider.awesome.core
 
 import io.github.shkschneider.awesome.custom.ImplementedInventory
+import io.github.shkschneider.awesome.custom.InputOutput
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.Inventories
+import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.screen.NamedScreenHandlerFactory
+import net.minecraft.screen.PropertyDelegate
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
 
 abstract class AwesomeBlockEntity(
     type: BlockEntityType<out BlockEntity>,
@@ -17,30 +22,24 @@ abstract class AwesomeBlockEntity(
     state: BlockState,
 ) : BlockEntity(type, pos, state) {
 
-    @Suppress("RedundantOverride")
+    abstract val properties: Map<Int, Int>
+
+    val delegate = object : PropertyDelegate {
+        override fun get(index: Int): Int = properties.getValue(index)
+        override fun set(index: Int, value: Int) { properties.toMutableMap()[index] = value }
+        override fun size(): Int = properties.size
+    }
+
     abstract class WithInventory(
         type: BlockEntityType<out BlockEntity>,
         pos: BlockPos,
-        state: BlockState,
-    ) : AwesomeBlockEntity(type, pos, state), ImplementedInventory {
+        val state: BlockState,
+        val slots: InputOutput.Slots,
+    ) : AwesomeBlockEntity(type, pos, state), ImplementedInventory, SidedInventory {
 
-        abstract override val items: DefaultedList<ItemStack>
+        override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(slots.size, ItemStack.EMPTY)
 
-        override fun getStack(slot: Int): ItemStack =
-            super.getStack(slot)
-
-        override fun setStack(slot: Int, stack: ItemStack) =
-            super.setStack(slot, stack)
-
-        override fun clear() =
-            super.clear()
-
-        override fun canPlayerUse(player: PlayerEntity): Boolean =
-            true
-
-        override fun markDirty() {
-            super.markDirty()
-        }
+        override fun canPlayerUse(player: PlayerEntity): Boolean = true
 
         override fun writeNbt(nbt: NbtCompound) {
             super.writeNbt(nbt)
@@ -52,6 +51,20 @@ abstract class AwesomeBlockEntity(
             super.readNbt(nbt)
         }
 
+        override fun getAvailableSlots(side: Direction): IntArray =
+            (0 until slots.size).toList().toIntArray()
+
+        override fun canInsert(slot: Int, stack: ItemStack?, dir: Direction?): Boolean = true
+
+        override fun canExtract(slot: Int, stack: ItemStack?, dir: Direction?): Boolean = true
+
     }
+
+    abstract class WithScreen(
+        type: BlockEntityType<out BlockEntity>,
+        pos: BlockPos,
+        state: BlockState,
+        slots: InputOutput.Slots,
+    ) : WithInventory(type, pos, state, slots), NamedScreenHandlerFactory
 
 }

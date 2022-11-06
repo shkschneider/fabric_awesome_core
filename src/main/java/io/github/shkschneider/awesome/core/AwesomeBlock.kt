@@ -28,7 +28,7 @@ abstract class AwesomeBlock(
     }
 
     private fun init(group: ItemGroup) {
-        AwesomeRegistries.block(id, this as Block, group)
+        _block = AwesomeRegistries.block(id, this as Block, group)
     }
 
     @Suppress("OVERRIDE_DEPRECATION")
@@ -42,7 +42,8 @@ abstract class AwesomeBlock(
     abstract class WithEntity(
         id: Identifier,
         settings: Settings,
-    ) : AwesomeBlock(id, settings), BlockEntityProvider {
+        group: ItemGroup = Awesome.GROUP,
+    ) : AwesomeBlock(id, settings, group), BlockEntityProvider {
 
         val entityType: BlockEntityType<out BlockEntity> = Registry.register(
             Registry.BLOCK_ENTITY_TYPE, id,
