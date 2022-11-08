@@ -33,7 +33,8 @@ class Awesome : ModInitializer {
     }
 
     override fun onInitialize() {
-        AwesomeLogger.info("$NAME ${Minecraft.VERSION}!")
+        val ms = System.currentTimeMillis()
+        AwesomeLogger.debug("Loading for ${Minecraft.VERSION}...")
         AwesomeCommands()
         // AwesomeDimensions()
         AwesomeEffects()
@@ -45,6 +46,7 @@ class Awesome : ModInitializer {
         AwesomePotions()
         AwesomeWorldGen()
         if (CONFIG.silkTouchSpawners) SilkTouchSpawners()
+        AwesomeLogger.info("Took ${System.currentTimeMillis() - ms}ms!")
     }
 
 

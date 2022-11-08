@@ -1,28 +1,26 @@
 package io.github.shkschneider.awesome.core
 
 import io.github.shkschneider.awesome.Awesome
-import org.apache.logging.log4j.LogManager
-import org.apache.logging.log4j.Logger
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 object AwesomeLogger {
 
-    var TAG = Awesome.NAME.uppercase()
+    private val TAG = Awesome.NAME
 
-    private val logger: Logger = LogManager.getLogger(Awesome.ID)
+    private val logger: Logger = LoggerFactory.getLogger(TAG)
 
-    private fun stdout(lvl: String, msg: String) {
-        println("$TAG/${lvl.uppercase()}: $msg")
+    fun trace(throwable: Throwable) = logger.trace(throwable.toString()).also { throwable.printStackTrace() }
+
+    fun debug(msg: String) {
+        // Minecraft has isDevelopment always false in my environment
+        if (Minecraft.isDevelopment) println("[$TAG] $msg")
     }
 
-    fun trace(throwable: Throwable) = logger.trace(throwable).also { throwable.printStackTrace() }
+    fun info(msg: String) = logger.info(msg)
 
-    fun debug(msg: String) = logger.debug(msg).also { stdout("debug", msg) }
+    fun warn(msg: String) = logger.warn(msg)
 
-    fun info(msg: String) = logger.info(msg).also { stdout("info", msg) }
-
-    fun warn(msg: String) = logger.warn(msg).also { stdout("warn", msg) }
-
-    fun error(msg: String) = logger.error(msg).also { stdout("error", msg) }
-
+    fun error(msg: String) = logger.error(msg)
 
 }
