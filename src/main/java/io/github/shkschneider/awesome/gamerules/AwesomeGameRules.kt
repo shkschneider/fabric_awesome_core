@@ -16,7 +16,7 @@ object AwesomeGameRules {
 
     operator fun invoke() {
         _keepXp = KeepXpGameRule()
-        if (Awesome.CONFIG.oreDropXpWithExperienceEnchantment) {
+        if (Awesome.CONFIG.oreDropXp) {
             _oreXp = OreXpGameRule()
         }
         _pvp = PvpGameRule()

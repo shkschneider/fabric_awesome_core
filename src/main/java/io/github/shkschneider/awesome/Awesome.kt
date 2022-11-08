@@ -52,11 +52,12 @@ class Awesome : ModInitializer {
 
     data class Config(
         @SerializedName("diamondDustFromCrushingCoalBlock") val diamondDustFromCrushingCoalBlock: Boolean = true,
+        @SerializedName("experienceEnchantment") val experienceEnchantment: Boolean = true,
         @SerializedName("experiencePotions") val experiencePotions: Boolean = true,
         @SerializedName("imprisoner") val imprisoner: Boolean = true,
         @SerializedName("magnetismEnchantment") val magnetismEnchantment: Boolean = true,
-        @SerializedName("oreDropXpWithExperienceEnchantment") val oreDropXpWithExperienceEnchantment: Boolean = true,
-        @SerializedName("randomiumWorldGen") val randomiumWorldGen: Boolean = true,
+        @SerializedName("oreDropXp") val oreDropXp: Boolean = true,
+        @SerializedName("randomiumOre") val randomiumOre: Boolean = true,
         @SerializedName("redstoneFluxFromRandomiumOre") val redstoneFluxFromRandomiumOre: Boolean = true,
         @SerializedName("redstoneFromCrushingNetherrack") val redstoneFromCrushingNetherrack: Boolean = true,
         @SerializedName("silkTouchSpawners") val silkTouchSpawners: Boolean = true,

@@ -19,7 +19,7 @@ object OreXpGameRule {
     operator fun invoke() = AwesomeRegistries.gameRule("oreXp", GameRules.Category.PLAYER, true)
 
     init {
-        if (Awesome.CONFIG.oreDropXpWithExperienceEnchantment) {
+        if (Awesome.CONFIG.oreDropXp) {
             PlayerBlockBreakEvents.AFTER.register(PlayerBlockBreakEvents.After { world: World, player: PlayerEntity, _: BlockPos, state: BlockState, _: BlockEntity? ->
                 if (world.gameRules.getBoolean(AwesomeGameRules.oreXp)) {
                     invoke(player, state)

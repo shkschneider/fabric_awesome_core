@@ -29,7 +29,7 @@ abstract class VillagerEntityInitMixin extends MerchantEntity {
     @Inject(method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;Lnet/minecraft/village/VillagerType;)V", at = @At(value = "TAIL"))
     private void inject(EntityType<? extends VillagerEntity> entityType, World world, VillagerType type, CallbackInfo ci) {
         if (Awesome.Companion.getCONFIG().getVillagersFollowEmeraldBlock()) {
-            goalSelector.add(2, new TemptGoal(this, 0.5D, Ingredient.ofItems(Items.EMERALD_BLOCK, Items.EMERALD_ORE, Items.DEEPSLATE_EMERALD_ORE), false));
+            goalSelector.add(2, new TemptGoal(this, 0.5D, Ingredient.ofItems(Items.EMERALD_BLOCK), false));
         }
     }
 

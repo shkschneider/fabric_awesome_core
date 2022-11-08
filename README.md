@@ -1,23 +1,46 @@
 # Awesome
 
-![Mod loader: Fabric](https://img.shields.io/badge/modloader-Fabric-1976d2?style=for-the-badge)
+![Minecraft: 1.19.2](https://img.shields.io/badge/minecraft-1.19.2-637f40?style=for-the-badge)
+![Mod loader: Fabric](https://img.shields.io/badge/modloader-fabric-926c4d?style=for-the-badge)
+![Language: Kotlin](https://img.shields.io/badge/language-kotlin-A97BFF?style=for-the-badge)
+
+_No dependency._
 
 [![build](https://github.com/shkschneider/mc_awesome/actions/workflows/build.yml/badge.svg)](https://github.com/shkschneider/mc_awesome/actions/workflows/build.yml)
 
-...
+- Awesome Commands
+  - `/fly`
+  - `/sethome` `/home` `/back`
+- Awesome Enchantments
+  - experience (xp from breaking blocks)
+  - ice & poison aspects
+  - magnetism
+  - vein mining (ores and logs)
+- Awesome GameRules
+  - keepXp
+  - oreXp (xp from mining ores)
+  - pvp
+  - sleepingHeals
+- Awesome Machines
+  - "redstone flux" as power
+  - power-over-redstone
+  - ...
+- Awesome Potions
+  - experience (1 to 9 levels)
+- Awesome WorldGen
+  - randomium (random ore & teleports)
+- Miscellaneous
+  - black background splashscreen
+  - bow's inifinity requires no arrow
+  - silk touch spawners
+  - villagers follow emerald blocks
+  - villagers infinite trading
 
-## GameRules
+## Configuration
 
-- keepXp
-- oreXp
-- pvp
-- sleepingHeals
-
-## Energy
-
-- Using Redstone Flux
-- 1redstonedust+1lapisdust (crafting) 1redstoneflux
-- 1redstonedust+1lapisdust (infusing) 2redstoneflux
+Almost everything is configurable:
+- at compilation in `Awesone.Config`
+- at runtime in `config/awesome.json`
 
 ## Ore Processing
 

@@ -1,10 +1,10 @@
 package io.github.shkschneider.awesome.custom
 
 import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.core.ext.isOre
 import io.github.shkschneider.awesome.enchantments.AwesomeEnchantments
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
-import net.minecraft.block.OreBlock
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.player.PlayerEntity
@@ -32,7 +32,7 @@ object VeinMining {
         if (!Awesome.CONFIG.veinMiningEnchantment) throw IllegalStateException()
         val veinMining = EnchantmentHelper.getLevel(AwesomeEnchantments.veinMining, player.mainHandStack)
         if (!isVeinMining && !player.isSneaking && veinMining > 0) {
-            if (state.block is OreBlock && state.isIn(BlockTags.PICKAXE_MINEABLE)) {
+            if (state.block.isOre && state.isIn(BlockTags.PICKAXE_MINEABLE)) {
                 veinMining(world, pos, player, veinMining, state.block.asItem())
             } else if (state.isIn(BlockTags.LOGS) && state.isIn(BlockTags.AXE_MINEABLE)) {
                 veinMining(world, pos, player, veinMining * 2, state.block.asItem())

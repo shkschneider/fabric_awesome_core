@@ -12,7 +12,7 @@ object AwesomeEnchantments {
     lateinit var veinMining: AwesomeEnchantment
 
     operator fun invoke() {
-        if (Awesome.CONFIG.oreDropXpWithExperienceEnchantment) {
+        if (Awesome.CONFIG.experienceEnchantment) {
             experience = ExperienceEnchantment()
         }
         iceAspect = IceAspectEnchantment()
