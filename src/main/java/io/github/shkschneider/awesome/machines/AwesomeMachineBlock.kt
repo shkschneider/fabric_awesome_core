@@ -20,6 +20,8 @@ import net.minecraft.util.Hand
 import net.minecraft.util.ItemScatterer
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
+import net.minecraft.world.BlockView
 import net.minecraft.world.World
 
 abstract class AwesomeMachineBlock<BE : BlockEntity>(
@@ -47,9 +49,17 @@ abstract class AwesomeMachineBlock<BE : BlockEntity>(
     }
 
     override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
-        builder.add(Properties.HORIZONTAL_FACING)
-            .add(Properties.LIT)
+        builder.add(Properties.HORIZONTAL_FACING).add(Properties.LIT)
     }
+
+    override fun emitsRedstonePower(state: BlockState): Boolean =
+        state.get(Properties.LIT)
+
+    override fun getStrongRedstonePower(state: BlockState, world: BlockView, pos: BlockPos, direction: Direction): Int =
+        if (emitsRedstonePower(state)) 16 else 0
+
+    override fun getWeakRedstonePower(state: BlockState, world: BlockView, pos: BlockPos, direction: Direction): Int =
+        if (emitsRedstonePower(state)) 8 else 0
 
     override fun onStateReplaced(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
         if (state.block !== newState.block) {

@@ -1,23 +1,18 @@
 package io.github.shkschneider.awesome.custom
 
-import io.github.shkschneider.awesome.items.AwesomeItems
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventory
-import net.minecraft.item.ItemStack
 
 object InputOutput {
 
     class Slots(
         val inputs: Int,
-        val fuel: ItemStack? = ItemStack(AwesomeItems.Redstone.flux, 1),
         val outputs: Int = 1,
     ) {
 
-        val size: Int = inputs + (if (fuel != null) 1 else 0) + outputs
+        val size: Int = inputs + outputs
 
         fun isInput(slot: Int) = slot in (0 until inputs)
-
-        fun isFuel(slot: Int) = fuel != null && slot == inputs
 
         fun isOutput(slot: Int) = slot in (inputs until size)
 

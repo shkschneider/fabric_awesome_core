@@ -29,7 +29,7 @@ class Crafter : AwesomeMachine<CrafterBlock, CrafterBlock.Entity, CrafterScreen.
     companion object {
 
         const val ID = "crafter"
-        val SLOTS = InputOutput.Slots(inputs = 9, fuel = null, outputs = 1)
+        val SLOTS = InputOutput.Slots(inputs = 9)
 
     }
 

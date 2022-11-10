@@ -29,6 +29,8 @@ class CrafterScreen(
 
         init {
             addProperties(properties)
+            // TODO 1x5 inventory
+            // 3x3 inputs
             addSlot(Slot(inventories.internal, 0, 30, 17))
             addSlot(Slot(inventories.internal, 1, 48, 17))
             addSlot(Slot(inventories.internal, 2, 66, 17))
@@ -38,6 +40,7 @@ class CrafterScreen(
             addSlot(Slot(inventories.internal, 6, 30, 53))
             addSlot(Slot(inventories.internal, 7, 48, 53))
             addSlot(Slot(inventories.internal, 8, 66, 53))
+            // 1x1 output
             addSlot(Slot(inventories.internal, 9, 120 + 4, 31 + 4))
             addPlayerSlots()
         }

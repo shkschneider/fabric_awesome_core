@@ -1,10 +1,8 @@
 package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.Awesome
-import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.core.Minecraft
 import io.github.shkschneider.awesome.custom.InputOutput
-import net.fabricmc.api.EnvType
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.minecraft.block.Block

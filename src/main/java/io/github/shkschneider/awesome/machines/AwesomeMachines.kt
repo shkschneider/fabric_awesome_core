@@ -17,8 +17,6 @@ object AwesomeMachines {
     val infuser = Infuser()
     val smelter = Smelter()
 
-    operator fun invoke() {
-        MachineTest()
-    }
+    operator fun invoke() = Unit
 
 }

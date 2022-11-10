@@ -3,7 +3,6 @@ package io.github.shkschneider.awesome.recipes
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
 import net.minecraft.inventory.Inventory
-import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.Recipe
 import net.minecraft.recipe.RecipeSerializer
@@ -14,7 +13,7 @@ import net.minecraft.world.World
 class AwesomeRecipe<T : Inventory>(
     private val type: AwesomeRecipeType<Recipe<T>>,
     val inputs: List<ItemStack>,
-    val fuel: Item?,
+    val time: Int, // ticks
     private val output: ItemStack,
 ) : Recipe<T> {
 

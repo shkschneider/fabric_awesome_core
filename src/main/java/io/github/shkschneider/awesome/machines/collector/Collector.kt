@@ -18,12 +18,13 @@ import net.minecraft.world.World
 class Collector : AwesomeBlockWithScreen(
     id = AwesomeUtils.identifier("collector"),
     settings = FabricBlockSettings.copyOf(Blocks.FURNACE).luminance(0),
-    slots = InputOutput.Slots(inputs = 0, fuel = null, outputs = 9),
+    slots = InputOutput.Slots(inputs = 0, outputs = 9),
 ) {
 
     override val properties: Map<Int, Int> = emptyMap()
 
     override fun initSlots(inventory: Inventory): Pair<List<Slot>, Boolean> = listOf(
+        // 3x3 outputs
         Slot(inventory, 0, 62, 17),
         Slot(inventory, 1, 80, 17),
         Slot(inventory, 2, 98, 17),
