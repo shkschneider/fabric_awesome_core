@@ -19,7 +19,7 @@ class Crafter : AwesomeMachine<CrafterBlock, CrafterBlock.Entity, CrafterScreen.
         CrafterBlock.Entity(pos, state)
     },
     screenProvider = { handler, inventory, title ->
-        CrafterScreen(handler, inventory, title)
+        CrafterScreen(ID, handler, inventory, title)
     },
     screenHandlerProvider = { syncId, inventories, properties ->
         CrafterScreen.Handler(syncId, inventories, properties)

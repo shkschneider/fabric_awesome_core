@@ -1,10 +1,11 @@
 package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.core.AwesomeBlockScreen
 import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.Faces.Companion.relativeFace
-import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.ImplementedInventory
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.recipes.AwesomeRecipe
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
@@ -18,7 +19,6 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.screen.PropertyDelegate
-import net.minecraft.screen.ScreenHandler
 import net.minecraft.state.property.BooleanProperty
 import net.minecraft.text.Text
 import net.minecraft.util.collection.DefaultedList
@@ -32,7 +32,7 @@ abstract class AwesomeMachineBlockEntity(
     private val state: BlockState,
     private val slots: InputOutput.Slots,
     private val recipes: List<AwesomeRecipe<out AwesomeMachineBlockEntity>>,
-    private val screenHandlerProvider: (syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) -> AwesomeMachineScreenHandler,
+    private val screenHandlerProvider: (syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) -> AwesomeBlockScreen.Handler,
 ) : BlockEntity(type, pos, state), NamedScreenHandlerFactory, ImplementedInventory, SidedInventory {
 
     //region properties
@@ -101,7 +101,7 @@ abstract class AwesomeMachineBlockEntity(
         return Text.translatable(AwesomeUtils.translatable("block", id))
     }
 
-    override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): ScreenHandler {
+    override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): AwesomeBlockScreen.Handler {
         return screenHandlerProvider(syncId, InputOutput.Inventories(this as Inventory, playerInventory), properties)
     }
 

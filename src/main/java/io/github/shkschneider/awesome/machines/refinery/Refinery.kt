@@ -22,7 +22,7 @@ class Refinery : AwesomeMachine<RefineryBlock, RefineryBlock.Entity, RefineryScr
         RefineryBlock.Entity(pos, state)
     },
     screenProvider = { handler, inventory, title ->
-        RefineryScreen(handler, inventory, title)
+        RefineryScreen(ID, handler, inventory, title)
     },
     screenHandlerProvider = { syncId, inventories, properties ->
         RefineryScreen.Handler(syncId, inventories, properties)

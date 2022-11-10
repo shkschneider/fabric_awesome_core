@@ -21,7 +21,7 @@ class Smelter : AwesomeMachine<SmelterBlock, SmelterBlock.Entity, SmelterScreen.
         SmelterBlock.Entity(pos, state)
     },
     screenProvider = { handler, inventory, title ->
-        SmelterScreen(handler, inventory, title)
+        SmelterScreen(ID, handler, inventory, title)
     },
     screenHandlerProvider = { syncId, inventories, properties ->
         SmelterScreen.Handler(syncId, inventories, properties)

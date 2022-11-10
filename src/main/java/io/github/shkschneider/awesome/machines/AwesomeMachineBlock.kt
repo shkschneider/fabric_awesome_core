@@ -31,22 +31,25 @@ abstract class AwesomeMachineBlock<BE : BlockEntity>(
     private val tickerProvider: () -> BlockEntityTicker<BE>,
 ) : BlockWithEntity(settings), BlockEntityProvider {
 
-    override fun getRenderType(state: BlockState): BlockRenderType {
-        return BlockRenderType.MODEL
-    }
+    override fun getRenderType(state: BlockState): BlockRenderType =
+        BlockRenderType.MODEL
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState {
-        return defaultState.with(Properties.HORIZONTAL_FACING, ctx.playerFacing.opposite)
-            .with(Properties.LIT, false)
+        var state = defaultState
+        if (state.properties.any { it == Properties.HORIZONTAL_FACING }) {
+            state = state.with(Properties.HORIZONTAL_FACING, ctx.playerFacing.opposite)
+        }
+        if (state.properties.any { it == Properties.LIT }) {
+            state = state.with(Properties.LIT, false)
+        }
+        return state
     }
 
-    override fun rotate(state: BlockState, rotation: BlockRotation): BlockState {
-        return state.with(Properties.HORIZONTAL_FACING, rotation.rotate(state.get(Properties.HORIZONTAL_FACING)))
-    }
+    override fun rotate(state: BlockState, rotation: BlockRotation): BlockState =
+        state.with(Properties.HORIZONTAL_FACING, rotation.rotate(state.get(Properties.HORIZONTAL_FACING)))
 
-    override fun mirror(state: BlockState, mirror: BlockMirror): BlockState {
-        return state.rotate(mirror.getRotation(state.get(Properties.HORIZONTAL_FACING)))
-    }
+    override fun mirror(state: BlockState, mirror: BlockMirror): BlockState =
+        state.rotate(mirror.getRotation(state.get(Properties.HORIZONTAL_FACING)))
 
     override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
         builder.add(Properties.HORIZONTAL_FACING).add(Properties.LIT)
@@ -62,10 +65,7 @@ abstract class AwesomeMachineBlock<BE : BlockEntity>(
 
     override fun onStateReplaced(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
         if (state.block !== newState.block) {
-            val blockEntity = world.getBlockEntity(pos)
-            if (blockEntity is Inventory) {
-                ItemScatterer.spawn(world, pos, blockEntity)
-            }
+            (world.getBlockEntity(pos) as? Inventory)?.let { ItemScatterer.spawn(world, pos, it) }
             world.updateComparators(pos, this)
             super.onStateReplaced(state, world, pos, newState, moved)
         }
@@ -73,10 +73,7 @@ abstract class AwesomeMachineBlock<BE : BlockEntity>(
 
     override fun onUse(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, hit: BlockHitResult): ActionResult {
         if (world.isClient) return super.onUse(state, world, pos, player, hand, hit)
-        val screenHandlerFactory = state.createScreenHandlerFactory(world, pos)
-        if (screenHandlerFactory != null) {
-            player.openHandledScreen(screenHandlerFactory)
-        }
+        state.createScreenHandlerFactory(world, pos)?.let { player.openHandledScreen(it) }
         return ActionResult.SUCCESS
     }
 

@@ -1,9 +1,8 @@
 package io.github.shkschneider.awesome.machines.refinery
 
+import io.github.shkschneider.awesome.core.AwesomeBlockScreen
 import io.github.shkschneider.awesome.core.Minecraft
 import io.github.shkschneider.awesome.custom.InputOutput
-import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
-import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
 import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
@@ -13,10 +12,11 @@ import net.minecraft.screen.slot.Slot
 import net.minecraft.text.Text
 
 class RefineryScreen(
+    name: String,
     handler: Handler,
     playerInventory: PlayerInventory,
     title: Text,
-) : AwesomeMachineScreen<RefineryScreen.Handler>(Refinery.ID, handler, playerInventory, title) {
+) : AwesomeBlockScreen<RefineryScreen.Handler>(name, handler, playerInventory, title) {
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
@@ -34,7 +34,7 @@ class RefineryScreen(
         syncId: Int,
         inventories: InputOutput.Inventories,
         properties: PropertyDelegate,
-    ) : AwesomeMachineScreenHandler(
+    ) : AwesomeBlockScreen.Handler(
         AwesomeMachines.refinery.screen as ScreenHandlerType<Handler>, syncId, inventories, properties
     ) {
 

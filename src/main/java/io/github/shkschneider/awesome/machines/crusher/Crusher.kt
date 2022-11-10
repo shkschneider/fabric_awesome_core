@@ -21,7 +21,7 @@ class Crusher : AwesomeMachine<CrusherBlock, CrusherBlock.Entity, CrusherScreen.
         CrusherBlock.Entity(pos, state)
     },
     screenProvider = { handler, inventory, title ->
-        CrusherScreen(handler, inventory, title)
+        CrusherScreen(ID, handler, inventory, title)
     },
     screenHandlerProvider = { syncId, inventories, properties ->
         CrusherScreen.Handler(syncId, inventories, properties)

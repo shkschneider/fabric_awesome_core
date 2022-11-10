@@ -21,7 +21,7 @@ class Infuser : AwesomeMachine<InfuserBlock, InfuserBlock.Entity, InfuserScreen.
         InfuserBlock.Entity(pos, state)
     },
     screenProvider = { handler, inventory, title ->
-        InfuserScreen(handler, inventory, title)
+        InfuserScreen(ID, handler, inventory, title)
     },
     screenHandlerProvider = { syncId, inventories, properties ->
         InfuserScreen.Handler(syncId, inventories, properties)

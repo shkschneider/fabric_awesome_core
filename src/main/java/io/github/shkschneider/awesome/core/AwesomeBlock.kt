@@ -32,9 +32,8 @@ abstract class AwesomeBlock(
     }
 
     @Suppress("OVERRIDE_DEPRECATION")
-    override fun getRenderType(state: BlockState): BlockRenderType {
-        return BlockRenderType.MODEL
-    }
+    override fun getRenderType(state: BlockState): BlockRenderType =
+        BlockRenderType.MODEL
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState =
         defaultState

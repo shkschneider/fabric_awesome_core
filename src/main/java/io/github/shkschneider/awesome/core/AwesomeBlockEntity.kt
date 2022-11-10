@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.ItemStack
@@ -68,6 +69,10 @@ abstract class AwesomeBlockEntity(
         pos: BlockPos,
         state: BlockState,
         slots: InputOutput.Slots,
-    ) : WithInventory(type, pos, state, slots), NamedScreenHandlerFactory
+    ) : WithInventory(type, pos, state, slots), NamedScreenHandlerFactory {
+
+        abstract override fun createMenu(syncId: Int, inv: PlayerInventory, player: PlayerEntity?): AwesomeBlockScreen.Handler
+
+    }
 
 }

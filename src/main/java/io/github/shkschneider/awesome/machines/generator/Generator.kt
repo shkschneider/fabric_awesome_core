@@ -22,7 +22,7 @@ class Generator : AwesomeMachine<GeneratorBlock, GeneratorBlock.Entity, Generato
         GeneratorBlock.Entity(pos, state)
     },
     screenProvider = { handler, inventory, title ->
-        GeneratorScreen(handler, inventory, title)
+        GeneratorScreen(ID, handler, inventory, title)
     },
     screenHandlerProvider = { syncId, inventories, properties ->
         GeneratorScreen.Handler(syncId, inventories, properties)
