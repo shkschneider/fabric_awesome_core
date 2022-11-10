@@ -1,7 +1,8 @@
-package io.github.shkschneider.awesome.materials
+package io.github.shkschneider.awesome.blocks
 
 import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.core.AwesomeRegistries
+import io.github.shkschneider.awesome.core.ext.toVec3d
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.Block
@@ -84,7 +85,7 @@ class RandomiumOre(
         player.teleport(tp.x.toDouble() + 0.5, tp.y.toDouble() + 0.25, tp.z.toDouble() + 0.5)
         player.lookAt(
             EntityAnchorArgumentType.EntityAnchor.EYES,
-            Vec3d(pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble())
+            pos.toVec3d(),
         )
     }
 

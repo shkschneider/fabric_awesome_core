@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome
 
 import com.google.gson.annotations.SerializedName
+import io.github.shkschneider.awesome.blocks.AwesomeBlocks
 import io.github.shkschneider.awesome.commands.AwesomeCommands
 import io.github.shkschneider.awesome.core.AwesomeConfig
 import io.github.shkschneider.awesome.core.AwesomeLogger
@@ -11,7 +12,6 @@ import io.github.shkschneider.awesome.enchantments.AwesomeEnchantments
 import io.github.shkschneider.awesome.gamerules.AwesomeGameRules
 import io.github.shkschneider.awesome.items.AwesomeItems
 import io.github.shkschneider.awesome.machines.AwesomeMachines
-import io.github.shkschneider.awesome.materials.AwesomeMaterials
 import io.github.shkschneider.awesome.potions.AwesomePotions
 import io.github.shkschneider.awesome.worldgen.AwesomeWorldGen
 import net.fabricmc.api.ModInitializer
@@ -26,7 +26,7 @@ class Awesome : ModInitializer {
         val ID = Awesome::class.java.simpleName.lowercase()
         val NAME = ID.replaceFirstChar { it.uppercase() }
 
-        val GROUP = FabricItemGroupBuilder.build(Identifier(ID, ID)) { ItemStack(AwesomeMaterials.Redstone.flux) }
+        val GROUP = FabricItemGroupBuilder.build(Identifier(ID, ID)) { ItemStack(AwesomeItems.Redstone.flux) }
 
         val CONFIG = AwesomeConfig<Config>(ID)(Config::class.java)
 
@@ -35,6 +35,7 @@ class Awesome : ModInitializer {
     override fun onInitialize() {
         val ms = System.currentTimeMillis()
         AwesomeLogger.debug("Loading for ${Minecraft.VERSION}...")
+        AwesomeBlocks()
         AwesomeCommands()
         // AwesomeDimensions()
         AwesomeEffects()
@@ -42,7 +43,6 @@ class Awesome : ModInitializer {
         AwesomeGameRules()
         AwesomeItems()
         AwesomeMachines()
-        AwesomeMaterials()
         AwesomePotions()
         AwesomeWorldGen()
         if (CONFIG.silkTouchSpawners) SilkTouchSpawners()
@@ -57,6 +57,7 @@ class Awesome : ModInitializer {
         @SerializedName("imprisoner") val imprisoner: Boolean = true,
         @SerializedName("magnetismEnchantment") val magnetismEnchantment: Boolean = true,
         @SerializedName("oreDropXp") val oreDropXp: Boolean = true,
+        @SerializedName("prospector") val prospector: Boolean = true,
         @SerializedName("randomiumOre") val randomiumOre: Boolean = true,
         @SerializedName("redstoneFluxFromRandomiumOre") val redstoneFluxFromRandomiumOre: Boolean = true,
         @SerializedName("redstoneFromCrushingNetherrack") val redstoneFromCrushingNetherrack: Boolean = true,

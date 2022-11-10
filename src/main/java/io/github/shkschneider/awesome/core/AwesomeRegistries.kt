@@ -32,7 +32,7 @@ object AwesomeRegistries {
 
     fun block/*WithItem*/(id: Identifier, block: Block, group: ItemGroup = Awesome.GROUP): Block =
         Registry.register(Registry.BLOCK, id, block).also {
-            Registry.register(Registry.ITEM, id, BlockItem(it, FabricItemSettings().group(group)))
+            item(id, BlockItem(it, FabricItemSettings().group(group)))
         }
 
     fun blockEntityType(id: Identifier, block: Block, createBlockEntity: (BlockPos, BlockState) -> BlockEntity): BlockEntityType<BlockEntity> =

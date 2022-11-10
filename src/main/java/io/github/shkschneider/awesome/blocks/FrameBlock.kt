@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.materials.blocks
+package io.github.shkschneider.awesome.blocks
 
 import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.core.AwesomeBlock

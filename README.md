@@ -52,6 +52,7 @@ Almost everything is configurable:
 - Bonus: 64netherrack (crushing) 9redstone
 - Bonus: 1coalblock (crushing) 1diamonddust (smelting) 1diamond
 - Bonus: 1randomiumore (smelting) 1redstoneflux
+- Bonus: prospector
 
 ## License
 
@@ -60,8 +61,7 @@ This project is licensed under MIT.
 - Most ores textures are from GregTech under LGPL3: https://github.com/GregTechCE/GregTech
 - Special thanks to Kaupenjoe: https://github.com/Tutorials-By-Kaupenjoe
 
-### Resources
 
 - https://www.iconfinder.com/icons/185599/3d_dirt_icon
 - https://pngimg.com/imgs/fantasy/pokeball/
-- GregTech 5 & CE
+- https://www.iconfinder.com/icons/9044628/machine_learning_icon

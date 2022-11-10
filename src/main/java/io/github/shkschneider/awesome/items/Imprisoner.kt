@@ -33,7 +33,7 @@ class Imprisoner : AwesomeItem(
     companion object {
 
         const val IMPRISONED = "Imprisoned"
-        private const val LEVELS = 1
+        private val EXPERIENCE = 1
         val COOLDOWN = AwesomeUtils.secondsToTicks(1)
 
     }
@@ -53,14 +53,14 @@ class Imprisoner : AwesomeItem(
 
     //region capture
 
-    override fun useOnEntity(stack: ItemStack, player: PlayerEntity, entity: LivingEntity, hand: Hand): ActionResult {
-        if (player.world.isClient) return ActionResult.PASS
+    override fun useOnEntity(stack: ItemStack, user: PlayerEntity, entity: LivingEntity, hand: Hand): ActionResult {
+        if (user.world.isClient) return ActionResult.PASS
         if (isEmpty(stack).not()) return ActionResult.FAIL
-        if (player.isCreative.not() && player.experienceLevel < LEVELS) return ActionResult.FAIL
+        if (user.isCreative.not() && user.experienceLevel < EXPERIENCE) return ActionResult.FAIL
         if (entity.isDead || entity.isUndead) return ActionResult.FAIL
         if (entity is PlayerEntity || entity.isAttackable.not()) return ActionResult.FAIL
-        return if (capture(player, hand, stack, entity)) {
-            player.itemCooldownManager.set(this, COOLDOWN)
+        return if (capture(user, hand, stack, entity)) {
+            user.itemCooldownManager.set(this, COOLDOWN)
             ActionResult.CONSUME
         } else {
             ActionResult.FAIL
@@ -75,7 +75,7 @@ class Imprisoner : AwesomeItem(
         }
         // I probably got something wrong about server<>client sync
         player.mainHandStack.nbt = stack.nbt.also { player.inventory.markDirty() }
-        player.addExperienceLevels(-LEVELS)
+        player.addExperienceLevels(-EXPERIENCE)
         entity.remove(Entity.RemovalReason.KILLED)
         AwesomeSounds(player.world to entity.blockPos, AwesomeSounds.teleport)
         return true

@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.custom
 
-import io.github.shkschneider.awesome.materials.AwesomeMaterials
+import io.github.shkschneider.awesome.items.AwesomeItems
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
@@ -9,7 +9,7 @@ object InputOutput {
 
     class Slots(
         val inputs: Int,
-        val fuel: ItemStack? = ItemStack(AwesomeMaterials.Redstone.flux, 1),
+        val fuel: ItemStack? = ItemStack(AwesomeItems.Redstone.flux, 1),
         val outputs: Int = 1,
     ) {
 

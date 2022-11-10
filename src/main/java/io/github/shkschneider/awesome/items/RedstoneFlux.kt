@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.materials
+package io.github.shkschneider.awesome.items
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
