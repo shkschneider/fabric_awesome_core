@@ -1,8 +1,10 @@
 package io.github.shkschneider.awesome.items
 
 import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.Minecraft
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
+import net.fabricmc.fabric.api.registry.FuelRegistry
 import net.minecraft.item.Items
 import net.minecraft.util.Rarity
 
@@ -131,7 +133,13 @@ object AwesomeItems {
         val flux = RedstoneFlux()
         val powder = AwesomeOres.Powder(ID, settings)
 
-        operator fun invoke() = Unit
+        operator fun invoke() {
+            if (Awesome.CONFIG.redstoneFluxAsVanillaFuel) {
+                // AbstractFurnaceBlockEntity.createFuelTimeMap()
+                val time = FuelRegistry.INSTANCE.get(Items.COAL) * 2
+                AwesomeRegistries.fuel(flux, time)
+            }
+        }
 
     }
 

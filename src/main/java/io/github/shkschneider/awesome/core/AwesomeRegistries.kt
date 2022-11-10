@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
+import net.fabricmc.fabric.api.registry.FuelRegistry
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
@@ -46,6 +47,10 @@ object AwesomeRegistries {
 
     fun enchantment(id: Identifier, enchantment: Enchantment): Enchantment =
         Registry.register(Registry.ENCHANTMENT, id, enchantment)
+
+    fun fuel(item: Item, time: Int) {
+        FuelRegistry.INSTANCE.add(item, time)
+    }
 
     fun gameRule/*Boolean*/(name: String, category: GameRules.Category, default: Boolean): GameRules.Key<GameRules.BooleanRule> =
         GameRuleRegistry.register(name, category, GameRuleFactory.createBooleanRule(default))

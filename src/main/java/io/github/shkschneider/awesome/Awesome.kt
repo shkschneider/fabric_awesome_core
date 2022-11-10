@@ -59,6 +59,7 @@ class Awesome : ModInitializer {
         @SerializedName("oreDropXp") val oreDropXp: Boolean = true,
         @SerializedName("prospector") val prospector: Boolean = true,
         @SerializedName("randomiumOre") val randomiumOre: Boolean = true,
+        @SerializedName("redstoneFluxAsVanillaFuel") val redstoneFluxAsVanillaFuel: Boolean = true,
         @SerializedName("redstoneFluxFromRandomiumOre") val redstoneFluxFromRandomiumOre: Boolean = true,
         @SerializedName("redstoneFromCrushingNetherrack") val redstoneFromCrushingNetherrack: Boolean = true,
         @SerializedName("silkTouchSpawners") val silkTouchSpawners: Boolean = true,

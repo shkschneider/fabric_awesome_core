@@ -20,6 +20,7 @@ abstract class AwesomeBlockEntity(
     type: BlockEntityType<out BlockEntity>,
     pos: BlockPos,
     state: BlockState,
+    // TODO properties
 ) : BlockEntity(type, pos, state) {
 
     abstract val properties: Map<Int, Int>
@@ -43,11 +44,13 @@ abstract class AwesomeBlockEntity(
 
         override fun writeNbt(nbt: NbtCompound) {
             super.writeNbt(nbt)
+            // TODO properties
             Inventories.writeNbt(nbt, items)
         }
 
         override fun readNbt(nbt: NbtCompound) {
             Inventories.readNbt(nbt, items)
+            // TODO properties
             super.readNbt(nbt)
         }
 

@@ -52,8 +52,7 @@ abstract class AwesomeMachineBlock<BE : BlockEntity>(
         builder.add(Properties.HORIZONTAL_FACING).add(Properties.LIT)
     }
 
-    override fun emitsRedstonePower(state: BlockState): Boolean =
-        state.get(Properties.LIT)
+    override fun emitsRedstonePower(state: BlockState): Boolean = false
 
     override fun getStrongRedstonePower(state: BlockState, world: BlockView, pos: BlockPos, direction: Direction): Int =
         if (emitsRedstonePower(state)) 16 else 0
