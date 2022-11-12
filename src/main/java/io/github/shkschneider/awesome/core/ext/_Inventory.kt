@@ -6,18 +6,18 @@ import net.minecraft.item.ItemStack
 fun Inventory.getStacks(): List<ItemStack> =
     (0 until size()).map { getStack(it) }
 
-fun Inventory.insert(external: ItemStack): ItemStack {
-    getStacks().forEachIndexed { index, internal ->
-        if (external.isEmpty) return@forEachIndexed
-        if (internal.isEmpty) {
-            setStack(index, external.copy())
-        } else if (internal.item == external.item) {
-            while (external.count > 0 && internal.count < internal.maxCount) {
-                internal.count = internal.count + 1
-                external.count = external.count - 1
-           }
+fun Inventory.insert(itemStack: ItemStack): ItemStack {
+    (0 until size()).filter { getStack(it).item == itemStack.item }.forEach { index ->
+        if (itemStack.isEmpty) return@forEach
+        while (itemStack.count > 0 && getStack(index).count < getStack(index).maxCount) {
+            getStack(index).count++
+            itemStack.count--
         }
     }
+    (0 until size()).filter { getStack(it).isEmpty }.forEach { index ->
+        setStack(index, itemStack.copy())
+        itemStack.count = 0
+    }
     markDirty()
-    return external
+    return itemStack
 }

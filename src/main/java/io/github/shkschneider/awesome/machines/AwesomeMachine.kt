@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
-import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.client.gui.screen.ingame.HandledScreen
@@ -19,12 +18,14 @@ import net.minecraft.item.BlockItem
 import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.screen.ScreenHandlerType
+import net.minecraft.state.property.Properties
 import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.registry.Registry
+import net.minecraft.world.World
 
-abstract class AwesomeMachine<B : Block, BE : BlockEntity, SH : ScreenHandler>(
+abstract class AwesomeMachine<B : Block, BE : AwesomeMachineBlockEntity, SH : ScreenHandler>(
     id: Identifier,
     slots: InputOutput.Slots,
     blockProvider: () -> B,
@@ -48,12 +49,24 @@ abstract class AwesomeMachine<B : Block, BE : BlockEntity, SH : ScreenHandler>(
         AwesomeRegistries.item(id, BlockItem(block, FabricItemSettings().group(Awesome.GROUP)))
         if (Minecraft.isClient) {
             _screen = ScreenHandlerType { syncId, playerInventory ->
-                screenHandlerProvider(syncId, InputOutput.Inventories(SimpleInventory(slots.size), playerInventory), ArrayPropertyDelegate(2))
+                screenHandlerProvider(syncId, InputOutput.Inventories(SimpleInventory(slots.size), playerInventory), ArrayPropertyDelegate(AwesomeMachineBlockEntity.PROPERTIES))
             }
             HandledScreens.register(screen) { handler, inventory, title ->
                 screenProvider(handler, inventory, title)
             }
         }
+    }
+
+    // TODO sounds for powering ON / OFF
+    override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: BE) {
+        if (world.isClient) return
+        blockEntity.power = world.getReceivedRedstonePower(pos)
+        blockEntity.setPropertyState(Properties.POWERED, blockEntity.power > 0)
+        if (blockEntity.power == 0) {
+            blockEntity.duration = 0
+            blockEntity.progress = 0
+        }
+        blockEntity.setPropertyState(Properties.LIT, blockEntity.duration > 0)
     }
 
 }

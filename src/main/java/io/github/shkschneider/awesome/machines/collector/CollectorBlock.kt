@@ -4,7 +4,6 @@ import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlockEntity
 import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.block.BlockState
-import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.util.math.BlockPos
 
 class CollectorBlock(settings: Settings) : AwesomeMachineBlock<CollectorBlock.Entity>(
@@ -14,9 +13,8 @@ class CollectorBlock(settings: Settings) : AwesomeMachineBlock<CollectorBlock.En
     tickerProvider = { AwesomeMachines.collector },
 ) {
 
-    @Suppress("USELESS_CAST")
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
-        Collector.ID, AwesomeMachines.crafter.entityType as BlockEntityType<Entity>,
+        Collector.ID, AwesomeMachines.collector.entityType,
         pos, state, Collector.SLOTS, emptyList(),
         screenHandlerProvider = { syncId, inventories, properties ->
             CollectorScreen.Handler(syncId, inventories, properties)

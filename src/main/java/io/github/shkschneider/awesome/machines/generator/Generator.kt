@@ -33,23 +33,25 @@ class Generator : AwesomeMachine<GeneratorBlock, GeneratorBlock.Entity, Generato
 
         const val ID = "generator"
         val SLOTS = InputOutput.Slots(inputs = 1, outputs = 0)
+        private val FUEL = AwesomeItems.Redstone.flux
 
     }
 
-    override fun tick(world: World, pos: BlockPos, state: BlockState, entity: GeneratorBlock.Entity) {
-        if (world.isClient()) return
-        if (entity.inputProgress > 0) {
-            entity.inputProgress--
-        } else if (entity.getStack(0).isEmpty.not()) {
-            entity.removeStack(0, 1)
-            entity.inputProgress = AwesomeItems.Redstone.flux.time
-            if (entity.getStack(0).isEmpty) {
-                entity.setStack(0, ItemStack.EMPTY)
-                entity.markDirty()
+    override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: GeneratorBlock.Entity) {
+        if (world.isClient) return
+        // do NOT super.tick()
+        if (blockEntity.power > 0) {
+            blockEntity.setPropertyState(Properties.LIT, true)
+            blockEntity.setPropertyState(Properties.POWERED, true)
+            blockEntity.power--
+        } else if (blockEntity.getStack(0).item == FUEL) {
+            blockEntity.removeStack(0, 1)
+            blockEntity.power = FUEL.time
+            if (blockEntity.getStack(0).isEmpty) {
+                blockEntity.setStack(0, ItemStack.EMPTY)
+                blockEntity.markDirty()
             }
         }
-        // FIXME
-        world.setBlockState(pos, state.with(Properties.LIT, entity.inputProgress > 0))
     }
 
 }

@@ -34,6 +34,9 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
         val x = (width - backgroundWidth) / 2
         val y = (height - backgroundHeight) / 2
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight)
+        if (handler.power > 0) {
+            drawTexture(matrices, x + 8, y + 7, 176, 111, 192 - 176, 166 - 111)
+        }
     }
 
     override fun render(matrices: MatrixStack, mouseX: Int, mouseY: Int, delta: Float) {
@@ -49,14 +52,22 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
         private val properties: PropertyDelegate,
     ) : ScreenHandler(screen, syncId) {
 
-        val inputProgress: Int get() = properties[0]
-        val outputProgress: Int get() = properties[1]
+        val power: Int get() = properties[0]
+        val progress: Int get() = properties[1]
+        val percent: Float get() = progress.toFloat() / duration.toFloat()
+        val duration: Int get() = properties[2]
 
         init {
             // addProperties(properties)
             inventories.internal.onOpen(inventories.player.player)
-            // addSlot(...)
+            // addSlots(...)
             // addPlayerSlots()
+        }
+
+        fun addSlots(vararg slots: Pair<Int, Int>) {
+            slots.forEachIndexed { index, pair ->
+                addSlot(Slot(inventories.internal, index, pair.first, pair.second))
+            }
         }
 
         // https://fabricmc.net/wiki/tutorial:containers
@@ -90,11 +101,7 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
             } else if (!insertItem(slot.stack, 0, inventories.internal.size(), false)) {
                 return ItemStack.EMPTY
             }
-            if (slot.stack.isEmpty) {
-                slot.stack = ItemStack.EMPTY
-            } else {
-                slot.markDirty()
-            }
+            slot.markDirty()
             return stack
         }
 

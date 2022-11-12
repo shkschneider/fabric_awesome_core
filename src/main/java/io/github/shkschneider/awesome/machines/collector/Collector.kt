@@ -17,7 +17,7 @@ class Collector : AwesomeMachine<CollectorBlock, CollectorBlock.Entity, Collecto
     id = AwesomeUtils.identifier(ID),
     slots = SLOTS,
     blockProvider = {
-        CollectorBlock(FabricBlockSettings.copyOf(Blocks.FURNACE).luminance(0))
+        CollectorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK))
     },
     blockEntityProvider = { pos, state ->
         CollectorBlock.Entity(pos, state)
@@ -37,12 +37,15 @@ class Collector : AwesomeMachine<CollectorBlock, CollectorBlock.Entity, Collecto
 
     }
 
-    override fun tick(world: World, pos: BlockPos, state: BlockState, entity: CollectorBlock.Entity) {
-        if (world.isClient()) return
+    override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: CollectorBlock.Entity) {
+        if (world.isClient) return
+        // do NOT super.tick() unless this uses power
         val box = Box(pos).expand(8.toDouble())
         world.getEntitiesByClass(ItemEntity::class.java, box, Predicates.alwaysTrue())
             .stream().map { it as ItemEntity }.filter { it.isOnGround }.forEach { itemEntity ->
-                entity.insert(itemEntity.stack)
+                itemEntity.stack.count = blockEntity.insert(itemEntity.stack).count
+                if (itemEntity.stack.isEmpty) itemEntity.discard()
+                blockEntity.markDirty()
             }
     }
 

@@ -7,7 +7,7 @@ object InputOutput {
 
     class Slots(
         val inputs: Int,
-        val outputs: Int = 1,
+        val outputs: Int,
     ) {
 
         val size: Int = inputs + outputs

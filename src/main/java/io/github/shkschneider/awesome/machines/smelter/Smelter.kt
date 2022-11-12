@@ -7,7 +7,6 @@ import io.github.shkschneider.awesome.machines.AwesomeMachineTicker
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
-import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
@@ -15,7 +14,7 @@ class Smelter : AwesomeMachine<SmelterBlock, SmelterBlock.Entity, SmelterScreen.
     id = AwesomeUtils.identifier(ID),
     slots = SLOTS,
     blockProvider = {
-        SmelterBlock(FabricBlockSettings.copyOf(Blocks.FURNACE).luminance(0))
+        SmelterBlock(FabricBlockSettings.copyOf(Blocks.FURNACE))
     },
     blockEntityProvider = { pos, state ->
         SmelterBlock.Entity(pos, state)
@@ -31,17 +30,19 @@ class Smelter : AwesomeMachine<SmelterBlock, SmelterBlock.Entity, SmelterScreen.
     companion object {
 
         const val ID = "smelter"
-        val SLOTS = InputOutput.Slots(inputs = 1)
+        val SLOTS = InputOutput.Slots(inputs = 1, outputs = 1)
         val RECIPES = SmelterRecipes()
+
+        init {
+            check(RECIPES.all { it.inputs.size == SLOTS.inputs })
+        }
 
     }
 
-    override fun tick(world: World, pos: BlockPos, state: BlockState, entity: SmelterBlock.Entity) {
-        if (world.isClient()) return
-        AwesomeMachineTicker(entity, SLOTS, RECIPES)(
-            on = { entity.setPropertyState(Properties.LIT, true) },
-            off = { entity.setPropertyState(Properties.LIT, false) },
-        )
+    override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: SmelterBlock.Entity) {
+        if (world.isClient) return
+        super.tick(world, pos, state, blockEntity)
+        AwesomeMachineTicker(blockEntity, SLOTS, RECIPES)(world)
     }
 
 }

@@ -7,5 +7,5 @@ import net.minecraft.block.Blocks
 
 class TesseractBlock : AwesomeBlock(
     id = AwesomeUtils.identifier("tesseract"),
-    settings = FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK).luminance(1).nonOpaque(),
+    settings = FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK).nonOpaque(),
 )

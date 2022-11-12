@@ -4,7 +4,6 @@ import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlockEntity
 import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.block.BlockState
-import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.util.math.BlockPos
 
 class RefineryBlock(settings: Settings) : AwesomeMachineBlock<RefineryBlock.Entity>(
@@ -14,10 +13,9 @@ class RefineryBlock(settings: Settings) : AwesomeMachineBlock<RefineryBlock.Enti
     tickerProvider = { AwesomeMachines.refinery },
 ) {
 
-    @Suppress("USELESS_CAST")
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
-        Refinery.ID, AwesomeMachines.refinery.entityType as BlockEntityType<Entity>,
-        pos, state, Refinery.SLOTS, emptyList(/*FIXME*/),
+        Refinery.ID, AwesomeMachines.refinery.entityType,
+        pos, state, Refinery.SLOTS, Refinery.RECIPES,
         screenHandlerProvider = { syncId, inventories, properties ->
             RefineryScreen.Handler(syncId, inventories, properties)
         },

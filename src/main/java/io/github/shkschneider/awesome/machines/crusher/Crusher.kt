@@ -7,7 +7,6 @@ import io.github.shkschneider.awesome.machines.AwesomeMachineTicker
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
-import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
@@ -15,7 +14,7 @@ class Crusher : AwesomeMachine<CrusherBlock, CrusherBlock.Entity, CrusherScreen.
     id = AwesomeUtils.identifier(ID),
     slots = SLOTS,
     blockProvider = {
-        CrusherBlock(FabricBlockSettings.copyOf(Blocks.FURNACE).luminance(0))
+        CrusherBlock(FabricBlockSettings.copyOf(Blocks.FURNACE))
     },
     blockEntityProvider = { pos, state ->
         CrusherBlock.Entity(pos, state)
@@ -31,17 +30,19 @@ class Crusher : AwesomeMachine<CrusherBlock, CrusherBlock.Entity, CrusherScreen.
     companion object {
 
         const val ID = "crusher"
-        val SLOTS = InputOutput.Slots(inputs = 1)
+        val SLOTS = InputOutput.Slots(inputs = 1, outputs = 1)
         val RECIPES = CrusherRecipes()
+
+        init {
+            check(RECIPES.all { it.inputs.size == SLOTS.inputs })
+        }
 
     }
 
-    override fun tick(world: World, pos: BlockPos, state: BlockState, entity: CrusherBlock.Entity) {
-        if (world.isClient()) return
-        AwesomeMachineTicker(entity, SLOTS, RECIPES)(
-            on = { entity.setPropertyState(Properties.LIT, true) },
-            off = { entity.setPropertyState(Properties.LIT, false) },
-        )
+    override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: CrusherBlock.Entity) {
+        if (world.isClient) return
+        super.tick(world, pos, state, blockEntity)
+        AwesomeMachineTicker(blockEntity, SLOTS, RECIPES)(world)
     }
 
 }

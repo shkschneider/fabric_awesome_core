@@ -6,6 +6,7 @@
   "mixins": [
     "BowItemUseMixin",
     "BrewingRecipeRegistryMixin",
+    "CraftingInventoryMixin",
     "EntityNbtMixin",
     "ItemAppendTooltipMixin",
     "PlayerEntityDamageMixin",

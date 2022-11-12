@@ -4,7 +4,6 @@ import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlockEntity
 import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.block.BlockState
-import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.util.math.BlockPos
 
 class CrusherBlock(settings: Settings) : AwesomeMachineBlock<CrusherBlock.Entity>(
@@ -14,9 +13,8 @@ class CrusherBlock(settings: Settings) : AwesomeMachineBlock<CrusherBlock.Entity
     tickerProvider = { AwesomeMachines.crusher },
 ) {
 
-    @Suppress("USELESS_CAST")
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
-        Crusher.ID, AwesomeMachines.crusher.entityType as BlockEntityType<Entity>,
+        Crusher.ID, AwesomeMachines.crusher.entityType,
         pos, state, Crusher.SLOTS, Crusher.RECIPES,
         screenHandlerProvider = { syncId, inventories, properties ->
             CrusherScreen.Handler(syncId, inventories, properties)

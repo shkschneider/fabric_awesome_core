@@ -34,16 +34,10 @@ abstract class AwesomeMachineBlock<BE : BlockEntity>(
     override fun getRenderType(state: BlockState): BlockRenderType =
         BlockRenderType.MODEL
 
-    override fun getPlacementState(ctx: ItemPlacementContext): BlockState {
-        var state = defaultState
-        if (state.properties.any { it == Properties.HORIZONTAL_FACING }) {
-            state = state.with(Properties.HORIZONTAL_FACING, ctx.playerFacing.opposite)
-        }
-        if (state.properties.any { it == Properties.LIT }) {
-            state = state.with(Properties.LIT, false)
-        }
-        return state
-    }
+    override fun getPlacementState(ctx: ItemPlacementContext): BlockState = defaultState
+        .with(Properties.HORIZONTAL_FACING, ctx.playerFacing.opposite)
+        .with(Properties.POWERED, false)
+        .with(Properties.LIT, false)
 
     override fun rotate(state: BlockState, rotation: BlockRotation): BlockState =
         state.with(Properties.HORIZONTAL_FACING, rotation.rotate(state.get(Properties.HORIZONTAL_FACING)))
@@ -52,7 +46,10 @@ abstract class AwesomeMachineBlock<BE : BlockEntity>(
         state.rotate(mirror.getRotation(state.get(Properties.HORIZONTAL_FACING)))
 
     override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
-        builder.add(Properties.HORIZONTAL_FACING).add(Properties.LIT)
+        builder
+            .add(Properties.HORIZONTAL_FACING)
+            .add(Properties.LIT)
+            .add(Properties.POWERED)
     }
 
     override fun emitsRedstonePower(state: BlockState): Boolean = false
