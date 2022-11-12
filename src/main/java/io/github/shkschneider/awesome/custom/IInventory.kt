@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.collection.DefaultedList
 
 // https://fabricmc.net/wiki/tutorial:inventory
-interface ImplementedInventory : Inventory {
+interface IInventory : Inventory {
 
     val items: DefaultedList<ItemStack>
 
@@ -15,7 +15,8 @@ interface ImplementedInventory : Inventory {
 
     override fun isEmpty(): Boolean = items.all { it.isEmpty }
 
-    override fun getStack(slot: Int): ItemStack = items[slot]
+    override fun getStack(slot: Int): ItemStack =
+        items.getOrNull(slot) ?: ItemStack.EMPTY
 
     override fun removeStack(slot: Int, count: Int): ItemStack {
         val result = Inventories.splitStack(items, slot, count)

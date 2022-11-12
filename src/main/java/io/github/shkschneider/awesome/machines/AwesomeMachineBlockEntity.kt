@@ -4,11 +4,12 @@ import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.core.AwesomeBlockScreen
 import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.Faces.Companion.relativeFace
-import io.github.shkschneider.awesome.custom.ImplementedInventory
+import io.github.shkschneider.awesome.custom.IInventory
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.recipes.AwesomeRecipe
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
+import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
@@ -20,10 +21,12 @@ import net.minecraft.nbt.NbtCompound
 import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.state.property.BooleanProperty
+import net.minecraft.state.property.Properties
 import net.minecraft.text.Text
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
+import net.minecraft.world.World
 
 abstract class AwesomeMachineBlockEntity(
     private val id: String,
@@ -33,7 +36,13 @@ abstract class AwesomeMachineBlockEntity(
     private val slots: InputOutput.Slots,
     private val recipes: List<AwesomeRecipe<out AwesomeMachineBlockEntity>>,
     private val screenHandlerProvider: (syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) -> AwesomeBlockScreen.Handler,
-) : BlockEntity(type, pos, state), NamedScreenHandlerFactory, ImplementedInventory, SidedInventory {
+) : BlockEntity(type, pos, state), NamedScreenHandlerFactory, IInventory, SidedInventory, BlockEntityTicker<BlockEntity> {
+
+    fun hasPower() = world?.isReceivingRedstonePower(pos) == true
+
+    override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: BlockEntity?) {
+        world.setBlockState(pos, state.with(Properties.LIT, hasPower()))
+    }
 
     //region properties
 

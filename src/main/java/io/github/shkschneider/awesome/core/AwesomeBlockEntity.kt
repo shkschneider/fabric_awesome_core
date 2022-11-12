@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.core
 
-import io.github.shkschneider.awesome.custom.ImplementedInventory
+import io.github.shkschneider.awesome.custom.IInventory
 import io.github.shkschneider.awesome.custom.InputOutput
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
@@ -37,7 +37,7 @@ abstract class AwesomeBlockEntity(
         pos: BlockPos,
         val state: BlockState,
         val slots: InputOutput.Slots,
-    ) : AwesomeBlockEntity(type, pos, state), ImplementedInventory, SidedInventory {
+    ) : AwesomeBlockEntity(type, pos, state), IInventory, SidedInventory {
 
         override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(slots.size, ItemStack.EMPTY)
 
