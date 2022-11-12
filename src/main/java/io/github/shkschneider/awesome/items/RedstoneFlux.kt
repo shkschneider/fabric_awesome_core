@@ -15,7 +15,7 @@ class RedstoneFlux : AwesomeItem(
     settings = FabricItemSettings().maxCount(Minecraft.STACK).group(Awesome.GROUP).rarity(Rarity.UNCOMMON),
 ) {
 
-    val time = FuelRegistry.INSTANCE.get(Items.COAL) * 2
+    val time = FuelRegistry.INSTANCE.get(Items.COAL) * 2 // ~3200t
 
     override fun hasGlint(stack: ItemStack): Boolean = true
 

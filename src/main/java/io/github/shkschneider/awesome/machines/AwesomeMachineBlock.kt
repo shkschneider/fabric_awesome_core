@@ -1,7 +1,6 @@
 package io.github.shkschneider.awesome.machines
 
 import net.minecraft.block.Block
-import net.minecraft.block.BlockEntityProvider
 import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
 import net.minecraft.block.BlockWithEntity
@@ -20,8 +19,6 @@ import net.minecraft.util.Hand
 import net.minecraft.util.ItemScatterer
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.Direction
-import net.minecraft.world.BlockView
 import net.minecraft.world.World
 
 abstract class AwesomeMachineBlock<BE : BlockEntity>(
@@ -29,15 +26,15 @@ abstract class AwesomeMachineBlock<BE : BlockEntity>(
     private val entityTypeProvider: () -> BlockEntityType<BE>,
     private val blockEntityProvider: (BlockPos, BlockState) -> BE,
     private val tickerProvider: () -> BlockEntityTicker<BE>,
-) : BlockWithEntity(settings), BlockEntityProvider {
+) : BlockWithEntity(settings) {
 
     override fun getRenderType(state: BlockState): BlockRenderType =
         BlockRenderType.MODEL
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState = defaultState
         .with(Properties.HORIZONTAL_FACING, ctx.playerFacing.opposite)
-        .with(Properties.POWERED, false)
         .with(Properties.LIT, false)
+        .with(Properties.POWERED, false)
 
     override fun rotate(state: BlockState, rotation: BlockRotation): BlockState =
         state.with(Properties.HORIZONTAL_FACING, rotation.rotate(state.get(Properties.HORIZONTAL_FACING)))
@@ -53,12 +50,6 @@ abstract class AwesomeMachineBlock<BE : BlockEntity>(
     }
 
     override fun emitsRedstonePower(state: BlockState): Boolean = false
-
-    override fun getStrongRedstonePower(state: BlockState, world: BlockView, pos: BlockPos, direction: Direction): Int =
-        if (emitsRedstonePower(state)) 16 else 0
-
-    override fun getWeakRedstonePower(state: BlockState, world: BlockView, pos: BlockPos, direction: Direction): Int =
-        if (emitsRedstonePower(state)) 8 else 0
 
     override fun onStateReplaced(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
         if (state.block !== newState.block) {

@@ -6,7 +6,6 @@ import io.github.shkschneider.awesome.core.Minecraft
 import io.github.shkschneider.awesome.custom.InputOutput
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
-import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
@@ -16,7 +15,6 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SimpleInventory
 import net.minecraft.item.BlockItem
 import net.minecraft.screen.ArrayPropertyDelegate
-import net.minecraft.screen.ScreenHandler
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.state.property.Properties
 import net.minecraft.text.Text
@@ -25,13 +23,14 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 
-abstract class AwesomeMachine<B : Block, BE : AwesomeMachineBlockEntity, SH : ScreenHandler>(
+abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEntity>, BE : AwesomeMachineBlockEntity, SH : AwesomeMachineBlockScreen.Handler>(
     id: Identifier,
-    slots: InputOutput.Slots,
+    private val slots: InputOutput.Slots,
     blockProvider: () -> B,
     blockEntityProvider: (BlockPos, BlockState) -> BE,
     private val screenProvider: (SH, PlayerInventory, Text) -> HandledScreen<SH>,
     private val screenHandlerProvider: (Int, InputOutput.Inventories, ArrayPropertyDelegate) -> SH,
+    private val properties: ArrayPropertyDelegate = ArrayPropertyDelegate(AwesomeMachineBlockEntity.PROPERTIES),
 ) : BlockEntityTicker<BE> {
 
     val block: B =
@@ -49,7 +48,7 @@ abstract class AwesomeMachine<B : Block, BE : AwesomeMachineBlockEntity, SH : Sc
         AwesomeRegistries.item(id, BlockItem(block, FabricItemSettings().group(Awesome.GROUP)))
         if (Minecraft.isClient) {
             _screen = ScreenHandlerType { syncId, playerInventory ->
-                screenHandlerProvider(syncId, InputOutput.Inventories(SimpleInventory(slots.size), playerInventory), ArrayPropertyDelegate(AwesomeMachineBlockEntity.PROPERTIES))
+                screenHandlerProvider(syncId, InputOutput.Inventories(SimpleInventory(slots.size), playerInventory), properties)
             }
             HandledScreens.register(screen) { handler, inventory, title ->
                 screenProvider(handler, inventory, title)
@@ -57,15 +56,26 @@ abstract class AwesomeMachine<B : Block, BE : AwesomeMachineBlockEntity, SH : Sc
         }
     }
 
-    // TODO sounds for powering ON / OFF
+    // TODO sounds
+    protected fun on(blockEntity: BE, time: Int) = with(blockEntity) {
+        duration = time
+        progress = 0
+        setPropertyState(Properties.LIT, true)
+    }
+
+    // TODO sounds
+    protected fun off(blockEntity: BE) = with(blockEntity) {
+        duration = 0
+        progress = 0
+        setPropertyState(Properties.LIT, false)
+    }
+
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: BE) {
         if (world.isClient) return
         blockEntity.power = world.getReceivedRedstonePower(pos)
-        blockEntity.setPropertyState(Properties.POWERED, blockEntity.power > 0)
-        if (blockEntity.power == 0) {
-            blockEntity.duration = 0
-            blockEntity.progress = 0
-        }
+        val powered = blockEntity.power > 0
+        blockEntity.setPropertyState(Properties.POWERED, powered)
+        if (powered.not()) off(blockEntity)
         blockEntity.setPropertyState(Properties.LIT, blockEntity.duration > 0)
     }
 

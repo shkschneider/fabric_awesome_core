@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.machines.crafter
 
-import io.github.shkschneider.awesome.core.AwesomeBlockScreen
 import io.github.shkschneider.awesome.custom.InputOutput
+import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerEntity
@@ -18,7 +18,7 @@ class CrafterScreen(
     handler: Handler,
     playerInventory: PlayerInventory,
     title: Text,
-) : AwesomeBlockScreen<CrafterScreen.Handler>(name, handler, playerInventory, title) {
+) : AwesomeMachineBlockScreen<CrafterScreen.Handler>(name, handler, playerInventory, title) {
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
@@ -32,7 +32,7 @@ class CrafterScreen(
         syncId: Int,
         private val inventories: InputOutput.Inventories,
         properties: PropertyDelegate,
-    ) : AwesomeBlockScreen.Handler(
+    ) : AwesomeMachineBlockScreen.Handler(
         AwesomeMachines.crafter.screen, syncId, inventories, properties
     ) {
 

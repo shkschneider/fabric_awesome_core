@@ -12,8 +12,8 @@ Redstone flux is made out of mixed redstone and lapis dust then smelted.
 - craft the generator
 - craft more redstone flux to fuel the generator
 
-The generator provides power to other machines using... redstone!
-Yes, simple vanilla trails of redstone.
+RedstoneFlux provides twice as much power as Coal.
+It ignites for 20t than instantly provides 3200 of power.
 
 ## Machines
 

@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.machines.collector
 
-import io.github.shkschneider.awesome.core.AwesomeBlockScreen
 import io.github.shkschneider.awesome.custom.InputOutput
+import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
@@ -14,9 +14,9 @@ class CollectorScreen(
     handler: Handler,
     playerInventory: PlayerInventory,
     title: Text,
-) : AwesomeBlockScreen<CollectorScreen.Handler>(name, handler, playerInventory, title) {
+) : AwesomeMachineBlockScreen<CollectorScreen.Handler>(name, handler, playerInventory, title) {
 
-    class Handler(syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) : AwesomeBlockScreen.Handler(
+    class Handler(syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) : AwesomeMachineBlockScreen.Handler(
         AwesomeMachines.collector.screen, syncId, inventories, properties
     ) {
 

@@ -31,7 +31,7 @@ class CrafterBlock(settings: Settings) : AwesomeMachineBlock<CrafterBlock.Entity
         }
 
         override fun canExtract(slot: Int, stack: ItemStack, dir: Direction): Boolean =
-            slot == slots.size - 1 && dir == Direction.DOWN
+            slot == Crafter.SLOTS.size - 1 && dir == Direction.DOWN
 
         override fun readNbt(nbt: NbtCompound) {
             Inventories.readNbt(nbt, items)

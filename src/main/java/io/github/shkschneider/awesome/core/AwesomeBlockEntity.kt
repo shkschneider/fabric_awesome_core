@@ -2,6 +2,7 @@ package io.github.shkschneider.awesome.core
 
 import io.github.shkschneider.awesome.custom.IInventory
 import io.github.shkschneider.awesome.custom.InputOutput
+import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
@@ -71,7 +72,7 @@ abstract class AwesomeBlockEntity(
         slots: InputOutput.Slots,
     ) : WithInventory(type, pos, state, slots), NamedScreenHandlerFactory {
 
-        abstract override fun createMenu(syncId: Int, inv: PlayerInventory, player: PlayerEntity?): AwesomeBlockScreen.Handler
+        abstract override fun createMenu(syncId: Int, inv: PlayerInventory, player: PlayerEntity?): AwesomeMachineBlockScreen.Handler
 
     }
 

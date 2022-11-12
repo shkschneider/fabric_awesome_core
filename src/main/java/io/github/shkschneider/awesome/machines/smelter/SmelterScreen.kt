@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.machines.smelter
 
-import io.github.shkschneider.awesome.core.AwesomeBlockScreen
 import io.github.shkschneider.awesome.custom.InputOutput
+import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
@@ -14,7 +14,7 @@ class SmelterScreen(
     handler: Handler,
     playerInventory: PlayerInventory,
     title: Text,
-) : AwesomeBlockScreen<SmelterScreen.Handler>(name, handler, playerInventory, title) {
+) : AwesomeMachineBlockScreen<SmelterScreen.Handler>(name, handler, playerInventory, title) {
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
@@ -24,7 +24,7 @@ class SmelterScreen(
         }
     }
 
-    class Handler(syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) : AwesomeBlockScreen.Handler(
+    class Handler(syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) : AwesomeMachineBlockScreen.Handler(
         AwesomeMachines.smelter.screen, syncId, inventories, properties
     ) {
 

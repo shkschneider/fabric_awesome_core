@@ -1,9 +1,10 @@
 package io.github.shkschneider.awesome.machines.generator
 
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.core.Minecraft
 import io.github.shkschneider.awesome.custom.InputOutput
-import io.github.shkschneider.awesome.items.AwesomeItems
 import io.github.shkschneider.awesome.machines.AwesomeMachine
+import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
@@ -33,23 +34,51 @@ class Generator : AwesomeMachine<GeneratorBlock, GeneratorBlock.Entity, Generato
 
         const val ID = "generator"
         val SLOTS = InputOutput.Slots(inputs = 1, outputs = 0)
-        private val FUEL = AwesomeItems.Redstone.flux
+        const val INPUT = 0
+        const val IGNITE = Minecraft.TICK
 
     }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: GeneratorBlock.Entity) {
         if (world.isClient) return
         // do NOT super.tick()
-        if (blockEntity.power > 0) {
-            blockEntity.setPropertyState(Properties.LIT, true)
+        fun on(time: Int) {
+            super.on(blockEntity, time)
+            blockEntity.power = time
+            blockEntity.duration = 0
+            blockEntity.progress = 0
             blockEntity.setPropertyState(Properties.POWERED, true)
+        }
+        fun off() {
+            super.off(blockEntity)
+            blockEntity.duration = 0
+            blockEntity.progress = 0
+            blockEntity.setPropertyState(Properties.POWERED, false)
+        }
+        blockEntity.setPropertyState(Properties.LIT, blockEntity.power > 0)
+        // burning
+        if (blockEntity.power > 0) {
             blockEntity.power--
-        } else if (blockEntity.getStack(0).item == FUEL) {
-            blockEntity.removeStack(0, 1)
-            blockEntity.power = FUEL.time
-            if (blockEntity.getStack(0).isEmpty) {
-                blockEntity.setStack(0, ItemStack.EMPTY)
-                blockEntity.markDirty()
+        }
+        // igniting
+        if (blockEntity.duration > 0) {
+            blockEntity.progress++
+            // fire
+            if (blockEntity.progress >= blockEntity.duration) {
+                on(AwesomeMachines.FUEL.time)
+            }
+        }
+        // idle
+        if (blockEntity.power <= IGNITE && blockEntity.duration == 0) {
+            if (blockEntity.getStack(INPUT).item == AwesomeMachines.FUEL) {
+                blockEntity.duration = IGNITE
+                blockEntity.progress = 0
+                blockEntity.removeStack(INPUT, 1)
+                if (blockEntity.getStack(INPUT).isEmpty) {
+                    blockEntity.setStack(INPUT, ItemStack.EMPTY)
+                    blockEntity.markDirty()
+                }
+                return
             }
         }
     }

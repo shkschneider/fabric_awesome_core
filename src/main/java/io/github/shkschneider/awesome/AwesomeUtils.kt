@@ -26,4 +26,12 @@ object AwesomeUtils {
         )
     }
 
+    fun humanReadable(n: Int): String =
+        when {
+            n < 1_000 -> String.format("%d", n)
+            n < 1_000_000 -> String.format("%.01fK", n.toFloat() / 1_000)
+            n < 1_000_000_000 -> String.format("%.01fM", n.toFloat() / 1_000_000)
+            else -> "INF."
+        }
+
 }

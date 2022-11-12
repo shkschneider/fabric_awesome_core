@@ -1,7 +1,8 @@
-package io.github.shkschneider.awesome.core
+package io.github.shkschneider.awesome.machines
 
 import com.mojang.blaze3d.systems.RenderSystem
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.core.AwesomeColors
 import io.github.shkschneider.awesome.custom.InputOutput
 import net.minecraft.client.gui.screen.ingame.HandledScreen
 import net.minecraft.client.render.GameRenderer
@@ -13,9 +14,10 @@ import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.screen.slot.Slot
+import net.minecraft.state.property.Properties
 import net.minecraft.text.Text
 
-abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
+abstract class AwesomeMachineBlockScreen<SH : AwesomeMachineBlockScreen.Handler>(
     private val name: String,
     handler: SH,
     playerInventory: PlayerInventory,
@@ -34,10 +36,17 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
         val x = (width - backgroundWidth) / 2
         val y = (height - backgroundHeight) / 2
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight)
-        if (handler.power > 0) {
-            drawTexture(matrices, x + 8, y + 7, 176, 111, 192 - 176, 166 - 111)
+        // power
+        val power = if (handler.power > 0) getPowerToDraw(handler.power) else 0
+        if (power > 0) {
+            drawTexture(matrices, x + 8, y + 7 + 55 - power, 176, 111, 192 - 176, power)
+            textRenderer.drawWithShadow(matrices, Text.of(AwesomeUtils.humanReadable(handler.power)), x + 26.toFloat(), y + 54.toFloat(), AwesomeColors.white)
         }
+        // ...
     }
+
+    open fun getPowerToDraw(power: Int) =
+        handler.power * 55 / Properties.POWER.values.max()
 
     override fun render(matrices: MatrixStack, mouseX: Int, mouseY: Int, delta: Float) {
         renderBackground(matrices)

@@ -1,7 +1,6 @@
 package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.AwesomeUtils
-import io.github.shkschneider.awesome.core.AwesomeBlockScreen
 import io.github.shkschneider.awesome.core.ext.readNbt
 import io.github.shkschneider.awesome.core.ext.writeNbt
 import io.github.shkschneider.awesome.custom.Faces
@@ -32,9 +31,9 @@ abstract class AwesomeMachineBlockEntity(
     type: BlockEntityType<out AwesomeMachineBlockEntity>,
     pos: BlockPos,
     private val state: BlockState,
-    val slots: InputOutput.Slots,
+    private val slots: InputOutput.Slots,
     private val recipes: List<AwesomeRecipe<out AwesomeMachineBlockEntity>>,
-    private val screenHandlerProvider: (syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) -> AwesomeBlockScreen.Handler,
+    private val screenHandlerProvider: (syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) -> AwesomeMachineBlockScreen.Handler,
 ) : BlockEntity(type, pos, state), NamedScreenHandlerFactory, IInventory, SidedInventory {
 
     //region properties
@@ -46,7 +45,7 @@ abstract class AwesomeMachineBlockEntity(
     }
 
     var power = 0
-    var progress = -1
+    var progress = 0
     var duration = 0
 
     protected val properties = object : PropertyDelegate {
@@ -78,10 +77,8 @@ abstract class AwesomeMachineBlockEntity(
 
     fun <T : Comparable<T>, V : T> setPropertyState(property: Property<T>, value: V) {
         if (state.properties.none { it == property }) throw IllegalArgumentException()
-        with(state.with(property, value)) {
-            world?.setBlockState(pos, this)
-            markDirty(world, pos, this)
-        }
+        world?.setBlockState(pos, state.with(property, value))
+        this@AwesomeMachineBlockEntity.markDirty()
     }
 
     //endregion
@@ -115,7 +112,7 @@ abstract class AwesomeMachineBlockEntity(
     override fun getDisplayName(): Text =
         Text.translatable(AwesomeUtils.translatable("block", id))
 
-    override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): AwesomeBlockScreen.Handler =
+    override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): AwesomeMachineBlockScreen.Handler =
         screenHandlerProvider(syncId, InputOutput.Inventories(this as Inventory, playerInventory), properties)
 
     //endregion

@@ -49,28 +49,20 @@ class AwesomeMachineTicker(
     operator fun invoke(world: World): Int {
         if (world.isClient) return 0
         with(entity) {
-            if (recipes == null) {
+            fun off() {
                 duration = 0
                 progress = 0
-                return -1
             }
-            if (power == 0) {
-                duration = 0
-                progress = 0
-                return -2
-            }
+            if (recipes == null) { off() ; return -1 }
+            if (power == 0) { off() ; return -2 }
             if (duration > 0) progress++
-            val recipe = getRecipe() ?: run {
-                duration = 0
-                progress = 0
-                return -3
-            }
+            val recipe = getRecipe() ?: run { off() ; return -3 }
             if (duration == 0) {
                 duration = recipe.time
                 progress = 0
             } else if (progress >= duration) {
                 craft(recipe)
-                duration = 0
+                duration = recipe.time
                 progress = 0
             }
         }
