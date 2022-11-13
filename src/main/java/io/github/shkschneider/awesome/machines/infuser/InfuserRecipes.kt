@@ -4,11 +4,10 @@ import io.github.shkschneider.awesome.items.AwesomeItems
 import io.github.shkschneider.awesome.recipes.AwesomeRecipe
 import io.github.shkschneider.awesome.recipes.AwesomeRecipeType
 import net.minecraft.item.ItemStack
-import net.minecraft.recipe.Recipe
 
 object InfuserRecipes {
 
-    private val INFUSING = AwesomeRecipeType<Recipe<InfuserBlock.Entity>>()
+    private val INFUSING = AwesomeRecipeType<AwesomeRecipe<InfuserBlock.Entity>>()
 
     operator fun invoke(): List<AwesomeRecipe<InfuserBlock.Entity>> = mutableListOf(
         // Powder -> Dust

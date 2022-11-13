@@ -5,11 +5,10 @@ import io.github.shkschneider.awesome.recipes.AwesomeRecipe
 import io.github.shkschneider.awesome.recipes.AwesomeRecipeType
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
-import net.minecraft.recipe.Recipe
 
 object RefineryRecipes {
 
-    private val REFINING = AwesomeRecipeType<Recipe<RefineryBlock.Entity>>()
+    private val REFINING = AwesomeRecipeType<AwesomeRecipe<RefineryBlock.Entity>>()
 
     operator fun invoke(): List<AwesomeRecipe<RefineryBlock.Entity>> = mutableListOf(
         // Ore -> Chip

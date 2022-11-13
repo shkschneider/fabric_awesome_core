@@ -7,11 +7,10 @@ import io.github.shkschneider.awesome.recipes.AwesomeRecipe
 import io.github.shkschneider.awesome.recipes.AwesomeRecipeType
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
-import net.minecraft.recipe.Recipe
 
 object SmelterRecipes {
 
-    private val SMELTING = AwesomeRecipeType<Recipe<SmelterBlock.Entity>>()
+    private val SMELTING = AwesomeRecipeType<AwesomeRecipe<SmelterBlock.Entity>>()
 
     operator fun invoke(): List<AwesomeRecipe<SmelterBlock.Entity>> = mutableListOf(
         // Dust -> Ingot/Gem (no redstone)

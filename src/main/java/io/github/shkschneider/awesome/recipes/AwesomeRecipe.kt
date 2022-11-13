@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.world.World
 
 class AwesomeRecipe<T : Inventory>(
-    private val type: AwesomeRecipeType<Recipe<T>>,
+    private val type: AwesomeRecipeType<AwesomeRecipe<T>>,
     val inputs: List<ItemStack>,
     val time: Int, // ticks
     private val output: ItemStack,
@@ -22,28 +22,23 @@ class AwesomeRecipe<T : Inventory>(
         return true // FIXME
     }
 
-    override fun craft(inventory: T): ItemStack {
-        return output
-    }
+    override fun craft(inventory: T): ItemStack =
+        output
 
-    override fun fits(width: Int, height: Int): Boolean {
-        return true
-    }
+    override fun fits(width: Int, height: Int): Boolean =
+        true
 
-    override fun getOutput(): ItemStack {
-        return output
-    }
+    override fun getOutput(): ItemStack =
+        output
 
-    override fun getId(): Identifier {
-        return AwesomeUtils.identifier("${Awesome.ID}_${output.item.name.string}")
-    }
+    override fun getId(): Identifier =
+        AwesomeUtils.identifier("${Awesome.ID}_${output.item.name.string}")
 
     override fun getSerializer(): RecipeSerializer<*> {
         throw NotImplementedError()
     }
 
-    override fun getType(): RecipeType<*> {
-        return type
-    }
+    override fun getType(): RecipeType<AwesomeRecipe<T>> =
+        type
 
 }

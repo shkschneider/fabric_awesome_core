@@ -6,11 +6,10 @@ import io.github.shkschneider.awesome.recipes.AwesomeRecipe
 import io.github.shkschneider.awesome.recipes.AwesomeRecipeType
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
-import net.minecraft.recipe.Recipe
 
 object CrusherRecipes {
 
-    private val CRUSHING = AwesomeRecipeType<Recipe<CrusherBlock.Entity>>()
+    private val CRUSHING = AwesomeRecipeType<AwesomeRecipe<CrusherBlock.Entity>>()
 
     operator fun invoke(): List<AwesomeRecipe<CrusherBlock.Entity>> = mutableListOf(
         // Ingot/Gem -> Dust
