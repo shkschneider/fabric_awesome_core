@@ -30,7 +30,6 @@ abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEnt
     blockEntityProvider: (BlockPos, BlockState) -> BE,
     private val screenProvider: (SH, PlayerInventory, Text) -> HandledScreen<SH>,
     private val screenHandlerProvider: (Int, InputOutput.Inventories, ArrayPropertyDelegate) -> SH,
-    private val properties: ArrayPropertyDelegate = ArrayPropertyDelegate(AwesomeMachineBlockEntity.PROPERTIES),
 ) : BlockEntityTicker<BE> {
 
     val block: B =
@@ -48,7 +47,8 @@ abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEnt
         AwesomeRegistries.item(id, BlockItem(block, FabricItemSettings().group(Awesome.GROUP)))
         if (Minecraft.isClient) {
             _screen = ScreenHandlerType { syncId, playerInventory ->
-                screenHandlerProvider(syncId, InputOutput.Inventories(SimpleInventory(slots.size), playerInventory), properties)
+                // empty things to get sync'ed
+                screenHandlerProvider(syncId, InputOutput.Inventories(SimpleInventory(slots.size), playerInventory), ArrayPropertyDelegate(AwesomeMachineBlockEntity.PROPERTIES))
             }
             HandledScreens.register(screen) { handler, inventory, title ->
                 screenProvider(handler, inventory, title)
