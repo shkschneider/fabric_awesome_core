@@ -29,20 +29,26 @@ abstract class AwesomeMachineBlockScreen<SH : AwesomeMachineBlockScreen.Handler>
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2
     }
 
-    override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
+    protected fun setShader() {
+        // TODO there is something I don't quite get here
+        // when drawing 1+ textures, only the first appears
+        // resetting the Shader, even in the children (calling super already) fixes it
+        // FIXME i doubt this is how it should be done -- nor optimized :/
         RenderSystem.setShader(GameRenderer::getPositionTexShader)
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
         RenderSystem.setShaderTexture(0, AwesomeUtils.identifier("textures/gui/$name.png"))
+    }
+
+    override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
+        setShader()
         val x = (width - backgroundWidth) / 2
         val y = (height - backgroundHeight) / 2
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight)
-        // power
         val power = if (handler.power > 0) getPowerToDraw(handler.power) else 0
         if (power > 0) {
             drawTexture(matrices, x + 8, y + 7 + 55 - power, 176, 111, 192 - 176, power)
-            textRenderer.drawWithShadow(matrices, Text.of(AwesomeUtils.humanReadable(handler.power)), x + 26.toFloat(), y + 54.toFloat(), AwesomeColors.white)
+            drawTextWithShadow(matrices, textRenderer, Text.of(AwesomeUtils.humanReadable(handler.power)), x + 26, y + 54, AwesomeColors.white)
         }
-        // ...
     }
 
     open fun getPowerToDraw(power: Int) =

@@ -18,6 +18,7 @@ class InfuserScreen(
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
+        setShader()
         if (handler.progress > 0) {
             val progress = (handler.percent * 24.0).roundToInt()
             drawTexture(matrices, x + 84, y + 23 - 1, 176, 32, progress, 68 - 32)

@@ -18,6 +18,7 @@ class SmelterScreen(
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
+        setShader()
         if (handler.progress > 0) {
             val progress = (handler.percent * 24.0).roundToInt()
             drawTexture(matrices, x + 80 - 1, y + 36 - 1, 176, 15, progress, 30 - 15)

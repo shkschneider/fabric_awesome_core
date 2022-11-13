@@ -17,6 +17,7 @@ class GeneratorScreen(
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
+        setShader()
         if (handler.progress > 0) {
             val progress = handler.progress * 13 / handler.duration
             if (progress > 0) drawTexture(matrices, x + 80, y + 36 + 13 - progress - 1, 176, 13 - progress - 1, 190 - 176, progress + 1)
