@@ -59,6 +59,7 @@ Almost everything is configurable:
 This project is licensed under MIT.
 
 - Most ores textures are from GregTech under LGPL3: https://github.com/GregTechCE/GregTech
+- Most machines frames are from Industrial Foregoing under MIT: https://github.com/InnovativeOnlineIndustries/Industrial-Foregoing
 - Special thanks to Kaupenjoe: https://github.com/Tutorials-By-Kaupenjoe
 
 
