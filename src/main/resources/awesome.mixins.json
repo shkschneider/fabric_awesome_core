@@ -20,6 +20,7 @@
     "PlayerManagerOnPlayerConnectMixin"
   ],
   "client": [
+    "IntegrationServerLoaderMixin",
     "LevelPropertiesGetLifecycleMixin",
     "MinecraftCreateUserApiServiceMixin",
     "SplashScreenBackgroundMixin",
