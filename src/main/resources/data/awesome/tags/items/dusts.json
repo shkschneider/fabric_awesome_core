@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "awesome:copper_dust",
+    "awesome:coal_dust",
+    "awesome:diamond_dust",
+    "awesome:emerald_dust",
+    "awesome:gold_dust",
+    "awesome:iron_dust",
+    "awesome:lapis_dust",
+    "awesome:quartz_dust"
+  ]
+}

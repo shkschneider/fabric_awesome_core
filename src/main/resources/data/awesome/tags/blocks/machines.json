@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "awesome:collector",
+    "awesome:crafter",
+    "awesome:crusher",
+    "awesome:generator",
+    "awesome:infuser",
+    "awesome:refinery",
+    "awesome:smelter"
+  ]
+}
