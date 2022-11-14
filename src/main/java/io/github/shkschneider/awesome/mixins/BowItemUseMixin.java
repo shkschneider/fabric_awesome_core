@@ -24,7 +24,7 @@ public class BowItemUseMixin {
 
     @Inject(method="use(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/TypedActionResult;", at=@At("HEAD"), cancellable=true)
     private void use(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
-        if (!Awesome.Companion.getCONFIG().getTrueInfinityBow()) {
+        if (!Awesome.Companion.getCONFIG().getEnchantments().getInfinity()) {
             cir.setReturnValue(cir.getReturnValue());
         } else {
             final ItemStack stack = user.getStackInHand(hand);

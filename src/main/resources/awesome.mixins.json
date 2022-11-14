@@ -10,13 +10,14 @@
     "EntityNbtMixin",
     "ItemAppendTooltipMixin",
     "PlayerEntityDamageMixin",
+    "PlayerEntityGetXpToDropMixin",
     "ServerPlayerEntityCopyFromMixin",
     "SpawnerBlockOnStacksDroppedMixin",
     "VillagerEntityInitMixin",
     "VillagerEntityTickMixin"
   ],
   "server": [
-    "PlayerManagerMixin"
+    "PlayerManagerOnPlayerConnectMixin"
   ],
   "client": [
     "LevelPropertiesGetLifecycleMixin",

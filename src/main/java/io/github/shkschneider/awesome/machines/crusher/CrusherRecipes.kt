@@ -46,10 +46,10 @@ object CrusherRecipes {
         AwesomeRecipe(CRUSHING, listOf(ItemStack(AwesomeItems.Quartz.powder, 2)), time = 20, ItemStack(AwesomeItems.Quartz.dust, 1)),
         AwesomeRecipe(CRUSHING, listOf(ItemStack(AwesomeItems.Redstone.powder, 2)), time = 20, ItemStack(AwesomeItems.Redstone.dust, 1)),
     ).apply {
-        if (Awesome.CONFIG.diamondDustFromCrushingCoalBlock) {
+        if (Awesome.CONFIG.recipes.diamondDustFromCrushingCoalBlock) {
             add(AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.COAL_BLOCK, 1)), time = 20, ItemStack(AwesomeItems.Diamond.dust, 1)))
         }
-        if (Awesome.CONFIG.redstoneFromCrushingNetherrack) {
+        if (Awesome.CONFIG.recipes.redstoneFromCrushingNetherrack) {
             add(AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.NETHERRACK, 64)), time = 20, ItemStack(AwesomeItems.Redstone.dust, 9)))
         }
     }

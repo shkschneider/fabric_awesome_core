@@ -37,7 +37,6 @@ class Awesome : ModInitializer {
         AwesomeLogger.debug("Loading for ${Minecraft.VERSION}...")
         AwesomeBlocks()
         AwesomeCommands()
-        // AwesomeDimensions()
         AwesomeEffects()
         AwesomeEnchantments()
         AwesomeGameRules()
@@ -45,28 +44,61 @@ class Awesome : ModInitializer {
         AwesomeMachines()
         AwesomePotions()
         AwesomeWorldGen()
-        if (CONFIG.silkTouchSpawners) SilkTouchSpawners()
+        SilkTouchSpawners()
         AwesomeLogger.info("Took ${System.currentTimeMillis() - ms}ms!")
     }
 
 
     data class Config(
-        @SerializedName("diamondDustFromCrushingCoalBlock") val diamondDustFromCrushingCoalBlock: Boolean = true,
-        @SerializedName("experienceEnchantment") val experienceEnchantment: Boolean = true,
-        @SerializedName("experiencePotions") val experiencePotions: Boolean = true,
-        @SerializedName("imprisoner") val imprisoner: Boolean = true,
-        @SerializedName("magnetismEnchantment") val magnetismEnchantment: Boolean = true,
-        @SerializedName("oreDropXp") val oreDropXp: Boolean = true,
-        @SerializedName("prospector") val prospector: Boolean = true,
-        @SerializedName("randomiumOre") val randomiumOre: Boolean = true,
-        @SerializedName("redstoneFluxAsVanillaFuel") val redstoneFluxAsVanillaFuel: Boolean = true,
-        @SerializedName("redstoneFluxFromRandomiumOre") val redstoneFluxFromRandomiumOre: Boolean = true,
-        @SerializedName("redstoneFromCrushingNetherrack") val redstoneFromCrushingNetherrack: Boolean = true,
-        @SerializedName("silkTouchSpawners") val silkTouchSpawners: Boolean = true,
-        @SerializedName("trueInfinityBow") val trueInfinityBow: Boolean = true,
-        @SerializedName("veinMiningEnchantment") val veinMiningEnchantment: Boolean = true,
-        @SerializedName("villagersFollowEmeraldBlock") val villagersFollowEmeraldBlock: Boolean = true,
-        @SerializedName("villagersInfiniteTrading") val villagersInfiniteTrading: Boolean = true,
-    )
+        @SerializedName("commands") val commands: Boolean = true,
+        @SerializedName("enchantments") val enchantments: Enchantments = Enchantments(),
+        @SerializedName("entities") val entities: Entities = Entities(),
+        @SerializedName("gamerules") val gameRules: GameRules = GameRules(),
+        @SerializedName("items") val items: Items = Items(),
+        @SerializedName("machines") val machines: Boolean = true,
+        @SerializedName("potions") val potions: Potions = Potions(),
+        @SerializedName("recipes") val recipes: Recipes = Recipes(),
+        @SerializedName("splashBlackBackground") val splashBlackBackground: Boolean = true,
+        @SerializedName("worldgen") val worldGen: WorldGen = WorldGen(),
+    ) {
+
+        data class Enchantments(
+            @SerializedName("experience") val experience: Boolean = true,
+            @SerializedName("magnetism") val magnetism: Boolean = true,
+            @SerializedName("infinity") val infinity: Boolean = true,
+            @SerializedName("veinMining") val veinMining: Boolean = true,
+        )
+
+        data class Entities(
+            @SerializedName("villagersFollowEmeraldBlock") val villagersFollowEmeraldBlock: Boolean = true,
+            @SerializedName("villagersInfiniteTrading") val villagersInfiniteTrading: Boolean = true,
+        )
+
+        data class GameRules(
+            @SerializedName("oreXp") val oreXp: Boolean = true,
+            @SerializedName("silkTouchSpawners") val silkTouchSpawners: Boolean = true,
+        )
+
+        data class Items(
+            @SerializedName("imprisoner") val imprisoner: Boolean = true,
+            @SerializedName("prospector") val prospector: Boolean = true,
+        )
+
+        data class Potions(
+            @SerializedName("experience") val experience: Boolean = true,
+        )
+
+        data class Recipes(
+            @SerializedName("diamondDustFromCrushingCoalBlock") val diamondDustFromCrushingCoalBlock: Boolean = true,
+            @SerializedName("redstoneFluxAsVanillaFuel") val redstoneFluxAsVanillaFuel: Boolean = true,
+            @SerializedName("redstoneFluxFromRandomiumOre") val redstoneFluxFromRandomiumOre: Boolean = true,
+            @SerializedName("redstoneFromCrushingNetherrack") val redstoneFromCrushingNetherrack: Boolean = true,
+        )
+
+        data class WorldGen(
+            @SerializedName("randomium") val randomium: Boolean = true,
+        )
+
+    }
 
 }

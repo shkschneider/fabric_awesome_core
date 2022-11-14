@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.mixins;
 
+import io.github.shkschneider.awesome.Awesome;
 import net.minecraft.client.gui.screen.SplashOverlay;
 import net.minecraft.util.math.ColorHelper;
 import org.spongepowered.asm.mixin.Final;
@@ -26,7 +27,9 @@ public class SplashScreenBackgroundMixin {
 
     @Inject(method = "<clinit>", at = @At("RETURN"))
     private static void background(CallbackInfo info) {
-        BRAND_ARGB = () -> ColorHelper.Argb.getArgb(255, 0, 0, 0); // MONOCHROME_BLACK
+        if (Awesome.Companion.getCONFIG().getSplashBlackBackground()) {
+            BRAND_ARGB = () -> ColorHelper.Argb.getArgb(255, 0, 0, 0); // MONOCHROME_BLACK
+        }
     }
 
 }

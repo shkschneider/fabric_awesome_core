@@ -5,7 +5,6 @@ import io.github.shkschneider.awesome.core.ext.isOre
 import io.github.shkschneider.awesome.enchantments.AwesomeEnchantments
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
-import net.minecraft.block.entity.BlockEntity
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
@@ -23,13 +22,15 @@ object VeinMining {
     operator fun invoke() = Unit
 
     init {
-        if (Awesome.CONFIG.veinMiningEnchantment) {
-            PlayerBlockBreakEvents.AFTER.register(PlayerBlockBreakEvents.After(VeinMining::invoke))
+        if (Awesome.CONFIG.enchantments.veinMining) {
+            PlayerBlockBreakEvents.AFTER.register(PlayerBlockBreakEvents.After { world, player, pos, state, _ ->
+                invoke(world, player, pos, state)
+            })
         }
     }
 
-    operator fun invoke(world: World, player: PlayerEntity, pos: BlockPos, state: BlockState, blockEntity: BlockEntity?) {
-        if (!Awesome.CONFIG.veinMiningEnchantment) throw IllegalStateException()
+    private operator fun invoke(world: World, player: PlayerEntity, pos: BlockPos, state: BlockState) {
+        if (!Awesome.CONFIG.enchantments.veinMining) throw IllegalStateException()
         val veinMining = EnchantmentHelper.getLevel(AwesomeEnchantments.veinMining, player.mainHandStack)
         if (!isVeinMining && !player.isSneaking && veinMining > 0) {
             if (state.block.isOre && state.isIn(BlockTags.PICKAXE_MINEABLE)) {
@@ -42,7 +43,7 @@ object VeinMining {
 
     // TODO iterate while touching a similar item, not in a cube around
     private fun veinMining(world: World, pos: BlockPos, playerEntity: PlayerEntity, level: Int, item: Item) {
-        if (!Awesome.CONFIG.veinMiningEnchantment) throw IllegalStateException()
+        if (!Awesome.CONFIG.enchantments.veinMining) throw IllegalStateException()
         isVeinMining = true
         val start = pos.mutableCopy().add(-level, -level, -level)
         val end = pos.mutableCopy().add(level, level, level)

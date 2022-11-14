@@ -21,8 +21,9 @@ public class VillagerEntityTickMixin {
 
     @Inject(method = "tick", at = @At("HEAD"))
     public void tick(CallbackInfo info) {
-        if (Awesome.Companion.getCONFIG().getVillagersInfiniteTrading()) {
+        if (Awesome.Companion.getCONFIG().getEntities().getVillagersInfiniteTrading()) {
             restocksToday = 0;
+            //noinspection ConstantConditions
             ((VillagerEntity) (Object) this).restock();
         }
     }

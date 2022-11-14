@@ -133,7 +133,7 @@ object AwesomeItems {
         val powder = AwesomeOres.Powder(ID, settings)
 
         operator fun invoke() {
-            if (Awesome.CONFIG.redstoneFluxAsVanillaFuel) {
+            if (Awesome.CONFIG.recipes.redstoneFluxAsVanillaFuel) {
                 // AbstractFurnaceBlockEntity.createFuelTimeMap()
                 AwesomeRegistries.fuel(flux, flux.time)
             }
@@ -151,8 +151,12 @@ object AwesomeItems {
         Lapis()
         Quartz()
         Redstone()
-        if (Awesome.CONFIG.imprisoner) Imprisoner()
-        if (Awesome.CONFIG.prospector) Prospector()
+        if (Awesome.CONFIG.items.imprisoner) {
+            Imprisoner()
+        }
+        if (Awesome.CONFIG.items.prospector) {
+            Prospector()
+        }
     }
 
 }

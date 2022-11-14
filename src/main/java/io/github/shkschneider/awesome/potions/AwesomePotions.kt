@@ -8,22 +8,20 @@ import net.minecraft.item.Items
 
 object AwesomePotions {
 
-    private lateinit var _experience1: AwesomePotion
-    val experience1 get() = _experience1
-    private lateinit var _experience9: AwesomePotion
-    val experience9 get() = _experience9
+    private lateinit var EXPERIENCE_1: AwesomePotion
+    private lateinit var EXPERIENCE_9: AwesomePotion
 
     init {
-        if (Awesome.CONFIG.experiencePotions) {
-            _experience1 = AwesomePotion("experience1", Items.LAPIS_LAZULI, StatusEffectInstance(AwesomeEffects.experience1))
-            _experience9 = AwesomePotion("experience9", Items.LAPIS_BLOCK, StatusEffectInstance(AwesomeEffects.experience9))
+        if (Awesome.CONFIG.potions.experience) {
+            EXPERIENCE_1 = AwesomePotion("experience1", Items.LAPIS_LAZULI, StatusEffectInstance(AwesomeEffects.experience1))
+            EXPERIENCE_9 = AwesomePotion("experience9", Items.LAPIS_BLOCK, StatusEffectInstance(AwesomeEffects.experience9))
         }
     }
 
     operator fun invoke(): List<AwesomePotion> = buildList {
-        if (Awesome.CONFIG.experiencePotions) {
-            add(experience1)
-            add(experience9)
+        if (Awesome.CONFIG.potions.experience) {
+            add(EXPERIENCE_1)
+            add(EXPERIENCE_9)
         }
     }
 

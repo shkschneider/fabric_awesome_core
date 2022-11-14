@@ -26,8 +26,8 @@ public abstract class EntityNbtMixin implements IEntityData {
         return data;
     }
 
-    @Inject(method = "writeNbt", at = @At("HEAD"))
-    protected void writeNbt(NbtCompound nbt, CallbackInfoReturnable info) {
+    @Inject(method = "writeNbt", at = @At("HEAD"), cancellable = false)
+    protected void writeNbt(NbtCompound nbt, CallbackInfoReturnable<NbtCompound> cir) {
         if (data != null) {
             nbt.put(Awesome.Companion.getID(), data);
         }

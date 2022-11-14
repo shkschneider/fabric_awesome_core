@@ -1,11 +1,9 @@
 package io.github.shkschneider.awesome.blocks
 
 import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.core.Minecraft
 
 object AwesomeBlocks {
-
-    val frame = FrameBlock()
-    val tesseract = TesseractBlock()
 
     object Randomium {
 
@@ -20,7 +18,11 @@ object AwesomeBlocks {
     }
 
     operator fun invoke() {
-        if (Awesome.CONFIG.randomiumOre) {
+        if (Minecraft.isDevelopment) {
+            FrameBlock()
+            TesseractBlock()
+        }
+        if (Awesome.CONFIG.worldGen.randomium) {
             Randomium()
         }
     }

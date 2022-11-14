@@ -5,22 +5,22 @@ import net.minecraft.world.GameRules
 
 object AwesomeGameRules {
 
-    private lateinit var _keepXp: GameRules.Key<GameRules.BooleanRule>
-    val keepXp get() = _keepXp
-    private lateinit var _oreXp: GameRules.Key<GameRules.BooleanRule>
-    val oreXp get() = _oreXp
-    private lateinit var _pvp: GameRules.Key<GameRules.BooleanRule>
-    val pvp get() = _pvp
-    private lateinit var _sleepingHeals: GameRules.Key<GameRules.BooleanRule>
-    val sleepingHeals get() = _sleepingHeals
+    private lateinit var KEEP_XP: GameRules.Key<GameRules.BooleanRule>
+    val keepXp get() = KEEP_XP
+    private lateinit var ORE_XP: GameRules.Key<GameRules.BooleanRule>
+    val oreXp get() = ORE_XP
+    private lateinit var PVP: GameRules.Key<GameRules.BooleanRule>
+    val pvp get() = PVP
+    private lateinit var SLEEPING_HEALS: GameRules.Key<GameRules.BooleanRule>
+    val sleepingHeals get() = SLEEPING_HEALS
 
     operator fun invoke() {
-        _keepXp = KeepXpGameRule()
-        if (Awesome.CONFIG.oreDropXp) {
-            _oreXp = OreXpGameRule()
+        KEEP_XP = KeepXpGameRule()
+        if (Awesome.CONFIG.gameRules.oreXp) {
+            ORE_XP = OreXpGameRule()
         }
-        _pvp = PvpGameRule()
-        _sleepingHeals = SleepingHealsGameRule()
+        PVP = PvpGameRule()
+        SLEEPING_HEALS = SleepingHealsGameRule()
     }
 
 }

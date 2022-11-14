@@ -19,7 +19,7 @@ import net.minecraft.util.Identifier
 object SilkTouchSpawners {
 
     operator fun invoke() {
-        if (Awesome.CONFIG.silkTouchSpawners) {
+        if (Awesome.CONFIG.gameRules.silkTouchSpawners) {
             LootTableEvents.MODIFY.register { _, _, id, supplier, _ ->
                 if (id == Identifier("blocks/spawner")) {
                     invoke(supplier)
@@ -28,7 +28,8 @@ object SilkTouchSpawners {
         }
     }
 
-    operator fun invoke(supplier: LootTable.Builder) {
+    private operator fun invoke(supplier: LootTable.Builder) {
+        if (!Awesome.CONFIG.gameRules.silkTouchSpawners) throw IllegalStateException()
         supplier.pool(
             LootPool.Builder()
                 .rolls(ConstantLootNumberProvider.create(1.toFloat()))

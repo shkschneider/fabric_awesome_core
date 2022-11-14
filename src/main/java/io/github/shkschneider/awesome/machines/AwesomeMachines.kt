@@ -15,11 +15,10 @@ object AwesomeMachines {
 
     val collector = Collector()
     val crafter = Crafter()
-
-    val generator = Generator()
-    val refinery = Refinery()
     val crusher = Crusher()
+    val generator = Generator()
     val infuser = Infuser()
+    val refinery = Refinery()
     val smelter = Smelter()
 
     operator fun invoke() = Unit

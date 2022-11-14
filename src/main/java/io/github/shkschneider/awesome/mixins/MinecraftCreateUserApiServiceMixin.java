@@ -2,7 +2,7 @@ package io.github.shkschneider.awesome.mixins;
 
 import com.mojang.authlib.minecraft.UserApiService;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
-import net.fabricmc.loader.api.FabricLoader;
+import io.github.shkschneider.awesome.core.Minecraft;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.RunArgs;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,7 +15,7 @@ public class MinecraftCreateUserApiServiceMixin {
 
     @Inject(method = "createUserApiService", at = @At(value = "HEAD"), cancellable = true)
     public void createUserApiService(YggdrasilAuthenticationService authService, RunArgs runArgs, CallbackInfoReturnable<UserApiService> cir) {
-        if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
+        if (Minecraft.INSTANCE.isDevelopment()) {
             cir.setReturnValue(UserApiService.OFFLINE);
         }
     }

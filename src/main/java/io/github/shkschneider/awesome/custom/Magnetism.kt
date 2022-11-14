@@ -18,15 +18,15 @@ object Magnetism {
     operator fun invoke() = Unit
 
     init {
-        if (Awesome.CONFIG.magnetismEnchantment) {
+        if (Awesome.CONFIG.enchantments.magnetism) {
             PlayerBlockBreakEvents.AFTER.register(PlayerBlockBreakEvents.After { _: World, player: PlayerEntity, _: BlockPos, _: BlockState, _: BlockEntity? ->
                 invoke(player)
             })
         }
     }
 
-    operator fun invoke(player: PlayerEntity) {
-        if (!Awesome.CONFIG.magnetismEnchantment) throw IllegalStateException()
+    private operator fun invoke(player: PlayerEntity) {
+        if (!Awesome.CONFIG.enchantments.magnetism) throw IllegalStateException()
         val magnetism = EnchantmentHelper.getLevel(AwesomeEnchantments.magnetism, player.mainHandStack)
         if (!player.isSneaking && magnetism > 0) {
             player.addStatusEffect(
