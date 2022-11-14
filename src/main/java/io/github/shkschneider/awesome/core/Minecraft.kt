@@ -18,7 +18,7 @@ object Minecraft {
     const val HEIGHT = SharedConstants.DEFAULT_WORLD_HEIGHT
     const val PORT = SharedConstants.DEFAULT_PORT
     const val STACK = 64
-    const val TICK = SharedConstants.TICKS_PER_SECOND
+    val TICKS = AwesomeTime.ticksPerSecond
     val VERSION = SharedConstants.getGameVersion().name ?: SharedConstants.VERSION_NAME
 
     fun identifier(id: String) = Identifier("$NAME:$id")

@@ -5,7 +5,9 @@ import io.github.shkschneider.awesome.blocks.AwesomeBlocks
 import io.github.shkschneider.awesome.commands.AwesomeCommands
 import io.github.shkschneider.awesome.core.AwesomeConfig
 import io.github.shkschneider.awesome.core.AwesomeLogger
+import io.github.shkschneider.awesome.core.AwesomeTime
 import io.github.shkschneider.awesome.core.Minecraft
+import io.github.shkschneider.awesome.custom.Dimensions
 import io.github.shkschneider.awesome.custom.SilkTouchSpawners
 import io.github.shkschneider.awesome.effects.AwesomeEffects
 import io.github.shkschneider.awesome.enchantments.AwesomeEnchantments
@@ -43,7 +45,9 @@ class Awesome : ModInitializer {
         AwesomeItems()
         AwesomeMachines()
         AwesomePotions()
+        AwesomeTime()
         AwesomeWorldGen()
+        Dimensions()
         SilkTouchSpawners()
         AwesomeLogger.info("Took ${System.currentTimeMillis() - ms}ms!")
     }

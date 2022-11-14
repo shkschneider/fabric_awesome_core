@@ -55,10 +55,12 @@
   "item.awesome.redstone_flux": "Redstone Flux",
   "item.awesome.redstone_powder": "Redstone Powder",
   "item.minecraft.lingering_potion.effect.experience1": "Lingering Potion of Experience (1)",
-  "item.minecraft.lingering_potion.effect.experience9": "Lingering Potion of Experience (9(",
+  "item.minecraft.lingering_potion.effect.experience9": "Lingering Potion of Experience (9)",
   "item.minecraft.potion.effect.experience1": "Experience Potion (1)",
   "item.minecraft.potion.effect.experience9": "Experience Potion (9)",
   "item.minecraft.splash_potion.effect.experience1": "Splash Potion of Experience (1)",
   "item.minecraft.splash_potion.effect.experience9": "Splash Potion of Experience (9)",
-  "itemGroup.awesome.awesome": "Awesome"
+  "itemGroup.awesome.awesome": "Awesome",
+  "ui.awesome.new_day": "Day #",
+  "ui.awesome.wants_to_sleep": "wants to sleep..."
 }

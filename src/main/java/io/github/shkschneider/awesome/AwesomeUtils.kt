@@ -14,9 +14,9 @@ object AwesomeUtils {
 
     fun translatable(vararg k: String) = "${k.first().lowercase()}.${Awesome.ID}.${k.drop(1).joinToString(separator = ".") { it.lowercase() }}"
 
-    fun secondsToTicks(s: Int): Int = s * Minecraft.TICK
+    fun secondsToTicks(s: Int): Int = s * Minecraft.TICKS
 
-    fun ticksToSeconds(t: Int): Int = t / Minecraft.TICK
+    fun ticksToSeconds(t: Int): Int = t / Minecraft.TICKS
 
     // https://minecraft.fandom.com/wiki/Tutorials/Measuring_distance#Euclidean_distance_in_3_dimensions_(including_elevation)
     fun distance(l1: Location, l2: Location): Double {

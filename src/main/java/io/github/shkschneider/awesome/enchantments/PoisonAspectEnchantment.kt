@@ -23,7 +23,7 @@ class PoisonAspectEnchantment : AwesomeEnchantment(
 
     override fun invoke(livingEntity: LivingEntity, entity: Entity, level: Int) {
         if (livingEntity is PlayerEntity && !livingEntity.world.isClient && !livingEntity.isSneaking) {
-            (entity as? LivingEntity)?.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, Minecraft.TICK, level))
+            (entity as? LivingEntity)?.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, Minecraft.TICKS, level))
         }
     }
 

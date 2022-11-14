@@ -35,7 +35,7 @@ class Generator : AwesomeMachine<GeneratorBlock, GeneratorBlock.Entity, Generato
         const val ID = "generator"
         val SLOTS = InputOutput.Slots(inputs = 1, outputs = 0)
         const val INPUT = 0
-        const val IGNITE = Minecraft.TICK
+        val IGNITE = Minecraft.TICKS
 
     }
 

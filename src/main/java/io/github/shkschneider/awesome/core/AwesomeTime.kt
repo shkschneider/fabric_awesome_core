@@ -1,0 +1,42 @@
+package io.github.shkschneider.awesome.core
+
+import io.github.shkschneider.awesome.AwesomeUtils
+import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents
+import net.minecraft.SharedConstants
+import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.text.Text
+import net.minecraft.text.Texts
+import net.minecraft.util.Formatting
+import net.minecraft.world.World
+
+object AwesomeTime {
+
+    val ticksPerSecond = SharedConstants.TICKS_PER_SECOND
+    val ticksPerMinute = SharedConstants.TICKS_PER_MINUTE
+    val ticksPerInGameDay = SharedConstants.TICKS_PER_IN_GAME_DAY
+
+    fun day(world: World): Long =
+        world.time / ticksPerInGameDay
+
+    operator fun invoke() {
+        EntitySleepEvents.START_SLEEPING.register(EntitySleepEvents.StartSleeping { livingEntity, _ ->
+            (livingEntity as? PlayerEntity)?.let { player ->
+                player.world.players.filterNot { it.uuid == player.uuid }.forEach { otherPlayer ->
+                    AwesomeChat.message(player, Texts.join(listOf(
+                        Texts.toText(otherPlayer.gameProfile),
+                        Text.translatable(AwesomeUtils.translatable("ui", "wants_to_sleep")).formatted(Formatting.GRAY),
+                    ), Text.of(" ")))
+                }
+            }
+        })
+        EntitySleepEvents.STOP_SLEEPING.register(EntitySleepEvents.StopSleeping { livingEntity, _ ->
+            (livingEntity as? PlayerEntity)?.let { player ->
+                AwesomeChat.overlay(player, Texts.join(listOf(
+                    Text.translatable(AwesomeUtils.translatable("ui", "new_day")).formatted(Formatting.WHITE),
+                    Text.literal(day(player.world).toString()).formatted(Formatting.BOLD).formatted(Formatting.YELLOW),
+                ), Text.of(" ")))
+            }
+        })
+    }
+
+}

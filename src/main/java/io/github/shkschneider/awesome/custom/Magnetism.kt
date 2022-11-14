@@ -30,7 +30,7 @@ object Magnetism {
         val magnetism = EnchantmentHelper.getLevel(AwesomeEnchantments.magnetism, player.mainHandStack)
         if (!player.isSneaking && magnetism > 0) {
             player.addStatusEffect(
-                StatusEffectInstance(AwesomeEffects.magnetism, Minecraft.TICK / 2 * magnetism, magnetism)
+                StatusEffectInstance(AwesomeEffects.magnetism, Minecraft.TICKS / 2 * magnetism, magnetism)
             )
         }
     }
