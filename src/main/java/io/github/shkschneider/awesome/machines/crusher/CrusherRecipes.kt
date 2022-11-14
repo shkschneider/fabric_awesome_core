@@ -52,6 +52,12 @@ object CrusherRecipes {
         if (Awesome.CONFIG.recipes.redstoneFromCrushingNetherrack) {
             add(AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.NETHERRACK, 64)), time = 20, ItemStack(AwesomeItems.Redstone.dust, 9)))
         }
+        if (Awesome.CONFIG.recipes.gravelFromCobblestone) {
+            add(AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.COBBLESTONE, 1)), time = 20, ItemStack(Items.GRAVEL, 1)))
+        }
+        if (Awesome.CONFIG.recipes.sandFromGravel) {
+            add(AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.GRAVEL, 1)), time = 20, ItemStack(Items.SAND, 1)))
+        }
     }
 
 }

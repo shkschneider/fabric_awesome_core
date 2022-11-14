@@ -90,9 +90,11 @@ class Awesome : ModInitializer {
 
         data class Recipes(
             @SerializedName("diamondDustFromCrushingCoalBlock") val diamondDustFromCrushingCoalBlock: Boolean = true,
+            @SerializedName("gravelFromCobblestone") val gravelFromCobblestone: Boolean = true,
             @SerializedName("redstoneFluxAsVanillaFuel") val redstoneFluxAsVanillaFuel: Boolean = true,
             @SerializedName("redstoneFluxFromRandomiumOre") val redstoneFluxFromRandomiumOre: Boolean = true,
             @SerializedName("redstoneFromCrushingNetherrack") val redstoneFromCrushingNetherrack: Boolean = true,
+            @SerializedName("sandFromGravel") val sandFromGravel: Boolean = true,
         )
 
         data class WorldGen(

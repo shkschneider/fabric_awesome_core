@@ -49,9 +49,10 @@ Almost everything is configurable:
 - Tier1: 1raw (crushing) 4powder (crushing) 2dust (smelting) 2ingot
 - Tier2: 1raw (crushing) 4powder (infusing) 4dust (smelting) 4ingot
 - Tier3: 1ore (refining) 16chip (crushing) 8powder (infusing) 8dust (smelting) 8ingot
-- Bonus: 64netherrack (crushing) 9redstone
 - Bonus: 1coalblock (crushing) 1diamonddust (smelting) 1diamond
 - Bonus: 1randomiumore (smelting) 1redstoneflux
+- Bonus: 1cobblestone (crushing) 1gravel (crushing) 1sand
+- Bonus: 64netherrack (crushing) 9redstone(dust)
 - Bonus: prospector
 
 ## License
