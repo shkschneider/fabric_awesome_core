@@ -6,11 +6,12 @@ object AwesomeCommands {
 
     operator fun invoke() {
         if (Awesome.CONFIG.commands) {
-            MooCommand()
-            FlyCommand()
-            SetHomeCommand()
-            HomeCommand()
             BackCommand()
+            BroadcastCommand()
+            FlyCommand()
+            HomeCommand()
+            MooCommand()
+            SetHomeCommand()
         }
     }
 
