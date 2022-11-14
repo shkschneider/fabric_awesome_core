@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.mixins;
+package io.github.shkschneider.awesome.mixins.gamerules;
 
 import io.github.shkschneider.awesome.gamerules.AwesomeGameRules;
 import net.minecraft.entity.player.PlayerEntity;

@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.custom
 
 import io.github.shkschneider.awesome.core.ext.getStacks
-import io.github.shkschneider.awesome.mixins.CraftingInventoryMixin
+import io.github.shkschneider.awesome.mixins.recipes.CraftingInventoryMixin
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.CraftingInventory
 import net.minecraft.inventory.Inventory

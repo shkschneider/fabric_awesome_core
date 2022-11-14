@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.mixins;
+package io.github.shkschneider.awesome.mixins.entities;
 
 import io.github.shkschneider.awesome.Awesome;
 import io.github.shkschneider.awesome.custom.IEntityData;

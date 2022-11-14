@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.mixins;
+package io.github.shkschneider.awesome.mixins.recipes;
 
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;

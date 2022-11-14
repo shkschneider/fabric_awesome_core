@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.mixins;
+package io.github.shkschneider.awesome.mixins.recipes;
 
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;

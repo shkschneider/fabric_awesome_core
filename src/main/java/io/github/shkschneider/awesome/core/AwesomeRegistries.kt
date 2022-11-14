@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.context.CommandContext
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.custom.Permissions
-import io.github.shkschneider.awesome.mixins.BrewingRecipeRegistryMixin
+import io.github.shkschneider.awesome.mixins.recipes.BrewingRecipeRegistryMixin
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry

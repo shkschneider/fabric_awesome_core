@@ -4,17 +4,17 @@
   "package": "io.github.shkschneider.awesome.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "BowItemUseMixin",
-    "BrewingRecipeRegistryMixin",
-    "CraftingInventoryMixin",
-    "EntityNbtMixin",
-    "ItemAppendTooltipMixin",
-    "PlayerEntityDamageMixin",
-    "PlayerEntityGetXpToDropMixin",
-    "ServerPlayerEntityCopyFromMixin",
-    "SpawnerBlockOnStacksDroppedMixin",
-    "VillagerEntityInitMixin",
-    "VillagerEntityTickMixin"
+    "enchantments.BowItemUseMixin",
+    "entities.EntityNbtMixin",
+    "entities.VillagerEntityInitMixin",
+    "entities.VillagerEntityTickMixin",
+    "gamerules.ItemAppendTooltipMixin",
+    "gamerules.PlayerEntityDamageMixin",
+    "gamerules.PlayerEntityGetXpToDropMixin",
+    "gamerules.ServerPlayerEntityCopyFromMixin",
+    "gamerules.SpawnerBlockOnStacksDroppedMixin",
+    "recipes.BrewingRecipeRegistryMixin",
+    "recipes.CraftingInventoryMixin"
   ],
   "server": [
     "PlayerManagerOnPlayerConnectMixin"

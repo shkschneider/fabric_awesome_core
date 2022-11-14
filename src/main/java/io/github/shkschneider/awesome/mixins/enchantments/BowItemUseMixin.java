@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.mixins;
+package io.github.shkschneider.awesome.mixins.enchantments;
 
 import io.github.shkschneider.awesome.Awesome;
 import net.minecraft.enchantment.EnchantmentHelper;

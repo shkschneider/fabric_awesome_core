@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.mixins;
+package io.github.shkschneider.awesome.mixins.gamerules;
 
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
