@@ -16,9 +16,7 @@
     "recipes.BrewingRecipeRegistryMixin",
     "recipes.CraftingInventoryMixin"
   ],
-  "server": [
-    "PlayerManagerOnPlayerConnectMixin"
-  ],
+  "server": [],
   "client": [
     "IntegrationServerLoaderMixin",
     "LevelPropertiesGetLifecycleMixin",

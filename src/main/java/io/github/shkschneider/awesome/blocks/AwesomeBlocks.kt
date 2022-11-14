@@ -18,7 +18,7 @@ object AwesomeBlocks {
     }
 
     operator fun invoke() {
-        if (Minecraft.isDevelopment) {
+        if (Awesome.CONFIG.machines && Minecraft.isDevelopment) {
             FrameBlock()
             TesseractBlock()
         }

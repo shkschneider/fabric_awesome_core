@@ -153,10 +153,10 @@ object AwesomeItems {
         Lapis()
         Quartz()
         Redstone()
-        if (Awesome.CONFIG.items.imprisoner) {
+        if (Awesome.CONFIG.machines && Awesome.CONFIG.items.imprisoner) {
             Imprisoner()
         }
-        if (Awesome.CONFIG.items.prospector) {
+        if (Awesome.CONFIG.machines && Awesome.CONFIG.items.prospector) {
             Prospector()
         }
         ClientPlayConnectionEvents.DISCONNECT.register(ClientPlayConnectionEvents.Disconnect { _, client ->
