@@ -80,3 +80,4 @@ Enabled by default, but configurable:
 - 64 netherrack -> crusher -> 9 redstone (dust)
 - 1 coal block -> crusher -> 1 diamond dust
 - 1 randomium ore block (silk touched) -> smelter -> redstone flux
+- 1 cobblestone -> crusher -> 1 grave -> crusher -> 1 sand
