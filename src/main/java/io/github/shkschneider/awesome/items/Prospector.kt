@@ -4,6 +4,7 @@ import com.google.common.base.Predicates
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.core.AwesomeItem
+import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.Minecraft
 import io.github.shkschneider.awesome.core.ext.positions
 import io.github.shkschneider.awesome.core.ext.toBox
@@ -25,6 +26,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
 import net.minecraft.util.Hand
 import net.minecraft.util.Rarity
+import net.minecraft.util.TypeFilter
 import net.minecraft.util.TypedActionResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Box
@@ -41,10 +43,20 @@ class Prospector : AwesomeItem(
 
         const val ID = "prospector"
 
-        val EXPERIENCE = 1
-        val DURATION = AwesomeUtils.secondsToTicks(10)
-        val COOLDOWN = if (Minecraft.isDevelopment) AwesomeUtils.secondsToTicks(1) else DURATION * 2
-        val RANGE = Minecraft.CHUNK / 2 // ~4913 blocks
+        private val EXPERIENCE = 1
+        private val DURATION = AwesomeUtils.secondsToTicks(10)
+        private val COOLDOWN = if (Minecraft.isDevelopment) AwesomeUtils.secondsToTicks(1) else DURATION * 2
+        private val RANGE = Minecraft.CHUNK / 2 // ~4913 blocks
+        private val ENTITY = EntityType.SHULKER to ShulkerEntity::class.java
+
+        fun discardAll(world: ServerWorld, player: PlayerEntity?) {
+            world.getEntitiesByType(TypeFilter.instanceOf(ENTITY.second), Predicates.alwaysTrue())
+                .filter { it.scoreboardTags.contains(ID + if (player != null) "_${player.uuidAsString}" else "") }
+                .forEach { entity ->
+                    AwesomeLogger.debug("Killing Prospector.Entity{${entity.uuidAsString}} ${entity.blockPos}")
+                    entity.discard()
+                }
+        }
 
     }
 
@@ -52,7 +64,7 @@ class Prospector : AwesomeItem(
         PlayerBlockBreakEvents.BEFORE.register(PlayerBlockBreakEvents.Before { world, _, pos, _, _ ->
             // world.getClosestEntity(ShulkerEntity::class.java, TargetPredicate.createNonAttackable(), null, pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble(), pos.toBox(1.0))?.takeIf { it.scoreboardTags.contains(ID) }?.discard()
             // do not request only the closest as many entities might have spawn inside the same block during DURATION
-            world.getEntitiesByClass(ShulkerEntity::class.java, pos.toBox(0.1), Predicates.alwaysTrue())
+            world.getEntitiesByClass(ENTITY.second, pos.toBox(0.1), Predicates.alwaysTrue())
                 .filter { it.scoreboardTags.contains(ID) }.forEach { it.discard() }
             return@Before true
         })
@@ -66,15 +78,16 @@ class Prospector : AwesomeItem(
         if (world.isClient) return super.use(world, user, hand)
         if (user.isCreative.not() && user.experienceLevel < EXPERIENCE) return TypedActionResult.fail(user.mainHandStack)
         if (user.isCreative.not()) user.addExperienceLevels(-EXPERIENCE)
+        world.server?.getWorld(world.registryKey)?.let { discardAll(it, user) }
         // user.addStatusEffect(StatusEffectInstance(StatusEffects.NIGHT_VISION, DURATION))
         prospect(world as ServerWorld, user)
         user.itemCooldownManager.set(this, COOLDOWN)
         return TypedActionResult.success(user.mainHandStack)
     }
 
-    private fun prospectorEntity(world: ServerWorld, pos: BlockPos): LivingEntity? =
-        EntityType.SHULKER.spawn(world, NbtCompound(), null, null, pos.down(), SpawnReason.COMMAND, true, false)?.apply {
-            addScoreboardTag(ID)
+    private fun prospectorEntity(world: ServerWorld, pos: BlockPos, player: PlayerEntity): LivingEntity? =
+        ENTITY.first.spawn(world, NbtCompound(), null, null, pos.down(), SpawnReason.COMMAND, true, false)?.apply {
+            addScoreboardTag("${ID}_${player.uuidAsString}")
             clearGoalsAndTasks()
             isAiDisabled = true
             isGlowing = true
@@ -92,10 +105,9 @@ class Prospector : AwesomeItem(
             val state = world.getBlockState(pos)
             val block = state.block
             if (block is OreBlock || block is RedstoneOreBlock) {
-                val entity = prospectorEntity(world, pos) ?: return@forEach
-                // FIXME this might persist if disconnect etc.
+                val entity = prospectorEntity(world, pos, player) ?: return@forEach
                 Executors.newSingleThreadScheduledExecutor().schedule(Runnable {
-                    entity.discard()
+                   entity.discard()
                 }, AwesomeUtils.ticksToSeconds(DURATION).toLong(), TimeUnit.SECONDS)
                 world.spawnEntity(entity)
             }

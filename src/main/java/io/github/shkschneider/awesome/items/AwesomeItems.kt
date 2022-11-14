@@ -3,8 +3,10 @@ package io.github.shkschneider.awesome.items
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.Minecraft
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.item.Items
+import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Rarity
 
 object AwesomeItems {
@@ -157,6 +159,11 @@ object AwesomeItems {
         if (Awesome.CONFIG.items.prospector) {
             Prospector()
         }
+        ClientPlayConnectionEvents.DISCONNECT.register(ClientPlayConnectionEvents.Disconnect { _, client ->
+            val player = client.player ?: return@Disconnect
+            val world: ServerWorld = client.server?.getWorld(client.world?.registryKey) ?: return@Disconnect
+            Prospector.discardAll(world, player)
+        })
     }
 
 }
