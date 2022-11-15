@@ -20,6 +20,9 @@
         "adapter": "kotlin",
         "value": "io.github.shkschneider.awesome.Awesome"
       }
+    ],
+    "emi": [
+      "io.github.shkschneider.awesome.recipes.AwesomeEmiPlugin"
     ]
   },
   "mixins": [
