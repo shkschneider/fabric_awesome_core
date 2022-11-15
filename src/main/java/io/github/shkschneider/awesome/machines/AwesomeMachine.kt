@@ -24,7 +24,7 @@ import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 
 abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEntity>, BE : AwesomeMachineBlockEntity, SH : AwesomeMachineBlockScreen.Handler>(
-    id: Identifier,
+    val id: Identifier,
     private val slots: InputOutput.Slots,
     blockProvider: () -> B,
     blockEntityProvider: (BlockPos, BlockState) -> BE,

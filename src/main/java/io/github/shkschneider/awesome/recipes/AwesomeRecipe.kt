@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.recipes
 
-import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeUtils
+import io.github.shkschneider.awesome.core.ext.id
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.Recipe
@@ -26,13 +26,17 @@ class AwesomeRecipe<T : Inventory>(
         output
 
     override fun fits(width: Int, height: Int): Boolean =
-        true
+        true // TODO respect grid or false since machines
 
     override fun getOutput(): ItemStack =
         output
 
-    override fun getId(): Identifier =
-        AwesomeUtils.identifier("${Awesome.ID}_${output.item.name.string}")
+    override fun getId(): Identifier {
+        val inputId = inputs.first().item.id()
+        val outputId = output.item.id()
+        // modId:firstInput_output_n
+        return AwesomeUtils.identifier("${inputId.path}_${outputId.path}_${output.count}")
+    }
 
     override fun getSerializer(): RecipeSerializer<*> {
         throw NotImplementedError()

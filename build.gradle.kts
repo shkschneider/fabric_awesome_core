@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm") version "1.7.20"
-    id("fabric-loom") version "1.0-SNAPSHOT"
+    id("fabric-loom") version "1.0.10"
     `maven-publish`
     id("net.thauvin.erik.gradle.semver") version "1.0.4"
 }
@@ -15,11 +15,8 @@ group = property("maven_group")!!
 version = semver.version
 
 repositories {
-    // https://www.cursemaven.com
-    maven(url = "https://www.cursemaven.com")
-    // https://linkie.shedaniel.me/dependencies
-    maven(url = "https://maven.shedaniel.me")
-    maven(url = "https://maven.architectury.dev")
+    maven(url = "https://maven.terraformersmc.com") { name = "terraformers" }
+    maven(url = "https://www.cursemaven.com") { name = "curse" }
 }
 
 dependencies {
@@ -28,11 +25,10 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${property("fabric_loader")}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${property("fabric_kotlin")}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${property("fabric_api")}")
-    // https://linkie.shedaniel.me/dependencies
-    modRuntimeOnly("dev.architectury:architectury-fabric:6.3.49")
-    modRuntimeOnly("me.shedaniel:RoughlyEnoughItems-fabric:9.1.572")
+    // https://maven.terraformersmc.com/dev/emi/emi
+    modImplementation("dev.emi:emi:0.4.2+1.19") { exclude(group = "net.fabricmc.fabric-api") }
     // https://www.curseforge.com/minecraft/mc-mods/jade/files
-    modRuntimeOnly("curse.maven:jade-324717:4054977")
+    modRuntimeOnly("curse.maven:jade-324717:4054977") { exclude(group = "net.fabricmc.fabric-api") }
 }
 
 tasks {
@@ -70,6 +66,9 @@ tasks {
     }
 }
 
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
 java {
     withSourcesJar()
 }

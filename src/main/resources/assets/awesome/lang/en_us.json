@@ -15,6 +15,10 @@
   "block.awesome.tesseract": "Tesseract",
   "effect.minecraft.magnetism": "Magnetism",
   "effect.minecraft.paralysis": "Paralysis",
+  "emi.category.awesome.crusher": "Crusher",
+  "emi.category.awesome.infuser": "Infuser",
+  "emi.category.awesome.refinery": "Refinery",
+  "emi.category.awesome.smelter": "Smelter",
   "enchantment.awesome.experience": "Experience",
   "enchantment.awesome.ice_aspect": "Ice Aspect",
   "enchantment.awesome.magnetism": "Magnetism",
@@ -61,6 +65,9 @@
   "item.minecraft.splash_potion.effect.experience1": "Splash Potion of Experience (1)",
   "item.minecraft.splash_potion.effect.experience9": "Splash Potion of Experience (9)",
   "itemGroup.awesome.awesome": "Awesome",
+  "tag.awesome.chips": "Chips",
+  "tag.awesome.dusts": "Dusts",
+  "tag.awesome.powders": "Powders",
   "ui.awesome.new_day": "Day #",
   "ui.awesome.wants_to_sleep": "wants to sleep..."
 }

@@ -64,11 +64,11 @@ Almost everything is configurable:
 - [Actually Unbreaking](https://modrinth.com/mod/actually-unbreaking-fabric)
 - [Better Than Mending](https://modrinth.com/mod/better-than-mending)
 - [Blur](https://modrinth.com/mod/blur-fabric)
+- [EMI](https://modrinth.com/mod/emi)
 - [InvSee](https://modrinth.com/mod/invview)
 - [Lootr](https://www.curseforge.com/minecraft/mc-mods/lootr-fabric/)
 - [Mouse Wheelie](https://modrinth.com/mod/mouse-wheelie)
 - [Reacharound](https://modrinth.com/mod/reacharound)
-- [Roughly Enough Items](https://modrinth.com/mod/roughly-enough-items)
 - [You're in grave danger](https://modrinth.com/mod/yigd)
 - Any piping/transporting mod / [Create](https://modrinth.com/mod/create-fabric) ?
 
