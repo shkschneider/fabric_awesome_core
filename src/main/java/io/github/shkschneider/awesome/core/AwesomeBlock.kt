@@ -7,12 +7,14 @@ import net.minecraft.block.BlockEntityProvider
 import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
+import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemPlacementContext
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.registry.Registry
+import net.minecraft.world.World
 
 abstract class AwesomeBlock(
     val id: Identifier,
@@ -38,18 +40,22 @@ abstract class AwesomeBlock(
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState =
         defaultState
 
-    abstract class WithEntity(
+    abstract class WithEntity<BE : BlockEntity>(
         id: Identifier,
         settings: Settings,
         group: ItemGroup = Awesome.GROUP,
-    ) : AwesomeBlock(id, settings, group), BlockEntityProvider {
+    ) : AwesomeBlock(id, settings, group), BlockEntityProvider, BlockEntityTicker<BE> {
 
-        val entityType: BlockEntityType<out BlockEntity> = Registry.register(
+        val entityType: BlockEntityType<BE> = Registry.register(
             Registry.BLOCK_ENTITY_TYPE, id,
             FabricBlockEntityTypeBuilder.create({ pos, state -> createBlockEntity(pos, state) }, block).build(null)
         )
 
-        abstract override fun createBlockEntity(pos: BlockPos, state: BlockState): BlockEntity
+        abstract override fun createBlockEntity(pos: BlockPos, state: BlockState): BE
+
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : BlockEntity> getTicker(world: World, state: BlockState, type: BlockEntityType<T>): BlockEntityTicker<T> =
+            this as BlockEntityTicker<T>
 
     }
 
