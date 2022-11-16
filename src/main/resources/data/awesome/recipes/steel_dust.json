@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "awesome:iron_dust" },
+    { "item": "awesome:iron_dust" },
+    { "item": "awesome:iron_dust" },
+    { "item": "awesome:iron_dust" },
+    { "item": "awesome:iron_dust" },
+    { "item": "awesome:iron_dust" },
+    { "item": "awesome:iron_dust" },
+    { "item": "awesome:iron_dust" },
+    { "item": "awesome:coal_dust" }
+  ],
+  "result": {
+    "item": "awesome:steel_dust",
+    "count": 1
+  }
+}

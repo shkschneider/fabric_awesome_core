@@ -6,8 +6,8 @@
     "333"
   ],
   "key": {
-    "1": { "item": "minecraft:iron_ingot" },
-    "2": { "item": "awesome:tesseract" },
+    "1": { "item": "awesome:electrum_ingot" },
+    "2": { "item": "minecraft:redstone_block" },
     "3": { "item": "minecraft:iron_block" }
   },
   "result": {

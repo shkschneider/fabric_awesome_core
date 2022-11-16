@@ -22,6 +22,11 @@ object SmelterRecipes {
         AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeItems.Iron.dust, 1)), time = 20, ItemStack(Items.IRON_INGOT, 1)),
         AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeItems.Lapis.dust, 1)), time = 20, ItemStack(Items.LAPIS_LAZULI, 1)),
         AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeItems.Quartz.dust, 1)), time = 20, ItemStack(Items.QUARTZ, 1)),
+        AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeItems.Bronze.dust, 1)), time = 20, ItemStack(AwesomeItems.Bronze.ingot, 1)),
+        AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeItems.Electrum.dust, 1)), time = 20, ItemStack(AwesomeItems.Electrum.ingot, 1)),
+        AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeItems.Lead.dust, 1)), time = 20, ItemStack(AwesomeItems.Lead.ingot, 1)),
+        AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeItems.Nickel.dust, 1)), time = 20, ItemStack(AwesomeItems.Nickel.ingot, 1)),
+        AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeItems.Steel.dust, 1)), time = 20, ItemStack(AwesomeItems.Steel.ingot, 1)),
         // Raw -> Ingot
         AwesomeRecipe(SMELTING, listOf(ItemStack(Items.RAW_COPPER, 1)), time = 20, ItemStack(Items.COPPER_INGOT, 1)),
         AwesomeRecipe(SMELTING, listOf(ItemStack(Items.RAW_GOLD, 1)), time = 20, ItemStack(Items.GOLD_INGOT, 1)),

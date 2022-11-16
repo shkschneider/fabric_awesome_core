@@ -6,12 +6,12 @@
     "333"
   ],
   "key": {
-    "1": { "item": "minecraft:iron_ingot" },
-    "2": { "item": "awesome:frame" },
+    "1": { "item": "awesome:steel_ingot" },
+    "2": { "item": "awesome:smelter" },
     "3": { "item": "minecraft:iron_block" }
   },
   "result": {
-    "item": "awesome:smelter",
+    "item": "awesome:refinery",
     "count": 1
   }
 }

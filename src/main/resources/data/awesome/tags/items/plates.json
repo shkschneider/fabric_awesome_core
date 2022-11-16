@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "awesome:bronze_plate",
+    "awesome:electrum_plate",
+    "awesome:lead_plate",
+    "awesome:nickel_plate",
+    "awesome:steel_plate"
+  ]
+}

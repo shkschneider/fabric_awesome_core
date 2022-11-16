@@ -13,6 +13,8 @@ object AwesomeItems {
 
     private val settings = FabricItemSettings().maxCount(Minecraft.STACK).group(Awesome.GROUP).rarity(Rarity.COMMON)
 
+    //region Vanilla
+
     object Coal {
 
         private const val ID = "coal"
@@ -143,15 +145,23 @@ object AwesomeItems {
 
     }
 
-    //region alloys
+    //endregion
+
+    //region Alloys
 
     object Bronze { // 3 copper 1 lead
 
         private const val ID = "bronze"
 
-        val chip = AwesomeOres.Chip(ID, settings)
-        val dust = AwesomeOres.Dust(ID, settings)
-        val powder = AwesomeOres.Powder(ID, settings)
+        val chip = AwesomeMaterials.Chip(ID, settings)
+        val dust = AwesomeMaterials.Dust(ID, settings)
+        val powder = AwesomeMaterials.Powder(ID, settings)
+        val ingot = AwesomeMaterials.Ingot(ID, settings)
+        val plate = AwesomeMaterials.Plate(ID, settings)
+        val rod = AwesomeMaterials.Rod(ID, settings)
+        val frame = AwesomeMaterials.Frame(ID, settings)
+
+        operator fun invoke() = Unit
 
     }
 
@@ -159,19 +169,15 @@ object AwesomeItems {
 
         private const val ID = "electrum"
 
-        val chip = AwesomeOres.Chip(ID, settings)
-        val dust = AwesomeOres.Dust(ID, settings)
-        val powder = AwesomeOres.Powder(ID, settings)
+        val chip = AwesomeMaterials.Chip(ID, settings)
+        val dust = AwesomeMaterials.Dust(ID, settings)
+        val powder = AwesomeMaterials.Powder(ID, settings)
+        val ingot = AwesomeMaterials.Ingot(ID, settings)
+        val plate = AwesomeMaterials.Plate(ID, settings)
+        val rod = AwesomeMaterials.Rod(ID, settings)
+        val frame = AwesomeMaterials.Frame(ID, settings)
 
-    }
-
-    object Invar { // 2 iron 1 nickel
-
-        private const val ID = "invar"
-
-        val chip = AwesomeOres.Chip(ID, settings)
-        val dust = AwesomeOres.Dust(ID, settings)
-        val powder = AwesomeOres.Powder(ID, settings)
+        operator fun invoke() = Unit
 
     }
 
@@ -179,9 +185,15 @@ object AwesomeItems {
 
         private const val ID = "lead"
 
-        val chip = AwesomeOres.Chip(ID, settings)
-        val dust = AwesomeOres.Dust(ID, settings)
-        val powder = AwesomeOres.Powder(ID, settings)
+        val chip = AwesomeMaterials.Chip(ID, settings)
+        val dust = AwesomeMaterials.Dust(ID, settings)
+        val powder = AwesomeMaterials.Powder(ID, settings)
+        val ingot = AwesomeMaterials.Ingot(ID, settings)
+        val plate = AwesomeMaterials.Plate(ID, settings)
+        val rod = AwesomeMaterials.Rod(ID, settings)
+        val frame = AwesomeMaterials.Frame(ID, settings)
+
+        operator fun invoke() = Unit
 
     }
 
@@ -189,9 +201,15 @@ object AwesomeItems {
 
         private const val ID = "nickel"
 
-        val chip = AwesomeOres.Chip(ID, settings)
-        val dust = AwesomeOres.Dust(ID, settings)
-        val powder = AwesomeOres.Powder(ID, settings)
+        val chip = AwesomeMaterials.Chip(ID, settings)
+        val dust = AwesomeMaterials.Dust(ID, settings)
+        val powder = AwesomeMaterials.Powder(ID, settings)
+        val ingot = AwesomeMaterials.Ingot(ID, settings)
+        val plate = AwesomeMaterials.Plate(ID, settings)
+        val rod = AwesomeMaterials.Rod(ID, settings)
+        val frame = AwesomeMaterials.Frame(ID, settings)
+
+        operator fun invoke() = Unit
 
     }
 
@@ -199,9 +217,15 @@ object AwesomeItems {
 
         private const val ID = "steel"
 
-        val chip = AwesomeOres.Chip(ID, settings)
-        val dust = AwesomeOres.Dust(ID, settings)
-        val powder = AwesomeOres.Powder(ID, settings)
+        val chip = AwesomeMaterials.Chip(ID, settings)
+        val dust = AwesomeMaterials.Dust(ID, settings)
+        val powder = AwesomeMaterials.Powder(ID, settings)
+        val ingot = AwesomeMaterials.Ingot(ID, settings)
+        val plate = AwesomeMaterials.Plate(ID, settings)
+        val rod = AwesomeMaterials.Rod(ID, settings)
+        val frame = AwesomeMaterials.Frame(ID, settings)
+
+        operator fun invoke() = Unit
 
     }
 
@@ -222,6 +246,13 @@ object AwesomeItems {
         }
         if (Awesome.CONFIG.machines && Awesome.CONFIG.items.prospector) {
             Prospector()
+        }
+        if (Awesome.CONFIG.machines) {
+            Bronze()
+            Electrum()
+            Lead()
+            Nickel()
+            Steel()
         }
         ClientPlayConnectionEvents.DISCONNECT.register(ClientPlayConnectionEvents.Disconnect { _, client ->
             val player = client.player ?: return@Disconnect

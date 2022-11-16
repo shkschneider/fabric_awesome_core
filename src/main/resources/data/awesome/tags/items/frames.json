@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "awesome:bronze_frame",
+    "awesome:electrum_frame",
+    "awesome:lead_frame",
+    "awesome:nickel_frame",
+    "awesome:steel_frame"
+  ]
+}

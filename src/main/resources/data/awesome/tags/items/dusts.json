@@ -1,13 +1,18 @@
 {
   "replace": false,
   "values": [
-    "awesome:copper_dust",
+    "awesome:bronze_dust",
     "awesome:coal_dust",
+    "awesome:copper_dust",
     "awesome:diamond_dust",
+    "awesome:electrum_dust",
     "awesome:emerald_dust",
     "awesome:gold_dust",
     "awesome:iron_dust",
     "awesome:lapis_dust",
-    "awesome:quartz_dust"
+    "awesome:lead_dust",
+    "awesome:nickel_dust",
+    "awesome:quartz_dust",
+    "awesome:steel_dust"
   ]
 }

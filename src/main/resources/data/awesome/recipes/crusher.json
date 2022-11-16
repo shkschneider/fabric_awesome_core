@@ -6,7 +6,7 @@
     "333"
   ],
   "key": {
-    "1": { "item": "minecraft:iron_ingot" },
+    "1": { "item": "awesome:nickel_ingot" },
     "2": { "item": "minecraft:anvil" },
     "3": { "item": "minecraft:iron_block" }
   },

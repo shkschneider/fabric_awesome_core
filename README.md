@@ -22,6 +22,9 @@ _No dependency._
   - pvp
   - sleepingHeals
 - Awesome Machines
+  - collector
+  - crafter
+  - ore processing (1:1 1:2 1:3 1:4)
 - Awesome Potions
   - experience (1 to 9 levels)
 - Awesome WorldGen
@@ -42,10 +45,18 @@ Almost everything is configurable:
 ## Ore Processing
 
 - Base: 1ingot (crushing) 1dust (smelting) 1ingot
-- Tier0: 1raw (smelting) 1ingot
-- Tier1: 1raw (crushing) 4powder (crushing) 2dust (smelting) 2ingot
-- Tier2: 1raw (crushing) 4powder (infusing) 4dust (smelting) 4ingot
-- Tier3: 1ore (refining) 16chip (crushing) 8powder (infusing) 8dust (smelting) 8ingot
+- Tier1: 1raw (smelting) 1ingot
+- Tier2: 1raw (crushing) 4powder (crushing) 2dust (smelting) 2ingot
+- Tier3: 1raw (crushing) 4powder (infusing+gravel) 3dust (smelting) 3ingot
+- Tier4: 1ore (refining) 8chip (infusing+sand) 8powder (crushing) 4dust (smelting) 4ingot
+
+## Materials
+
+- Lead: 1 iron + 1 coal
+- Nickel: 3 iron + 1 coal
+- Steel: 8 iron + 1 coal
+- Electrum: 1 iron + 1 gold
+- Bronze: 3 copper + 1 lead
 
 ## Recipes
 

@@ -1,14 +1,19 @@
 {
   "replace": false,
   "values": [
-    "awesome:copper_chip",
+    "awesome:bronze_chip",
     "awesome:coal_chip",
+    "awesome:copper_chip",
     "awesome:diamond_chip",
+    "awesome:electrum_chip",
     "awesome:emerald_chip",
     "awesome:gold_chip",
     "awesome:iron_chip",
     "awesome:lapis_chip",
+    "awesome:lead_chip",
+    "awesome:nickel_chip",
     "awesome:quartz_chip",
-    "awesome:redstone_chip"
+    "awesome:redstone_chip",
+    "awesome:steel_chip"
   ]
 }

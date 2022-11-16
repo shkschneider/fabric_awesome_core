@@ -1,14 +1,19 @@
 {
   "replace": false,
   "values": [
-    "awesome:copper_powder",
+    "awesome:bronze_powder",
     "awesome:coal_powder",
+    "awesome:copper_powder",
     "awesome:diamond_powder",
+    "awesome:electrum_powder",
     "awesome:emerald_powder",
     "awesome:gold_powder",
     "awesome:iron_powder",
     "awesome:lapis_powder",
+    "awesome:lead_powder",
+    "awesome:nickel_powder",
     "awesome:quartz_powder",
-    "awesome:redstone_powder"
+    "awesome:redstone_powder",
+    "awesome:steel_powder"
   ]
 }
