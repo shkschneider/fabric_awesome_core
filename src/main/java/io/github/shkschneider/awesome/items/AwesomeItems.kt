@@ -143,6 +143,70 @@ object AwesomeItems {
 
     }
 
+    //region alloys
+
+    object Bronze { // 3 copper 1 lead
+
+        private const val ID = "bronze"
+
+        val chip = AwesomeOres.Chip(ID, settings)
+        val dust = AwesomeOres.Dust(ID, settings)
+        val powder = AwesomeOres.Powder(ID, settings)
+
+    }
+
+    object Electrum { // 1 iron 1 gold
+
+        private const val ID = "electrum"
+
+        val chip = AwesomeOres.Chip(ID, settings)
+        val dust = AwesomeOres.Dust(ID, settings)
+        val powder = AwesomeOres.Powder(ID, settings)
+
+    }
+
+    object Invar { // 2 iron 1 nickel
+
+        private const val ID = "invar"
+
+        val chip = AwesomeOres.Chip(ID, settings)
+        val dust = AwesomeOres.Dust(ID, settings)
+        val powder = AwesomeOres.Powder(ID, settings)
+
+    }
+
+    object Lead { // 1 iron 1 coal
+
+        private const val ID = "lead"
+
+        val chip = AwesomeOres.Chip(ID, settings)
+        val dust = AwesomeOres.Dust(ID, settings)
+        val powder = AwesomeOres.Powder(ID, settings)
+
+    }
+
+    object Nickel { // 3 iron 1 coal
+
+        private const val ID = "nickel"
+
+        val chip = AwesomeOres.Chip(ID, settings)
+        val dust = AwesomeOres.Dust(ID, settings)
+        val powder = AwesomeOres.Powder(ID, settings)
+
+    }
+
+    object Steel { // 8 iron 1 coal
+
+        private const val ID = "steel"
+
+        val chip = AwesomeOres.Chip(ID, settings)
+        val dust = AwesomeOres.Dust(ID, settings)
+        val powder = AwesomeOres.Powder(ID, settings)
+
+    }
+
+    //endregion
+
     operator fun invoke() {
         Copper()
         Coal()

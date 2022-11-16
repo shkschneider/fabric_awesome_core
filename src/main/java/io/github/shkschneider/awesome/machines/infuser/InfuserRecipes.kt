@@ -22,6 +22,10 @@ object InfuserRecipes {
         AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Redstone.powder, 1), ItemStack(AwesomeItems.Redstone.powder, 1)), time = 20, ItemStack(AwesomeItems.Redstone.dust, 2)),
         // RedstoneFlux
         AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Lapis.dust, 1), ItemStack(AwesomeItems.Redstone.dust, 1)), time = 20, ItemStack(AwesomeItems.Redstone.flux, 2)),
+        // Bronze
+        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Copper.dust, 4), ItemStack(AwesomeItems.Lead.dust, 1)), time = 20, ItemStack(AwesomeItems.Bronze.dust, 5)),
+        // Lead
+        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Iron.dust, 1), ItemStack(AwesomeItems.Coal.dust, 1)), time = 20, ItemStack(AwesomeItems.Lead.dust, 2)),
     )
 
 }
