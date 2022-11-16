@@ -2,10 +2,9 @@ package io.github.shkschneider.awesome.core
 
 import io.github.shkschneider.awesome.core.ext.readNbt
 import io.github.shkschneider.awesome.core.ext.writeNbt
-import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.Faces.Companion.relativeFace
 import io.github.shkschneider.awesome.custom.IInventory
-import io.github.shkschneider.awesome.custom.InputOutput
+import io.github.shkschneider.awesome.custom.MachinePorts
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
@@ -24,7 +23,7 @@ abstract class AwesomeBlockEntity(
     type: BlockEntityType<out AwesomeBlockEntity>,
     pos: BlockPos,
     private val state: BlockState,
-    private val slots: InputOutput.Slots,
+    private val ports: MachinePorts,
     delegates: Pair<Int, Int>,
 ) : BlockEntity(type, pos, state) {
 
@@ -66,25 +65,21 @@ abstract class AwesomeBlockEntity(
         type: BlockEntityType<out AwesomeBlockEntity>,
         pos: BlockPos,
         private val state: BlockState,
-        private val slots: InputOutput.Slots,
+        private val ports: MachinePorts,
         delegates: Pair<Int, Int>,
-    ) : AwesomeBlockEntity(id, type, pos, state, slots, delegates), IInventory, SidedInventory {
+    ) : AwesomeBlockEntity(id, type, pos, state, ports, delegates), IInventory, SidedInventory {
 
-        override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(slots.size, ItemStack.EMPTY)
+        override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(ports.size, ItemStack.EMPTY)
 
         override fun getAvailableSlots(side: Direction?): IntArray =
-            (0 until slots.size).toList().toIntArray()
+            (0 until ports.size).toList().toIntArray()
 
-        override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean {
-            dir ?: return false
-            val face = dir.relativeFace(state)
-            return slots.isOutput(slot).not() && (face == Faces.Top || face is Faces.Side)
-        }
+        override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
+            if (dir == null) ports.isInput(slot)
+            else ports.canInsert(slot, dir.relativeFace(state))
 
-        override fun canExtract(slot: Int, stack: ItemStack, dir: Direction): Boolean {
-            val face = dir.relativeFace(state)
-            return slots.isOutput(slot) && face == Faces.Bottom
-        }
+        override fun canExtract(slot: Int, stack: ItemStack, dir: Direction): Boolean =
+            ports.canExtract(slot, dir.relativeFace(state))
 
         override fun writeNbt(nbt: NbtCompound) {
             super.writeNbt(nbt)

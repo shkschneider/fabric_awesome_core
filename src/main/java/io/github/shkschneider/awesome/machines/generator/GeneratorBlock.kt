@@ -28,8 +28,8 @@ class GeneratorBlock(settings: Settings) : AwesomeMachineBlock<GeneratorBlock.En
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
         Generator.ID, AwesomeMachines.generator.entityType,
         pos, state, Generator.SLOTS, emptyList(),
-        screenHandlerProvider = { syncId, inventories, properties ->
-            GeneratorScreen.Handler(syncId, inventories, properties)
+        screenHandlerProvider = { syncId, sidedInventory, playerInventory, properties ->
+            GeneratorScreen.Handler(syncId, sidedInventory, playerInventory, properties)
         },
     )
 

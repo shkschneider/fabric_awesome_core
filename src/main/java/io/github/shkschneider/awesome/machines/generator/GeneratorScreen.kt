@@ -1,10 +1,10 @@
 package io.github.shkschneider.awesome.machines.generator
 
-import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.inventory.SidedInventory
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.text.Text
 
@@ -29,10 +29,11 @@ class GeneratorScreen(
 
     class Handler(
         syncId: Int,
-        inventories: InputOutput.Inventories,
+        sidedInventory: SidedInventory,
+        playerInventory: PlayerInventory,
         properties: PropertyDelegate,
     ) : AwesomeMachineBlockScreen.Handler(
-        AwesomeMachines.generator.screen, syncId, inventories, properties
+        AwesomeMachines.generator.screen, syncId, sidedInventory, playerInventory, properties
     ) {
 
         init {

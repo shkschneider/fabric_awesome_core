@@ -3,7 +3,8 @@ package io.github.shkschneider.awesome.machines
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.Minecraft
-import io.github.shkschneider.awesome.custom.InputOutput
+import io.github.shkschneider.awesome.custom.MachinePorts
+import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.minecraft.block.BlockState
@@ -12,7 +13,7 @@ import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.client.gui.screen.ingame.HandledScreen
 import net.minecraft.client.gui.screen.ingame.HandledScreens
 import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.inventory.SimpleInventory
+import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.BlockItem
 import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.ScreenHandlerType
@@ -25,11 +26,11 @@ import net.minecraft.world.World
 
 abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEntity>, BE : AwesomeMachineBlockEntity, SH : AwesomeMachineBlockScreen.Handler>(
     val id: Identifier,
-    val slots: InputOutput.Slots,
+    val ports: MachinePorts,
     blockProvider: () -> B,
     blockEntityProvider: (BlockPos, BlockState) -> BE,
     private val screenProvider: (SH, PlayerInventory, Text) -> HandledScreen<SH>,
-    private val screenHandlerProvider: (Int, InputOutput.Inventories, ArrayPropertyDelegate) -> SH,
+    private val screenHandlerProvider: (Int, SidedInventory, PlayerInventory, ArrayPropertyDelegate) -> SH,
 ) : BlockEntityTicker<BE> {
 
     val block: B =
@@ -48,7 +49,7 @@ abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEnt
         if (Minecraft.isClient) {
             _screen = ScreenHandlerType { syncId, playerInventory ->
                 // empty things to get sync'ed
-                screenHandlerProvider(syncId, InputOutput.Inventories(SimpleInventory(slots.size), playerInventory), ArrayPropertyDelegate(AwesomeMachineBlockEntity.PROPERTIES))
+                screenHandlerProvider(syncId, SimpleSidedInventory(ports.size), playerInventory, ArrayPropertyDelegate(AwesomeMachineBlockEntity.PROPERTIES))
             }
             HandledScreens.register(screen) { handler, inventory, title ->
                 screenProvider(handler, inventory, title)

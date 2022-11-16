@@ -2,12 +2,12 @@ package io.github.shkschneider.awesome.core
 
 import com.mojang.blaze3d.systems.RenderSystem
 import io.github.shkschneider.awesome.AwesomeUtils
-import io.github.shkschneider.awesome.custom.InputOutput
 import net.minecraft.client.gui.screen.ingame.HandledScreen
 import net.minecraft.client.render.GameRenderer
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandler
@@ -53,20 +53,21 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
     abstract class Handler(
         screen: ScreenHandlerType<*>,
         syncId: Int,
-        private val inventories: InputOutput.Inventories,
+        private val sidedInventory: SidedInventory,
+        private val playerInventory: PlayerInventory,
         protected val properties: PropertyDelegate,
     ) : ScreenHandler(screen, syncId) {
 
         init {
             // addProperties(properties)
-            inventories.internal.onOpen(inventories.player.player)
+            sidedInventory.onOpen(playerInventory.player)
             // addSlots(...)
             // addPlayerSlots()
         }
 
         fun addSlots(vararg slots: Pair<Int, Int>) {
             slots.forEachIndexed { index, pair ->
-                addSlot(Slot(inventories.internal, index, pair.first, pair.second))
+                addSlot(Slot(sidedInventory, index, pair.first, pair.second))
             }
         }
 
@@ -75,12 +76,12 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
             // inventory
             for (i in 0..2) {
                 for (l in 0..8) {
-                    addSlot(Slot(inventories.player, l + i * 9 + 9, 8 + l * 18, 84 + i * 18))
+                    addSlot(Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18))
                 }
             }
             // hotbar
             for (i in 0..8) {
-                addSlot(Slot(inventories.player, i, 8 + i * 18, 142))
+                addSlot(Slot(playerInventory, i, 8 + i * 18, 142))
             }
         }
 
@@ -94,11 +95,11 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
         override fun transferSlot(player: PlayerEntity, i: Int): ItemStack {
             val slot = slots.getOrNull(i)?.takeIf { it.hasStack() } ?: return ItemStack.EMPTY
             val stack = slot.stack.copy()
-            if (i < inventories.internal.size()) {
-                if (!insertItem(slot.stack, inventories.internal.size(), slots.size, true)) {
+            if (i < sidedInventory.size()) {
+                if (!insertItem(slot.stack, sidedInventory.size(), slots.size, true)) {
                     return ItemStack.EMPTY
                 }
-            } else if (!insertItem(slot.stack, 0, inventories.internal.size(), false)) {
+            } else if (!insertItem(slot.stack, 0, sidedInventory.size(), false)) {
                 return ItemStack.EMPTY
             }
             slot.markDirty()
@@ -106,7 +107,7 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
         }
 
         override fun canUse(player: PlayerEntity): Boolean =
-            inventories.internal.canPlayerUse(player)
+            sidedInventory.canPlayerUse(player)
 
     }
 

@@ -2,7 +2,7 @@ package io.github.shkschneider.awesome.machines.generator
 
 import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.core.Minecraft
-import io.github.shkschneider.awesome.custom.InputOutput
+import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -15,7 +15,7 @@ import net.minecraft.world.World
 
 class Generator : AwesomeMachine<GeneratorBlock, GeneratorBlock.Entity, GeneratorScreen.Handler>(
     id = AwesomeUtils.identifier(ID),
-    slots = SLOTS,
+    ports = SLOTS,
     blockProvider = {
         GeneratorBlock(FabricBlockSettings.copyOf(Blocks.FURNACE))
     },
@@ -25,15 +25,15 @@ class Generator : AwesomeMachine<GeneratorBlock, GeneratorBlock.Entity, Generato
     screenProvider = { handler, inventory, title ->
         GeneratorScreen(ID, handler, inventory, title)
     },
-    screenHandlerProvider = { syncId, inventories, properties ->
-        GeneratorScreen.Handler(syncId, inventories, properties)
+    screenHandlerProvider = { syncId, sidedInventory, playerInventory, properties ->
+        GeneratorScreen.Handler(syncId, sidedInventory, playerInventory, properties)
     },
 ) {
 
     companion object {
 
         const val ID = "generator"
-        val SLOTS = InputOutput.Slots(inputs = 1, outputs = 0)
+        val SLOTS = MachinePorts(inputs = 1, outputs = 0)
         const val INPUT = 0
         val IGNITE = Minecraft.TICKS
 

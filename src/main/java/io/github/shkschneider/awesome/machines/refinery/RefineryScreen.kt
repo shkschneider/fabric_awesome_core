@@ -1,10 +1,10 @@
 package io.github.shkschneider.awesome.machines.refinery
 
-import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.inventory.SidedInventory
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.text.Text
 import kotlin.math.roundToInt
@@ -23,10 +23,11 @@ class RefineryScreen(
             val progress = (handler.percent * 24.0).roundToInt()
             drawTexture(matrices, x + 80 - 1, y + 36 - 1, 176, 15, progress, 30 - 15)
         }
+        drawPorts(matrices, Refinery.PORTS)
     }
 
-    class Handler(syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) : AwesomeMachineBlockScreen.Handler(
-        AwesomeMachines.refinery.screen, syncId, inventories, properties
+    class Handler(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : AwesomeMachineBlockScreen.Handler(
+        AwesomeMachines.refinery.screen, syncId, sidedInventory, playerInventory, properties
     ) {
 
         init {

@@ -3,9 +3,11 @@ package io.github.shkschneider.awesome.machines
 import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.core.AwesomeBlockScreen
 import io.github.shkschneider.awesome.core.AwesomeColors
-import io.github.shkschneider.awesome.custom.InputOutput
+import io.github.shkschneider.awesome.custom.Faces
+import io.github.shkschneider.awesome.custom.MachinePorts
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.inventory.SidedInventory
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.state.property.Properties
@@ -36,12 +38,35 @@ abstract class AwesomeMachineBlockScreen<SH : AwesomeMachineBlockScreen.Handler>
     open fun getPowerToDraw(power: Int) =
         handler.power * 55 / Properties.POWER.values.max()
 
+    protected fun drawPorts(matrices: MatrixStack, ports: MachinePorts) {
+        val input = 177 to 91
+        val output = 177 to 101
+        val w = 161 - 153
+        val h = 12 - 4
+        if (ports.inputs.second.any { it is Faces.Top }) {
+            drawTexture(matrices, x + 153, y + 4, input.first, input.second, w, h)
+        }
+        if (ports.inputs.second.any { it is Faces.Side && it.left }) {
+            drawTexture(matrices, x + 143, y + 14, input.first, input.second, w, h)
+        }
+        if (ports.inputs.second.any { it is Faces.Side && it.right }) {
+            drawTexture(matrices, x + 163, y + 14, input.first, input.second, w, h)
+        }
+        if (ports.outputs.second.any { it is Faces.Bottom }) {
+            drawTexture(matrices, x + 153, y + 24, output.first, output.second, w, h)
+        }
+        if (ports.outputs.second.any { it is Faces.Back }) {
+            drawTexture(matrices, x + 163, y + 24, output.first, output.second, w, h)
+        }
+    }
+
     abstract class Handler(
         screen: ScreenHandlerType<*>,
         syncId: Int,
-        inventories: InputOutput.Inventories,
+        sidedInventory: SidedInventory,
+        playerInventory: PlayerInventory,
         properties: PropertyDelegate,
-    ) : AwesomeBlockScreen.Handler(screen, syncId, inventories, properties) {
+    ) : AwesomeBlockScreen.Handler(screen, syncId, sidedInventory, playerInventory, properties) {
 
         val power: Int get() = properties[0]
         val progress: Int get() = properties[1]

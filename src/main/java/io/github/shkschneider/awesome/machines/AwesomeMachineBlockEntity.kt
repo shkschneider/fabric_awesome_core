@@ -2,13 +2,13 @@ package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.core.AwesomeBlockEntity
-import io.github.shkschneider.awesome.custom.InputOutput
+import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.recipes.AwesomeRecipe
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.inventory.Inventory
+import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.screen.PropertyDelegate
@@ -21,10 +21,10 @@ abstract class AwesomeMachineBlockEntity(
     type: BlockEntityType<out AwesomeMachineBlockEntity>,
     pos: BlockPos,
     state: BlockState,
-    slots: InputOutput.Slots,
+    private val ports: MachinePorts,
     private val recipes: List<AwesomeRecipe<out AwesomeMachineBlockEntity>>,
-    private val screenHandlerProvider: (syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) -> AwesomeMachineBlockScreen.Handler,
-) : AwesomeBlockEntity.WithInventory(id, type, pos, state, slots, PROPERTIES to 0), NamedScreenHandlerFactory {
+    private val screenHandlerProvider: (syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) -> AwesomeMachineBlockScreen.Handler,
+) : AwesomeBlockEntity.WithInventory(id, type, pos, state, ports, PROPERTIES to 0), NamedScreenHandlerFactory {
 
     //region Properties
 
@@ -64,7 +64,7 @@ abstract class AwesomeMachineBlockEntity(
         Text.translatable(AwesomeUtils.translatable("block", id))
 
     override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): AwesomeMachineBlockScreen.Handler =
-        screenHandlerProvider(syncId, InputOutput.Inventories(this as Inventory, playerInventory), properties)
+        screenHandlerProvider(syncId, this as SidedInventory, playerInventory, properties)
 
     //endregion
 

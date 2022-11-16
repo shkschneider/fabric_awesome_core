@@ -17,10 +17,12 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay
+import me.shedaniel.rei.api.common.entry.EntryIngredient
 import me.shedaniel.rei.api.common.util.EntryIngredients
 import me.shedaniel.rei.api.common.util.EntryStacks
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
+import net.minecraft.recipe.Ingredient
 import net.minecraft.text.Text
 import kotlin.math.max
 
@@ -57,7 +59,7 @@ class AwesomeReiCategory(
     private val machine: AwesomeMachine<*, *, *>,
 ) : DisplayCategory<AwesomeReiDisplay> {
 
-    private val max: Int = max(machine.slots.inputs, machine.slots.outputs)
+    private val max: Int = max(machine.ports.inputs.first, machine.ports.outputs.first)
 
     override fun getCategoryIdentifier(): CategoryIdentifier<out AwesomeReiDisplay> =
         CategoryIdentifier.of(machine.id.namespace, machine.id.path)
@@ -84,7 +86,7 @@ class AwesomeReiCategory(
 }
 
 class AwesomeReiDisplay(
-    val category: CategoryIdentifier<*>,
+    private val category: CategoryIdentifier<*>,
     val recipe: AwesomeRecipe<*>,
 ) : BasicDisplay(
     EntryIngredients.ofIngredients(recipe.ingredients),
@@ -93,5 +95,13 @@ class AwesomeReiDisplay(
 
     override fun getCategoryIdentifier(): CategoryIdentifier<*> =
         category
+
+    override fun getInputEntries(): MutableList<EntryIngredient> = buildList {
+        recipe.inputs.forEach { add(EntryIngredients.ofIngredient(Ingredient.ofStacks(it))) }
+    }.toMutableList()
+
+    override fun getOutputEntries(): MutableList<EntryIngredient> = buildList {
+        add(EntryIngredients.ofIngredient(Ingredient.ofStacks(recipe.output)))
+    }.toMutableList()
 
 }

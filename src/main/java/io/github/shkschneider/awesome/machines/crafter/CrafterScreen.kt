@@ -1,11 +1,11 @@
 package io.github.shkschneider.awesome.machines.crafter
 
-import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.slot.Slot
@@ -31,10 +31,11 @@ class CrafterScreen(
 
     class Handler(
         syncId: Int,
-        private val inventories: InputOutput.Inventories,
+        private val sidedInventory: SidedInventory,
+        private val playerInventory: PlayerInventory,
         properties: PropertyDelegate,
     ) : AwesomeMachineBlockScreen.Handler(
-        AwesomeMachines.crafter.screen, syncId, inventories, properties
+        AwesomeMachines.crafter.screen, syncId, sidedInventory, playerInventory, properties
     ) {
 
         init {
@@ -53,13 +54,13 @@ class CrafterScreen(
         }
 
         override fun canInsertIntoSlot(stack: ItemStack, slot: Slot): Boolean =
-            canInsertIntoSlot(slot) && (inventories.internal.containsAny { it.isEmpty || it.item == stack.item })
+            canInsertIntoSlot(slot) && (sidedInventory.containsAny { it.isEmpty || it.item == stack.item })
 
         override fun canInsertIntoSlot(slot: Slot): Boolean =
-            Crafter.SLOTS.isInput(slot.index) && (slot.index < Crafter.INVENTORY || slot.index >= Crafter.SLOTS.size)
+            Crafter.PORTS.isInput(slot.index) && (slot.index < Crafter.INVENTORY || slot.index >= Crafter.PORTS.size)
 
         override fun onSlotClick(slotIndex: Int, button: Int, actionType: SlotActionType, player: PlayerEntity) {
-            if (slotIndex in (Crafter.INVENTORY until Crafter.SLOTS.inputs)) {
+            if (slotIndex in (Crafter.INVENTORY until Crafter.PORTS.inputs.first)) {
                 slots[slotIndex].stack = ItemStack(cursorStack.item, 1)
             } else {
                 super.onSlotClick(slotIndex, button, actionType, player)
@@ -67,9 +68,9 @@ class CrafterScreen(
         }
 
         override fun transferSlot(player: PlayerEntity, i: Int): ItemStack =
-            if (i in (0 until Crafter.INVENTORY) || i == Crafter.SLOTS.size - 1) {
+            if (i in (0 until Crafter.INVENTORY) || i == Crafter.PORTS.size - 1) {
                 super.transferSlot(player, i)
-            } else if (i >= Crafter.SLOTS.size) {
+            } else if (i >= Crafter.PORTS.size) {
                 internalTransferSlot(i)
             } else {
                 ItemStack.EMPTY

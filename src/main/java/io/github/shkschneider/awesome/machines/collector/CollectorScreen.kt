@@ -1,10 +1,10 @@
 package io.github.shkschneider.awesome.machines.collector
 
-import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachines
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.inventory.SidedInventory
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.slot.SlotActionType
 import net.minecraft.text.Text
@@ -16,8 +16,8 @@ class CollectorScreen(
     title: Text,
 ) : AwesomeMachineBlockScreen<CollectorScreen.Handler>(name, handler, playerInventory, title) {
 
-    class Handler(syncId: Int, inventories: InputOutput.Inventories, properties: PropertyDelegate) : AwesomeMachineBlockScreen.Handler(
-        AwesomeMachines.collector.screen, syncId, inventories, properties
+    class Handler(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : AwesomeMachineBlockScreen.Handler(
+        AwesomeMachines.collector.screen, syncId, sidedInventory, playerInventory, properties
     ) {
 
         init {
@@ -31,7 +31,7 @@ class CollectorScreen(
         }
 
         override fun onSlotClick(slotIndex: Int, button: Int, actionType: SlotActionType, player: PlayerEntity) {
-            if (slotIndex in 0 until Collector.SLOTS.inputs) {
+            if (slotIndex in 0 until Collector.PORTS.inputs.first) {
                 {}
             } else {
                 super.onSlotClick(slotIndex, button, actionType, player)

@@ -15,9 +15,9 @@ class CrusherBlock(settings: Settings) : AwesomeMachineBlock<CrusherBlock.Entity
 
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
         Crusher.ID, AwesomeMachines.crusher.entityType,
-        pos, state, Crusher.SLOTS, Crusher.RECIPES,
-        screenHandlerProvider = { syncId, inventories, properties ->
-            CrusherScreen.Handler(syncId, inventories, properties)
+        pos, state, AwesomeMachines.crusher.ports, Crusher.RECIPES,
+        screenHandlerProvider = { syncId, sidedInventory, playerInventory, properties ->
+            CrusherScreen.Handler(syncId, sidedInventory, playerInventory, properties)
         },
     )
 
