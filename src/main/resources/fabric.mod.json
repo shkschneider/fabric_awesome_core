@@ -21,6 +21,9 @@
         "value": "io.github.shkschneider.awesome.Awesome"
       }
     ],
+    "rei_client": [
+      "io.github.shkschneider.awesome.recipes.AwesomeReiPlugin"
+    ],
     "emi": [
       "io.github.shkschneider.awesome.recipes.AwesomeEmiPlugin"
     ]

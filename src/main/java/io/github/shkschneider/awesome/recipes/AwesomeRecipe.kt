@@ -4,10 +4,12 @@ import io.github.shkschneider.awesome.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.id
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
+import net.minecraft.recipe.Ingredient
 import net.minecraft.recipe.Recipe
 import net.minecraft.recipe.RecipeSerializer
 import net.minecraft.recipe.RecipeType
 import net.minecraft.util.Identifier
+import net.minecraft.util.collection.DefaultedList
 import net.minecraft.world.World
 
 class AwesomeRecipe<T : Inventory>(
@@ -26,7 +28,14 @@ class AwesomeRecipe<T : Inventory>(
         output
 
     override fun fits(width: Int, height: Int): Boolean =
-        true // TODO respect grid or false since machines
+        width * height <= inputs.size
+
+    override fun getIngredients(): DefaultedList<Ingredient> =
+        DefaultedList.ofSize<Ingredient>(inputs.size).apply {
+            inputs.forEach { input ->
+                add(Ingredient.ofStacks(input))
+            }
+        }
 
     override fun getOutput(): ItemStack =
         output

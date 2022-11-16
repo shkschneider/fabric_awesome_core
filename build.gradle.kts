@@ -17,6 +17,8 @@ version = semver.version
 repositories {
     maven(url = "https://maven.terraformersmc.com") { name = "terraformers" }
     maven(url = "https://www.cursemaven.com") { name = "curse" }
+    maven(url = "https://maven.shedaniel.me") { name = "shedaniel" }
+    maven(url = "https://maven.architectury.dev") { name = "architectury" }
 }
 
 dependencies {
@@ -27,6 +29,11 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${property("fabric_api")}")
     // https://maven.terraformersmc.com/dev/emi/emi
     modImplementation("dev.emi:emi:0.4.2+1.19") { exclude(group = "net.fabricmc.fabric-api") }
+    // https://linkie.shedaniel.me/dependencies
+    modRuntimeOnly("dev.architectury:architectury-fabric:6.3.49") { exclude(group = "net.fabricmc.fabric-api") }
+    modRuntimeOnly("me.shedaniel:RoughlyEnoughItems-fabric:9.1.572") { exclude(group = "net.fabricmc.fabric-api") }
+    modCompileOnly("me.shedaniel:RoughlyEnoughItems-api-fabric:9.1.572") { exclude(group = "net.fabricmc.fabric-api") }
+    modCompileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:9.1.572") { exclude(group = "net.fabricmc.fabric-api") }
     // https://www.curseforge.com/minecraft/mc-mods/jade/files
     modRuntimeOnly("curse.maven:jade-324717:4054977") { exclude(group = "net.fabricmc.fabric-api") }
 }

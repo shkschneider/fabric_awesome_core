@@ -25,7 +25,7 @@ import net.minecraft.world.World
 
 abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEntity>, BE : AwesomeMachineBlockEntity, SH : AwesomeMachineBlockScreen.Handler>(
     val id: Identifier,
-    private val slots: InputOutput.Slots,
+    val slots: InputOutput.Slots,
     blockProvider: () -> B,
     blockEntityProvider: (BlockPos, BlockState) -> BE,
     private val screenProvider: (SH, PlayerInventory, Text) -> HandledScreen<SH>,
