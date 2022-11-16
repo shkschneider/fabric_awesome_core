@@ -19,7 +19,6 @@ object AwesomeBlocks {
 
     operator fun invoke() {
         if (Awesome.CONFIG.machines && Minecraft.isDevelopment) {
-            FrameBlock()
             TesseractBlock()
         }
         if (Awesome.CONFIG.worldGen.randomium) {

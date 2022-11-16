@@ -59,7 +59,7 @@ class Awesome : ModInitializer {
         @SerializedName("entities") val entities: Entities = Entities(),
         @SerializedName("gamerules") val gameRules: GameRules = GameRules(),
         @SerializedName("items") val items: Items = Items(),
-        @SerializedName("machines") val machines: Boolean = true,
+        @SerializedName("machines") val machines: Boolean = false,
         @SerializedName("potions") val potions: Potions = Potions(),
         @SerializedName("recipes") val recipes: Recipes = Recipes(),
         @SerializedName("splashBlackBackground") val splashBlackBackground: Boolean = true,
@@ -85,7 +85,7 @@ class Awesome : ModInitializer {
 
         data class Items(
             @SerializedName("imprisoner") val imprisoner: Boolean = true,
-            @SerializedName("prospector") val prospector: Boolean = true,
+            @SerializedName("prospector") val prospector: Boolean = false,
         )
 
         data class Potions(

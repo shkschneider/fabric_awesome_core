@@ -55,7 +55,7 @@ Almost everything is configurable:
 - Optional: 1cobblestone (crushing) 1gravel (crushing) 1sand
 - Optional: 1randomiumore (smelting) 1redstoneflux
 - Optional: 64netherrack (crushing) 9redstone(dust)
-- Optional: prospector
+- Optional: prospector (to make ores glow)
 
 ## Vanilla++
 
