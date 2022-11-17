@@ -6,12 +6,12 @@
     "333"
   ],
   "key": {
-    "1": { "item": "awesome:bronze_plate" },
+    "1": { "item": "awesome:electrum_frame" },
     "2": { "item": "minecraft:redstone_block" },
-    "3": { "item": "awesome:bronze_frame" }
+    "3": { "item": "minecraft:obsidian" }
   },
   "result": {
-    "item": "awesome:generator",
+    "item": "awesome:tesseract",
     "count": 1
   }
 }
