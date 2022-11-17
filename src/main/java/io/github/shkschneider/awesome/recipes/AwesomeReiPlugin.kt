@@ -74,14 +74,14 @@ class AwesomeReiCategory(
         add(Widgets.createRecipeBase(bounds))
         // 1px + 16px + 1px = 18
         inputs.forEachIndexed { index, input ->
-            add(Widgets.createSlot(Point(bounds.x + bounds.width / 2 - 24 / 2 - 18 * 2, bounds.y + 18 * (index + 1) - 2)).entry(input).markInput())
+            add(Widgets.createSlot(Point(bounds.x + bounds.width / 2 - 24 / 2 - 18 * 2, bounds.y + 18 / 2 + 18 * index)).entry(input).markInput())
         }
         add(Widgets.createArrow(Point(bounds.centerX - 24 / 2, bounds.centerY - 18 / 2))) // 24x17
         add(Widgets.createSlot(Point(bounds.centerX + 24 / 2 + 18 * 1, bounds.centerY - 18 / 2)).entries(outputs).markInput())
     }.toMutableList()
 
     override fun getDisplayHeight(): Int =
-        (super.getDisplayHeight() / 2) * max
+        18 / 2 + 18 * max + 18 / 2
 
 }
 

@@ -30,8 +30,8 @@ dependencies {
     // https://maven.terraformersmc.com/dev/emi/emi
     modImplementation("dev.emi:emi:0.4.2+1.19") { exclude(group = "net.fabricmc.fabric-api") }
     // https://linkie.shedaniel.me/dependencies
-    modImplementation("dev.architectury:architectury-fabric:6.3.49") { exclude(group = "net.fabricmc.fabric-api") }
-    modImplementation("me.shedaniel:RoughlyEnoughItems-fabric:9.1.572") { exclude(group = "net.fabricmc.fabric-api") }
+    modCompileOnly("dev.architectury:architectury-fabric:6.3.49") { exclude(group = "net.fabricmc.fabric-api") }
+    modCompileOnly("me.shedaniel:RoughlyEnoughItems-fabric:9.1.572") { exclude(group = "net.fabricmc.fabric-api") }
     modCompileOnly("me.shedaniel:RoughlyEnoughItems-api-fabric:9.1.572") { exclude(group = "net.fabricmc.fabric-api") }
     modCompileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:9.1.572") { exclude(group = "net.fabricmc.fabric-api") }
     // https://www.curseforge.com/minecraft/mc-mods/jade/files
