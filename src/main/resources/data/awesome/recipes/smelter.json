@@ -6,9 +6,9 @@
     "333"
   ],
   "key": {
-    "1": { "item": "awesome:lead_ingot" },
+    "1": { "item": "awesome:lead_plate" },
     "2": { "item": "minecraft:furnace" },
-    "3": { "item": "minecraft:iron_block" }
+    "3": { "item": "awesome:lead_frame" }
   },
   "result": {
     "item": "awesome:smelter",

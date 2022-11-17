@@ -6,9 +6,9 @@
     "333"
   ],
   "key": {
-    "1": { "item": "awesome:electrum_ingot" },
+    "1": { "item": "awesome:electrum_plate" },
     "2": { "item": "minecraft:redstone_block" },
-    "3": { "item": "minecraft:iron_block" }
+    "3": { "item": "awesome:electrum_frame" }
   },
   "result": {
     "item": "awesome:generator",

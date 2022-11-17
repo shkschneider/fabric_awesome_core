@@ -39,7 +39,7 @@ class AwesomeMachineTicker(
 
     fun craft(recipe: AwesomeRecipe<out Inventory>) {
         getInputs().forEachIndexed { i, _ ->
-            inventory.removeStack(i, recipe.inputs.first().count)
+            inventory.removeStack(i, recipe.inputs[i].count)
         }
         getOutputs().firstOrNull { it.second.isEmpty || it.second.count + recipe.output.count <= it.second.maxCount }?.let {
             inventory.setStack(it.first, recipe.output.copy().apply { count += it.second.count })

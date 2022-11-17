@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "232",
+    "313",
+    "232"
+  ],
+  "key": {
+    "1": { "item": "awesome:electrum_ingot" },
+    "2": { "item": "awesome:electrum_rod" },
+    "3": { "item": "awesome:electrum_plate" }
+  },
+  "result": {
+    "item": "awesome:electrum_frame",
+    "count": 1
+  }
+}
