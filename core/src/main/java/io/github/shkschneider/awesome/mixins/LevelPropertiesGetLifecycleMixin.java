@@ -1,6 +1,8 @@
 package io.github.shkschneider.awesome.mixins;
 
 import com.mojang.serialization.Lifecycle;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.world.level.LevelProperties;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * License: LGPL3
  * Source: https://github.com/Parzivail-Modding-Team/HereBeNoDragons
  */
+@Environment(EnvType.CLIENT)
 @Mixin(LevelProperties.class)
 public class LevelPropertiesGetLifecycleMixin {
 

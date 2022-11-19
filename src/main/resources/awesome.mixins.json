@@ -17,13 +17,7 @@
     "recipes.CraftingInventoryMixin"
   ],
   "server": [],
-  "client": [
-    "IntegrationServerLoaderMixin",
-    "LevelPropertiesGetLifecycleMixin",
-    "MinecraftCreateUserApiServiceMixin",
-    "SplashScreenBackgroundMixin",
-    "SplashTextResourceSupplierMixin"
-  ],
+  "client": [],
   "injectors": {
     "defaultRequire": 1
   }

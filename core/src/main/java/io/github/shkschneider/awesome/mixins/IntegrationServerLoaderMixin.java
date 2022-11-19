@@ -1,6 +1,8 @@
 package io.github.shkschneider.awesome.mixins;
 
 import com.mojang.serialization.Lifecycle;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.server.integrated.IntegratedServerLoader;
@@ -16,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * License: LGPL3
  * Source: https://github.com/rdvdev2/DisableCustomWorldsAdvice
  */
+@Environment(EnvType.CLIENT)
 @Mixin(IntegratedServerLoader.class)
 public abstract class IntegrationServerLoaderMixin {
 

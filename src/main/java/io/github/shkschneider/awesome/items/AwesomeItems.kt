@@ -246,6 +246,13 @@ object AwesomeItems {
         }
         if (Awesome.CONFIG.machines && Awesome.CONFIG.items.prospector) {
             Prospector()
+            if (Minecraft.isClient) {
+                ClientPlayConnectionEvents.DISCONNECT.register(ClientPlayConnectionEvents.Disconnect { _, client ->
+                    val player = client.player ?: return@Disconnect
+                    val world: ServerWorld = client.server?.getWorld(client.world?.registryKey) ?: return@Disconnect
+                    Prospector.discardAll(world, player)
+                })
+            }
         }
         if (Awesome.CONFIG.machines) {
             Bronze()
@@ -254,11 +261,6 @@ object AwesomeItems {
             Nickel()
             Steel()
         }
-        ClientPlayConnectionEvents.DISCONNECT.register(ClientPlayConnectionEvents.Disconnect { _, client ->
-            val player = client.player ?: return@Disconnect
-            val world: ServerWorld = client.server?.getWorld(client.world?.registryKey) ?: return@Disconnect
-            Prospector.discardAll(world, player)
-        })
     }
 
 }

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "awesome-core",
+  "version": "${version}",
+  "name": "Awesome Core",
+  "description": "Awesome Core...",
+  "authors": [
+    "ShkSchneider"
+  ],
+  "contact": {
+    "homepage": "https://github.com/shkschneider/mc_awesome",
+    "sources": "https://github.com/shkschneider/mc_awesome"
+  },
+  "license": "MIT",
+  "icon": "assets/awesome/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "io.github.shkschneider.awesome.AwesomeCore"
+      }
+    ]
+  },
+  "mixins": [
+    "awesome-core.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.10",
+    "fabric-api": "*",
+    "minecraft": "~1.19",
+    "java": ">=17",
+    "fabric-language-kotlin": ">=1.8.5+kotlin.1.7.20"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

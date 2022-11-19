@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.mixins;
 
-import io.github.shkschneider.awesome.Awesome;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.SplashOverlay;
 import net.minecraft.util.math.ColorHelper;
 import org.spongepowered.asm.mixin.Final;
@@ -18,6 +19,7 @@ import java.util.function.IntSupplier;
  * License: LGPL3
  * Source: https://github.com/A5b84/dark-loading-screen
  */
+@Environment(EnvType.CLIENT)
 @Mixin(SplashOverlay.class)
 public class SplashScreenBackgroundMixin {
 
@@ -27,9 +29,7 @@ public class SplashScreenBackgroundMixin {
 
     @Inject(method = "<clinit>", at = @At("RETURN"))
     private static void background(CallbackInfo info) {
-        if (Awesome.Companion.getCONFIG().getSplashBlackBackground()) {
-            BRAND_ARGB = () -> ColorHelper.Argb.getArgb(255, 0, 0, 0); // MONOCHROME_BLACK
-        }
+        BRAND_ARGB = () -> ColorHelper.Argb.getArgb(255, 0, 0, 0); // MONOCHROME_BLACK
     }
 
 }
