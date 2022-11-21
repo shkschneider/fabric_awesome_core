@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.mixins;
 
-import io.github.shkschneider.awesome.AwesomeCore;
+import io.github.shkschneider.awesome.Awesome;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.SharedConstants;
@@ -20,7 +20,7 @@ public class SplashTextResourceSupplierMixin {
 
     @Inject(method = "get()Ljava/lang/String;", at = @At("HEAD"), cancellable = true)
     public String get(CallbackInfoReturnable<String> info) {
-        info.setReturnValue(String.format("%s %s!", AwesomeCore.Companion.getNAME(), SharedConstants.getGameVersion().getName()));
+        info.setReturnValue(String.format("%s %s!", Awesome.INSTANCE.getNAME(), SharedConstants.getGameVersion().getName()));
         return null;
     }
 

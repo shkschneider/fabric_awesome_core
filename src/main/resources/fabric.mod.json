@@ -18,25 +18,17 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "io.github.shkschneider.awesome.Awesome"
+        "value": "io.github.shkschneider.awesome.AwesomeModPack"
       }
-    ],
-    "rei_client": [
-      "io.github.shkschneider.awesome.recipes.AwesomeReiPlugin"
-    ],
-    "emi": [
-      "io.github.shkschneider.awesome.recipes.AwesomeEmiPlugin"
     ]
   },
-  "mixins": [
-    "awesome.mixins.json"
-  ],
+  "mixins": [],
   "depends": {
     "fabricloader": ">=0.14.10",
     "fabric-api": "*",
     "minecraft": "~1.19",
     "java": ">=17",
-    "fabric-language-kotlin": ">=1.8.5+kotlin.1.7.20"
+    "fabric-language-kotlin": ">=1.8.6+kotlin.1.7.21"
   },
   "suggests": {
     "another-mod": "*"

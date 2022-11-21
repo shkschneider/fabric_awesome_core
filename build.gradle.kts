@@ -1,27 +1,26 @@
+import groovy.lang.MissingPropertyException
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    kotlin("jvm") version "1.7.20"
-    id("fabric-loom") version "1.0.10"
-    id("net.thauvin.erik.gradle.semver") version "1.0.4"
+    // https://github.com/JetBrains/kotlin/releases
+    kotlin("jvm") version "1.7.21"
+    // https://maven.fabricmc.net/fabric-loom/fabric-loom.gradle.plugin/
+    id("fabric-loom") version "1.0.12"
 }
-semver.properties = "${rootDir}/version.properties"
+
+group = property("group") ?: throw MissingPropertyException("No such property: group!")
+version = property("version") ?: throw MissingPropertyException("No such property: version!")
 
 repositories {
-    maven(url = "https://maven.terraformersmc.com") { name = "terraformers" }
     maven(url = "https://www.cursemaven.com") { name = "curse" }
-    maven(url = "https://maven.shedaniel.me") { name = "shedaniel" }
-    maven(url = "https://maven.architectury.dev") { name = "architectury" }
 }
 
 dependencies {
-    implementation(project(path = ":core", configuration = "namedElements"))
-
+    subprojects.forEach { subproject ->
+        implementation(project(path = ":${subproject.name}", configuration = "namedElements"))
+    }
     // https://maven.terraformersmc.com/dev/emi/emi
-    modImplementation("dev.emi:emi:0.4.2+1.19") { exclude(group = "net.fabricmc") }
-    // https://linkie.shedaniel.me/dependencies
-    modCompileOnly("dev.architectury:architectury-fabric:6.3.49") { exclude(group = "net.fabricmc") }
-    modCompileOnly("me.shedaniel:RoughlyEnoughItems-fabric:9.1.572") { exclude(group = "net.fabricmc") }
-    modCompileOnly("me.shedaniel:RoughlyEnoughItems-api-fabric:9.1.572") { exclude(group = "net.fabricmc") }
-    modCompileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:9.1.572") { exclude(group = "net.fabricmc") }
+    modRuntimeOnly("curse.maven:emi-580555:4077428") { exclude(group = "net.fabricmc") }
     // https://www.curseforge.com/minecraft/mc-mods/jade/files
     modRuntimeOnly("curse.maven:jade-324717:4054977") { exclude(group = "net.fabricmc") }
 }
@@ -29,7 +28,7 @@ dependencies {
 allprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "fabric-loom")
-    group = property("maven_group").toString()
+    group = rootProject.group
     version = rootProject.version
     dependencies {
         minecraft("com.mojang:minecraft:${property("minecraft")}")
@@ -50,14 +49,19 @@ allprojects {
                 if (project.name == rootProject.name) {
                     delete("${rootProject.buildDir}/libs/${rootProject.name}-${rootProject.version}.jar")
                 } else {
-                    val jar = "${rootProject.name}-${project.name}-${rootProject.version}.jar"
-                    copy {
-                        from("${project.buildDir}/libs/")
-                        include("${project.name}.jar")
-                        into("${rootProject.buildDir}/libs/")
-                        rename("${project.name}.jar", jar)
+                    val oldJar = "${project.name}-${rootProject.version}.jar"
+                    if (File("${project.buildDir}/libs/$oldJar").exists()) {
+                        val newJar = "${rootProject.name}-${project.name}-${rootProject.version}.jar"
+                        copy {
+                            from("${project.buildDir}/libs/")
+                            include(oldJar)
+                            into("${rootProject.buildDir}/libs/")
+                            rename(oldJar, newJar)
+                        }
+                        println("Output: $newJar")
+                    } else {
+                        throw IllegalStateException("${project.name}/libs/$oldJar not found!")
                     }
-                    println("Output: $jar")
                 }
             }
         }
@@ -65,9 +69,10 @@ allprojects {
             from("LICENSE")
         }
         withType<JavaCompile> {
+            options.release.set(JavaVersion.VERSION_17.toString().toInt())
             options.encoding = "UTF-8"
         }
-        compileKotlin {
+        withType<KotlinCompile> {
             kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
         }
     }

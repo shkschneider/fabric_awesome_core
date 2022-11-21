@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "awesome-commands",
+  "version": "${version}",
+  "name": "Awesome Commands",
+  "description": "Awesome Commands...",
+  "authors": [
+    "ShkSchneider"
+  ],
+  "contact": {
+    "homepage": "https://github.com/shkschneider/mc_awesome",
+    "sources": "https://github.com/shkschneider/mc_awesome"
+  },
+  "license": "MIT",
+  "icon": "assets/awesome/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "io.github.shkschneider.awesome.AwesomeCommandsMod"
+      }
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.14.10",
+    "fabric-api": "*",
+    "minecraft": "~1.19",
+    "java": ">=17",
+    "fabric-language-kotlin": ">=1.8.6+kotlin.1.7.21",
+    "awesome-core": ">=0.1.0"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

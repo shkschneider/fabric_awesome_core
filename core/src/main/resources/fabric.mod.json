@@ -18,7 +18,7 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "io.github.shkschneider.awesome.AwesomeCore"
+        "value": "io.github.shkschneider.awesome.AwesomeCoreMod"
       }
     ]
   },
@@ -30,7 +30,7 @@
     "fabric-api": "*",
     "minecraft": "~1.19",
     "java": ">=17",
-    "fabric-language-kotlin": ">=1.8.5+kotlin.1.7.20"
+    "fabric-language-kotlin": ">=1.8.6+kotlin.1.7.21"
   },
   "suggests": {
     "another-mod": "*"

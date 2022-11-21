@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "awesome-machines",
+  "version": "${version}",
+  "name": "Awesome Machines",
+  "description": "Awesome Machines...",
+  "authors": [
+    "ShkSchneider"
+  ],
+  "contact": {
+    "homepage": "https://github.com/shkschneider/mc_awesome",
+    "sources": "https://github.com/shkschneider/mc_awesome"
+  },
+  "license": "MIT",
+  "icon": "assets/awesome/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "io.github.shkschneider.awesome.AwesomeMachinesMod"
+      }
+    ],
+    "rei_client": [
+      "io.github.shkschneider.awesome.recipes.AwesomeReiPlugin"
+    ],
+    "emi": [
+      "io.github.shkschneider.awesome.recipes.AwesomeEmiPlugin"
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.14.10",
+    "fabric-api": "*",
+    "minecraft": "~1.19",
+    "java": ">=17",
+    "fabric-language-kotlin": ">=1.8.6+kotlin.1.7.21",
+    "awesome-core": ">=0.1.0"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
