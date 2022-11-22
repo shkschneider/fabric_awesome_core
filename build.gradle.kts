@@ -1,6 +1,3 @@
-import groovy.lang.MissingPropertyException
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     // https://github.com/JetBrains/kotlin/releases
     kotlin("jvm") version "1.7.21"
@@ -8,8 +5,16 @@ plugins {
     id("fabric-loom") version "1.0.12"
 }
 
-group = property("group") ?: throw MissingPropertyException("No such property: group!")
-version = property("version") ?: throw MissingPropertyException("No such property: version!")
+fun version(): String {
+    val bytes = org.apache.commons.io.output.ByteArrayOutputStream()
+    project.exec {
+        commandLine = "git describe --tags HEAD".split(" ")
+        standardOutput = bytes
+    }
+    return String(bytes.toByteArray()).trim()
+}
+group = "io.github.shkschneider"
+version = version()
 
 repositories {
     maven(url = "https://www.cursemaven.com") { name = "curse" }
@@ -72,7 +77,7 @@ allprojects {
             options.release.set(JavaVersion.VERSION_17.toString().toInt())
             options.encoding = "UTF-8"
         }
-        withType<KotlinCompile> {
+        withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
             kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
         }
     }
