@@ -1,3 +1,11 @@
+import groovy.json.JsonSlurper
+import org.apache.commons.io.output.ByteArrayOutputStream
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.net.URL
+
 plugins {
     // https://github.com/JetBrains/kotlin/releases
     kotlin("jvm") version "1.7.21"
@@ -6,7 +14,7 @@ plugins {
 }
 
 fun version(): String {
-    val bytes = org.apache.commons.io.output.ByteArrayOutputStream()
+    val bytes = ByteArrayOutputStream()
     project.exec {
         commandLine = "git describe --tags HEAD".split(" ")
         standardOutput = bytes
@@ -28,6 +36,42 @@ dependencies {
     modRuntimeOnly("curse.maven:emi-580555:4077428") { exclude(group = "net.fabricmc") }
     // https://www.curseforge.com/minecraft/mc-mods/jade/files
     modRuntimeOnly("curse.maven:jade-324717:4054977") { exclude(group = "net.fabricmc") }
+}
+
+tasks {
+    register("versions") {
+        println()
+        println("> Versions")
+        @Suppress("UNCHECKED_CAST")
+        fun URL.versionsFromJson(): List<Pair<String, Boolean>> =
+            (JsonSlurper().parse(this) as ArrayList<Map<String, Any>>).map { it.entries }.map { entry ->
+                (entry.first { it.key == "version" }.value as String) to (entry.first { it.key == "stable" }.value as Boolean)
+            }
+        fun URL.versionsFromXml(): List<String> =
+            BufferedReader(InputStreamReader(this.content as InputStream))
+                .readLines().filterNot { it.contains("-pre", ignoreCase = true) || it.contains("-snapshot", ignoreCase = true) }
+                .filter { it.contains("<version>") }.map { it.replace("</?version>".toRegex(), "").trim() }
+        fun report(name: String, latest: String) {
+            rootProject.property(name).takeIf { it.toString().contains(" ").not() }?.let { current ->
+                if (current == latest) {
+                    println("- $name: $current")
+                } else {
+                    println("- $name: $current -> $latest")
+                }
+            } ?: run {
+                println("- $name: ? -> $latest")
+            }
+        }
+        val mc = URL("https://meta.fabricmc.net/v2/versions/game").versionsFromJson().first { it.second }.first
+        val kvm = URL("https://maven.fabricmc.net/net/fabricmc/fabric-language-kotlin/maven-metadata.xml").versionsFromXml().last()
+        report("kotlin", kvm.split("+").last().replace("kotlin.", ""))
+        report("loom", URL("https://maven.fabricmc.net/fabric-loom/fabric-loom.gradle.plugin/maven-metadata.xml").versionsFromXml().last())
+        report("minecraft", mc)
+        report("yarn", URL("https://meta.fabricmc.net/v2/versions/yarn/$mc").versionsFromJson().first().first)
+        report("fabric_loader", URL("https://meta.fabricmc.net/v2/versions/loader").versionsFromJson().first { it.second }.first)
+        report("fabric_kotlin", kvm)
+        report("fabric_api", URL("https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/maven-metadata.xml").versionsFromXml().last { it.contains(mc) })
+    }
 }
 
 allprojects {
@@ -77,7 +121,7 @@ allprojects {
             options.release.set(JavaVersion.VERSION_17.toString().toInt())
             options.encoding = "UTF-8"
         }
-        withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        withType<KotlinCompile> {
             kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
         }
     }
