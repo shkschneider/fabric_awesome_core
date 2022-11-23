@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.mixins;
 
-import io.github.shkschneider.awesome.AwesomeGameRules;
+import io.github.shkschneider.awesome.gamerules.AwesomeGameRules;
 import io.github.shkschneider.awesome.gamerules.KeepXpGameRule;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;

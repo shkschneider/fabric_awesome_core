@@ -16,9 +16,10 @@ data class AwesomeConfig(
 ) {
 
     data class Enchantments(
+        @SerializedName("aspects") val aspects: Boolean = true,
         @SerializedName("experience") val experience: Boolean = true,
-        @SerializedName("magnetism") val magnetism: Boolean = true,
         @SerializedName("infinity") val infinity: Boolean = true,
+        @SerializedName("magnetism") val magnetism: Boolean = true,
         @SerializedName("veinMining") val veinMining: Boolean = true,
     )
 

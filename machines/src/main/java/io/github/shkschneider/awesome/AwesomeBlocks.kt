@@ -2,7 +2,6 @@ package io.github.shkschneider.awesome
 
 import io.github.shkschneider.awesome.blocks.RandomiumOre
 import io.github.shkschneider.awesome.blocks.TesseractBlock
-import io.github.shkschneider.awesome.core.Minecraft
 
 object AwesomeBlocks {
 
@@ -19,12 +18,8 @@ object AwesomeBlocks {
     }
 
     operator fun invoke() {
-        if (Awesome.CONFIG.machines && Minecraft.isDevelopment) {
-            TesseractBlock()
-        }
-        if (Awesome.CONFIG.worldGen.randomium) {
-            Randomium()
-        }
+        TesseractBlock()
+        if (Awesome.CONFIG.worldGen.randomium) Randomium()
     }
 
 }

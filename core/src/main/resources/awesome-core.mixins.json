@@ -6,7 +6,14 @@
   "mixins": [
     "BrewingRecipeRegistryMixin",
     "CraftingInventoryMixin",
-    "EntityNbtMixin"
+    "EntityNbtMixin",
+    "ItemAppendTooltipMixin",
+    "PlayerEntityDamageMixin",
+    "PlayerEntityGetXpToDropMixin",
+    "ServerPlayerEntityCopyFromMixin",
+    "SpawnerBlockOnStacksDroppedMixin",
+    "VillagerEntityInitMixin",
+    "VillagerEntityTickMixin"
   ],
   "server": [],
   "client": [

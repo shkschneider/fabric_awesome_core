@@ -1,8 +1,6 @@
 package io.github.shkschneider.awesome
 
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
-import io.github.shkschneider.awesome.custom.Magnetism
-import io.github.shkschneider.awesome.custom.VeinMining
 import io.github.shkschneider.awesome.effects.AwesomeEffects
 import io.github.shkschneider.awesome.enchantments.ExperienceEnchantment
 import io.github.shkschneider.awesome.enchantments.IceAspectEnchantment
@@ -27,18 +25,12 @@ object AwesomeEnchantments {
     operator fun invoke() {
         AwesomeEffects()
         AwesomePotions()
-        if (Awesome.CONFIG.enchantments.experience) {
-            EXPERIENCE = ExperienceEnchantment()
-        }
-        ICE_ASPECT = IceAspectEnchantment()
-        if (Awesome.CONFIG.enchantments.magnetism) {
-            MAGNETISM = MagnetismEnchantment()
-            Magnetism()
-        }
-        POISON_ASPECT = PoisonAspectEnchantment()
-        if (Awesome.CONFIG.enchantments.veinMining) {
-            VEIN_MINING = VeinMiningEnchantment()
-            VeinMining()
+        if (Awesome.CONFIG.enchantments.experience) EXPERIENCE = ExperienceEnchantment()
+        if (Awesome.CONFIG.enchantments.magnetism) MAGNETISM = MagnetismEnchantment()
+        if (Awesome.CONFIG.enchantments.veinMining) VEIN_MINING = VeinMiningEnchantment()
+        if (Awesome.CONFIG.enchantments.aspects) {
+            ICE_ASPECT = IceAspectEnchantment()
+            POISON_ASPECT = PoisonAspectEnchantment()
         }
     }
 

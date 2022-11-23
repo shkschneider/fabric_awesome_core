@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.mixins;
 
-import io.github.shkschneider.awesome.AwesomeGameRules;
+import io.github.shkschneider.awesome.gamerules.AwesomeGameRules;
 import io.github.shkschneider.awesome.gamerules.PvpGameRule;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;

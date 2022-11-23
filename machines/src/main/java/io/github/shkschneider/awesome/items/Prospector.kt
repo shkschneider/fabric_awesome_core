@@ -8,6 +8,7 @@ import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.Minecraft
 import io.github.shkschneider.awesome.core.ext.positions
 import io.github.shkschneider.awesome.core.ext.toBox
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.block.OreBlock
@@ -68,6 +69,13 @@ class Prospector : AwesomeItem(
                 .filter { it.scoreboardTags.contains(ID) }.forEach { it.discard() }
             return@Before true
         })
+        if (Minecraft.isClient) {
+            ClientPlayConnectionEvents.DISCONNECT.register(ClientPlayConnectionEvents.Disconnect { _, client ->
+                val player = client.player ?: return@Disconnect
+                val world: ServerWorld = client.server?.getWorld(client.world?.registryKey) ?: return@Disconnect
+                Prospector.discardAll(world, player)
+            })
+        }
     }
 
     override fun hasGlint(stack: ItemStack): Boolean = true

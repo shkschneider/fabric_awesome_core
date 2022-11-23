@@ -6,10 +6,8 @@ import io.github.shkschneider.awesome.items.AwesomeMaterials
 import io.github.shkschneider.awesome.items.AwesomeOres
 import io.github.shkschneider.awesome.items.Imprisoner
 import io.github.shkschneider.awesome.items.Prospector
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.item.Items
-import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Rarity
 
 object AwesomeItems {
@@ -244,26 +242,13 @@ object AwesomeItems {
         Lapis()
         Quartz()
         Redstone()
-        if (Awesome.CONFIG.machines && Awesome.CONFIG.items.imprisoner) {
-            Imprisoner()
-        }
-        if (Awesome.CONFIG.machines && Awesome.CONFIG.items.prospector) {
-            Prospector()
-            if (Minecraft.isClient) {
-                ClientPlayConnectionEvents.DISCONNECT.register(ClientPlayConnectionEvents.Disconnect { _, client ->
-                    val player = client.player ?: return@Disconnect
-                    val world: ServerWorld = client.server?.getWorld(client.world?.registryKey) ?: return@Disconnect
-                    Prospector.discardAll(world, player)
-                })
-            }
-        }
-        if (Awesome.CONFIG.machines) {
-            Bronze()
-            Electrum()
-            Lead()
-            Nickel()
-            Steel()
-        }
+        if (Awesome.CONFIG.items.imprisoner) Imprisoner()
+        if (Awesome.CONFIG.items.prospector) Prospector()
+        Bronze()
+        Electrum()
+        Lead()
+        Nickel()
+        Steel()
     }
 
 }

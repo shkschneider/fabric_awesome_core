@@ -1,10 +1,6 @@
-package io.github.shkschneider.awesome
+package io.github.shkschneider.awesome.gamerules
 
-import io.github.shkschneider.awesome.custom.SilkTouchSpawners
-import io.github.shkschneider.awesome.gamerules.KeepXpGameRule
-import io.github.shkschneider.awesome.gamerules.OreXpGameRule
-import io.github.shkschneider.awesome.gamerules.PvpGameRule
-import io.github.shkschneider.awesome.gamerules.SleepingHealsGameRule
+import io.github.shkschneider.awesome.Awesome
 import net.minecraft.world.GameRules
 
 object AwesomeGameRules {
@@ -25,8 +21,6 @@ object AwesomeGameRules {
         }
         PVP = PvpGameRule()
         SLEEPING_HEALS = SleepingHealsGameRule()
-        SilkTouchSpawners() // TODO gamerule/config
-        // TODO villagers gamerule/config
     }
 
 }

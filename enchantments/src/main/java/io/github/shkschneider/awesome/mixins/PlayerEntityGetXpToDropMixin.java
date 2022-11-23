@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.mixins;
 
-import io.github.shkschneider.awesome.AwesomeGameRules;
+import io.github.shkschneider.awesome.gamerules.AwesomeGameRules;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.GameRules;
 import org.objectweb.asm.Opcodes;
