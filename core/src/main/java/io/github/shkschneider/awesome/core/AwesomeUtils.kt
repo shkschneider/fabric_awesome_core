@@ -1,6 +1,8 @@
 package io.github.shkschneider.awesome.core
 
 import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.custom.Location
+import io.github.shkschneider.awesome.custom.Minecraft
 import net.minecraft.util.Identifier
 import kotlin.math.pow
 import kotlin.math.sqrt

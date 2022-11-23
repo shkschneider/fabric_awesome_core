@@ -1,6 +1,8 @@
-package io.github.shkschneider.awesome.core
+package io.github.shkschneider.awesome.custom
 
 import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.core.AwesomeItem
+import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.registry.FuelRegistry
 import net.minecraft.item.ItemStack

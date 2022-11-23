@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.core
+package io.github.shkschneider.awesome.custom
 
 sealed class Permissions(val level: Int) {
 

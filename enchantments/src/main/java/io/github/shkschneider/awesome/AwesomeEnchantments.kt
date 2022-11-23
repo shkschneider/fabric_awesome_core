@@ -29,9 +29,6 @@ object AwesomeEnchantments {
         AwesomePotions()
         if (Awesome.CONFIG.enchantments.experience) {
             EXPERIENCE = ExperienceEnchantment()
-            if (Awesome.CONFIG.core.oreXp) {
-                OreXp()
-            }
         }
         if (Awesome.CONFIG.enchantments.magnetism) {
             MAGNETISM = MagnetismEnchantment()
@@ -43,7 +40,10 @@ object AwesomeEnchantments {
             ICE_ASPECT = IceAspectEnchantment()
             POISON_ASPECT = PoisonAspectEnchantment()
         }
-        if (Awesome.CONFIG.core.silkTouchSpawners) {
+        if (Awesome.CONFIG.enchantments.oreXp) {
+            OreXp()
+        }
+        if (Awesome.CONFIG.enchantments.silkTouchSpawners) {
             SilkTouchSpawners()
         }
     }

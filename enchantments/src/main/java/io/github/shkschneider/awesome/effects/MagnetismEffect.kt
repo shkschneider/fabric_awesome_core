@@ -2,8 +2,9 @@ package io.github.shkschneider.awesome.effects
 
 import com.google.common.base.Predicates
 import io.github.shkschneider.awesome.AwesomeEnchantments
+import io.github.shkschneider.awesome.core.AwesomeColors
 import io.github.shkschneider.awesome.core.AwesomeEffect
-import io.github.shkschneider.awesome.core.Minecraft
+import io.github.shkschneider.awesome.custom.Minecraft
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
@@ -16,7 +17,7 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-class MagnetismEffect : AwesomeEffect.Continuous("magnetism", StatusEffectCategory.BENEFICIAL, color = 0x000000) {
+class MagnetismEffect : AwesomeEffect.Continuous("magnetism", StatusEffectCategory.BENEFICIAL, color = AwesomeColors.black) {
 
     init {
         PlayerBlockBreakEvents.AFTER.register(PlayerBlockBreakEvents.After { _: World, player: PlayerEntity, _: BlockPos, _: BlockState, _: BlockEntity? ->

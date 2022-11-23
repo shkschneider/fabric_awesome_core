@@ -3,8 +3,8 @@ package io.github.shkschneider.awesome.machines
 import io.github.shkschneider.awesome.core.AwesomeBlockScreen
 import io.github.shkschneider.awesome.core.AwesomeColors
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.core.Faces
-import io.github.shkschneider.awesome.core.MachinePorts
+import io.github.shkschneider.awesome.custom.Faces
+import io.github.shkschneider.awesome.custom.MachinePorts
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory

@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.core.AwesomeRecipe
-import io.github.shkschneider.awesome.core.MachinePorts
+import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.core.ext.getStacks
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack

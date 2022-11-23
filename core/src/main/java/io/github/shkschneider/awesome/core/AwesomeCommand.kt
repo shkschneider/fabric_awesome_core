@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.core
 
 import com.mojang.brigadier.Command
+import io.github.shkschneider.awesome.custom.Permissions
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.util.Formatting
 

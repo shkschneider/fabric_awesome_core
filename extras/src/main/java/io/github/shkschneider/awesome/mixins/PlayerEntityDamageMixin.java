@@ -13,7 +13,7 @@ public abstract class PlayerEntityDamageMixin {
 
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
     private void damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> info) {
-        if (!Awesome.INSTANCE.getCONFIG().getCore().getPvp()) {
+        if (!Awesome.INSTANCE.getCONFIG().getExtras().getPvp()) {
             if (source.getSource() instanceof PlayerEntity) {
                 info.cancel();
             }

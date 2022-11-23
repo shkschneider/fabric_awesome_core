@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.enchantments
 
-import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
+import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentTarget
 import net.minecraft.enchantment.Enchantments

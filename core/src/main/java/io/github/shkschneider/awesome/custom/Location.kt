@@ -1,5 +1,6 @@
-package io.github.shkschneider.awesome.core
+package io.github.shkschneider.awesome.custom
 
+import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.minecraft.entity.Entity
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.util.Identifier

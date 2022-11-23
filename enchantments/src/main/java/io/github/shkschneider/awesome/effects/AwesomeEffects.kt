@@ -2,7 +2,7 @@ package io.github.shkschneider.awesome.effects
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeEffect
-import io.github.shkschneider.awesome.core.Minecraft
+import io.github.shkschneider.awesome.custom.Minecraft
 
 object AwesomeEffects {
 

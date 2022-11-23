@@ -7,7 +7,7 @@ import com.mojang.brigadier.builder.RequiredArgumentBuilder.argument
 import com.mojang.brigadier.context.CommandContext
 import io.github.shkschneider.awesome.core.AwesomeChat
 import io.github.shkschneider.awesome.core.AwesomeCommand
-import io.github.shkschneider.awesome.core.Permissions
+import io.github.shkschneider.awesome.custom.Permissions
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource

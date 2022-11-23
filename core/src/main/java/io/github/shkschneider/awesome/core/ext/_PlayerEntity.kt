@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.core.ext
 
-import io.github.shkschneider.awesome.core.Minecraft
+import io.github.shkschneider.awesome.custom.Minecraft
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.util.hit.HitResult
 

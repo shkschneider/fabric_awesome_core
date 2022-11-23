@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.machines.refinery
 
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.core.MachinePorts
+import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineTicker
 import io.github.shkschneider.awesome.AwesomeMachines

@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.core
 
 import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.custom.Minecraft
 import org.slf4j.LoggerFactory
 
 object AwesomeLogger {

@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.core
+package io.github.shkschneider.awesome.custom
 
 data class MachinePorts(
     var inputs: Pair<Int, List<Faces>>,

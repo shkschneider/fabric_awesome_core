@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.core.ext
 
-import io.github.shkschneider.awesome.core.Faces
+import io.github.shkschneider.awesome.custom.Faces
 import net.minecraft.block.BlockState
 import net.minecraft.state.property.DirectionProperty
 import net.minecraft.util.math.Direction

@@ -1,5 +1,7 @@
-package io.github.shkschneider.awesome.core
+package io.github.shkschneider.awesome.custom
 
+import io.github.shkschneider.awesome.core.AwesomeChat
+import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.minecraft.client.MinecraftClient
@@ -46,10 +48,18 @@ object Dimensions {
                         // delay because the client ticks while the world is still loading
                         Executors.newSingleThreadScheduledExecutor().schedule(Runnable {
                             MinecraftClient.getInstance().player?.let { player ->
-                                AwesomeChat.overlay(player, Texts.join(listOf(
-                                    Text.literal("${current.namespace}:".lowercase().replaceFirstChar { it.uppercaseChar() }).formatted(Formatting.ITALIC).formatted(Formatting.WHITE),
-                                    Text.literal(current.path.uppercase()).formatted(Formatting.BOLD).formatted(Formatting.YELLOW),
-                                ), Text.of(" ")))
+                                AwesomeChat.overlay(
+                                    player, Texts.join(
+                                        listOf(
+                                            Text.literal(
+                                                "${current.namespace}:".lowercase()
+                                                    .replaceFirstChar { it.uppercaseChar() })
+                                                .formatted(Formatting.ITALIC).formatted(Formatting.WHITE),
+                                            Text.literal(current.path.uppercase()).formatted(Formatting.BOLD)
+                                                .formatted(Formatting.YELLOW),
+                                        ), Text.of(" ")
+                                    )
+                                )
                             }
                         }, AwesomeUtils.ticksToSeconds(Minecraft.TICKS).toLong(), TimeUnit.SECONDS)
                     }

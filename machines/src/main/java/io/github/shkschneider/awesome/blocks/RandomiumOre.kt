@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.blocks
 
+import io.github.shkschneider.awesome.core.AwesomeColors
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.toVec3d
@@ -91,7 +92,7 @@ class RandomiumOre(
 
     // net.minecraft.block.RedstoneOreBlock.class
     private fun particles(world: World, pos: BlockPos) {
-        val color = 0xec23ff
+        val color = AwesomeColors.randomium
         val offset = 0.5625
         val directions = Direction.values()
         for (direction in directions) {

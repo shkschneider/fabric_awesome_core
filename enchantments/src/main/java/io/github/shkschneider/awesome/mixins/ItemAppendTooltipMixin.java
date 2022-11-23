@@ -23,21 +23,16 @@ import java.util.List;
 public class ItemAppendTooltipMixin {
 
     @Inject(method = "appendTooltip", at = @At("HEAD"))
-    public void getName(ItemStack stack, World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
+    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
         NbtCompound tag = stack.getNbt();
-        if (stack.getItem() != Items.SPAWNER || tag == null) {
-            return;
-        }
-        String[] entityParts = tag.getCompound("BlockEntityTag")
+        if (stack.getItem() != Items.SPAWNER || tag == null) return;
+        String spawnDataEntityId = tag.getCompound("BlockEntityTag")
                 .getCompound("SpawnData")
                 .getCompound("entity")
-                .getString("id")
-                .split(":")[1]
-                .split("_");
-        for (int i = 0; i < entityParts.length; ++i) {
-            entityParts[i] = entityParts[i].substring(0, 1).toUpperCase() + entityParts[i].substring(1);
+                .getString("id");
+        if (!spawnDataEntityId.isBlank()) {
+            tooltip.add(Text.literal(spawnDataEntityId));
         }
-        tooltip.add(Text.literal(String.join(" ", entityParts)));
     }
 
 }

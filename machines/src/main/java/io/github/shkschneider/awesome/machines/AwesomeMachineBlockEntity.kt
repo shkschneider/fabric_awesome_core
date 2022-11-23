@@ -3,7 +3,7 @@ package io.github.shkschneider.awesome.machines
 import io.github.shkschneider.awesome.core.AwesomeBlockEntity
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.core.MachinePorts
+import io.github.shkschneider.awesome.custom.MachinePorts
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.player.PlayerEntity

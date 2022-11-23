@@ -12,32 +12,30 @@
 ## Modules
 
 - Awesome **Core** (required!)
+- Awesome **Extras**
+  - `/gamerule keepXp` upon death
+  - pvp
+  - sleeping heals
+  - villagers follow emerald blocks
+  - villagers infinite trading
 - Awesome **Commands**
   - `/fly`
   - `/sethome` `/home` `/back`
 - Awesome **Enchantments**
-  - experience (xp from breaking blocks)
+  - experience (xp from breaking ore blocks)
   - ice & poison aspects
+  - infinity bow requires no arrow
   - magnetism
+  - silk touch spawners
   - vein mining (ores and logs)
+  - potions: experience (1 to 9 levels)
 - Awesome **Machines**
   - collector
   - crafter
   - ore processing...
   - worldgen: randomium (random ore & teleports)
-  - bonus item: imprisoner (to capture and release entities)
-  - bonus item: prospector (to make ores glow)
-- Miscellaneous
-  - black background splashscreen
-  - bow's infinity requires no arrow
-  - experience potions (1 to 9 levels)
-  - keepXp
-  - oreXp (xp from mining ores)
-  - pvp
-  - silk touch spawners
-  - sleepingHeals
-  - villagers follow emerald blocks
-  - villagers infinite trading
+  - item: imprisoner (to capture and release entities)
+  - item: prospector (to make ores glow)
 
 ## Configuration
 
@@ -54,7 +52,7 @@ Almost everything is configurable via `config/awesome.json`.
 ## Recipes
 
 - 4x more torches using coal dusts
-- end_portal_frame
+- end portal frame
 - Optional: 1 coal block (crushing) 1 diamond dust (smelting) 1diamond
 - Optional: 1 cobblestone (crushing) 1 gravel (crushing) 1sand
 - Optional: 1 randomium ore (smelting) 1 redstone flux

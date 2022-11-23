@@ -1,7 +1,5 @@
 package io.github.shkschneider.awesome.custom
 
-import io.github.shkschneider.awesome.Awesome
-import io.github.shkschneider.awesome.core.AwesomeRegistries
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents
 import net.minecraft.enchantment.Enchantments
 import net.minecraft.item.Items
@@ -16,13 +14,13 @@ import net.minecraft.predicate.NumberRange
 import net.minecraft.predicate.item.EnchantmentPredicate
 import net.minecraft.predicate.item.ItemPredicate
 import net.minecraft.util.Identifier
-import net.minecraft.world.GameRules
 
+/**
+ * /give @s minecraft:spawner
+ */
 object SilkTouchSpawners {
 
-    operator fun invoke() = AwesomeRegistries.gameRule("silkTouchSpawners", GameRules.Category.PLAYER, true)
-
-    init {
+    operator fun invoke() {
         LootTableEvents.MODIFY.register { _, _, id, supplier, _ ->
             if (id == Identifier("blocks/spawner")) {
                 invoke(supplier)
@@ -31,7 +29,6 @@ object SilkTouchSpawners {
     }
 
     private operator fun invoke(supplier: LootTable.Builder) {
-        if (!Awesome.CONFIG.core.silkTouchSpawners) throw IllegalStateException()
         supplier.pool(
             LootPool.Builder()
                 .rolls(ConstantLootNumberProvider.create(1.toFloat()))

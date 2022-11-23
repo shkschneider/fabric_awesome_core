@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.core
+package io.github.shkschneider.awesome.custom
 
 import net.fabricmc.api.EnvType
 import net.fabricmc.loader.api.FabricLoader

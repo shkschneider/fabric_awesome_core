@@ -5,7 +5,7 @@ import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeItem
 import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.core.Minecraft
+import io.github.shkschneider.awesome.custom.Minecraft
 import io.github.shkschneider.awesome.core.ext.positions
 import io.github.shkschneider.awesome.core.ext.toBox
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents

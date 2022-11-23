@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.mixins;
 
-import io.github.shkschneider.awesome.gamerules.AwesomeGameRules;
+import io.github.shkschneider.awesome.extras.KeepXpGameRule;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.GameRules;
 import org.objectweb.asm.Opcodes;
@@ -23,7 +23,7 @@ public abstract class PlayerEntityGetXpToDropMixin {
 
     @Redirect(method = "getXpToDrop", at = @At(value = "FIELD", target = "Lnet/minecraft/world/GameRules;KEEP_INVENTORY:Lnet/minecraft/world/GameRules$Key;", opcode = Opcodes.GETSTATIC))
     private GameRules.Key<GameRules.BooleanRule> getXpToDrop() {
-        return AwesomeGameRules.INSTANCE.getKeepXp();
+        return KeepXpGameRule.INSTANCE.getKey();
     }
 
 }

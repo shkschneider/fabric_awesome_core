@@ -8,20 +8,10 @@ import net.minecraft.item.Items
 
 object AwesomePotions {
 
-    private lateinit var EXPERIENCE_1: AwesomePotion
-    private lateinit var EXPERIENCE_9: AwesomePotion
-
-    init {
+    operator fun invoke() {
         if (Awesome.CONFIG.enchantments.experience) {
-            EXPERIENCE_1 = AwesomePotion("experience1", Items.LAPIS_LAZULI, StatusEffectInstance(AwesomeEffects.experience1))
-            EXPERIENCE_9 = AwesomePotion("experience9", Items.LAPIS_BLOCK, StatusEffectInstance(AwesomeEffects.experience9))
-        }
-    }
-
-    operator fun invoke(): List<AwesomePotion> = buildList {
-        if (Awesome.CONFIG.enchantments.experience) {
-            add(EXPERIENCE_1)
-            add(EXPERIENCE_9)
+            AwesomePotion("experience1", Items.LAPIS_LAZULI, StatusEffectInstance(AwesomeEffects.experience1))
+            AwesomePotion("experience9", Items.LAPIS_BLOCK, StatusEffectInstance(AwesomeEffects.experience9))
         }
     }
 

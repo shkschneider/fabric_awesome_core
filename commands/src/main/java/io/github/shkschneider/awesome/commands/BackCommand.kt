@@ -2,10 +2,10 @@ package io.github.shkschneider.awesome.commands
 
 import com.mojang.brigadier.context.CommandContext
 import io.github.shkschneider.awesome.core.AwesomeCommand
-import io.github.shkschneider.awesome.core.IEntityData
-import io.github.shkschneider.awesome.core.Location.Companion.clearLocation
-import io.github.shkschneider.awesome.core.Location.Companion.readLocation
-import io.github.shkschneider.awesome.core.Permissions
+import io.github.shkschneider.awesome.custom.IEntityData
+import io.github.shkschneider.awesome.custom.Location.Companion.clearLocation
+import io.github.shkschneider.awesome.custom.Location.Companion.readLocation
+import io.github.shkschneider.awesome.custom.Permissions
 import net.minecraft.server.command.ServerCommandSource
 
 class BackCommand : AwesomeCommand("back", Permissions.Commands) {

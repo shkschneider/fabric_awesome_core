@@ -2,6 +2,8 @@ package io.github.shkschneider.awesome.enchantments
 
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
 import io.github.shkschneider.awesome.core.AwesomeUtils
+import io.github.shkschneider.awesome.custom.Magnetism
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.enchantment.EnchantmentTarget
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EquipmentSlot
@@ -14,6 +16,12 @@ class MagnetismEnchantment : AwesomeEnchantment(
     EnchantmentTarget.DIGGER,
     listOf(EquipmentSlot.MAINHAND),
 ) {
+
+    init {
+        PlayerBlockBreakEvents.AFTER.register(PlayerBlockBreakEvents.After { _, player, _, _, _ ->
+            Magnetism(player)
+        })
+    }
 
     override fun invoke(livingEntity: LivingEntity, entity: Entity, level: Int) = Unit
 

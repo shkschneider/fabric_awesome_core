@@ -1,7 +1,5 @@
 package io.github.shkschneider.awesome.mixins;
 
-import io.github.shkschneider.awesome.Awesome;
-import io.github.shkschneider.awesome.core.AwesomeColors;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.SplashOverlay;
@@ -31,11 +29,8 @@ public class SplashScreenBackgroundMixin {
 
     @Inject(method = "<clinit>", at = @At("RETURN"))
     private static void background(CallbackInfo info) {
-        if (Awesome.INSTANCE.getCONFIG().getDarkSplashScreen()) {
-            BRAND_ARGB = () -> ColorHelper.Argb.getArgb(255, 0, 0, 0); // MONOCHROME_BLACK
-        } else {
-            BRAND_ARGB = AwesomeColors.INSTANCE::getMojang;
-        }
+        // BRAND_ARGB = AwesomeColors.INSTANCE::getMojang;
+        BRAND_ARGB = () -> ColorHelper.Argb.getArgb(255, 0, 0, 0); // MONOCHROME_BLACK
     }
 
 }

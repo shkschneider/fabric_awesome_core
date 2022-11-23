@@ -10,14 +10,12 @@ import io.github.shkschneider.awesome.commands.SetHomeCommand
 object AwesomeCommands {
 
     operator fun invoke() {
-        if (Awesome.CONFIG.commands) {
-            BackCommand()
-            BroadcastCommand()
-            FlyCommand()
-            HomeCommand()
-            MooCommand()
-            SetHomeCommand()
-        }
+        BackCommand()
+        BroadcastCommand()
+        FlyCommand()
+        HomeCommand()
+        MooCommand()
+        SetHomeCommand()
     }
 
 }

@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.core
+package io.github.shkschneider.awesome.custom
 
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.Inventories

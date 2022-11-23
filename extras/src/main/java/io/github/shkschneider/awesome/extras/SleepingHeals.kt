@@ -1,6 +1,5 @@
-package io.github.shkschneider.awesome.custom
+package io.github.shkschneider.awesome.extras
 
-import io.github.shkschneider.awesome.Awesome
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.effect.StatusEffectInstance
@@ -8,9 +7,9 @@ import net.minecraft.entity.effect.StatusEffects
 
 object SleepingHeals {
 
-    init {
+    operator fun invoke() {
         EntitySleepEvents.STOP_SLEEPING.register(EntitySleepEvents.StopSleeping { livingEntity, _ ->
-            if (Awesome.CONFIG.core.sleepingHeals && livingEntity.isPlayer) {
+            if (livingEntity.isPlayer) {
                 invoke(livingEntity)
             }
         })

@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.mixins;
 
 import io.github.shkschneider.awesome.Awesome;
-import io.github.shkschneider.awesome.core.IEntityData;
+import io.github.shkschneider.awesome.custom.IEntityData;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
 import org.spongepowered.asm.mixin.Mixin;

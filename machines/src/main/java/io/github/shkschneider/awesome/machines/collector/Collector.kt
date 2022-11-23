@@ -2,7 +2,7 @@ package io.github.shkschneider.awesome.machines.collector
 
 import com.google.common.base.Predicates
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.core.MachinePorts
+import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.core.ext.insert
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings

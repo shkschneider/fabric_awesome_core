@@ -3,6 +3,8 @@ package io.github.shkschneider.awesome.core
 import io.github.shkschneider.awesome.core.ext.readNbt
 import io.github.shkschneider.awesome.core.ext.relativeFace
 import io.github.shkschneider.awesome.core.ext.writeNbt
+import io.github.shkschneider.awesome.custom.IInventory
+import io.github.shkschneider.awesome.custom.MachinePorts
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType

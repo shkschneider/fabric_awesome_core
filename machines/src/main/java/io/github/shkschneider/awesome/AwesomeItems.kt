@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome
 
 import io.github.shkschneider.awesome.core.AwesomeRegistries
-import io.github.shkschneider.awesome.core.Minecraft
+import io.github.shkschneider.awesome.custom.Minecraft
 import io.github.shkschneider.awesome.items.AwesomeMaterials
 import io.github.shkschneider.awesome.items.AwesomeOres
 import io.github.shkschneider.awesome.items.Imprisoner

@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.machines.crafter
 
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.core.MachinePorts
+import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.core.ext.test
 import io.github.shkschneider.awesome.custom.DummyCraftingInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
