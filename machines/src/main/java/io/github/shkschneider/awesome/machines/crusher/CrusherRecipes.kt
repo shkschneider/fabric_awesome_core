@@ -41,16 +41,16 @@ object CrusherRecipes {
         AwesomeRecipe(CRUSHING, listOf(ItemStack(AwesomeItems.Quartz.powder, 2)), time = 20, ItemStack(AwesomeItems.Quartz.dust, 1)),
         AwesomeRecipe(CRUSHING, listOf(ItemStack(AwesomeItems.Redstone.powder, 2)), time = 20, ItemStack(AwesomeItems.Redstone.dust, 1)),
     ).apply {
-        if (Awesome.CONFIG.recipes.diamondDustFromCrushingCoalBlock) {
+        if (Awesome.CONFIG.machines.diamondDustFromCrushingCoalBlock) {
             add(AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.COAL_BLOCK, 1)), time = 20, ItemStack(AwesomeItems.Diamond.dust, 1)))
         }
-        if (Awesome.CONFIG.recipes.redstoneFromCrushingNetherrack) {
+        if (Awesome.CONFIG.machines.redstoneFromCrushingNetherrack) {
             add(AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.NETHERRACK, 64)), time = 20, ItemStack(AwesomeItems.Redstone.dust, 9)))
         }
-        if (Awesome.CONFIG.recipes.gravelFromCobblestone) {
+        if (Awesome.CONFIG.machines.gravelFromCobblestone) {
             add(AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.COBBLESTONE, 1)), time = 20, ItemStack(Items.GRAVEL, 1)))
         }
-        if (Awesome.CONFIG.recipes.sandFromGravel) {
+        if (Awesome.CONFIG.machines.sandFromGravel) {
             add(AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.GRAVEL, 1)), time = 20, ItemStack(Items.SAND, 1)))
         }
     }

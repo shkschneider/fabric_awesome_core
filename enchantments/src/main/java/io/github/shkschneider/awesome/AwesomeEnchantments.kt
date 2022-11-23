@@ -1,6 +1,8 @@
 package io.github.shkschneider.awesome
 
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
+import io.github.shkschneider.awesome.custom.OreXp
+import io.github.shkschneider.awesome.custom.SilkTouchSpawners
 import io.github.shkschneider.awesome.effects.AwesomeEffects
 import io.github.shkschneider.awesome.enchantments.ExperienceEnchantment
 import io.github.shkschneider.awesome.enchantments.IceAspectEnchantment
@@ -25,12 +27,24 @@ object AwesomeEnchantments {
     operator fun invoke() {
         AwesomeEffects()
         AwesomePotions()
-        if (Awesome.CONFIG.enchantments.experience) EXPERIENCE = ExperienceEnchantment()
-        if (Awesome.CONFIG.enchantments.magnetism) MAGNETISM = MagnetismEnchantment()
-        if (Awesome.CONFIG.enchantments.veinMining) VEIN_MINING = VeinMiningEnchantment()
+        if (Awesome.CONFIG.enchantments.experience) {
+            EXPERIENCE = ExperienceEnchantment()
+            if (Awesome.CONFIG.core.oreXp) {
+                OreXp()
+            }
+        }
+        if (Awesome.CONFIG.enchantments.magnetism) {
+            MAGNETISM = MagnetismEnchantment()
+        }
+        if (Awesome.CONFIG.enchantments.veinMining) {
+            VEIN_MINING = VeinMiningEnchantment()
+        }
         if (Awesome.CONFIG.enchantments.aspects) {
             ICE_ASPECT = IceAspectEnchantment()
             POISON_ASPECT = PoisonAspectEnchantment()
+        }
+        if (Awesome.CONFIG.core.silkTouchSpawners) {
+            SilkTouchSpawners()
         }
     }
 

@@ -2,9 +2,9 @@ package io.github.shkschneider.awesome.machines.smelter
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeBlocks
+import io.github.shkschneider.awesome.AwesomeItems
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.AwesomeRecipeType
-import io.github.shkschneider.awesome.AwesomeItems
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 
@@ -36,7 +36,7 @@ object SmelterRecipes {
         AwesomeRecipe(SMELTING, listOf(ItemStack(Items.RAW_GOLD_BLOCK, 1)), time = 20, ItemStack(Items.GOLD_BLOCK, 1)),
         AwesomeRecipe(SMELTING, listOf(ItemStack(Items.RAW_IRON_BLOCK, 1)), time = 20, ItemStack(Items.IRON_BLOCK, 1)),
     ).apply {
-        if (Awesome.CONFIG.recipes.redstoneFluxFromRandomiumOre) {
+        if (Awesome.CONFIG.machines.redstoneFluxFromRandomiumOre) {
             add(AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeBlocks.Randomium.deepslateOre, 1)), time = 20, ItemStack(AwesomeItems.Redstone.flux, 1)))
             add(AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeBlocks.Randomium.endOre, 1)), time = 20, ItemStack(AwesomeItems.Redstone.flux, 1)))
             add(AwesomeRecipe(SMELTING, listOf(ItemStack(AwesomeBlocks.Randomium.ore, 1)), time = 20, ItemStack(AwesomeItems.Redstone.flux, 1)))

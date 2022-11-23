@@ -1,8 +1,6 @@
-package io.github.shkschneider.awesome.gamerules
+package io.github.shkschneider.awesome.custom
 
-import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeEnchantments
-import io.github.shkschneider.awesome.AwesomeGameRules
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
@@ -15,18 +13,14 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.GameRules
 import net.minecraft.world.World
 
-object OreXpGameRule {
+object OreXp {
 
     operator fun invoke() = AwesomeRegistries.gameRule("oreXp", GameRules.Category.PLAYER, true)
 
     init {
-        if (Awesome.CONFIG.gameRules.oreXp) {
-            PlayerBlockBreakEvents.AFTER.register(PlayerBlockBreakEvents.After { world: World, player: PlayerEntity, _: BlockPos, state: BlockState, _: BlockEntity? ->
-                if (world.gameRules.getBoolean(AwesomeGameRules.oreXp)) {
-                    invoke(player, state)
-                }
-            })
-        }
+        PlayerBlockBreakEvents.AFTER.register(PlayerBlockBreakEvents.After { _: World, player: PlayerEntity, _: BlockPos, state: BlockState, _: BlockEntity? ->
+            invoke(player, state)
+        })
     }
 
     operator fun invoke(player: PlayerEntity, state: BlockState) {

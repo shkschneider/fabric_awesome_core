@@ -19,7 +19,7 @@ object AwesomeEffects {
         if (Minecraft.isDevelopment) {
             PARALYSIS = ParalysisEffect()
         }
-        if (Awesome.CONFIG.potions.experience) {
+        if (Awesome.CONFIG.enchantments.experience) {
             EXPERIENCE_1 = ExperienceEffect(levels = 1)
             EXPERIENCE_9 = ExperienceEffect(levels = 9)
         }

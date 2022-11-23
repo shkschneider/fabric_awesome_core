@@ -19,7 +19,7 @@ object AwesomeBlocks {
 
     operator fun invoke() {
         TesseractBlock()
-        if (Awesome.CONFIG.worldGen.randomium) Randomium()
+        if (Awesome.CONFIG.machines.randomium) Randomium()
     }
 
 }

@@ -12,14 +12,14 @@ object AwesomePotions {
     private lateinit var EXPERIENCE_9: AwesomePotion
 
     init {
-        if (Awesome.CONFIG.potions.experience) {
+        if (Awesome.CONFIG.enchantments.experience) {
             EXPERIENCE_1 = AwesomePotion("experience1", Items.LAPIS_LAZULI, StatusEffectInstance(AwesomeEffects.experience1))
             EXPERIENCE_9 = AwesomePotion("experience9", Items.LAPIS_BLOCK, StatusEffectInstance(AwesomeEffects.experience9))
         }
     }
 
     operator fun invoke(): List<AwesomePotion> = buildList {
-        if (Awesome.CONFIG.potions.experience) {
+        if (Awesome.CONFIG.enchantments.experience) {
             add(EXPERIENCE_1)
             add(EXPERIENCE_9)
         }

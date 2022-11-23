@@ -24,9 +24,7 @@ object AwesomeMachines {
     operator fun invoke() {
         AwesomeBlocks()
         AwesomeItems()
-        if (Awesome.CONFIG.worldGen.randomium) {
-            RandomiumWorldGen()
-        }
+        if (Awesome.CONFIG.machines.randomium) RandomiumWorldGen()
     }
 
 }

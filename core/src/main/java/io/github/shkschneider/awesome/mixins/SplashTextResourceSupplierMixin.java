@@ -20,6 +20,7 @@ public class SplashTextResourceSupplierMixin {
 
     @Inject(method = "get()Ljava/lang/String;", at = @At("HEAD"), cancellable = true)
     public String get(CallbackInfoReturnable<String> info) {
+        info.setReturnValue(info.getReturnValue());
         info.setReturnValue(String.format("%s %s!", Awesome.INSTANCE.getNAME(), SharedConstants.getGameVersion().getName()));
         return null;
     }

@@ -20,11 +20,6 @@
   - ice & poison aspects
   - magnetism
   - vein mining (ores and logs)
-- Awesome **GameRules**
-  - keepXp
-  - oreXp (xp from mining ores)
-  - pvp
-  - sleepingHeals
 - Awesome **Machines**
   - collector
   - crafter
@@ -35,10 +30,14 @@
 - Miscellaneous
   - black background splashscreen
   - bow's infinity requires no arrow
+  - experience potions (1 to 9 levels)
+  - keepXp
+  - oreXp (xp from mining ores)
+  - pvp
   - silk touch spawners
+  - sleepingHeals
   - villagers follow emerald blocks
   - villagers infinite trading
-  - experience potions (1 to 9 levels)
 
 ## Configuration
 

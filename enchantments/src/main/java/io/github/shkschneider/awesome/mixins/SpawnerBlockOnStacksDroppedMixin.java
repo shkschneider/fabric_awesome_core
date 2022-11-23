@@ -22,7 +22,7 @@ public class SpawnerBlockOnStacksDroppedMixin {
 
     @ModifyVariable(method = "onStacksDropped", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockWithEntity;onStacksDropped(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/item/ItemStack;Z)V", shift = At.Shift.BEFORE), argsOnly = true)
     public boolean onStacksDropped(boolean dropExperience, BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, boolean _dropExperience) {
-        if (Awesome.INSTANCE.getCONFIG().getGameRules().getSilkTouchSpawners()) {
+        if (Awesome.INSTANCE.getCONFIG().getCore().getSilkTouchSpawners()) {
             return !EnchantmentHelper.get(stack).containsKey(Enchantments.SILK_TOUCH);
         } else {
             return dropExperience;

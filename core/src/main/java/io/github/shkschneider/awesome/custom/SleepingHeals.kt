@@ -1,21 +1,16 @@
-package io.github.shkschneider.awesome.gamerules
+package io.github.shkschneider.awesome.custom
 
-import io.github.shkschneider.awesome.AwesomeGameRules
-import io.github.shkschneider.awesome.core.AwesomeRegistries
+import io.github.shkschneider.awesome.Awesome
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
-import net.minecraft.world.GameRules
 
-object SleepingHealsGameRule {
-
-    operator fun invoke() = AwesomeRegistries.gameRule("sleepingHeals", GameRules.Category.PLAYER, true)
+object SleepingHeals {
 
     init {
         EntitySleepEvents.STOP_SLEEPING.register(EntitySleepEvents.StopSleeping { livingEntity, _ ->
-            val sleepingHeals = livingEntity.world.gameRules.getBoolean(AwesomeGameRules.sleepingHeals)
-            if (sleepingHeals && livingEntity.isPlayer) {
+            if (Awesome.CONFIG.core.sleepingHeals && livingEntity.isPlayer) {
                 invoke(livingEntity)
             }
         })
