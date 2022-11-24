@@ -1,8 +1,8 @@
 package io.github.shkschneider.awesome.machines.collector
 
+import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlockEntity
-import io.github.shkschneider.awesome.AwesomeMachines
 import net.minecraft.block.BlockState
 import net.minecraft.util.math.BlockPos
 
@@ -16,8 +16,8 @@ class CollectorBlock(settings: Settings) : AwesomeMachineBlock<CollectorBlock.En
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
         Collector.ID, AwesomeMachines.collector.entityType,
         pos, state, Collector.PORTS, emptyList(),
-        screenHandlerProvider = { syncId, sidedInventory, playerInventory, properties ->
-            CollectorScreen.Handler(syncId, sidedInventory, playerInventory, properties)
+        screenHandlerProvider = { syncId, blockEntity, playerInventory, properties ->
+            CollectorScreen.Handler(syncId, blockEntity, playerInventory, properties)
         },
     )
 

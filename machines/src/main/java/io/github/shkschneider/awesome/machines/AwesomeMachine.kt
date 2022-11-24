@@ -29,8 +29,8 @@ abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEnt
     val ports: MachinePorts,
     blockProvider: () -> B,
     blockEntityProvider: (BlockPos, BlockState) -> BE,
-    private val screenProvider: (SH, PlayerInventory, Text) -> HandledScreen<SH>,
-    private val screenHandlerProvider: (Int, SidedInventory, PlayerInventory, ArrayPropertyDelegate) -> SH,
+    screenProvider: (SH, PlayerInventory, Text) -> HandledScreen<SH>,
+    screenHandlerProvider: (Int, SidedInventory, PlayerInventory, ArrayPropertyDelegate) -> SH,
 ) : BlockEntityTicker<BE> {
 
     val block: B =
@@ -41,6 +41,9 @@ abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEnt
         FabricBlockEntityTypeBuilder.create(blockEntityProvider, this.block).build(null)
     )
 
+    private var _entity: BE? = null
+    val entity get() = _entity
+
     private lateinit var _screen: ScreenHandlerType<SH>
     val screen get() = _screen
 
@@ -48,11 +51,11 @@ abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEnt
         AwesomeRegistries.item(id, BlockItem(block, FabricItemSettings().group(Awesome.GROUP)))
         if (Minecraft.isClient) {
             _screen = ScreenHandlerType { syncId, playerInventory ->
-                // empty things to get sync'ed
                 screenHandlerProvider(syncId, SimpleSidedInventory(ports.size), playerInventory, ArrayPropertyDelegate(AwesomeMachineBlockEntity.PROPERTIES))
             }
-            HandledScreens.register(screen) { handler, inventory, title ->
-                screenProvider(handler, inventory, title)
+            HandledScreens.register(screen) { handler, playerInventory, title ->
+                handler.blockEntity = entity
+                screenProvider(handler, playerInventory, title)
             }
         }
     }
@@ -73,11 +76,11 @@ abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEnt
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: BE) {
         if (world.isClient) return
-        blockEntity.power = world.getReceivedRedstonePower(pos)
-        val powered = blockEntity.power > 0
-        blockEntity.setPropertyState(Properties.POWERED, powered)
-        if (powered.not()) off(blockEntity)
-        blockEntity.setPropertyState(Properties.LIT, blockEntity.duration > 0)
+//        _handler._blockEntity = blockEntity
+//        val powered = blockEntity.power > 0
+//        blockEntity.setPropertyState(Properties.POWERED, powered)
+//        if (powered.not()) off(blockEntity)
+//        blockEntity.setPropertyState(Properties.LIT, blockEntity.duration > 0)
     }
 
 }

@@ -1,10 +1,11 @@
 package io.github.shkschneider.awesome.machines.generator
 
+import io.github.shkschneider.awesome.AwesomeMachines
+import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.custom.Minecraft
 import io.github.shkschneider.awesome.machines.AwesomeMachine
-import io.github.shkschneider.awesome.AwesomeMachines
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
@@ -44,7 +45,8 @@ class Generator : AwesomeMachine<GeneratorBlock, GeneratorBlock.Entity, Generato
         // do NOT super.tick()
         fun on(time: Int) {
             super.on(blockEntity, time)
-            blockEntity.power = time
+            blockEntity.power = time.toLong()
+            blockEntity.power(time.toLong())
             blockEntity.duration = 0
             blockEntity.progress = 0
             blockEntity.setPropertyState(Properties.POWERED, true)
@@ -59,6 +61,7 @@ class Generator : AwesomeMachine<GeneratorBlock, GeneratorBlock.Entity, Generato
         // burning
         if (blockEntity.power > 0) {
             blockEntity.power--
+            AwesomeLogger.warn("tick: ${blockEntity.power}")
         }
         // igniting
         if (blockEntity.duration > 0) {

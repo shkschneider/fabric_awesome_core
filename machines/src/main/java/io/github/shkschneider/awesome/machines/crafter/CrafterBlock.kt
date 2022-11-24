@@ -1,8 +1,8 @@
 package io.github.shkschneider.awesome.machines.crafter
 
+import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlockEntity
-import io.github.shkschneider.awesome.AwesomeMachines
 import net.minecraft.block.BlockState
 import net.minecraft.inventory.Inventories
 import net.minecraft.item.ItemStack
@@ -20,8 +20,8 @@ class CrafterBlock(settings: Settings) : AwesomeMachineBlock<CrafterBlock.Entity
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
         Crafter.ID, AwesomeMachines.crafter.entityType,
         pos, state, Crafter.PORTS, emptyList(),
-        screenHandlerProvider = { syncId, sidedInventory, playerInventory, properties ->
-            CrafterScreen.Handler(syncId, sidedInventory, playerInventory, properties)
+        screenHandlerProvider = { syncId, blockEntity, playerInventory, properties ->
+            CrafterScreen.Handler(syncId, blockEntity, playerInventory, properties)
         },
     ) {
 

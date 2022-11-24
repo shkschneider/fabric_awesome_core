@@ -6,6 +6,8 @@ repositories {
 
 dependencies {
     implementation(project(path = ":core", configuration = "namedElements"))
+    // https://maven.fabricmc.net/teamreborn/energy/maven-metadata.xml
+    include(modApi("teamreborn:energy:2.3.0") { exclude(group = "net.fabricmc") } )
     // https://maven.terraformersmc.com/dev/emi/emi
     modImplementation("dev.emi:emi:0.4.2+1.19") { exclude(group = "net.fabricmc") }
     // https://linkie.shedaniel.me/dependencies

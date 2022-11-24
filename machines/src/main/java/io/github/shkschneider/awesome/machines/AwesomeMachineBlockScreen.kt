@@ -1,8 +1,6 @@
 package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.core.AwesomeBlockScreen
-import io.github.shkschneider.awesome.core.AwesomeColors
-import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.MachinePorts
 import net.minecraft.client.util.math.MatrixStack
@@ -10,7 +8,6 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandlerType
-import net.minecraft.state.property.Properties
 import net.minecraft.text.Text
 
 abstract class AwesomeMachineBlockScreen<SH : AwesomeMachineBlockScreen.Handler>(
@@ -25,18 +22,15 @@ abstract class AwesomeMachineBlockScreen<SH : AwesomeMachineBlockScreen.Handler>
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2
     }
 
-    override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
-        super.drawBackground(matrices, delta, mouseX, mouseY)
-        setShader()
-        val power = if (handler.power > 0) getPowerToDraw(handler.power) else 0
-        if (power > 0) {
-            drawTexture(matrices, x + 8, y + 7 + 55 - power, 176, 111, 192 - 176, power)
-            drawTextWithShadow(matrices, textRenderer, Text.of(AwesomeUtils.humanReadable(handler.power)), x + 26, y + 54, AwesomeColors.white)
-        }
-    }
-
-    open fun getPowerToDraw(power: Int) =
-        handler.power * 55 / Properties.POWER.values.max()
+//    override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
+//        super.drawBackground(matrices, delta, mouseX, mouseY)
+//        setShader()
+////        val power = handler.power
+////        if (power > 0) {
+////            drawTexture(matrices, x + 8, y + 7 + 55 - power.toInt(), 176, 111, 192 - 176, power.toInt())
+////            drawTextWithShadow(matrices, textRenderer, Text.of(AwesomeUtils.humanReadable(power)), x + 26, y + 54, AwesomeColors.white)
+////        }
+//    }
 
     protected fun drawPorts(matrices: MatrixStack, ports: MachinePorts) {
         val input = 177 to 91
@@ -60,18 +54,22 @@ abstract class AwesomeMachineBlockScreen<SH : AwesomeMachineBlockScreen.Handler>
         }
     }
 
-    abstract class Handler(
-        screen: ScreenHandlerType<*>,
-        syncId: Int,
-        sidedInventory: SidedInventory,
-        playerInventory: PlayerInventory,
-        properties: PropertyDelegate,
-    ) : AwesomeBlockScreen.Handler(screen, syncId, sidedInventory, playerInventory, properties) {
+    abstract class Handler : AwesomeBlockScreen.Handler {
 
-        val power: Int get() = properties[0]
-        val progress: Int get() = properties[1]
+        constructor(screen: ScreenHandlerType<out AwesomeBlockScreen.Handler>, syncId: Int, blockEntity: AwesomeMachineBlockEntity, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(screen, syncId, blockEntity as SidedInventory, playerInventory, properties) {
+            this.blockEntity = blockEntity
+        }
+        constructor(screen: ScreenHandlerType<out AwesomeBlockScreen.Handler>, syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(screen, syncId, sidedInventory, playerInventory, properties) {
+            this.blockEntity = null
+        }
+
+        var blockEntity: AwesomeMachineBlockEntity? = null
+
+        // TODO remove all those -> read blockEntity directly
+        val power: Long get() = blockEntity?.power ?: 0L
+        val progress: Int get() = blockEntity?.progress ?: 0
         val percent: Float get() = progress.toFloat() / duration.toFloat()
-        val duration: Int get() = properties[2]
+        val duration: Int get() = blockEntity?.duration ?: 0
 
     }
 

@@ -1,8 +1,8 @@
 package io.github.shkschneider.awesome.machines.generator
 
+import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlockEntity
-import io.github.shkschneider.awesome.AwesomeMachines
 import net.minecraft.block.BlockState
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
@@ -28,8 +28,8 @@ class GeneratorBlock(settings: Settings) : AwesomeMachineBlock<GeneratorBlock.En
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
         Generator.ID, AwesomeMachines.generator.entityType,
         pos, state, Generator.SLOTS, emptyList(),
-        screenHandlerProvider = { syncId, sidedInventory, playerInventory, properties ->
-            GeneratorScreen.Handler(syncId, sidedInventory, playerInventory, properties)
+        screenHandlerProvider = { syncId, blockEntity, playerInventory, properties ->
+            GeneratorScreen.Handler(syncId, blockEntity, playerInventory, properties)
         },
     )
 

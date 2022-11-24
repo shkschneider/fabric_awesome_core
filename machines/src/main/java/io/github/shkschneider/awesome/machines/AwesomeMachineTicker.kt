@@ -1,8 +1,8 @@
 package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.core.AwesomeRecipe
-import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.core.ext.getStacks
+import io.github.shkschneider.awesome.custom.MachinePorts
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.world.World
@@ -54,7 +54,7 @@ class AwesomeMachineTicker(
                 progress = 0
             }
             if (recipes == null) { off() ; return -1 }
-            if (power == 0) { off() ; return -2 }
+            if (power == 0L) { off() ; return -2 }
             if (duration > 0) progress++
             val recipe = getRecipe() ?: run { off() ; return -3 }
             if (duration == 0) {

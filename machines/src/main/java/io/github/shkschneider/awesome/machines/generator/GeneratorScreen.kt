@@ -1,7 +1,10 @@
 package io.github.shkschneider.awesome.machines.generator
 
-import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import io.github.shkschneider.awesome.AwesomeMachines
+import io.github.shkschneider.awesome.core.AwesomeLogger
+import io.github.shkschneider.awesome.core.AwesomeUtils
+import io.github.shkschneider.awesome.machines.AwesomeMachineBlockEntity
+import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
@@ -24,17 +27,17 @@ class GeneratorScreen(
         }
     }
 
-    override fun getPowerToDraw(power: Int): Int =
-        handler.power * 55 / AwesomeMachines.FUEL.time
+    override fun drawForeground(matrices: MatrixStack?, mouseX: Int, mouseY: Int) {
+        super.drawForeground(matrices, mouseX, mouseY)
+        setShader()
+        val power = handler.power
+        AwesomeLogger.warn("drawForeground: ${AwesomeUtils.humanReadable(power)}")
+    }
 
-    class Handler(
-        syncId: Int,
-        sidedInventory: SidedInventory,
-        playerInventory: PlayerInventory,
-        properties: PropertyDelegate,
-    ) : AwesomeMachineBlockScreen.Handler(
-        AwesomeMachines.generator.screen, syncId, sidedInventory, playerInventory, properties
-    ) {
+    class Handler : AwesomeMachineBlockScreen.Handler {
+
+        constructor(syncId: Int, blockEntity: AwesomeMachineBlockEntity, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(AwesomeMachines.generator.screen, syncId, blockEntity, playerInventory, properties)
+        constructor(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(AwesomeMachines.generator.screen, syncId, sidedInventory, playerInventory, properties)
 
         init {
             addProperties(properties)

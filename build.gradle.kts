@@ -39,9 +39,8 @@ dependencies {
         "jade-324717" to "4054977", // https://www.curseforge.com/minecraft/mc-mods/jade/files
         "xaeros-minimap-263420" to "4075402", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files
     ).forEach { mod ->
-        modRuntimeOnly("curse.maven:${mod.first}:${mod.second}") { exclude(group = "net.fabricmc") }
+        modRuntimeOnly("curse.maven:${mod.first}:${mod.second}") { exclude(group = "net.fabricmc") ; exclude(group = "net.fabricmc.fabric-api") }
     }
-
 }
 
 tasks {
