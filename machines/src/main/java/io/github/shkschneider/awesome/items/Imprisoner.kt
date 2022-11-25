@@ -24,12 +24,13 @@ import net.minecraft.world.World
 import net.minecraft.world.event.GameEvent
 
 class Imprisoner : AwesomeItem(
-    id = AwesomeUtils.identifier("imprisoner"),
+    id = AwesomeUtils.identifier(ID),
     settings = FabricItemSettings().group(Awesome.GROUP).maxCount(1).rarity(Rarity.UNCOMMON),
 ) {
 
     companion object {
 
+        const val ID = "imprisoner"
         const val IMPRISONED = "Imprisoned"
         private val EXPERIENCE = 1
         val COOLDOWN = AwesomeUtils.secondsToTicks(1)
@@ -44,10 +45,14 @@ class Imprisoner : AwesomeItem(
     }
 
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, context: TooltipContext) {
-        stack.nbt?.get(IMPRISONED)?.asString()?.let {
-            tooltip.add(Text.of(it))
+        super.appendTooltip(stack, world, tooltip, context)
+        stack.nbt?.get(IMPRISONED)?.asString()?.let { prisoner ->
+            tooltip.add(Text.of(prisoner))
         }
     }
+
+    override fun appendShiftableTooltip(): Text? =
+        Text.translatable(AwesomeUtils.translatable("item", ID, "hint"))
 
     //region capture
 

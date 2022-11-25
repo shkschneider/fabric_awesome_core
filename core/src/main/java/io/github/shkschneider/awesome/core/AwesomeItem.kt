@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.core
 
+import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
@@ -8,10 +9,10 @@ import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.text.Text
 import net.minecraft.util.ActionResult
+import net.minecraft.util.Formatting
 import net.minecraft.util.Hand
 import net.minecraft.util.Identifier
 import net.minecraft.util.TypedActionResult
-import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 
 abstract class AwesomeItem(
@@ -27,8 +28,18 @@ abstract class AwesomeItem(
         AwesomeRegistries.item(id, this as Item)
     }
 
-    override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, context: TooltipContext) =
+    override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, context: TooltipContext) {
         super.appendTooltip(stack, world, tooltip, context)
+        appendShiftableTooltip()?.let { text ->
+            if (Screen.hasShiftDown()) {
+                tooltip.add(text)
+            } else {
+                tooltip.add(Text.translatable(AwesomeUtils.translatable("item", "hint")).formatted(Formatting.GRAY))
+            }
+        }
+    }
+
+    open fun appendShiftableTooltip(): Text? = null
 
     override fun hasGlint(stack: ItemStack): Boolean =
         super.hasGlint(stack)

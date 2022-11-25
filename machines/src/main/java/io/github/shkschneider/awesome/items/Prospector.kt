@@ -5,15 +5,14 @@ import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeItem
 import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.custom.Minecraft
 import io.github.shkschneider.awesome.core.ext.positions
 import io.github.shkschneider.awesome.core.ext.toBox
+import io.github.shkschneider.awesome.custom.Minecraft
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.block.OreBlock
 import net.minecraft.block.RedstoneOreBlock
-import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.SpawnReason
@@ -80,7 +79,8 @@ class Prospector : AwesomeItem(
 
     override fun hasGlint(stack: ItemStack): Boolean = true
 
-    override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, context: TooltipContext) {}
+    override fun appendShiftableTooltip(): Text? =
+        Text.translatable(AwesomeUtils.translatable("item", ID, "hint"))
 
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         if (world.isClient) return super.use(world, user, hand)
