@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  */
 @Environment(EnvType.CLIENT)
 @Mixin(SplashTextResourceSupplier.class)
-public class SplashTextResourceSupplierMixin {
+public class MainMenuTextMixin {
 
     @Inject(method = "get()Ljava/lang/String;", at = @At("HEAD"), cancellable = true)
     public String get(CallbackInfoReturnable<String> info) {

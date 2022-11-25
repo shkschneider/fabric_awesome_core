@@ -4,11 +4,11 @@
   "package": "io.github.shkschneider.awesome.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "PlayerEntityDamageMixin",
-    "PlayerEntityGetXpToDropMixin",
-    "ServerPlayerEntityCopyFromMixin",
-    "VillagerEntityInitMixin",
-    "VillagerEntityTickMixin"
+    "DropXpMixin",
+    "KeepXpMixin",
+    "PvpMixin",
+    "VillagersFollowEmeraldBlockMixin",
+    "VillagersInfiniteTradingMixin"
   ],
   "server": [],
   "client": [],

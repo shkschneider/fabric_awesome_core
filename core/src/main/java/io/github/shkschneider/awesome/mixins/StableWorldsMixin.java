@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  */
 @Environment(EnvType.CLIENT)
 @Mixin(IntegratedServerLoader.class)
-public abstract class IntegrationServerLoaderMixin {
+public abstract class StableWorldsMixin {
 
     // The target method only calls SaveProperties::getLifecycle() to determine if it should show a backup screen. We
     // can redirect this method to never return Lifecycle::experimental(), disabling the screen for custom worlds, but

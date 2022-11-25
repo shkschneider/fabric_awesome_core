@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.custom
 
 import io.github.shkschneider.awesome.core.ext.getStacks
-import io.github.shkschneider.awesome.mixins.CraftingInventoryMixin
+import io.github.shkschneider.awesome.mixins.ICraftingInventoryMixin
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.CraftingInventory
 import net.minecraft.inventory.Inventory
@@ -19,7 +19,7 @@ class DummyCraftingInventory(widget: Int, height: Int, _stacks: DefaultedList<It
 
     init {
         @Suppress("CAST_NEVER_SUCCEEDS")
-        (this as CraftingInventoryMixin).stacks = _stacks
+        (this as ICraftingInventoryMixin).stacks = _stacks
     }
 
     override fun isEmpty(): Boolean = getStacks().isEmpty()

@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityGetXpToDropMixin {
+public abstract class DropXpMixin {
 
     @Shadow
     public float experienceProgress;

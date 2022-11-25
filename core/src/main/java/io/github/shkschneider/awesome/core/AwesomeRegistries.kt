@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.context.CommandContext
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.custom.Permissions
-import io.github.shkschneider.awesome.mixins.BrewingRecipeRegistryMixin
+import io.github.shkschneider.awesome.mixins.IBrewingRecipesMixin
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry
@@ -61,7 +61,7 @@ object AwesomeRegistries {
     fun potion(name: String, effectInstance: StatusEffectInstance, recipe: Pair<Potion, Item>?): Potion =
         Registry.register(Registry.POTION, name, Potion(effectInstance)).also {
             if (recipe != null) {
-                BrewingRecipeRegistryMixin.registerPotionRecipe(recipe.first, recipe.second, it)
+                IBrewingRecipesMixin.registerPotionRecipe(recipe.first, recipe.second, it)
             }
         }
 

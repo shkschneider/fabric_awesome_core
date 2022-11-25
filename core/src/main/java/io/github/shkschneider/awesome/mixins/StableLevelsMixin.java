@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  */
 @Environment(EnvType.CLIENT)
 @Mixin(LevelProperties.class)
-public class LevelPropertiesGetLifecycleMixin {
+public class StableLevelsMixin {
 
     @Shadow
     @Final

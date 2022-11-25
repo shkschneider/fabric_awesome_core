@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * Link: https://www.youtube.com/c/TKaupenjoe
  */
 @Mixin(Entity.class)
-public abstract class EntityNbtMixin implements IEntityData {
+public abstract class EntityDataMixin implements IEntityData {
 
     private NbtCompound data;
 

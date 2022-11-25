@@ -20,9 +20,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * Source: https://github.com/Hyperbean18/Villagers-Follow-Emeralds-Fabric
  */
 @Mixin(VillagerEntity.class)
-abstract class VillagerEntityInitMixin extends MerchantEntity {
+abstract class VillagersFollowEmeraldBlockMixin extends MerchantEntity {
 
-    public VillagerEntityInitMixin(EntityType<? extends MerchantEntity> entityType, World world) {
+    public VillagersFollowEmeraldBlockMixin(EntityType<? extends MerchantEntity> entityType, World world) {
         super(entityType, world);
     }
 

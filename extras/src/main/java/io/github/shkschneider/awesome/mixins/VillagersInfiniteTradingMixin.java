@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * Source: https://github.com/ClusterFluxMC/extension
  */
 @Mixin(VillagerEntity.class)
-public class VillagerEntityTickMixin {
+public class VillagersInfiniteTradingMixin {
 
     @Shadow
     private int restocksToday;

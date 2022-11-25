@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Environment(EnvType.CLIENT)
 @Mixin(value = MinecraftClient.class, priority = 1001)
-public class MinecraftCreateUserApiServiceMixin {
+public class OfflineDevelopper {
 
     @Inject(method = "createUserApiService", at = @At(value = "HEAD"), cancellable = true)
     public void createUserApiService(YggdrasilAuthenticationService authService, RunArgs runArgs, CallbackInfoReturnable<UserApiService> cir) {

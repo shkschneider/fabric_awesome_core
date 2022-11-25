@@ -4,17 +4,17 @@
   "package": "io.github.shkschneider.awesome.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "BrewingRecipeRegistryMixin",
-    "CraftingInventoryMixin",
-    "EntityNbtMixin"
+    "EntityDataMixin",
+    "IBrewingRecipesMixin",
+    "ICraftingInventoryMixin"
   ],
   "server": [],
   "client": [
-    "IntegrationServerLoaderMixin",
-    "LevelPropertiesGetLifecycleMixin",
-    "MinecraftCreateUserApiServiceMixin",
+    "MainMenuTextMixin",
+    "OfflineDevelopper",
     "SplashScreenBackgroundMixin",
-    "SplashTextResourceSupplierMixin"
+    "StableLevelsMixin",
+    "StableWorldsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
