@@ -29,6 +29,7 @@
   - infinity bow requires no arrow
   - magnetism
   - silk touch spawners
+  - unbreakable
   - vein mining (ores and logs)
   - potions: experience (1 to 9 levels)
 - Awesome **Machines**

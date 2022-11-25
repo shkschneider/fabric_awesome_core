@@ -6,6 +6,7 @@
   "mixins": [
     "BowItemUseMixin",
     "ItemAppendTooltipMixin",
+    "ItemStackIsDamageableMixin",
     "SpawnerBlockOnStacksDroppedMixin"
   ],
   "server": [],

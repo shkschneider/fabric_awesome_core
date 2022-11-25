@@ -15,6 +15,7 @@ data class AwesomeConfig(
         @SerializedName("magnetism") val magnetism: Boolean = true,
         @SerializedName("oreXp") val oreXp: Boolean = true,
         @SerializedName("silkTouchSpawners") val silkTouchSpawners: Boolean = true,
+        @SerializedName("unbreakable") val unbreakable: Boolean = true,
         @SerializedName("veinMining") val veinMining: Boolean = true,
     )
 

@@ -8,6 +8,7 @@ import io.github.shkschneider.awesome.enchantments.ExperienceEnchantment
 import io.github.shkschneider.awesome.enchantments.IceAspectEnchantment
 import io.github.shkschneider.awesome.enchantments.MagnetismEnchantment
 import io.github.shkschneider.awesome.enchantments.PoisonAspectEnchantment
+import io.github.shkschneider.awesome.enchantments.UnbreakableEnchantment
 import io.github.shkschneider.awesome.enchantments.VeinMiningEnchantment
 import io.github.shkschneider.awesome.potions.AwesomePotions
 
@@ -21,6 +22,8 @@ object AwesomeEnchantments {
     val magnetism get() = MAGNETISM
     private lateinit var POISON_ASPECT: AwesomeEnchantment
     val poisonAspect get() = POISON_ASPECT
+    private lateinit var UNBREAKABLE: AwesomeEnchantment
+    val unbreakable get() = UNBREAKABLE
     private lateinit var VEIN_MINING: AwesomeEnchantment
     val veinMining get() = VEIN_MINING
 
@@ -32,6 +35,9 @@ object AwesomeEnchantments {
         }
         if (Awesome.CONFIG.enchantments.magnetism) {
             MAGNETISM = MagnetismEnchantment()
+        }
+        if (Awesome.CONFIG.enchantments.unbreakable) {
+            UNBREAKABLE = UnbreakableEnchantment()
         }
         if (Awesome.CONFIG.enchantments.veinMining) {
             VEIN_MINING = VeinMiningEnchantment()
