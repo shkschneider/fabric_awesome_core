@@ -19,8 +19,10 @@
   - villagers follow emerald blocks
   - villagers infinite trading
 - Awesome **Commands**
-  - `/fly`
-  - `/sethome` `/home` `/back`
+  - `/fly` `/invulnerable`
+  - `/spawn` `/top`
+  - `/sethome` `/home`
+  - `/back`
 - Awesome **Enchantments**
   - experience (xp from breaking ore blocks)
   - ice & poison aspects

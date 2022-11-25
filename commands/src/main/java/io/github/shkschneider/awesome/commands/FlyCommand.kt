@@ -11,6 +11,7 @@ class FlyCommand : AwesomeCommand("fly", Permissions.Moderator) {
         val player = context.source?.player ?: return sendError(context.source, code = -1)
         if (!player.abilities.allowFlying) {
             player.abilities.allowFlying = true
+            // player.abilities.flySpeed = max(player.abilities.walkSpeed, player.abilities.flySpeed)
             sendFeedback(context.source, "${player.name.string} can now fly!", broadcastToOps = true)
         } else {
             player.abilities.allowFlying = false

@@ -32,10 +32,16 @@ dependencies {
     subprojects.forEach { subproject ->
         implementation(project(path = ":${subproject.name}", configuration = "namedElements"))
     }
-    // https://maven.terraformersmc.com/dev/emi/emi
-    modRuntimeOnly("curse.maven:emi-580555:4077428") { exclude(group = "net.fabricmc") }
-    // https://www.curseforge.com/minecraft/mc-mods/jade/files
-    modRuntimeOnly("curse.maven:jade-324717:4054977") { exclude(group = "net.fabricmc") }
+    // runtime mods (for development only)
+    listOf(
+        // projectId to fileId
+        "emi-580555" to "4077428", // https://maven.terraformersmc.com/dev/emi/emi
+        "jade-324717" to "4054977", // https://www.curseforge.com/minecraft/mc-mods/jade/files
+        "xaeros-minimap-263420" to "4075402", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files
+    ).forEach { mod ->
+        modRuntimeOnly("curse.maven:${mod.first}:${mod.second}") { exclude(group = "net.fabricmc") }
+    }
+
 }
 
 tasks {
