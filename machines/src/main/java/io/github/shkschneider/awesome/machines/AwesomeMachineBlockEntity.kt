@@ -1,10 +1,10 @@
 package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.core.AwesomeBlockEntity
+import io.github.shkschneider.awesome.core.AwesomeBlockScreen
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.MachinePorts
-import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.player.PlayerEntity
@@ -23,49 +23,26 @@ abstract class AwesomeMachineBlockEntity(
     state: BlockState,
     ports: MachinePorts,
     private val recipes: List<AwesomeRecipe<out AwesomeMachineBlockEntity>>,
-    private val screenHandlerProvider: (syncId: Int, blockEntity: AwesomeMachineBlockEntity, playerInventory: PlayerInventory, properties: PropertyDelegate) -> AwesomeMachineBlockScreen.Handler,
+    private val screenHandlerProvider: (syncId: Int, blockEntity: AwesomeMachineBlockEntity, playerInventory: PlayerInventory, properties: PropertyDelegate) -> AwesomeBlockScreen.Handler,
 ) : AwesomeBlockEntity.WithInventory(id, type, pos, state, ports, PROPERTIES to 0), NamedScreenHandlerFactory {
 
     //region Properties
 
     companion object {
 
-        const val PROPERTIES = 2
+        const val PROPERTIES = 3
 
     }
 
-    var progress: Int
+    var power: Int
         get() = properties.get(0)
         set(value) = properties.set(0, value)
-    var duration: Int
+    var progress: Int
         get() = properties.get(1)
         set(value) = properties.set(1, value)
-
-    private lateinit var _energy: AwesomeMachinePower
-    internal val energy get() = _energy
-    var power: Long
-        get() = _energy.amount
-        set(value) { _energy.amount = value }
-
-    init {
-        init()
-        AwesomeMachinePower(type)
-    }
-
-    private fun init() {
-        _energy = AwesomeMachinePower(this)
-    }
-
-    fun power(amount: Long) {
-        with(Transaction.openOuter()) {
-            if (amount > 0) {
-                energy.insert(amount, this)
-            } else {
-                energy.extract(amount, this)
-            }
-            commit()
-        }
-    }
+    var duration: Int
+        get() = properties.get(2)
+        set(value) = properties.set(2, value)
 
     //endregion
 
@@ -86,7 +63,7 @@ abstract class AwesomeMachineBlockEntity(
     override fun getDisplayName(): Text =
         Text.translatable(AwesomeUtils.translatable("block", id))
 
-    override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): AwesomeMachineBlockScreen.Handler =
+    override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): AwesomeBlockScreen.Handler =
         screenHandlerProvider(syncId, this, playerInventory, properties)
 
     //endregion

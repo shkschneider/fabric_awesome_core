@@ -11,6 +11,7 @@ import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemPlacementContext
+import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.registry.Registry
@@ -56,6 +57,21 @@ abstract class AwesomeBlock(
         @Suppress("UNCHECKED_CAST")
         override fun <T : BlockEntity> getTicker(world: World, state: BlockState, type: BlockEntityType<T>): BlockEntityTicker<T> =
             this as BlockEntityTicker<T>
+
+    }
+
+    abstract class WithScreen<BE : BlockEntity>(
+        id: Identifier,
+        settings: Settings,
+        group: ItemGroup = Awesome.GROUP,
+    ) : AwesomeBlock(id, settings, group), BlockEntityProvider, BlockEntityTicker<BE> {
+
+        /**
+         * Block.onUse(): If your block class does not extend BlockWithEntity, it needs to implement createScreenHandlerFactory.
+         * @see net.minecraft.block.BlockWithEntity
+         */
+        override fun createScreenHandlerFactory(state: BlockState, world: World, pos: BlockPos): NamedScreenHandlerFactory? =
+            world.getBlockEntity(pos) as? NamedScreenHandlerFactory
 
     }
 

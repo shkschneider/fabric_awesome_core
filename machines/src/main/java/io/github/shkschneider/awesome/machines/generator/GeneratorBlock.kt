@@ -1,37 +1,69 @@
 package io.github.shkschneider.awesome.machines.generator
 
-import io.github.shkschneider.awesome.AwesomeMachines
-import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
-import io.github.shkschneider.awesome.machines.AwesomeMachineBlockEntity
+import io.github.shkschneider.awesome.core.AwesomeBlock
+import net.minecraft.block.Block
 import net.minecraft.block.BlockState
+import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.inventory.Inventory
+import net.minecraft.item.ItemPlacementContext
+import net.minecraft.state.StateManager
 import net.minecraft.state.property.Properties
+import net.minecraft.util.ActionResult
+import net.minecraft.util.BlockMirror
+import net.minecraft.util.BlockRotation
+import net.minecraft.util.Hand
+import net.minecraft.util.ItemScatterer
+import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.Direction
-import net.minecraft.world.BlockView
-import kotlin.math.roundToInt
+import net.minecraft.world.World
 
-class GeneratorBlock(settings: Settings) : AwesomeMachineBlock<GeneratorBlock.Entity>(
-    settings,
-    entityTypeProvider = { AwesomeMachines.generator.entityType },
-    blockEntityProvider = { pos, state -> Entity(pos, state) },
-    tickerProvider = { AwesomeMachines.generator },
-) {
+class GeneratorBlock(
+    settings: Settings,
+) : AwesomeBlock.WithEntity<GeneratorBlockEntity>(Generator.ID, settings), AwesomeBlock.WithScreen {
 
-    override fun emitsRedstonePower(state: BlockState): Boolean = true
+    override fun getPlacementState(ctx: ItemPlacementContext): BlockState = defaultState
+        .with(Properties.HORIZONTAL_FACING, ctx.playerFacing.opposite)
+        .with(Properties.LIT, false)
 
-    override fun getStrongRedstonePower(state: BlockState, world: BlockView, pos: BlockPos, direction: Direction): Int =
-        Properties.POWER.values.max()
+    override fun rotate(state: BlockState, rotation: BlockRotation): BlockState =
+        state.with(Properties.HORIZONTAL_FACING, rotation.rotate(state.get(Properties.HORIZONTAL_FACING)))
 
-    override fun getWeakRedstonePower(state: BlockState, world: BlockView, pos: BlockPos, direction: Direction): Int =
-        Properties.POWER.values.average().roundToInt()
+    override fun mirror(state: BlockState, mirror: BlockMirror): BlockState =
+        state.rotate(mirror.getRotation(state.get(Properties.HORIZONTAL_FACING)))
 
-    class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
-        Generator.ID, AwesomeMachines.generator.entityType,
-        pos, state, Generator.SLOTS, emptyList(),
-        screenHandlerProvider = { syncId, blockEntity, playerInventory, properties ->
-            GeneratorScreen.Handler(syncId, blockEntity, playerInventory, properties)
-        },
-    )
+    override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
+        builder
+            .add(Properties.HORIZONTAL_FACING)
+            .add(Properties.LIT)
+    }
+
+    override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: GeneratorBlockEntity) {
+        Generator.tick(world, pos, state, blockEntity)
+    }
+
+    override fun createBlockEntity(pos: BlockPos, state: BlockState): GeneratorBlockEntity =
+        GeneratorBlockEntity(pos, state)
+
+    override fun onStateReplaced(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
+        if (state.block != newState.block) {
+            (world.getBlockEntity(pos) as? Inventory)?.let { ItemScatterer.spawn(world, pos, it) }
+            world.updateComparators(pos, this)
+            @Suppress("DEPRECATION")
+            super.onStateReplaced(state, world, pos, newState, moved)
+        }
+    }
+
+    override fun onUse(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, hit: BlockHitResult): ActionResult {
+        if (!world.isClient) {
+            val blockEntity = world.getBlockEntity(pos) as? GeneratorBlockEntity
+            state.createScreenHandlerFactory(world, pos)?.let { screenHandlerFactory ->
+                player.openHandledScreen(screenHandlerFactory)
+                (player.currentScreenHandler as? GeneratorScreenHandler)?.let { screenHandler ->
+                    screenHandler.entity = blockEntity
+                }
+            }
+        }
+        return ActionResult.SUCCESS
+    }
 
 }
-

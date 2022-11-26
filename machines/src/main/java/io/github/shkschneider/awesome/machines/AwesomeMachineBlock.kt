@@ -60,13 +60,7 @@ abstract class AwesomeMachineBlock<BE : BlockEntity>(
     }
 
     override fun onUse(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, hit: BlockHitResult): ActionResult {
-        if (!world.isClient) {
-            state.createScreenHandlerFactory(world, pos)?.let(player::openHandledScreen)
-            val blockEntity = world.getBlockEntity(pos) as? AwesomeMachineBlockEntity
-            (player.currentScreenHandler as? AwesomeMachineBlockScreen.Handler)?.let { screenHandler ->
-                screenHandler.blockEntity = blockEntity
-            }
-        }
+        if (!world.isClient) state.createScreenHandlerFactory(world, pos)?.let(player::openHandledScreen)
         return ActionResult.SUCCESS
     }
 

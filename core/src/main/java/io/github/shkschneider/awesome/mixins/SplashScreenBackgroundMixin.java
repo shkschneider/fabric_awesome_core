@@ -3,7 +3,6 @@ package io.github.shkschneider.awesome.mixins;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.SplashOverlay;
-import net.minecraft.util.math.ColorHelper;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -23,14 +22,16 @@ import java.util.function.IntSupplier;
 @Mixin(SplashOverlay.class)
 public class SplashScreenBackgroundMixin {
 
+    @Shadow
+    private static @Final int MONOCHROME_BLACK;
+
     @Mutable
     @Shadow
     private static @Final IntSupplier BRAND_ARGB;
 
     @Inject(method = "<clinit>", at = @At("RETURN"))
     private static void background(CallbackInfo info) {
-        // BRAND_ARGB = AwesomeColors.INSTANCE::getMojang;
-        BRAND_ARGB = () -> ColorHelper.Argb.getArgb(255, 0, 0, 0); // MONOCHROME_BLACK
+        BRAND_ARGB = () -> MONOCHROME_BLACK;
     }
 
 }

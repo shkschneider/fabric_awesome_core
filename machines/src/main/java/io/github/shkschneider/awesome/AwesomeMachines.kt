@@ -16,7 +16,6 @@ object AwesomeMachines {
     val collector = Collector()
     val crafter = Crafter()
     val crusher = Crusher()
-    val generator = Generator()
     val infuser = Infuser()
     val refinery = Refinery()
     val smelter = Smelter()
@@ -24,6 +23,7 @@ object AwesomeMachines {
     operator fun invoke() {
         AwesomeBlocks()
         AwesomeItems()
+        Generator()
         if (Awesome.CONFIG.machines.randomium) RandomiumWorldGen()
     }
 

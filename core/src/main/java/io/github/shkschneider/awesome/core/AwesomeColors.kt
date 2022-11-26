@@ -7,6 +7,7 @@ package io.github.shkschneider.awesome.core
 object AwesomeColors {
 
     val black = 0x000000
+    val charcoal = 0x434343
     val mischka = 0xacadb2
     val mojang = 0xdb1f29
     val randomium = 0xec23ff

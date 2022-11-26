@@ -54,22 +54,20 @@ abstract class AwesomeMachineBlockScreen<SH : AwesomeMachineBlockScreen.Handler>
         }
     }
 
-    abstract class Handler : AwesomeBlockScreen.Handler {
+    abstract class Handler(
+        screen: ScreenHandlerType<out AwesomeBlockScreen.Handler>,
+        syncId: Int,
+        sidedInventory: SidedInventory,
+        playerInventory: PlayerInventory,
+        properties: PropertyDelegate,
+    ) : AwesomeBlockScreen.Handler(
+        screen, syncId, sidedInventory, playerInventory, properties
+    ) {
 
-        constructor(screen: ScreenHandlerType<out AwesomeBlockScreen.Handler>, syncId: Int, blockEntity: AwesomeMachineBlockEntity, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(screen, syncId, blockEntity as SidedInventory, playerInventory, properties) {
-            this.blockEntity = blockEntity
-        }
-        constructor(screen: ScreenHandlerType<out AwesomeBlockScreen.Handler>, syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(screen, syncId, sidedInventory, playerInventory, properties) {
-            this.blockEntity = null
-        }
-
-        var blockEntity: AwesomeMachineBlockEntity? = null
-
-        // TODO remove all those -> read blockEntity directly
-        val power: Long get() = blockEntity?.power ?: 0L
-        val progress: Int get() = blockEntity?.progress ?: 0
+        val power: Int get() = properties[0]
+        val progress: Int get() = properties[1]
         val percent: Float get() = progress.toFloat() / duration.toFloat()
-        val duration: Int get() = blockEntity?.duration ?: 0
+        val duration: Int get() = properties[2]
 
     }
 

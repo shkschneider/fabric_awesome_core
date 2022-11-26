@@ -1,89 +1,76 @@
 package io.github.shkschneider.awesome.machines.generator
 
-import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.custom.Minecraft
-import io.github.shkschneider.awesome.machines.AwesomeMachine
+import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
-import net.minecraft.item.ItemStack
-import net.minecraft.state.property.Properties
+import net.minecraft.client.gui.screen.ingame.HandledScreens
+import net.minecraft.screen.ArrayPropertyDelegate
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-class Generator : AwesomeMachine<GeneratorBlock, GeneratorBlock.Entity, GeneratorScreen.Handler>(
-    id = AwesomeUtils.identifier(ID),
-    ports = SLOTS,
-    blockProvider = {
-        GeneratorBlock(FabricBlockSettings.copyOf(Blocks.FURNACE))
-    },
-    blockEntityProvider = { pos, state ->
-        GeneratorBlock.Entity(pos, state)
-    },
-    screenProvider = { handler, inventory, title ->
-        GeneratorScreen(ID, handler, inventory, title)
-    },
-    screenHandlerProvider = { syncId, sidedInventory, playerInventory, properties ->
-        GeneratorScreen.Handler(syncId, sidedInventory, playerInventory, properties)
-    },
-) {
+object Generator {
 
-    companion object {
+    const val NAME = "generator"
+    val ID = AwesomeUtils.identifier(NAME)
+    val PORTS = MachinePorts(inputs = 1, outputs = 0)
+    val IGNITE = Minecraft.TICKS
+    val PROPERTIES = 2
 
-        const val ID = "generator"
-        val SLOTS = MachinePorts(inputs = 1, outputs = 0)
-        const val INPUT = 0
-        val IGNITE = Minecraft.TICKS
-
+    fun tick(world: World, pos: BlockPos, state: BlockState, entity: GeneratorBlockEntity) {
+        AwesomeLogger.warn("tick: ${entity.power}")
+        entity.power++
     }
 
-    override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: GeneratorBlock.Entity) {
-        if (world.isClient) return
-        // do NOT super.tick()
-        fun on(time: Int) {
-            super.on(blockEntity, time)
-            blockEntity.power = time.toLong()
-            blockEntity.power(time.toLong())
-            blockEntity.duration = 0
-            blockEntity.progress = 0
-            blockEntity.setPropertyState(Properties.POWERED, true)
-        }
-        fun off() {
-            super.off(blockEntity)
-            blockEntity.duration = 0
-            blockEntity.progress = 0
-            blockEntity.setPropertyState(Properties.POWERED, false)
-        }
-        blockEntity.setPropertyState(Properties.LIT, blockEntity.power > 0)
-        // burning
-        if (blockEntity.power > 0) {
-            blockEntity.power--
-            AwesomeLogger.warn("tick: ${blockEntity.power}")
-        }
-        // igniting
-        if (blockEntity.duration > 0) {
-            blockEntity.progress++
-            // fire
-            if (blockEntity.progress >= blockEntity.duration) {
-                on(AwesomeMachines.FUEL.time)
+    val block = GeneratorBlock(FabricBlockSettings.copyOf(Blocks.FURNACE))
+
+    private lateinit var SCREEN: ScreenHandlerType<GeneratorScreenHandler>
+    val screen get() = SCREEN
+
+    operator fun invoke() {
+        if (Minecraft.isClient) {
+            SCREEN = ScreenHandlerType { syncId, playerInventory ->
+                GeneratorScreenHandler(syncId, SimpleSidedInventory(PORTS.size), playerInventory, ArrayPropertyDelegate(PROPERTIES))
             }
-        }
-        // idle
-        if (blockEntity.power <= IGNITE && blockEntity.duration == 0) {
-            if (blockEntity.getStack(INPUT).item == AwesomeMachines.FUEL) {
-                blockEntity.duration = IGNITE
-                blockEntity.progress = 0
-                blockEntity.removeStack(INPUT, 1)
-                if (blockEntity.getStack(INPUT).isEmpty) {
-                    blockEntity.setStack(INPUT, ItemStack.EMPTY)
-                    blockEntity.markDirty()
-                }
-                return
+            HandledScreens.register(SCREEN) { handler, playerInventory, title ->
+                GeneratorScreen(NAME, handler, playerInventory, title)
             }
         }
     }
 
 }
+//
+//blockEntity.setPropertyState(Properties.LIT, blockEntity.power > 0)
+//        // burning
+//        if (blockEntity.power > 0) {
+//            blockEntity.power--
+//        }
+//        // igniting
+//        if (blockEntity.duration > 0) {
+//            blockEntity.progress++
+//            // fire
+//            if (blockEntity.progress >= blockEntity.duration) {
+//                on(AwesomeMachines.FUEL.time)
+//            }
+//        }
+//        // idle
+//        if (blockEntity.power <= IGNITE && blockEntity.duration == 0) {
+//            if (blockEntity.getStack(INPUT).item == AwesomeMachines.FUEL) {
+//                blockEntity.duration = IGNITE
+//                blockEntity.progress = 0
+//                blockEntity.removeStack(INPUT, 1)
+//                if (blockEntity.getStack(INPUT).isEmpty) {
+//                    blockEntity.setStack(INPUT, ItemStack.EMPTY)
+//                    blockEntity.markDirty()
+//                }
+//                return
+//            }
+//        }
+//    }
+//
+//}

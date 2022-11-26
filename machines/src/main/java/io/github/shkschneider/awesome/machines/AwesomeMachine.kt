@@ -54,7 +54,6 @@ abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEnt
                 screenHandlerProvider(syncId, SimpleSidedInventory(ports.size), playerInventory, ArrayPropertyDelegate(AwesomeMachineBlockEntity.PROPERTIES))
             }
             HandledScreens.register(screen) { handler, playerInventory, title ->
-                handler.blockEntity = entity
                 screenProvider(handler, playerInventory, title)
             }
         }

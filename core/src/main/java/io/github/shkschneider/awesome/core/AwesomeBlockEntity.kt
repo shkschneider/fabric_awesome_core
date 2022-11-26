@@ -12,6 +12,7 @@ import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.state.property.Property
 import net.minecraft.util.collection.DefaultedList
@@ -92,5 +93,7 @@ abstract class AwesomeBlockEntity(
         }
 
     }
+
+    interface WithScreen : NamedScreenHandlerFactory
 
 }
