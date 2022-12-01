@@ -6,6 +6,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.SharedConstants;
 import net.minecraft.client.resource.SplashTextResourceSupplier;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -14,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * Thanks Linkie & Shedaniel
  * Link: https://linkie.shedaniel.me/mappings
  */
+@Pseudo
 @Environment(EnvType.CLIENT)
 @Mixin(SplashTextResourceSupplier.class)
 public class MainMenuTextMixin {

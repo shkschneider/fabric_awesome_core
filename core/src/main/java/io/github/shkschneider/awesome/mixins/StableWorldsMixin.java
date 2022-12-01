@@ -8,6 +8,7 @@ import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.server.integrated.IntegratedServerLoader;
 import net.minecraft.world.SaveProperties;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -18,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * License: LGPL3
  * Source: https://github.com/rdvdev2/DisableCustomWorldsAdvice
  */
+@Pseudo
 @Environment(EnvType.CLIENT)
 @Mixin(IntegratedServerLoader.class)
 public abstract class StableWorldsMixin {

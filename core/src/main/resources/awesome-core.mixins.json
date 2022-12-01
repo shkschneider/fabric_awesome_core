@@ -11,7 +11,7 @@
   "server": [],
   "client": [
     "MainMenuTextMixin",
-    "OfflineDevelopper",
+    "OfflineDeveloper",
     "SplashScreenBackgroundMixin",
     "StableLevelsMixin",
     "StableWorldsMixin"

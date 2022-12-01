@@ -3,6 +3,7 @@ package io.github.shkschneider.awesome.core
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.custom.Location
 import io.github.shkschneider.awesome.custom.Minecraft
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.util.Identifier
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -18,6 +19,9 @@ object AwesomeUtils {
     fun secondsToTicks(s: Int): Int = s * Minecraft.TICKS
 
     fun ticksToSeconds(t: Int): Int = t / Minecraft.TICKS
+
+    fun isModLoaded(id: String): Boolean =
+        FabricLoader.getInstance().isModLoaded(id)
 
     // https://minecraft.fandom.com/wiki/Tutorials/Measuring_distance#Euclidean_distance_in_3_dimensions_(including_elevation)
     fun distance(l1: Location, l2: Location): Double {
