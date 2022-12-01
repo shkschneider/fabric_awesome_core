@@ -9,26 +9,6 @@ sealed class AwesomeMaterials(
     settings: Settings,
 ) : AwesomeItem(id, settings) {
 
-    class Chip(
-        name: String,
-        settings: Settings,
-    ) : AwesomeMaterials(AwesomeUtils.identifier("${name}_chip"), settings)
-
-    class Dust(
-        name: String,
-        settings: Settings,
-    ) : AwesomeMaterials(AwesomeUtils.identifier("${name}_dust"), settings)
-
-    class Powder(
-        name: String,
-        settings: Settings,
-    ) : AwesomeMaterials(AwesomeUtils.identifier("${name}_powder"), settings)
-
-    class Ingot(
-        name: String,
-        settings: Settings,
-    ) : AwesomeMaterials(AwesomeUtils.identifier("${name}_ingot"), settings)
-
     class Plate(
         name: String,
         settings: Settings,

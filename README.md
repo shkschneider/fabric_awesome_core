@@ -11,6 +11,8 @@
 
 Shamelessly took inspirations from the times of Minecraft Joules and Redstone Flux: Thermal Expansion, Greg Tech, Industrial Craft...
 
+Evolves around Vanilla copper, with ore powders, chips and dusts.
+
 ## Modules
 
 - Awesome **Core** (required!)
@@ -56,8 +58,8 @@ Almost everything is configurable via `config/awesome.json`.
 
 ## Recipes
 
-- 4x more torches using coal dusts
-- end portal frame
+- More torches using coal chips or dusts
+- End portal frame
 - Optional: 1 coal block (crushing) 1 diamond dust (smelting) 1diamond
 - Optional: 1 cobblestone (crushing) 1 gravel (crushing) 1sand
 - Optional: 1 randomium ore (smelting) 1 redstone flux

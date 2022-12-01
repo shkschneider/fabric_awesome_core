@@ -6,9 +6,9 @@
     "333"
   ],
   "key": {
-    "1": { "item": "awesome:steel_plate" },
+    "1": { "item": "awesome:copper_plate" },
     "2": { "item": "awesome:smelter" },
-    "3": { "item": "awesome:steel_frame" }
+    "3": { "item": "awesome:copper_frame" }
   },
   "result": {
     "item": "awesome:refinery",

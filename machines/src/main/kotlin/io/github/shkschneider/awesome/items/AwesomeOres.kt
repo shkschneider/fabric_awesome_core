@@ -24,4 +24,9 @@ sealed class AwesomeOres(
         settings: Settings,
     ) : AwesomeOres(AwesomeUtils.identifier("${name}_powder"), settings)
 
+    class Ingot(
+        name: String,
+        settings: Settings,
+    ) : AwesomeOres(AwesomeUtils.identifier("${name}_ingot"), settings)
+
 }

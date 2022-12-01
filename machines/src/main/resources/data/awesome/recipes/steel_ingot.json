@@ -1,7 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": { "item": "awesome:steel_dust" },
-  "experience": 0.1,
-  "cookingtime": 40,
-  "result": "awesome:steel_ingot"
-}

@@ -6,9 +6,9 @@
     "232"
   ],
   "key": {
-    "1": { "item": "minecraft:ghast_tear" },
-    "2": { "item": "awesome:electrum_rod" },
-    "3": { "item": "awesome:electrum_plate" }
+    "1": { "item": "minecraft:lead" },
+    "2": { "item": "minecraft:ghast_tear" },
+    "3": { "item": "minecraft:amethyst_shard" }
   },
   "result": {
     "item": "awesome:imprisoner",

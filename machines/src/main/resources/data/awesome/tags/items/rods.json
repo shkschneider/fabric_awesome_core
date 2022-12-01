@@ -1,10 +1,8 @@
 {
   "replace": false,
   "values": [
-    "awesome:bronze_rod",
-    "awesome:electrum_rod",
-    "awesome:lead_rod",
-    "awesome:nickel_rod",
-    "awesome:steel_rod"
+    "awesome:copper_rod",
+    "awesome:lapis_rod",
+    "awesome:redstone_rod"
   ]
 }

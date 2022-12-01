@@ -6,12 +6,12 @@
     "333"
   ],
   "key": {
-    "1": { "item": "awesome:bronze_plate" },
+    "1": { "item": "awesome:copper_plate" },
     "2": { "item": "minecraft:crafting_table" },
-    "3": { "item": "awesome:bronze_frame" }
+    "3": { "item": "awesome:copper_frame" }
   },
   "result": {
-    "item": "awesome:collector",
+    "item": "awesome:crafter",
     "count": 1
   }
 }

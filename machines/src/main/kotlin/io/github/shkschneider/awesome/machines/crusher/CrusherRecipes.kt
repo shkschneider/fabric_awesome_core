@@ -21,11 +21,6 @@ object CrusherRecipes {
         AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.IRON_INGOT, 1)), time = 20, ItemStack(AwesomeItems.Iron.dust, 1)),
         AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.LAPIS_LAZULI, 1)), time = 20, ItemStack(AwesomeItems.Lapis.dust, 1)),
         AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.QUARTZ, 1)), time = 20, ItemStack(AwesomeItems.Quartz.dust, 1)),
-        AwesomeRecipe(CRUSHING, listOf(ItemStack(AwesomeItems.Bronze.ingot, 1)), time = 20, ItemStack(AwesomeItems.Bronze.dust, 1)),
-        AwesomeRecipe(CRUSHING, listOf(ItemStack(AwesomeItems.Electrum.ingot, 1)), time = 20, ItemStack(AwesomeItems.Electrum.dust, 1)),
-        AwesomeRecipe(CRUSHING, listOf(ItemStack(AwesomeItems.Lead.ingot, 1)), time = 20, ItemStack(AwesomeItems.Lead.dust, 1)),
-        AwesomeRecipe(CRUSHING, listOf(ItemStack(AwesomeItems.Nickel.ingot, 1)), time = 20, ItemStack(AwesomeItems.Nickel.dust, 1)),
-        AwesomeRecipe(CRUSHING, listOf(ItemStack(AwesomeItems.Steel.ingot, 1)), time = 20, ItemStack(AwesomeItems.Steel.dust, 1)),
         // Raw -> Powder
         AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.RAW_COPPER, 1)), time = 20, ItemStack(AwesomeItems.Copper.powder, 4)),
         AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.RAW_GOLD, 1)), time = 20, ItemStack(AwesomeItems.Gold.powder, 4)),

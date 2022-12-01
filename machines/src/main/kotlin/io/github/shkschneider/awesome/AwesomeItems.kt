@@ -15,8 +15,6 @@ object AwesomeItems {
 
     private val settings = FabricItemSettings().maxCount(Minecraft.STACK).group(Awesome.GROUP).rarity(Rarity.COMMON)
 
-    //region Vanilla
-
     object Coal {
 
         private const val ID = "coal"
@@ -38,6 +36,10 @@ object AwesomeItems {
         val chip = AwesomeOres.Chip(ID, settings)
         val dust = AwesomeOres.Dust(ID, settings)
         val powder = AwesomeOres.Powder(ID, settings)
+
+        val frame = AwesomeMaterials.Frame(ID, settings)
+        val plate = AwesomeMaterials.Plate(ID, settings)
+        val rod = AwesomeMaterials.Rod(ID, settings)
 
         operator fun invoke() = Unit
 
@@ -103,6 +105,11 @@ object AwesomeItems {
         val chip = AwesomeOres.Chip(ID, settings)
         val dust = AwesomeOres.Dust(ID, settings)
         val powder = AwesomeOres.Powder(ID, settings)
+        val ingot = AwesomeOres.Ingot(ID, settings)
+
+        val frame = AwesomeMaterials.Frame(ID, settings)
+        val plate = AwesomeMaterials.Plate(ID, settings)
+        val rod = AwesomeMaterials.Rod(ID, settings)
 
         operator fun invoke() = Unit
 
@@ -133,10 +140,16 @@ object AwesomeItems {
         private const val ID = "redstone"
         const val COLOR = 0xC80000
 
+        val flux = RedstoneFlux()
+
         val chip = AwesomeOres.Chip(ID, settings)
         val dust = Items.REDSTONE // "wire"
-        val flux = RedstoneFlux()
         val powder = AwesomeOres.Powder(ID, settings)
+        val ingot = AwesomeOres.Ingot(ID, settings)
+
+        val frame = AwesomeMaterials.Frame(ID, settings)
+        val plate = AwesomeMaterials.Plate(ID, settings)
+        val rod = AwesomeMaterials.Rod(ID, settings)
 
         operator fun invoke() {
             if (Awesome.CONFIG.machines.redstoneFluxAsVanillaFuel) {
@@ -148,88 +161,6 @@ object AwesomeItems {
     }
 
     //endregion
-
-    //region Alloys
-
-    object Bronze { // 3 copper 1 lead
-
-        private const val ID = "bronze"
-
-        val chip = AwesomeMaterials.Chip(ID, settings)
-        val dust = AwesomeMaterials.Dust(ID, settings)
-        val powder = AwesomeMaterials.Powder(ID, settings)
-        val ingot = AwesomeMaterials.Ingot(ID, settings)
-        val plate = AwesomeMaterials.Plate(ID, settings)
-        val rod = AwesomeMaterials.Rod(ID, settings)
-        val frame = AwesomeMaterials.Frame(ID, settings)
-
-        operator fun invoke() = Unit
-
-    }
-
-    object Electrum { // 1 iron 1 gold
-
-        private const val ID = "electrum"
-
-        val chip = AwesomeMaterials.Chip(ID, settings)
-        val dust = AwesomeMaterials.Dust(ID, settings)
-        val powder = AwesomeMaterials.Powder(ID, settings)
-        val ingot = AwesomeMaterials.Ingot(ID, settings)
-        val plate = AwesomeMaterials.Plate(ID, settings)
-        val rod = AwesomeMaterials.Rod(ID, settings)
-        val frame = AwesomeMaterials.Frame(ID, settings)
-
-        operator fun invoke() = Unit
-
-    }
-
-    object Lead { // 1 iron 1 coal
-
-        private const val ID = "lead"
-
-        val chip = AwesomeMaterials.Chip(ID, settings)
-        val dust = AwesomeMaterials.Dust(ID, settings)
-        val powder = AwesomeMaterials.Powder(ID, settings)
-        val ingot = AwesomeMaterials.Ingot(ID, settings)
-        val plate = AwesomeMaterials.Plate(ID, settings)
-        val rod = AwesomeMaterials.Rod(ID, settings)
-        val frame = AwesomeMaterials.Frame(ID, settings)
-
-        operator fun invoke() = Unit
-
-    }
-
-    object Nickel { // 3 iron 1 coal
-
-        private const val ID = "nickel"
-
-        val chip = AwesomeMaterials.Chip(ID, settings)
-        val dust = AwesomeMaterials.Dust(ID, settings)
-        val powder = AwesomeMaterials.Powder(ID, settings)
-        val ingot = AwesomeMaterials.Ingot(ID, settings)
-        val plate = AwesomeMaterials.Plate(ID, settings)
-        val rod = AwesomeMaterials.Rod(ID, settings)
-        val frame = AwesomeMaterials.Frame(ID, settings)
-
-        operator fun invoke() = Unit
-
-    }
-
-    object Steel { // 8 iron 1 coal
-
-        private const val ID = "steel"
-
-        val chip = AwesomeMaterials.Chip(ID, settings)
-        val dust = AwesomeMaterials.Dust(ID, settings)
-        val powder = AwesomeMaterials.Powder(ID, settings)
-        val ingot = AwesomeMaterials.Ingot(ID, settings)
-        val plate = AwesomeMaterials.Plate(ID, settings)
-        val rod = AwesomeMaterials.Rod(ID, settings)
-        val frame = AwesomeMaterials.Frame(ID, settings)
-
-        operator fun invoke() = Unit
-
-    }
 
     //endregion
 
@@ -245,11 +176,6 @@ object AwesomeItems {
         Redstone()
         if (Awesome.CONFIG.machines.imprisoner) Imprisoner()
         if (Awesome.CONFIG.machines.prospector) Prospector()
-        Bronze()
-        Electrum()
-        Lead()
-        Nickel()
-        Steel()
     }
 
 }

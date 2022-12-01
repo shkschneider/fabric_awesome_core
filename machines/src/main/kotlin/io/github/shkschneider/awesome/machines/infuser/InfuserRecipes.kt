@@ -1,8 +1,8 @@
 package io.github.shkschneider.awesome.machines.infuser
 
+import io.github.shkschneider.awesome.AwesomeItems
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.AwesomeRecipeType
-import io.github.shkschneider.awesome.AwesomeItems
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 
@@ -33,16 +33,6 @@ object InfuserRecipes {
         AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Redstone.chip, 4), ItemStack(Items.SAND, 1)), time = 20, ItemStack(AwesomeItems.Redstone.powder, 8)),
         // RedstoneFlux
         AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Lapis.dust, 1), ItemStack(AwesomeItems.Redstone.dust, 1)), time = 20, ItemStack(AwesomeItems.Redstone.flux, 2)),
-        // Bronze
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Copper.dust, 3), ItemStack(AwesomeItems.Lead.dust, 1)), time = 20, ItemStack(AwesomeItems.Bronze.dust, 2)),
-        // Electrum
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Iron.dust, 3), ItemStack(AwesomeItems.Gold.dust, 1)), time = 20, ItemStack(AwesomeItems.Electrum.dust, 2)),
-        // Lead
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Iron.dust, 1), ItemStack(AwesomeItems.Coal.dust, 1)), time = 20, ItemStack(AwesomeItems.Lead.dust, 2)),
-        // Nickel
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Iron.dust, 3), ItemStack(AwesomeItems.Coal.dust, 1)), time = 20, ItemStack(AwesomeItems.Nickel.dust, 2)),
-        // Steel
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Iron.dust, 8), ItemStack(AwesomeItems.Coal.dust, 1)), time = 20, ItemStack(AwesomeItems.Steel.dust, 2)),
     )
 
 }

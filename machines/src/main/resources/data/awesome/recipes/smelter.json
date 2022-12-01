@@ -6,9 +6,9 @@
     "333"
   ],
   "key": {
-    "1": { "item": "awesome:lead_plate" },
+    "1": { "item": "awesome:copper_plate" },
     "2": { "item": "minecraft:furnace" },
-    "3": { "item": "awesome:lead_frame" }
+    "3": { "item": "awesome:copper_frame" }
   },
   "result": {
     "item": "awesome:smelter",
