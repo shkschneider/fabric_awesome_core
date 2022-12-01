@@ -8,7 +8,7 @@ import java.net.URL
 
 plugins {
     // https://github.com/JetBrains/kotlin/releases
-    kotlin("jvm") version "1.7.21"
+    kotlin("jvm") version "1.7.22"
     // https://maven.fabricmc.net/fabric-loom/fabric-loom.gradle.plugin/
     id("fabric-loom") version "1.0.12"
 }
