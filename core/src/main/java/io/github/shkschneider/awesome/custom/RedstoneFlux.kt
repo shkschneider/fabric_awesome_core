@@ -16,6 +16,6 @@ class RedstoneFlux : AwesomeItem(
 
     val time = FuelRegistry.INSTANCE.get(Items.COAL) * 2 // ~3200t
 
-    override fun hasGlint(stack: ItemStack): Boolean = true
+    override fun hasGlint(stack: ItemStack): Boolean = false
 
 }

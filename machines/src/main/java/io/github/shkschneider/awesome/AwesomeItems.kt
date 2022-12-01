@@ -2,6 +2,7 @@ package io.github.shkschneider.awesome
 
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.custom.Minecraft
+import io.github.shkschneider.awesome.custom.RedstoneFlux
 import io.github.shkschneider.awesome.items.AwesomeMaterials
 import io.github.shkschneider.awesome.items.AwesomeOres
 import io.github.shkschneider.awesome.items.Imprisoner
@@ -134,7 +135,7 @@ object AwesomeItems {
 
         val chip = AwesomeOres.Chip(ID, settings)
         val dust = Items.REDSTONE // "wire"
-        val flux = Awesome.FLUX
+        val flux = RedstoneFlux()
         val powder = AwesomeOres.Powder(ID, settings)
 
         operator fun invoke() {

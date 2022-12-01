@@ -9,6 +9,8 @@
 ![Tag](https://img.shields.io/github/v/tag/shkschneider/mc_awesome?style=for-the-badge)
 [![license](https://img.shields.io/github/license/shkschneider/mc_awesome?style=for-the-badge)](https://github.com/shkschneider/mc_awesome/LICENSE)
 
+Shamelessly took inspirations from the times of Minecraft Joules and Redstone Flux: Thermal Expansion, Greg Tech, Industrial Craft...
+
 ## Modules
 
 - Awesome **Core** (required!)
@@ -64,12 +66,13 @@ Almost everything is configurable via `config/awesome.json`.
 ## License & Credits
 
 This project is licensed under **MIT**.
-Made by ShkSchneider.
+Made by **ShkSchneider** with great help from open-sourced codes from the community of modders.
 
 - Special thanks to *Kaupenjoe*: https://github.com/Tutorials-By-Kaupenjoe
 - Most ores textures are from *GregTech* under **LGPL3**: https://github.com/GregTechCE/GregTech
 - Most machines frames are from *Industrial Foregoing* under **MIT**: https://github.com/InnovativeOnlineIndustries/Industrial-Foregoing
 
 - Logo based off https://www.iconfinder.com/icons/185592/table_crafting_icon
-- Imprisoner based off https://pngimg.com/imgs/fantasy/pokeball/
+- Redstone Flux from **Thermal Foundation**'s *Petrotheum Dust* and *Signalum Blend*
+- Imprisoner from https://ftb.fandom.com/wiki/Mob_Imprisonment_Tool
 - Prospector based off https://www.iconfinder.com/icons/9044628/machine_learning_icon

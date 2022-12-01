@@ -11,8 +11,6 @@ import io.github.shkschneider.awesome.worldgen.RandomiumWorldGen
 
 object AwesomeMachines {
 
-    val FUEL = Awesome.FLUX
-
     val collector = Collector()
     val crafter = Crafter()
     val crusher = Crusher()
