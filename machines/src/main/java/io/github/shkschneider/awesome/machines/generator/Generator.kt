@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome.machines.generator
 
-import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.custom.Minecraft
@@ -23,7 +22,6 @@ object Generator {
     val PROPERTIES = 2
 
     fun tick(world: World, pos: BlockPos, state: BlockState, entity: GeneratorBlockEntity) {
-        AwesomeLogger.warn("tick: ${entity.power}")
         entity.power++
     }
 

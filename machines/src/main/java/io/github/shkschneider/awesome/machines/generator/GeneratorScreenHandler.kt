@@ -7,14 +7,14 @@ import net.minecraft.screen.PropertyDelegate
 
 class GeneratorScreenHandler : AwesomeBlockScreen.Handler {
 
-    constructor(syncId: Int, blockEntity: GeneratorBlockEntity, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(Generator.screen, syncId, blockEntity as SidedInventory, playerInventory, properties) {
-        this.entity = blockEntity
+    constructor(syncId: Int, blockEntity: GeneratorBlockEntity, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(Generator.screen, syncId, blockEntity, playerInventory, properties) {
+        this.power = blockEntity.power
     }
     constructor(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(Generator.screen, syncId, sidedInventory, playerInventory, properties)
 
     internal var entity: GeneratorBlockEntity? = null
 
-    val power: Long get() = entity?.power ?: 0
+    var power: Long = 0
     val progress: Int get() = entity?.progress ?: 0
     val duration: Int get() = entity?.duration ?: 0
 

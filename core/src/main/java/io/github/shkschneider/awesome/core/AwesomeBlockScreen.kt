@@ -43,6 +43,10 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight)
     }
 
+    override fun drawForeground(matrices: MatrixStack, mouseX: Int, mouseY: Int) {
+        super.drawForeground(matrices, mouseX, mouseY)
+    }
+
     override fun render(matrices: MatrixStack, mouseX: Int, mouseY: Int, delta: Float) {
         renderBackground(matrices)
         super.render(matrices, mouseX, mouseY, delta)

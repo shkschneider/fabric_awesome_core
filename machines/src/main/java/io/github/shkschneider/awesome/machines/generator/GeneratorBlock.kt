@@ -19,7 +19,7 @@ import net.minecraft.world.World
 
 class GeneratorBlock(
     settings: Settings,
-) : AwesomeBlock.WithEntity<GeneratorBlockEntity>(Generator.ID, settings), AwesomeBlock.WithScreen {
+) : AwesomeBlock.WithScreen<GeneratorBlockEntity>(Generator.ID, settings) {
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState = defaultState
         .with(Properties.HORIZONTAL_FACING, ctx.playerFacing.opposite)

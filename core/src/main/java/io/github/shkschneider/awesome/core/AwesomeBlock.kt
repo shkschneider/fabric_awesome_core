@@ -64,7 +64,7 @@ abstract class AwesomeBlock(
         id: Identifier,
         settings: Settings,
         group: ItemGroup = Awesome.GROUP,
-    ) : AwesomeBlock(id, settings, group), BlockEntityProvider, BlockEntityTicker<BE> {
+    ) : WithEntity<BE>(id, settings, group), BlockEntityProvider, BlockEntityTicker<BE> {
 
         /**
          * Block.onUse(): If your block class does not extend BlockWithEntity, it needs to implement createScreenHandlerFactory.
