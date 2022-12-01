@@ -84,6 +84,11 @@ allprojects {
     apply(plugin = "fabric-loom")
     group = rootProject.group
     version = rootProject.version
+    sourceSets.main {
+        java {
+            setSrcDirs(listOf("src/main/java", "src/main/kotlin"))
+        }
+    }
     dependencies {
         minecraft("com.mojang:minecraft:${property("minecraft")}")
         mappings("net.fabricmc:yarn:${property("yarn")}:v2")

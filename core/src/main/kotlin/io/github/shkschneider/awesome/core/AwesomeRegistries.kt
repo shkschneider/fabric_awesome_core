@@ -39,7 +39,7 @@ object AwesomeRegistries {
     fun blockEntityType(id: Identifier, block: Block, createBlockEntity: (BlockPos, BlockState) -> BlockEntity): BlockEntityType<BlockEntity> =
         Registry.register(Registry.BLOCK_ENTITY_TYPE, id, FabricBlockEntityTypeBuilder.create({ pos, state -> createBlockEntity(pos, state) }, block).build(null))
 
-    fun command(name: String, permission: Permissions = Permissions.Anyone, run: (CommandContext<ServerCommandSource>) -> Int) {
+    fun command(name: String, permission: Permissions = Permissions.Commands, run: (CommandContext<ServerCommandSource>) -> Int) {
         CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource?>, _, _ ->
             dispatcher.register(CommandManager.literal(name).requires { it.hasPermissionLevel(permission.level) }.executes(run))
         })
