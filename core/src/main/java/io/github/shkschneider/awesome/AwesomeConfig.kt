@@ -20,6 +20,7 @@ data class AwesomeConfig(
     )
 
     data class Extras(
+        @SerializedName("baguette") val baguette: Boolean = true,
         @SerializedName("pvp") val pvp: Boolean = true,
         @SerializedName("sleepingHeals") val sleepingHeals: Boolean = true,
         @SerializedName("unlockRecipes") val unlockRecipes: Boolean = true,

@@ -69,7 +69,7 @@ This project is licensed under **MIT**.
 Made by **ShkSchneider** with great help from open-sourced codes from the community of modders.
 
 - Special thanks to *Kaupenjoe*: https://github.com/Tutorials-By-Kaupenjoe
-- Most ores textures are from *GregTech* under **LGPL3**: https://github.com/GregTechCE/GregTech
+- Most textures are from *GregTech* under **LGPL3**: https://github.com/GregTechCE/GregTech
 - Most machines frames are from *Industrial Foregoing* under **MIT**: https://github.com/InnovativeOnlineIndustries/Industrial-Foregoing
 
 - Logo based off https://www.iconfinder.com/icons/185592/table_crafting_icon
