@@ -35,7 +35,7 @@ object VeinMining {
         }
     }
 
-    // TODO iterate while touching a similar item, not in a cube around
+    // TODO iterate while touching a similar item, not in a cube around and limit to 64
     private fun veinMining(world: World, pos: BlockPos, playerEntity: PlayerEntity, level: Int, item: Item) {
         isVeinMining = true
         val start = pos.mutableCopy().add(-level, -level, -level)

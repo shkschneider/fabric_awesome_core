@@ -98,15 +98,9 @@ class RandomiumOre(
         for (direction in directions) {
             val blockPos = pos.offset(direction)
             if (!world.getBlockState(blockPos).isOpaqueFullCube(world, blockPos)) {
-                val e =
-                    if (direction.axis === Direction.Axis.X) 0.5 + offset * direction.offsetX.toDouble() else world.random.nextFloat()
-                        .toDouble()
-                val f =
-                    if (direction.axis === Direction.Axis.Y) 0.5 + offset * direction.offsetY.toDouble() else world.random.nextFloat()
-                        .toDouble()
-                val g =
-                    if (direction.axis === Direction.Axis.Z) 0.5 + offset * direction.offsetZ.toDouble() else world.random.nextFloat()
-                        .toDouble()
+                val e = if (direction.axis === Direction.Axis.X) 0.5 + offset * direction.offsetX.toDouble() else world.random.nextFloat().toDouble()
+                val f = if (direction.axis === Direction.Axis.Y) 0.5 + offset * direction.offsetY.toDouble() else world.random.nextFloat().toDouble()
+                val g = if (direction.axis === Direction.Axis.Z) 0.5 + offset * direction.offsetZ.toDouble() else world.random.nextFloat().toDouble()
                 world.addParticle(
                     DustParticleEffect(Vec3f(Vec3d.unpackRgb(color)), 1.0F),
                     pos.x.toDouble() + e,

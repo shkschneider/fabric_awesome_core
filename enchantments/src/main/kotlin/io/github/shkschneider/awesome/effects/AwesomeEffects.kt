@@ -10,8 +10,6 @@ object AwesomeEffects {
     val experience1 get() = EXPERIENCE_1
     private lateinit var EXPERIENCE_9: AwesomeEffect
     val experience9 get() = EXPERIENCE_9
-    private lateinit var MAGNETISM: AwesomeEffect
-    val magnetism get() = MAGNETISM
     private lateinit var PARALYSIS: AwesomeEffect
     val paralysis get() = PARALYSIS
 
@@ -22,9 +20,6 @@ object AwesomeEffects {
         if (Awesome.CONFIG.enchantments.experience) {
             EXPERIENCE_1 = ExperienceEffect(levels = 1)
             EXPERIENCE_9 = ExperienceEffect(levels = 9)
-        }
-        if (Awesome.CONFIG.enchantments.magnetism) {
-            MAGNETISM = MagnetismEffect()
         }
     }
 
