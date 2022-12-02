@@ -1,14 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "131",
-    "1 1",
-    "121"
+    "111",
+    "121",
+    "333"
   ],
   "key": {
-    "1": { "item": "minecraft:copper_ingot" },
-    "2": { "item": "minecraft:obsidian" },
-    "3": { "item": "minecraft:anvil" }
+    "1": { "item": "awesome:copper_plate" },
+    "2": { "item": "minecraft:anvil" },
+    "3": { "item": "awesome:copper_frame" }
   },
   "result": {
     "item": "awesome:crusher",

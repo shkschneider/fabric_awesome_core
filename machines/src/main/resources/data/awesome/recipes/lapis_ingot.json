@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "111",
+    "111",
+    "   "
+  ],
+  "key": {
+    "1": { "item": "minecraft:lapis_lazuli" }
+  },
+  "result": {
+    "item": "awesome:lapis_ingot",
+    "count": 1
+  }
+}

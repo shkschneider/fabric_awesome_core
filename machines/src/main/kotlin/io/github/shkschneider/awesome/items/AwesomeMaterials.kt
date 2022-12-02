@@ -9,6 +9,11 @@ sealed class AwesomeMaterials(
     settings: Settings,
 ) : AwesomeItem(id, settings) {
 
+    class Frame(
+        name: String,
+        settings: Settings,
+    ) : AwesomeMaterials(AwesomeUtils.identifier("${name}_frame"), settings)
+
     class Plate(
         name: String,
         settings: Settings,
@@ -18,10 +23,5 @@ sealed class AwesomeMaterials(
         name: String,
         settings: Settings,
     ) : AwesomeMaterials(AwesomeUtils.identifier("${name}_rod"), settings)
-
-    class Frame(
-        name: String,
-        settings: Settings,
-    ) : AwesomeMaterials(AwesomeUtils.identifier("${name}_frame"), settings)
 
 }

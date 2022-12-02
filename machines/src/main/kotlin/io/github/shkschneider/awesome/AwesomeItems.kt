@@ -36,6 +36,7 @@ object AwesomeItems {
         val chip = AwesomeOres.Chip(ID, settings)
         val dust = AwesomeOres.Dust(ID, settings)
         val powder = AwesomeOres.Powder(ID, settings)
+        val ingot = Items.COPPER_INGOT
 
         val frame = AwesomeMaterials.Frame(ID, settings)
         val plate = AwesomeMaterials.Plate(ID, settings)

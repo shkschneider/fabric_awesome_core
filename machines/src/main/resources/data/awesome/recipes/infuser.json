@@ -6,9 +6,9 @@
     "333"
   ],
   "key": {
-    "1": { "item": "awesome:copper_plate" },
-    "2": { "item": "minecraft:blast_furnace" },
-    "3": { "item": "awesome:copper_frame" }
+    "1": { "item": "awesome:lapis_plate" },
+    "2": { "item": "minecraft:furnace" },
+    "3": { "item": "awesome:lapis_frame" }
   },
   "result": {
     "item": "awesome:infuser",

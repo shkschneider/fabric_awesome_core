@@ -1,14 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "111",
+    "414",
     "121",
     "333"
   ],
   "key": {
     "1": { "item": "awesome:copper_plate" },
-    "2": { "item": "awesome:smelter" },
-    "3": { "item": "awesome:copper_frame" }
+    "2": { "item": "minecraft:blast_furnace" },
+    "3": { "item": "awesome:redstone_frame" },
+    "4": { "item": "awesome:lapis_plate" }
   },
   "result": {
     "item": "awesome:refinery",

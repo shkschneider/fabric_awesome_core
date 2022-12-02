@@ -6,9 +6,9 @@
     "333"
   ],
   "key": {
-    "1": { "item": "awesome:copper_plate" },
+    "1": { "item": "awesome:redstone_plate" },
     "2": { "item": "minecraft:redstone_block" },
-    "3": { "item": "awesome:copper_frame" }
+    "3": { "item": "awesome:redstone_frame" }
   },
   "result": {
     "item": "awesome:generator",
