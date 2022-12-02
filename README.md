@@ -24,6 +24,7 @@ Evolves around Vanilla copper, with ore powders, chips and dusts.
   - villagers infinite trading
   - extract enchantments using the grindstone
   - player heads on death (by another player)
+  - coordinates on death screen
 - Awesome **Commands**
   - `/fly` `/invulnerable`
   - `/spawn` `/top`

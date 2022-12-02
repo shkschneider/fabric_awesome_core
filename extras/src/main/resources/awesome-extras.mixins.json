@@ -4,6 +4,7 @@
   "package": "io.github.shkschneider.awesome.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "DeathScreenMixin",
     "DropXpMixin",
     "KeepXpMixin",
     "PlayerKillMixin",
