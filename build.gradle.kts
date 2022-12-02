@@ -38,6 +38,9 @@ dependencies {
         "emi-580555" to "4077428", // https://maven.terraformersmc.com/dev/emi/emi
         "jade-324717" to "4054977", // https://www.curseforge.com/minecraft/mc-mods/jade/files
         "xaeros-minimap-263420" to "4075402", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files
+        "cloth-api-317121" to "3853858", // https://www.curseforge.com/minecraft/mc-mods/cloth-api/files
+        "cloth-config-348521" to "3972420", // https://www.curseforge.com/minecraft/mc-mods/cloth-config/files
+        "appleskin-248787" to "3927567", // https://www.curseforge.com/minecraft/mc-mods/appleskin/files
     ).forEach { mod ->
         modRuntimeOnly("curse.maven:${mod.first}:${mod.second}") { exclude(group = "net.fabricmc") ; exclude(group = "net.fabricmc.fabric-api") }
     }
