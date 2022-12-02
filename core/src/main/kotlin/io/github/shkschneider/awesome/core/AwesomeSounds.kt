@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.custom
+package io.github.shkschneider.awesome.core
 
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvent

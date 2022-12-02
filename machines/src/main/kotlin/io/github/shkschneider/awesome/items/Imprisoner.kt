@@ -2,8 +2,8 @@ package io.github.shkschneider.awesome.items
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeItem
+import io.github.shkschneider.awesome.core.AwesomeSounds
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.custom.AwesomeSounds
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.Entity
