@@ -25,6 +25,8 @@ Evolves around Vanilla copper, with ore powders, chips and dusts.
   - extract enchantments using the grindstone
   - player heads on death (by another player)
   - coordinates on death screen
+  - bonus recipes for vanilla items
+  - upgradable tools and armors using smithing table
 - Awesome **Commands**
   - `/fly` `/invulnerable`
   - `/spawn` `/top`
