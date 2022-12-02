@@ -6,6 +6,7 @@
   "mixins": [
     "DropXpMixin",
     "KeepXpMixin",
+    "PlayerKillMixin",
     "PlayerRecipesMixin",
     "PvpMixin",
     "VillagersFollowEmeraldBlockMixin",

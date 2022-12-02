@@ -23,6 +23,7 @@ Evolves around Vanilla copper, with ore powders, chips and dusts.
   - villagers follow emerald blocks
   - villagers infinite trading
   - extract enchantments using the grindstone
+  - player heads on death (by another player)
 - Awesome **Commands**
   - `/fly` `/invulnerable`
   - `/spawn` `/top`
