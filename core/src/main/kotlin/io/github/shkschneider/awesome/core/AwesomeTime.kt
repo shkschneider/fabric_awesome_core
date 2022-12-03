@@ -10,9 +10,14 @@ import net.minecraft.world.World
 
 object AwesomeTime {
 
-    val ticksPerSecond = SharedConstants.TICKS_PER_SECOND
-    val ticksPerMinute = SharedConstants.TICKS_PER_MINUTE
-    val ticksPerInGameDay = SharedConstants.TICKS_PER_IN_GAME_DAY
+    val ticksPerRealLifeSecond: Int = SharedConstants.TICKS_PER_SECOND
+    val ticksPerRealLifeMinute: Int = ticksPerRealLifeSecond * 60
+    val ticksPerRealLifeHour: Int = ticksPerRealLifeMinute * 60
+
+    val ticksPerInGameDay: Int = SharedConstants.TICKS_PER_IN_GAME_DAY
+    val ticksPerInGameHour: Int = ticksPerInGameDay / 24
+    val ticksPerInGameMinute: Int = ticksPerInGameHour / 60
+    // ticksPerInGameSecond < 1
 
     fun day(world: World): Long =
         world.time / ticksPerInGameDay

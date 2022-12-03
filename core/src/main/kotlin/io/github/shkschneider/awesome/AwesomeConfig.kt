@@ -21,12 +21,15 @@ data class AwesomeConfig(
 
     data class Extras(
         @SerializedName("baguette") val baguette: Boolean = true,
+        @SerializedName("gameRulesOverrides") val gameRulesOverrides: Boolean = true,
+        @SerializedName("nadirLengthInDays") val nadirLengthInDays: Float = 0F,
         @SerializedName("playerHeads") val playerHeads: Boolean = true,
         @SerializedName("pvp") val pvp: Boolean = true,
         @SerializedName("sleepingHeals") val sleepingHeals: Boolean = true,
         @SerializedName("unlockRecipes") val unlockRecipes: Boolean = true,
         @SerializedName("villagersFollowEmeraldBlock") val villagersFollowEmeraldBlock: Boolean = true,
         @SerializedName("villagersInfiniteTrading") val villagersInfiniteTrading: Boolean = true,
+        @SerializedName("zenithLengthInDays") val zenithLengthInDays: Float = 0.5F,
     )
 
     data class Machines(

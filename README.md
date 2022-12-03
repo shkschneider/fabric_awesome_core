@@ -9,9 +9,11 @@
 ![Tag](https://img.shields.io/github/v/tag/shkschneider/mc_awesome?style=for-the-badge)
 [![license](https://img.shields.io/github/license/shkschneider/mc_awesome?style=for-the-badge)](https://github.com/shkschneider/mc_awesome/LICENSE)
 
-Shamelessly took inspirations from the times of Minecraft Joules and Redstone Flux: Thermal Expansion, Greg Tech, Industrial Craft...
+Shamelessly took inspirations from the times of **Minecraft Joules** and **Redstone Flux**: *Thermal Expansion*, *Greg Tech*, *Industrial Craft*...
 
-Evolves around Vanilla copper, with ore powders, chips and dusts.
+Evolves around Vanilla *copper*, *redstone* and *lapis lazuli* (with ingots for each!),
+with ore processing involving *powders*, *chips* and *dusts*,
+and with **Extras** giving a Vanilla++ feeling.
 
 ## Modules
 
@@ -27,6 +29,7 @@ Evolves around Vanilla copper, with ore powders, chips and dusts.
   - coordinates on death screen
   - bonus recipes for vanilla items
   - upgradable tools and armors using smithing table
+  - configurable zenith (mid-day) and nadir (mid-night) times
 - Awesome **Commands**
   - `/fly` `/invulnerable`
   - `/spawn` `/top`
