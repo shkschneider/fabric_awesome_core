@@ -10,6 +10,7 @@
     "PlayerKillMixin",
     "PlayerRecipesMixin",
     "PvpMixin",
+    "TotemOfUndyingMixin",
     "VillagersFollowEmeraldBlockMixin",
     "VillagersInfiniteTradingMixin"
   ],
