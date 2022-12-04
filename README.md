@@ -30,6 +30,7 @@ and with **Extras** giving a Vanilla++ feeling.
   - bonus recipes for vanilla items
   - upgradable tools and armors using smithing table
   - configurable zenith (mid-day) and nadir (mid-night) times
+  - sponges can absorb lava
 - Awesome **Commands**
   - `/fly` `/invulnerable`
   - `/spawn` `/top`

@@ -10,18 +10,10 @@ object AwesomeExtras {
 
     operator fun invoke() {
         KeepXpGameRule()
-        if (Awesome.CONFIG.extras.baguette) {
-            Baguette()
-        }
-        if (Awesome.CONFIG.extras.gameRulesOverrides) {
-            GameRulesOverrides()
-        }
-        if (Awesome.CONFIG.extras.zenithLengthInDays + Awesome.CONFIG.extras.nadirLengthInDays > 0F) {
-            ZenithNadirLengths()
-        }
-        if (Awesome.CONFIG.extras.sleepingHeals) {
-            SleepingHeals()
-        }
+        if (Awesome.CONFIG.extras.baguette) Baguette()
+        if (Awesome.CONFIG.extras.gameRulesOverrides) GameRulesOverrides()
+        if (Awesome.CONFIG.extras.sleepingHeals) SleepingHeals()
+        if (Awesome.CONFIG.extras.zenithLengthInDays + Awesome.CONFIG.extras.nadirLengthInDays > 0F) ZenithNadirLengths()
     }
 
 }
