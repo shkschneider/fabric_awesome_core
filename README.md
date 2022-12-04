@@ -46,7 +46,7 @@ and with **Extras** giving a Vanilla++ feeling.
   - potions: experience (1 to 9 levels)
 - Awesome **Machines**
   - collector
-  - crafter
+  - crafter / recycler
   - ore processing...
   - worldgen: randomium (random ore & teleports)
   - item: imprisoner (to capture and release entities)

@@ -8,7 +8,7 @@
   "key": {
     "1": { "item": "awesome:copper_plate" },
     "2": { "item": "minecraft:blast_furnace" },
-    "3": { "item": "awesome:redstone_frame" },
+    "3": { "item": "awesome:copper_frame" },
     "4": { "item": "awesome:lapis_plate" }
   },
   "result": {
