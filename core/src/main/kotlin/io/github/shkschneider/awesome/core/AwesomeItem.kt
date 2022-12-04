@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome.core
 
-import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
@@ -31,7 +30,7 @@ abstract class AwesomeItem(
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, context: TooltipContext) {
         super.appendTooltip(stack, world, tooltip, context)
         appendShiftableTooltip()?.let { text ->
-            if (Screen.hasShiftDown()) {
+            if (AwesomeInputs.shift()) {
                 tooltip.add(text)
             } else {
                 tooltip.add(Text.translatable(AwesomeUtils.translatable("item", "hint")).formatted(Formatting.GRAY))
