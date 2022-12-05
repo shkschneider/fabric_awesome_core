@@ -10,11 +10,11 @@
   ],
   "server": [],
   "client": [
-    "MainMenuTextMixin",
     "OfflineDeveloper",
     "SplashScreenBackgroundMixin",
     "StableLevelsMixin",
-    "StableWorldsMixin"
+    "StableWorldsMixin",
+    "TitleScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
