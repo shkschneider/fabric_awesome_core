@@ -8,6 +8,7 @@ import io.github.shkschneider.awesome.custom.MachinePorts
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.ItemStack
@@ -18,6 +19,7 @@ import net.minecraft.state.property.Property
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
+import net.minecraft.world.event.GameEvent
 
 abstract class AwesomeBlockEntity(
     private val id: String,
@@ -71,6 +73,14 @@ abstract class AwesomeBlockEntity(
     ) : AwesomeBlockEntity(id, type, pos, state, ports, delegates), IInventory, SidedInventory {
 
         override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(ports.size, ItemStack.EMPTY)
+
+        override fun onOpen(player: PlayerEntity?) {
+            world?.emitGameEvent(player, GameEvent.CONTAINER_OPEN, pos)
+        }
+
+        override fun onClose(player: PlayerEntity?) {
+            world?.emitGameEvent(player, GameEvent.CONTAINER_CLOSE, pos)
+        }
 
         override fun getAvailableSlots(side: Direction?): IntArray =
             (0 until ports.size).toList().toIntArray()

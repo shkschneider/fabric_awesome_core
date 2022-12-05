@@ -1,7 +1,6 @@
 package io.github.shkschneider.awesome.extras.crate
 
 import io.github.shkschneider.awesome.core.AwesomeBlock
-import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.getStacks
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockRenderType
@@ -9,22 +8,14 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.ShapeContext
 import net.minecraft.client.item.TooltipContext
-import net.minecraft.entity.ItemEntity
-import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.SimpleInventory
 import net.minecraft.item.BlockItem
 import net.minecraft.item.ItemStack
-import net.minecraft.loot.context.LootContext
-import net.minecraft.loot.context.LootContextParameters
-import net.minecraft.nbt.NbtCompound
 import net.minecraft.nbt.NbtElement
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.text.Text
-import net.minecraft.util.ActionResult
-import net.minecraft.util.Hand
 import net.minecraft.util.collection.DefaultedList
-import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.BlockView
@@ -33,7 +24,7 @@ import net.minecraft.world.WorldView
 
 class CrateBlock : AwesomeBlock.WithScreen<CrateBlockEntity>(
     Crate.ID, FabricBlockSettings.copy(Blocks.BARREL).strength(0.25F).nonOpaque(),
-) {
+), AwesomeBlock.WithEntity.RetainsInventory {
 
     override fun getRenderType(state: BlockState): BlockRenderType =
         BlockRenderType.MODEL
@@ -48,46 +39,6 @@ class CrateBlock : AwesomeBlock.WithScreen<CrateBlockEntity>(
     override fun createBlockEntity(pos: BlockPos, state: BlockState): CrateBlockEntity =
         CrateBlockEntity(pos, state)
 
-    override fun onUse(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, hit: BlockHitResult): ActionResult {
-        if (!world.isClient) state.createScreenHandlerFactory(world, pos)?.let(player::openHandledScreen)
-        return ActionResult.SUCCESS
-    }
-
-    override fun onBreak(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity) {
-        (world.getBlockEntity(pos) as? CrateBlockEntity)?.let { entity ->
-            if (!world.isClient && !player.isCreative) {
-                val stack = ItemStack(Crate.self.asItem())
-                if (!entity.isEmpty) {
-                    setBlockEntityTag(entity, stack)
-                }
-                world.spawnEntity(ItemEntity(world, pos.x + 0.5, pos.y + 0.5, pos.z + 0.5, stack).apply {
-                    setToDefaultPickupDelay()
-                })
-            }
-            return@let
-        }
-        super.onBreak(world, pos, state, player)
-    }
-
-    @Suppress("DEPRECATION")
-    override fun getDroppedStacks(state: BlockState, builder: LootContext.Builder): MutableList<ItemStack> {
-        val items = super.getDroppedStacks(state, builder)
-        for (stack in items) {
-            if (stack.item === Crate.self.asItem()) {
-                setBlockEntityTag(builder.get(LootContextParameters.BLOCK_ENTITY) as CrateBlockEntity, stack)
-            }
-        }
-        return items
-    }
-
-    private fun setBlockEntityTag(crate: CrateBlockEntity, stack: ItemStack) {
-        if (!crate.items.isEmpty()) {
-            stack.setSubNbt(AwesomeUtils.BLOCK_ENTITY_TAG, NbtCompound().apply {
-                crate.writeNbt(this)
-            })
-        }
-    }
-
     override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {
         super.appendTooltip(stack, world, tooltip, options)
         BlockItem.getBlockEntityNbt(stack)?.let { nbt ->
@@ -101,12 +52,6 @@ class CrateBlock : AwesomeBlock.WithScreen<CrateBlockEntity>(
                 }
             }
         }
-    }
-
-    @Suppress("DEPRECATION")
-    override fun onStateReplaced(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
-        // do NOT ItemScatterer.spawn()
-        super.onStateReplaced(state, world, pos, newState, moved)
     }
 
     override fun hasComparatorOutput(state: BlockState): Boolean = true
