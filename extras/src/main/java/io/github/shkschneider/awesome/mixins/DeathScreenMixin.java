@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.mixins;
 
 import io.github.shkschneider.awesome.core.AwesomeUtils;
+import io.github.shkschneider.awesome.custom.AwesomeClock;
 import io.github.shkschneider.awesome.custom.Location;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.DeathScreen;
@@ -19,12 +20,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class DeathScreenMixin {
 
     @Shadow
+    private int ticksSinceDeath;
+
+    @Shadow
     private Text scoreText;
 
     @Inject(method = "render", at = @At("TAIL"))
     private void onRender(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         final MinecraftClient client = MinecraftClient.getInstance();
         if (client.player == null) return;
+        final AwesomeClock clock = AwesomeClock.Companion.elapsed(ticksSinceDeath);
         final Location location = new Location(
                 client.player.world.getRegistryKey(),
                 client.player.getX(),
@@ -33,8 +38,10 @@ public class DeathScreenMixin {
                 client.player.getYaw(),
                 client.player.getPitch()
         );
-        scoreText = Text.translatable(AwesomeUtils.INSTANCE.translatable("ui", "death_location"))
-                .append(": ")
+        scoreText = Text.translatable(AwesomeUtils.INSTANCE.translatable("ui", "died"))
+                .append(" ")
+                .append(Text.literal(clock.getDays() + "d" + clock.getHours() + "h" + clock.getMinutes()).formatted(Formatting.YELLOW))
+                .append(" @ ")
                 .append(Text.literal(location.toString()).formatted(Formatting.YELLOW));
     }
 

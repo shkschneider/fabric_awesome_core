@@ -3,21 +3,34 @@ package io.github.shkschneider.awesome.custom
 import io.github.shkschneider.awesome.core.AwesomeTime
 
 data class AwesomeClock(
-    val hour: Int,
-    val minute: Int,
+    val days: Int,
+    val hours: Int,
+    val minutes: Int,
     val ticks: Int,
 ) {
 
+    companion object {
+
+        fun elapsed(ticks: Long): AwesomeClock {
+            val d = (ticks / AwesomeTime.ticksPerInGameDay).toInt()
+            val h = ((ticks - (d * AwesomeTime.ticksPerInGameDay)) / AwesomeTime.ticksPerInGameHour).toInt()
+            val m = ((ticks - (h * AwesomeTime.ticksPerInGameHour)) / AwesomeTime.ticksPerInGameMinute).toInt()
+            val t = (ticks - (h * AwesomeTime.ticksPerInGameHour) - (m * AwesomeTime.ticksPerInGameMinute)).toInt()
+            return AwesomeClock(d, h, m, t)
+        }
+
+    }
+
     val isZenith: Boolean get() =
-        hour == 12 && minute == 0 && ticks == 0
+        hours == 12 && minutes == 0 && ticks == 0
 
     val isNadir: Boolean get() =
-        hour == 0 && minute == 0 && ticks == 0
+        hours == 0 && minutes == 0 && ticks == 0
 
     fun toTicks(): Long =
-        (hour * AwesomeTime.ticksPerInGameHour + minute * AwesomeTime.ticksPerInGameMinute + ticks).toLong()
+        (days * AwesomeTime.ticksPerInGameDay + hours * AwesomeTime.ticksPerInGameHour + minutes * AwesomeTime.ticksPerInGameMinute + ticks).toLong()
 
     override fun toString(): String =
-        "${hour}:${minute}.${ticks}"
+        "${days}d${hours}h${minutes}.${ticks}"
 
 }
