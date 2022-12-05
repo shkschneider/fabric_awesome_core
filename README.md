@@ -31,6 +31,7 @@ and with **Extras** giving a Vanilla++ feeling.
   - upgradable tools and armors using smithing table
   - configurable zenith (mid-day) and nadir (mid-night) times
   - sponges can absorb lava
+  - a 2-way trash slot in your inventory that only clears upon closing
 - Awesome **Commands**
   - `/fly` `/invulnerable`
   - `/spawn` `/top`

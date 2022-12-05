@@ -16,7 +16,10 @@
     "VillagersInfiniteTradingMixin"
   ],
   "server": [],
-  "client": [],
+  "client": [
+    "TrashScreenMixin",
+    "TrashScreenHandlerMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

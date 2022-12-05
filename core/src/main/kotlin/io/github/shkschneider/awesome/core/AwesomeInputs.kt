@@ -24,15 +24,14 @@ object AwesomeInputs {
         Screen.hasAltDown()
 
     val enter = GLFW.GLFW_KEY_ENTER
+    val delete = GLFW.GLFW_KEY_DELETE
     // ...
 
     operator fun invoke(name: String, key: Int): KeyBinding =
-        KeyBindingHelper.registerKeyBinding(KeyBinding(
-            AwesomeUtils.translatable("key", name),
-            keyboard,
-            key,
-            AwesomeUtils.translatable("key"),
-        ))
+        KeyBindingHelper.registerKeyBinding(get(name, key))
+
+    fun get(name: String, key: Int): KeyBinding =
+        KeyBinding(AwesomeUtils.translatable("key", name), keyboard, key, AwesomeUtils.translatable("key"))
 
     @Environment(EnvType.CLIENT)
     operator fun invoke(key: Int): Boolean =
