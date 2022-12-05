@@ -32,6 +32,7 @@ and with **Extras** giving a Vanilla++ feeling.
   - configurable zenith (mid-day) and nadir (mid-night) times
   - sponges can absorb lava
   - a 2-way trash slot in your inventory that only clears upon closing
+  - early game crates that retain inventory
 - Awesome **Commands**
   - `/fly` `/invulnerable`
   - `/spawn` `/top`
@@ -88,3 +89,4 @@ Made by **ShkSchneider** with great help from open-sourced codes from the commun
 - Redstone Flux from **Thermal Foundation**'s *Petrotheum Dust* and *Signalum Blend*
 - Imprisoner from https://ftb.fandom.com/wiki/Mob_Imprisonment_Tool
 - Prospector based off https://www.iconfinder.com/icons/9044628/machine_learning_icon
+- Crate based off https://www.iconfinder.com/icons/3338964/business_tools_crate_box_wood_wood_box_icon

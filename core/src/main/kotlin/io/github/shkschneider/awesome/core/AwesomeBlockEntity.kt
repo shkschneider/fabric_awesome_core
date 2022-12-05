@@ -82,7 +82,7 @@ abstract class AwesomeBlockEntity(
         override fun canExtract(slot: Int, stack: ItemStack, dir: Direction): Boolean =
             ports.canExtract(slot, dir.relativeFace(state))
 
-        override fun writeNbt(nbt: NbtCompound) {
+        public override fun writeNbt(nbt: NbtCompound) {
             super.writeNbt(nbt)
             Inventories.writeNbt(nbt, items)
         }

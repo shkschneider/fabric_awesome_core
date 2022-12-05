@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.mixins;
 
+import io.github.shkschneider.awesome.core.AwesomeUtils;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,7 +27,7 @@ public class ItemAppendTooltipMixin {
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
         NbtCompound tag = stack.getNbt();
         if (stack.getItem() != Items.SPAWNER || tag == null) return;
-        String spawnDataEntityId = tag.getCompound("BlockEntityTag")
+        String spawnDataEntityId = tag.getCompound(AwesomeUtils.BLOCK_ENTITY_TAG)
                 .getCompound("SpawnData")
                 .getCompound("entity")
                 .getString("id");

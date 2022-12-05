@@ -10,6 +10,8 @@ import kotlin.math.sqrt
 
 object AwesomeUtils {
 
+    const val BLOCK_ENTITY_TAG = "BlockEntityTag"
+
     fun identifier(id: String) = Identifier("${Awesome.ID}:$id")
 
     fun key(vararg k: String) = "${Awesome.ID}_${k.joinToString(separator = "_") { it.lowercase() }}"

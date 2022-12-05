@@ -31,10 +31,12 @@ import net.minecraft.world.GameRules
 
 object AwesomeRegistries {
 
-    fun block/*WithItem*/(id: Identifier, block: Block, group: ItemGroup = Awesome.GROUP): Block =
-        Registry.register(Registry.BLOCK, id, block).also {
-            item(id, BlockItem(it, FabricItemSettings().group(group)))
-        }
+    fun blockWithItem(id: Identifier, block: Block, group: ItemGroup = Awesome.GROUP): Pair<Block, BlockItem> {
+        val _block = Registry.register(Registry.BLOCK, id, block)
+        val blockItem = BlockItem(block, FabricItemSettings().group(group))
+        item(id, blockItem)
+        return _block to blockItem
+    }
 
     fun blockEntityType(id: Identifier, block: Block, createBlockEntity: (BlockPos, BlockState) -> BlockEntity): BlockEntityType<BlockEntity> =
         Registry.register(Registry.BLOCK_ENTITY_TYPE, id, FabricBlockEntityTypeBuilder.create({ pos, state -> createBlockEntity(pos, state) }, block).build(null))

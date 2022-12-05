@@ -1,4 +1,5 @@
 {
+  "block.awesome.crate": "Crate",
   "item.awesome.baguette": "Baguette",
   "key.awesome": "Awesome",
   "ui.awesome.death_location": "You died at"

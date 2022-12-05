@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.custom
 
+import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents
 import net.minecraft.enchantment.Enchantments
 import net.minecraft.item.Items
@@ -35,8 +36,8 @@ object SilkTouchSpawners {
                 .with(ItemEntry.builder(Items.SPAWNER).build())
                 .apply(
                     CopyNbtLootFunction.builder(ContextLootNbtProvider.BLOCK_ENTITY)
-                        .withOperation("SpawnData", "BlockEntityTag.SpawnData")
-                        .withOperation("SpawnPotentials", "BlockEntityTag.SpawnPotentials")
+                        .withOperation("SpawnData", "${AwesomeUtils.BLOCK_ENTITY_TAG}.SpawnData")
+                        .withOperation("SpawnPotentials", "${AwesomeUtils.BLOCK_ENTITY_TAG}.SpawnPotentials")
                         .build()
                 )
                 .conditionally(

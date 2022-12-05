@@ -15,11 +15,6 @@ class GeneratorScreen(
     title: Text,
 ) : AwesomeBlockScreen<GeneratorScreenHandler>(name, handler, playerInventory, title) {
 
-    override fun init() {
-        super.init()
-        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2
-    }
-
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
         setShader()

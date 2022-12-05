@@ -6,7 +6,7 @@ import net.minecraft.client.render.GameRenderer
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.inventory.SidedInventory
+import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandler
@@ -56,7 +56,7 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
     abstract class Handler(
         screen: ScreenHandlerType<*>,
         syncId: Int,
-        private val sidedInventory: SidedInventory,
+        private val sidedInventory: Inventory,
         private val playerInventory: PlayerInventory,
         protected val properties: PropertyDelegate,
     ) : ScreenHandler(screen, syncId) {

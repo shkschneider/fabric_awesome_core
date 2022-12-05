@@ -9,6 +9,8 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.item.BlockItem
+import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemPlacementContext
 import net.minecraft.screen.NamedScreenHandlerFactory
@@ -23,16 +25,23 @@ abstract class AwesomeBlock(
     group: ItemGroup = Awesome.GROUP,
 ) : Block(settings) {
 
-    private lateinit var _block: Block
-    val block: Block get() = _block
+    private lateinit var _self: Block
+    val self: Block get() = _self
+
+    private lateinit var blockItem: BlockItem
 
     init {
         init(group)
     }
 
     private fun init(group: ItemGroup) {
-        _block = AwesomeRegistries.block(id, this as Block, group)
+        AwesomeRegistries.blockWithItem(id, this as Block, group).let {
+            _self = it.first
+            blockItem = it.second
+        }
     }
+
+    override fun asItem(): Item = blockItem
 
     @Suppress("OVERRIDE_DEPRECATION")
     override fun getRenderType(state: BlockState): BlockRenderType =
@@ -49,7 +58,7 @@ abstract class AwesomeBlock(
 
         val entityType: BlockEntityType<BE> = Registry.register(
             Registry.BLOCK_ENTITY_TYPE, id,
-            FabricBlockEntityTypeBuilder.create({ pos, state -> createBlockEntity(pos, state) }, block).build(null)
+            FabricBlockEntityTypeBuilder.create({ pos, state -> createBlockEntity(pos, state) }, self).build(null)
         )
 
         abstract override fun createBlockEntity(pos: BlockPos, state: BlockState): BE

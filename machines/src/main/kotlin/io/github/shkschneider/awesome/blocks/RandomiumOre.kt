@@ -40,7 +40,7 @@ class RandomiumOre(
     }
 
     private fun init() {
-        AwesomeRegistries.block(id, this as Block)
+        AwesomeRegistries.blockWithItem(id, this as Block)
         PlayerBlockBreakEvents.AFTER.register { world: World, player: PlayerEntity, pos: BlockPos, state: BlockState, _: BlockEntity? ->
             if (state.block == this) {
                 val loot = listOf(
