@@ -10,14 +10,17 @@ import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
+import net.fabricmc.fabric.api.`object`.builder.v1.entity.FabricEntityTypeBuilder
 import net.fabricmc.fabric.api.registry.FuelRegistry
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.enchantment.Enchantment
+import net.minecraft.entity.EntityType
 import net.minecraft.entity.effect.StatusEffect
 import net.minecraft.entity.effect.StatusEffectInstance
+import net.minecraft.entity.mob.HostileEntity
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
@@ -28,6 +31,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.GameRules
+
 
 object AwesomeRegistries {
 
@@ -56,6 +60,9 @@ object AwesomeRegistries {
 
     fun gameRule/*Boolean*/(name: String, category: GameRules.Category, default: Boolean): GameRules.Key<GameRules.BooleanRule> =
         GameRuleRegistry.register(name, category, GameRuleFactory.createBooleanRule(default))
+
+    fun <T : HostileEntity> hostileEntity(id: Identifier, builder: FabricEntityTypeBuilder<T>): EntityType<T> =
+        Registry.register(Registry.ENTITY_TYPE, id, builder.build())
 
     fun item(id: Identifier, item: Item): Item =
         Registry.register(Registry.ITEM, id, item)

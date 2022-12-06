@@ -33,6 +33,7 @@ and with **Extras** giving a Vanilla++ feeling.
   - sponges can absorb lava
   - a 2-way trash slot in your inventory that only clears upon closing
   - early game crates that retain inventory
+  - hero... herobrine?!
 - Awesome **Commands**
   - `/fly` `/invulnerable`
   - `/spawn` `/top`
@@ -90,3 +91,4 @@ Made by **ShkSchneider** with great help from open-sourced codes from the commun
 - Imprisoner from https://ftb.fandom.com/wiki/Mob_Imprisonment_Tool
 - Prospector based off https://www.iconfinder.com/icons/9044628/machine_learning_icon
 - Crate based off https://www.iconfinder.com/icons/3338964/business_tools_crate_box_wood_wood_box_icon
+- Herobrine was made from Mojang's Steve's
