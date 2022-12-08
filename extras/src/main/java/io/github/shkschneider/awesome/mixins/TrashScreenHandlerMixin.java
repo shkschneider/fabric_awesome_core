@@ -6,10 +6,12 @@ import net.fabricmc.api.Environment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.screen.slot.SlotActionType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -33,11 +35,20 @@ public abstract class TrashScreenHandlerMixin extends ScreenHandler {
         }
     }
 
-    @Inject(method = "close", at = @At("TAIL"))
-    public void close(PlayerEntity player, CallbackInfo ci) {
+    @Override
+    public void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
+        if (slotIndex == slots.size() - 1) {
+            getSlot(slotIndex).setStack(ItemStack.EMPTY);
+        }
+        super.onSlotClick(slotIndex, button, actionType, player);
+    }
+
+    @Override
+    public void close(PlayerEntity player) {
         if (trashInventory != null) {
             trashInventory.clear();
         }
+        super.close(player);
     }
 
 }
