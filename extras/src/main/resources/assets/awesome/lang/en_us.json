@@ -2,7 +2,9 @@
   "block.awesome.crate": "Crate",
   "entity.awesome.herobrine": "Herobrine",
   "item.awesome.baguette": "Baguette",
+  "item.awesome.dragon_spawn_egg": "Ender Dragon Spawn Egg",
   "item.awesome.herobrine_spawn_egg": "Herobrine Spawn Egg",
+  "item.awesome.wither_spawn_egg": "Wither Spawn Egg",
   "key.awesome": "Awesome",
   "ui.awesome.died": "You died since"
 }

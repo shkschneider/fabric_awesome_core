@@ -28,6 +28,7 @@ data class AwesomeConfig(
         @SerializedName("playerHeads") val playerHeads: Boolean = true,
         @SerializedName("pvp") val pvp: Boolean = true,
         @SerializedName("sleepingHeals") val sleepingHeals: Boolean = true,
+        @SerializedName("spawnEggs") val spawnEggs: Boolean = true,
         @SerializedName("spongesInLava") val spongesInLava: Boolean = true,
         @SerializedName("totemFromInventory") val totemFromInventory: Boolean = true,
         @SerializedName("trashSlot") val trashSlot: Boolean = true,

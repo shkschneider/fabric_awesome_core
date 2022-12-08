@@ -13,6 +13,7 @@ import net.minecraft.entity.EntityDimensions
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.mob.MobEntity
+import net.minecraft.item.ItemGroup
 import net.minecraft.item.SpawnEggItem
 
 object AwesomeEntities {
@@ -28,12 +29,18 @@ object AwesomeEntities {
                 FabricDefaultAttributeRegistry.register(entityType, Herobrine.attributes())
                 EntityRendererRegistry.register(entityType, ::HerobrineRenderer)
             }
-            spawnEgg(Herobrine.NAME, entityType)
+            if (Awesome.CONFIG.extras.spawnEggs) {
+                spawnEgg(Herobrine.NAME, AwesomeColors.valencia to AwesomeColors.tuna, entityType)
+            }
+        }
+        if (Awesome.CONFIG.extras.spawnEggs) {
+            spawnEgg("wither", AwesomeColors.black to AwesomeColors.white, EntityType.WITHER, ItemGroup.MISC)
+            spawnEgg("dragon", AwesomeColors.black to AwesomeColors.valencia, EntityType.ENDER_DRAGON, ItemGroup.MISC)
         }
     }
 
-    private fun spawnEgg(name: String, entityType: EntityType<out MobEntity>): SpawnEggItem {
-        val spawnEgg = SpawnEggItem(entityType, AwesomeColors.valencia, AwesomeColors.tuna, FabricItemSettings().group(Awesome.GROUP))
+    private fun spawnEgg(name: String, colors: Pair<Int, Int>, entityType: EntityType<out MobEntity>, group: ItemGroup = Awesome.GROUP): SpawnEggItem {
+        val spawnEgg = SpawnEggItem(entityType, colors.first, colors.second, FabricItemSettings().group(group))
         AwesomeRegistries.item(AwesomeUtils.identifier("${name}_spawn_egg"), spawnEgg)
         return spawnEgg
     }
