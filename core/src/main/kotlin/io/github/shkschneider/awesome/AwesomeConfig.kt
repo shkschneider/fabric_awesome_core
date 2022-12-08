@@ -23,7 +23,7 @@ data class AwesomeConfig(
         @SerializedName("baguette") val baguette: Boolean = true,
         @SerializedName("crate") val crate: Boolean = true,
         @SerializedName("entities") val entities: Boolean = true,
-        @SerializedName("gameRulesOverrides") val gameRulesOverrides: Boolean = true,
+        @SerializedName("gameRulesOverrides") val gameRulesOverrides: Boolean = false,
         @SerializedName("nadirLengthInDays") val nadirLengthInDays: Float = 0F,
         @SerializedName("playerHeads") val playerHeads: Boolean = true,
         @SerializedName("pvp") val pvp: Boolean = true,

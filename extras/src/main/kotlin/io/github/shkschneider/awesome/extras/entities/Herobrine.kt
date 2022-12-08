@@ -7,10 +7,14 @@ import io.github.shkschneider.awesome.custom.Minecraft
 import io.github.shkschneider.awesome.extras.entities.goals.AngerGoal
 import io.github.shkschneider.awesome.extras.entities.goals.StareAtPlayerGoal
 import io.github.shkschneider.awesome.extras.entities.goals.SwiftAttackAndVanishGoal
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors
 import net.minecraft.command.argument.EntityAnchorArgumentType
 import net.minecraft.entity.EntityDimensions
 import net.minecraft.entity.EntityPose
 import net.minecraft.entity.EntityType
+import net.minecraft.entity.SpawnGroup
+import net.minecraft.entity.SpawnRestriction
 import net.minecraft.entity.ai.TargetPredicate
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.damage.DamageSource
@@ -22,6 +26,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvent
 import net.minecraft.sound.SoundEvents
+import net.minecraft.world.Heightmap
 import net.minecraft.world.World
 
 class Herobrine(entityType: EntityType<out HostileEntity>, world: World) : HostileEntity(entityType, world) {
@@ -34,6 +39,13 @@ class Herobrine(entityType: EntityType<out HostileEntity>, world: World) : Hosti
         val RANGE = Minecraft.CHUNK
 
         fun attributes(): DefaultAttributeContainer.Builder = createHostileAttributes()
+
+        fun spawnRules(entityType: EntityType<Herobrine>) {
+            BiomeModifications.addSpawn(BiomeSelectors.foundInOverworld(), SpawnGroup.MONSTER, entityType, 50, 1, 1);
+            SpawnRestriction.register(entityType, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES) { type, world, spawnReason, pos, random ->
+                world.getClosestPlayer(TargetPredicate.createAttackable().setPredicate { it is PlayerEntity }, pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble()) != null
+            }
+        }
 
     }
 

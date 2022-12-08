@@ -29,6 +29,7 @@ object AwesomeEntities {
                 FabricDefaultAttributeRegistry.register(entityType, Herobrine.attributes())
                 EntityRendererRegistry.register(entityType, ::HerobrineRenderer)
             }
+            Herobrine.spawnRules(entityType)
             if (Awesome.CONFIG.extras.spawnEggs) {
                 spawnEgg(Herobrine.NAME, AwesomeColors.valencia to AwesomeColors.tuna, entityType)
             }

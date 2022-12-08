@@ -31,7 +31,6 @@ class AngerGoal(
 
     override fun start() {
         mob.isAttacking = true
-        mob.isGlowing = true
     }
 
     override fun shouldContinue(): Boolean = canStart()
@@ -52,7 +51,6 @@ class AngerGoal(
 
     override fun stop() {
         mob.isAttacking = false
-        mob.isGlowing = false
     }
 
 }
