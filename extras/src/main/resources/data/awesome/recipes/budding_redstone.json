@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "111",
+    "121",
+    "111"
+  ],
+  "key": {
+    "1": { "item": "minecraft:amethyst_block" },
+    "2": { "item": "minecraft:redstone_block" }
+  },
+  "result": {
+    "item": "awesome:budding_redstone",
+    "count": 1
+  }
+}

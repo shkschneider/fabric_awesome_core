@@ -41,6 +41,7 @@ dependencies {
         "cloth-api-317121" to "3853858", // https://www.curseforge.com/minecraft/mc-mods/cloth-api/files
         "cloth-config-348521" to "3972420", // https://www.curseforge.com/minecraft/mc-mods/cloth-config/files
         "appleskin-248787" to "3927567", // https://www.curseforge.com/minecraft/mc-mods/appleskin/files
+        "time-in-a-bottle-440243" to "3827555", // https://www.curseforge.com/minecraft/mc-mods/time-in-a-bottle/files
     ).forEach { mod ->
         modRuntimeOnly("curse.maven:${mod.first}:${mod.second}") { exclude(group = "net.fabricmc") ; exclude(group = "net.fabricmc.fabric-api") }
     }
