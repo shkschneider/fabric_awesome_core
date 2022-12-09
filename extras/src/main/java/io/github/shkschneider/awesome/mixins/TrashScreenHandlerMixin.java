@@ -22,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class TrashScreenHandlerMixin extends ScreenHandler {
 
     private SimpleInventory trashInventory = null;
+    private int trashIndex = -1;
 
     public TrashScreenHandlerMixin(ScreenHandlerType<?> screenHandlerType, int i) {
         super(screenHandlerType, i);
@@ -32,13 +33,19 @@ public abstract class TrashScreenHandlerMixin extends ScreenHandler {
         if (Awesome.INSTANCE.getCONFIG().getExtras().getTrashSlot()) {
             trashInventory = new SimpleInventory(1);
             addSlot(new Slot(trashInventory, 0,152, 66));
+            trashIndex = slots.size() - 1;
         }
     }
 
     @Override
     public void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
-        if (slotIndex == slots.size() - 1) {
-            getSlot(slotIndex).setStack(ItemStack.EMPTY);
+        // Caused by: java.lang.IndexOutOfBoundsException: Index -999 out of bounds for length X
+        if (slotIndex >= 0 && slotIndex == trashIndex) {
+            final ItemStack cursorStack = getCursorStack() != null ? getCursorStack() : ItemStack.EMPTY;
+            final ItemStack slotStack = getSlot(slotIndex) != null ? getSlot(slotIndex).getStack() : ItemStack.EMPTY;
+            if (!cursorStack.isEmpty() && !slotStack.isEmpty()) {
+                getSlot(slotIndex).setStack(ItemStack.EMPTY);
+            }
         }
         super.onSlotClick(slotIndex, button, actionType, player);
     }
