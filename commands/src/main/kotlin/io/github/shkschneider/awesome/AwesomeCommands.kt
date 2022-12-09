@@ -7,6 +7,7 @@ import io.github.shkschneider.awesome.commands.HealCommand
 import io.github.shkschneider.awesome.commands.HomeCommand
 import io.github.shkschneider.awesome.commands.InvulnerableCommand
 import io.github.shkschneider.awesome.commands.MooCommand
+import io.github.shkschneider.awesome.commands.RepairCommand
 import io.github.shkschneider.awesome.commands.SetHomeCommand
 import io.github.shkschneider.awesome.commands.SpawnCommand
 import io.github.shkschneider.awesome.commands.TopCommand
@@ -21,6 +22,7 @@ object AwesomeCommands {
         HomeCommand()
         InvulnerableCommand()
         MooCommand()
+        RepairCommand()
         SetHomeCommand()
         SpawnCommand()
         TopCommand()

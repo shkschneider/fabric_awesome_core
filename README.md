@@ -35,7 +35,7 @@ and with **Extras** giving a Vanilla++ feeling.
   - early game crates that retain inventory
   - hero... herobrine?!
 - Awesome **Commands**
-  - `/fly` `/invulnerable` `/heal`
+  - `/fly` `/invulnerable` `/heal` `/repair`
   - `/spawn` `/top`
   - `/sethome` `/home`
   - `/back`
