@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.core
 
 import com.mojang.brigadier.CommandDispatcher
+import com.mojang.brigadier.arguments.StringArgumentType.string
 import com.mojang.brigadier.context.CommandContext
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.custom.Permissions
@@ -16,6 +17,7 @@ import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.command.argument.EntityArgumentType
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.effect.StatusEffect
@@ -48,6 +50,27 @@ object AwesomeRegistries {
     fun command(name: String, permission: Permissions = Permissions.Commands, run: (CommandContext<ServerCommandSource>) -> Int) {
         CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource?>, _, _ ->
             dispatcher.register(CommandManager.literal(name).requires { it.hasPermissionLevel(permission.level) }.executes(run))
+        })
+    }
+
+    fun commandWithText(name: String, permission: Permissions = Permissions.Commands, run: (CommandContext<ServerCommandSource>) -> Int) {
+        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource?>, _, _ ->
+            dispatcher.register(CommandManager.literal(name).requires { it.hasPermissionLevel(permission.level) }
+                .then(CommandManager.argument("text", string()).executes(run)))
+        })
+    }
+
+    fun commandForPlayer(name: String, permission: Permissions = Permissions.Commands, run: (CommandContext<ServerCommandSource>) -> Int) {
+        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource?>, _, _ ->
+            dispatcher.register(CommandManager.literal(name).requires { it.hasPermissionLevel(permission.level) }
+                .then(CommandManager.argument("player", EntityArgumentType.player()).executes(run)))
+        })
+    }
+
+    fun commandForPlayers(name: String, permission: Permissions = Permissions.Commands, run: (CommandContext<ServerCommandSource>) -> Int) {
+        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource?>, _, _ ->
+            dispatcher.register(CommandManager.literal(name).requires { it.hasPermissionLevel(permission.level) }
+                .then(CommandManager.argument("players", EntityArgumentType.players()).executes(run)))
         })
     }
 

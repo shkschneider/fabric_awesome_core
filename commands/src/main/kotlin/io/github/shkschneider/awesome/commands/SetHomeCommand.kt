@@ -10,10 +10,10 @@ import net.minecraft.server.command.ServerCommandSource
 class SetHomeCommand : AwesomeCommand("sethome", Permissions.Commands) {
 
     override fun run(context: CommandContext<ServerCommandSource>): Int {
-        val player = context.source?.player ?: return sendError(context.source, code = -1)
-        if (player.isInTeleportationState || player.isOnGround.not()) return sendError(context.source, code = -2)
-        val location = (player as IEntityData).writeLocation("home")?.safe() ?: return sendError(context.source, code = -3)
-        sendFeedback(context.source, "Home set @ $location!")
+        val player = context.source?.player ?: return error(context.source, code = -1)
+        if (player.isInTeleportationState || player.isOnGround.not()) return error(context.source, code = -2)
+        val location = (player as IEntityData).writeLocation("home")?.safe() ?: return error(context.source, code = -3)
+        feedback(context.source, "Home set @ $location!")
         return SUCCESS
     }
 

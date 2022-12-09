@@ -11,16 +11,16 @@ import net.minecraft.server.command.ServerCommandSource
 class HomeCommand : AwesomeCommand("home", Permissions.Commands) {
 
     override fun run(context: CommandContext<ServerCommandSource>): Int {
-        val player = context.source?.player ?: return sendError(context.source, code = -1)
-        if (player.isInTeleportationState || player.isOnGround.not()) return sendError(context.source, code = -2)
+        val player = context.source?.player ?: return error(context.source, code = -1)
+        if (player.isInTeleportationState || player.isOnGround.not()) return error(context.source, code = -2)
         val data = (player as IEntityData).data
         val location = data.readLocation("home")?.safe() ?: run {
-            return sendError(context.source, "Homeless...", -3)
+            return error(context.source, "Homeless...", -3)
         }
         // back
         player.writeLocation("back")
         // home
-        sendFeedback(context.source, "Teleporting home @ $location...")
+        feedback(context.source, "Teleporting home @ $location...")
         player.teleport(player.server.getWorld(location.key), location.x, location.y, location.z, location.yaw, location.pitch)
         return SUCCESS
     }

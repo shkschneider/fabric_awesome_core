@@ -11,12 +11,12 @@ import net.minecraft.server.command.ServerCommandSource
 class SpawnCommand : AwesomeCommand("spawn", Permissions.Commands) {
 
     override fun run(context: CommandContext<ServerCommandSource>): Int {
-        val player = context.source?.player ?: return sendError(context.source, code = -1)
+        val player = context.source?.player ?: return error(context.source, code = -1)
         val location = player.world.spawn()
         // back
         (player as IEntityData).writeLocation("back")
         // spawn
-        sendFeedback(context.source, "Teleporting to spawn @ $location...")
+        feedback(context.source, "Teleporting to spawn @ $location...")
         player.teleport(player.server.getWorld(location.key), location.x, location.y, location.z, location.yaw, location.pitch)
         return SUCCESS
     }

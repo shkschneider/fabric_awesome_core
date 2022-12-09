@@ -8,7 +8,7 @@ import net.minecraft.server.command.ServerCommandSource
 class MooCommand : AwesomeCommand("moo", Permissions.Player) {
 
     override fun run(context: CommandContext<ServerCommandSource>): Int {
-        sendFeedback(context.source, "Have you mooed today?")
+        feedback(context.source, "Have you mooed today?")
         return SUCCESS
     }
 
