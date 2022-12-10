@@ -12,7 +12,6 @@ object GameRulesOverrides {
             // vanilla
             world.gameRules.get(GameRules.DO_FIRE_TICK).set(false, server)
             world.gameRules.get(GameRules.DO_MOB_GRIEFING).set(false, server)
-            world.gameRules.get(GameRules.DO_MOB_GRIEFING).set(false, server)
             world.gameRules.get(GameRules.DO_DAYLIGHT_CYCLE).set(true, server)
             world.gameRules.get(GameRules.DO_IMMEDIATE_RESPAWN).set(false, server)
             world.gameRules.get(GameRules.PLAYERS_SLEEPING_PERCENTAGE).set(50, server)

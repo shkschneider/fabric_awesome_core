@@ -2,7 +2,7 @@ package io.github.shkschneider.awesome.commands
 
 import com.mojang.brigadier.context.CommandContext
 import io.github.shkschneider.awesome.core.AwesomeCommand
-import io.github.shkschneider.awesome.custom.Dimensions.spawn
+import io.github.shkschneider.awesome.core.ext.spawn
 import io.github.shkschneider.awesome.custom.IEntityData
 import io.github.shkschneider.awesome.custom.Location.Companion.writeLocation
 import io.github.shkschneider.awesome.custom.Permissions

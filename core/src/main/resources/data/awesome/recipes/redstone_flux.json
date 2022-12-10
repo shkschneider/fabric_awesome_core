@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     { "item": "minecraft:redstone" },
-    { "item": "awesome:lapis_dust" }
+    { "item": "minecraft:lapis_lazuli" }
   ],
   "result": {
     "item": "awesome:redstone_flux",

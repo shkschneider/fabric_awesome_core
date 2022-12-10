@@ -22,22 +22,6 @@ object Dimensions {
 
     private var CURRENT: Identifier = World.OVERWORLD.value
 
-    fun World.id(): Int {
-        val identifier = dimensionKey.value
-        return when (identifier.namespace) {
-            "minecraft" -> when (identifier.path) {
-                World.NETHER.value.namespace -> NETHER
-                World.OVERWORLD.value.namespace -> OVERWORLD
-                World.END.value.namespace -> END
-                else -> throw IllegalStateException()
-            }
-            else -> UNKNOWN
-        }
-    }
-
-    fun World.spawn() =
-        Location(registryKey, levelProperties.spawnX.toDouble(), levelProperties.spawnY.toDouble(), levelProperties.spawnZ.toDouble())
-
     operator fun invoke() {
         if (Minecraft.isClient) {
             ClientPlayConnectionEvents.JOIN.register(ClientPlayConnectionEvents.Join { _, _, _ ->
