@@ -19,7 +19,7 @@ import java.util.*
 class HerobrineRenderer(
     context: EntityRendererFactory.Context,
 ) : MobEntityRenderer<Herobrine, HerobrineModel<Herobrine>>(
-    context, HerobrineModel(context.getPart(EntityModelLayers.PLAYER)), 0.5f,
+    context, HerobrineModel(context.getPart(EntityModelLayers.PLAYER)), /* shadowRadius */ 0.5F,
 ) {
 
     init {

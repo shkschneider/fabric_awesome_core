@@ -42,8 +42,8 @@ class Herobrine(entityType: EntityType<out HostileEntity>, world: World) : Hosti
 
         fun spawnRules(entityType: EntityType<Herobrine>) {
             BiomeModifications.addSpawn(BiomeSelectors.foundInOverworld(), SpawnGroup.MONSTER, entityType, 50, 1, 1);
-            SpawnRestriction.register(entityType, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES) { type, world, spawnReason, pos, random ->
-                world.getClosestPlayer(TargetPredicate.createAttackable().setPredicate { it is PlayerEntity }, pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble()) != null
+            SpawnRestriction.register(entityType, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.WORLD_SURFACE) { type, world, spawnReason, pos, random ->
+                world.toServerWorld().isRaining && canSpawnIgnoreLightLevel(type, world, spawnReason, pos, random)
             }
         }
 
@@ -93,7 +93,7 @@ class Herobrine(entityType: EntityType<out HostileEntity>, world: World) : Hosti
         AwesomeSounds(this.world to player.blockPos, SoundEvents.ENTITY_WITHER_SPAWN to SoundCategory.HOSTILE)
         player.addStatusEffect(StatusEffectInstance(StatusEffects.DARKNESS, Minecraft.TICKS * 15), this)
         player.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, Minecraft.TICKS * 15), this)
-        discard()
+        kill()
     }
 
     override fun cannotDespawn(): Boolean {
