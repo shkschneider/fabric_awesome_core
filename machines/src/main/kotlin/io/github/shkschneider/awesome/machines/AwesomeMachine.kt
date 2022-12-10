@@ -17,7 +17,6 @@ import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.BlockItem
 import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.ScreenHandlerType
-import net.minecraft.state.property.Properties
 import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
@@ -59,19 +58,19 @@ abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEnt
         }
     }
 
-    // TODO sounds
-    protected fun on(blockEntity: BE, time: Int) = with(blockEntity) {
-        duration = time
-        progress = 0
-        setPropertyState(Properties.LIT, true)
-    }
-
-    // TODO sounds
-    protected fun off(blockEntity: BE) = with(blockEntity) {
-        duration = 0
-        progress = 0
-        setPropertyState(Properties.LIT, false)
-    }
+//    // TODO sounds
+//    protected fun on(blockEntity: BE, time: Int) = with(blockEntity) {
+//        duration = time
+//        progress = 0
+//        setPropertyState(Properties.LIT, true)
+//    }
+//
+//    // TODO sounds
+//    protected fun off(blockEntity: BE) = with(blockEntity) {
+//        duration = 0
+//        progress = 0
+//        setPropertyState(Properties.LIT, false)
+//    }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: BE) {
         if (world.isClient) return

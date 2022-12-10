@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.machines.generator
 
-import io.github.shkschneider.awesome.core.AwesomeBlock
+import io.github.shkschneider.awesome.core.AwesomeBlockWithEntity
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.entity.player.PlayerEntity
@@ -19,11 +19,10 @@ import net.minecraft.world.World
 
 class GeneratorBlock(
     settings: Settings,
-) : AwesomeBlock.WithScreen<GeneratorBlockEntity>(Generator.ID, settings) {
+) : AwesomeBlockWithEntity<GeneratorBlockEntity>(Generator.ID, settings) {
 
-    override fun getPlacementState(ctx: ItemPlacementContext): BlockState = defaultState
-        .with(Properties.HORIZONTAL_FACING, ctx.playerFacing.opposite)
-        .with(Properties.LIT, false)
+    override fun getPlacementState(ctx: ItemPlacementContext): BlockState =
+        defaultState.with(Properties.HORIZONTAL_FACING, ctx.playerFacing.opposite).with(Properties.LIT, false)
 
     override fun rotate(state: BlockState, rotation: BlockRotation): BlockState =
         state.with(Properties.HORIZONTAL_FACING, rotation.rotate(state.get(Properties.HORIZONTAL_FACING)))
@@ -32,14 +31,14 @@ class GeneratorBlock(
         state.rotate(mirror.getRotation(state.get(Properties.HORIZONTAL_FACING)))
 
     override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
-        builder
-            .add(Properties.HORIZONTAL_FACING)
-            .add(Properties.LIT)
+        builder.add(Properties.HORIZONTAL_FACING).add(Properties.LIT)
     }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: GeneratorBlockEntity) {
         Generator.tick(world, pos, state, blockEntity)
     }
+
+    override fun emitsRedstonePower(state: BlockState): Boolean = state.get(Properties.LIT)
 
     override fun createBlockEntity(pos: BlockPos, state: BlockState): GeneratorBlockEntity =
         GeneratorBlockEntity(pos, state)
@@ -55,13 +54,7 @@ class GeneratorBlock(
 
     override fun onUse(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, hit: BlockHitResult): ActionResult {
         if (!world.isClient) {
-            val blockEntity = world.getBlockEntity(pos) as? GeneratorBlockEntity
-            state.createScreenHandlerFactory(world, pos)?.let { screenHandlerFactory ->
-                player.openHandledScreen(screenHandlerFactory)
-                (player.currentScreenHandler as? GeneratorScreenHandler)?.let { screenHandler ->
-                    screenHandler.entity = blockEntity
-                }
-            }
+            state.createScreenHandlerFactory(world, pos)?.let(player::openHandledScreen)
         }
         return ActionResult.SUCCESS
     }

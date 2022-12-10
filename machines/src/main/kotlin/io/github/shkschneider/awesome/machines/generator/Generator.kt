@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.machines.generator
 
+import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.custom.Minecraft
@@ -8,8 +9,10 @@ import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.client.gui.screen.ingame.HandledScreens
+import net.minecraft.item.ItemStack
 import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.ScreenHandlerType
+import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
@@ -18,11 +21,39 @@ object Generator {
     const val NAME = "generator"
     val ID = AwesomeUtils.identifier(NAME)
     val PORTS = MachinePorts(inputs = 1, outputs = 0)
-    val IGNITE = Minecraft.TICKS
-    val PROPERTIES = 2
+    private val IGNITE = Minecraft.TICKS
+    const val PROPERTIES = 3
 
-    fun tick(world: World, pos: BlockPos, state: BlockState, entity: GeneratorBlockEntity) {
-        entity.power++
+    fun tick(world: World, pos: BlockPos, state: BlockState, entity: GeneratorBlockEntity) = with(entity) {
+        if (world.isClient) return
+        // burning
+        if (power > 0) {
+            power--
+        }
+        // igniting
+        if (duration > 0) {
+            progress++
+            // fire
+            if (progress >= duration) {
+                power = AwesomeMachines.fuel.time
+                setPropertyState(state.with(Properties.LIT, true))
+                progress = 0
+                duration = 0
+            }
+        }
+        // idle
+        if (power <= IGNITE && duration == 0) {
+            if (getStack(0).item == AwesomeMachines.fuel) {
+                duration = IGNITE
+                progress = 0
+                removeStack(0, 1)
+                if (getStack(0).isEmpty) {
+                    setStack(0, ItemStack.EMPTY)
+                }
+            }
+        }
+        setPropertyState(state.with(Properties.LIT, power > 0))
+        markDirty()
     }
 
     val block = GeneratorBlock(FabricBlockSettings.copyOf(Blocks.FURNACE))
@@ -42,33 +73,3 @@ object Generator {
     }
 
 }
-//
-//blockEntity.setPropertyState(Properties.LIT, blockEntity.power > 0)
-//        // burning
-//        if (blockEntity.power > 0) {
-//            blockEntity.power--
-//        }
-//        // igniting
-//        if (blockEntity.duration > 0) {
-//            blockEntity.progress++
-//            // fire
-//            if (blockEntity.progress >= blockEntity.duration) {
-//                on(AwesomeMachines.FUEL.time)
-//            }
-//        }
-//        // idle
-//        if (blockEntity.power <= IGNITE && blockEntity.duration == 0) {
-//            if (blockEntity.getStack(INPUT).item == AwesomeMachines.FUEL) {
-//                blockEntity.duration = IGNITE
-//                blockEntity.progress = 0
-//                blockEntity.removeStack(INPUT, 1)
-//                if (blockEntity.getStack(INPUT).isEmpty) {
-//                    blockEntity.setStack(INPUT, ItemStack.EMPTY)
-//                    blockEntity.markDirty()
-//                }
-//                return
-//            }
-//        }
-//    }
-//
-//}

@@ -25,7 +25,7 @@ abstract class AwesomeBlockEntity(
     private val id: String,
     type: BlockEntityType<out AwesomeBlockEntity>,
     pos: BlockPos,
-    private val state: BlockState,
+    state: BlockState,
     private val ports: MachinePorts,
     delegates: Pair<Int, Int>,
 ) : BlockEntity(type, pos, state) {
@@ -42,15 +42,14 @@ abstract class AwesomeBlockEntity(
         override fun size(): Int = _properties.size
     }
 
-    fun <T : Comparable<T>> getPropertyState(property: Property<T>): T {
+    fun <T : Comparable<T>> getPropertyState(state: BlockState, property: Property<T>): T {
         if (state.properties.none { it == property }) throw IllegalArgumentException()
         return world?.getBlockState(pos)?.get(property) ?: state.get(property)
     }
 
-    fun <T : Comparable<T>, V : T> setPropertyState(property: Property<T>, value: V) {
-        if (state.properties.none { it == property }) throw IllegalArgumentException()
-        world?.setBlockState(pos, state.with(property, value))
-        this@AwesomeBlockEntity.markDirty()
+    fun setPropertyState(state: BlockState) {
+        world?.setBlockState(pos, state)
+        world?.markDirty(pos)
     }
 
     override fun writeNbt(nbt: NbtCompound) {

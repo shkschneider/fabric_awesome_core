@@ -60,6 +60,7 @@ abstract class AwesomeBlock(
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState =
         defaultState
 
+    @Deprecated("AwesomeBlockWithEntity")
     abstract class WithEntity<BE : BlockEntity>(
         id: Identifier,
         settings: Settings,
@@ -79,8 +80,11 @@ abstract class AwesomeBlock(
         }
 
         @Suppress("UNCHECKED_CAST")
-        override fun <T : BlockEntity> getTicker(world: World, state: BlockState, type: BlockEntityType<T>): BlockEntityTicker<T> =
-            this as BlockEntityTicker<T>
+        override fun <T : BlockEntity> getTicker(_world: World, _state: BlockState, type: BlockEntityType<T>): BlockEntityTicker<T> =
+            BlockEntityTicker { world, pos, state, blockEntity ->
+                // BEWARE: world.isClient
+                tick(world, pos, state, blockEntity as BE)
+            }
 
         interface RetainsInventory
 
@@ -130,11 +134,12 @@ abstract class AwesomeBlock(
 
     }
 
+    @Deprecated("AwesomeBlockWithEntity")
     abstract class WithScreen<BE : BlockEntity>(
         id: Identifier,
         settings: Settings,
         group: ItemGroup = Awesome.GROUP,
-    ) : WithEntity<BE>(id, settings, group), BlockEntityProvider, BlockEntityTicker<BE> {
+    ) : WithEntity<BE>(id, settings, group), BlockEntityProvider {
 
         /**
          * Block.onUse(): If your block class does not extend BlockWithEntity, it needs to implement createScreenHandlerFactory.
