@@ -3,6 +3,7 @@ package io.github.shkschneider.awesome.blocks
 import io.github.shkschneider.awesome.core.AwesomeColors
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeUtils
+import io.github.shkschneider.awesome.core.Event
 import io.github.shkschneider.awesome.core.ext.toVec3d
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -38,6 +39,7 @@ class RandomiumOre(
 
     private fun init() {
         AwesomeRegistries.blockWithItem(id, this as Block)
+        @Event("PlayerBlockBreakEvents.After")
         PlayerBlockBreakEvents.AFTER.register { world: World, player: PlayerEntity, pos: BlockPos, state: BlockState, _: BlockEntity? ->
             if (state.block == this) {
                 val loot = listOf(

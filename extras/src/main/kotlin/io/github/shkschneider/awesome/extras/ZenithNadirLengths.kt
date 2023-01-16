@@ -3,6 +3,7 @@ package io.github.shkschneider.awesome.extras
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeTime
+import io.github.shkschneider.awesome.core.Event
 import io.github.shkschneider.awesome.core.ext.clock
 import io.github.shkschneider.awesome.custom.AwesomeClock
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
@@ -25,6 +26,7 @@ object ZenithNadirLengths {
     }
 
     operator fun invoke() {
+        @Event("ServerTickEvents.EndWorldTick")
         ServerTickEvents.END_WORLD_TICK.register(ServerTickEvents.EndWorldTick { world ->
             val clock = world.clock()
             // safety: you could change the time while this ticks

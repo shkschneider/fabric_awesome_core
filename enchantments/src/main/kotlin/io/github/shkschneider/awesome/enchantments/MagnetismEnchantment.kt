@@ -3,6 +3,7 @@ package io.github.shkschneider.awesome.enchantments
 import io.github.shkschneider.awesome.AwesomeEnchantments
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
 import io.github.shkschneider.awesome.core.AwesomeUtils
+import io.github.shkschneider.awesome.core.Event
 import io.github.shkschneider.awesome.custom.Magnetism
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.enchantment.EnchantmentHelper
@@ -20,6 +21,7 @@ class MagnetismEnchantment : AwesomeEnchantment(
 ) {
 
     init {
+        @Event("ServerTickEvents.EndTIck")
         ServerTickEvents.END_SERVER_TICK.register(ServerTickEvents.EndTick { server ->
             server.playerManager.playerList.forEach { player ->
                 val magnetism = EnchantmentHelper.getLevel(AwesomeEnchantments.magnetism, player.mainHandStack)

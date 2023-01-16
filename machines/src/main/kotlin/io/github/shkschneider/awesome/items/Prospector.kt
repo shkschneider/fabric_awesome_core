@@ -5,6 +5,7 @@ import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeItem
 import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeUtils
+import io.github.shkschneider.awesome.core.Event
 import io.github.shkschneider.awesome.core.ext.isOre
 import io.github.shkschneider.awesome.core.ext.positions
 import io.github.shkschneider.awesome.core.ext.toBox
@@ -61,6 +62,7 @@ class Prospector : AwesomeItem(
     }
 
     init {
+        @Event("PlayerBlockBreakEvents.Before")
         PlayerBlockBreakEvents.BEFORE.register(PlayerBlockBreakEvents.Before { world, _, pos, _, _ ->
             // world.getClosestEntity(ShulkerEntity::class.java, TargetPredicate.createNonAttackable(), null, pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble(), pos.toBox(1.0))?.takeIf { it.scoreboardTags.contains(ID) }?.discard()
             // do not request only the closest as many entities might have spawn inside the same block during DURATION
@@ -69,6 +71,7 @@ class Prospector : AwesomeItem(
             return@Before true
         })
         if (Minecraft.isClient) {
+            @Event("ClientPlayConnectionEvents.Disconnect")
             ClientPlayConnectionEvents.DISCONNECT.register(ClientPlayConnectionEvents.Disconnect { _, client ->
                 val player = client.player ?: return@Disconnect
                 val world: ServerWorld = client.server?.getWorld(client.world?.registryKey) ?: return@Disconnect

@@ -2,6 +2,7 @@ package io.github.shkschneider.awesome.custom
 
 import io.github.shkschneider.awesome.core.AwesomeChat
 import io.github.shkschneider.awesome.core.AwesomeUtils
+import io.github.shkschneider.awesome.core.Event
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.minecraft.client.MinecraftClient
@@ -25,7 +26,9 @@ object Dimensions {
 
     operator fun invoke() {
         if (Minecraft.isClient) {
+            @Event("ClientPlayConnectionEvents.Join")
             ClientPlayConnectionEvents.JOIN.register(ClientPlayConnectionEvents.Join { _, _, _ ->
+                @Event("ClientChunkEvents.Load")
                 ClientChunkEvents.CHUNK_LOAD.register(ClientChunkEvents.Load { world, _ ->
                     val current = world.registryKey.value
                     if (current != CURRENT) {

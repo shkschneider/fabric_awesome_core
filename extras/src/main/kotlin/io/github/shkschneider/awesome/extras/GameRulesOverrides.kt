@@ -1,11 +1,13 @@
 package io.github.shkschneider.awesome.extras
 
+import io.github.shkschneider.awesome.core.Event
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents
 import net.minecraft.world.GameRules
 
 object GameRulesOverrides {
 
     operator fun invoke() {
+        @Event("ServerWorldEvents.Load")
         ServerWorldEvents.LOAD.register(ServerWorldEvents.Load { server, world ->
             // awesome
             world.gameRules.get(KeepXpGameRule.key).set(true, server)

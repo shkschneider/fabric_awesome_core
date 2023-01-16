@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.custom
 
 import io.github.shkschneider.awesome.AwesomeEnchantments
+import io.github.shkschneider.awesome.core.Event
 import io.github.shkschneider.awesome.core.ext.isOre
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
@@ -19,6 +20,7 @@ object VeinMining {
     private var isVeinMining = false
 
     operator fun invoke() {
+        @Event("PlayerBlockBreakEvents")
         PlayerBlockBreakEvents.AFTER.register(PlayerBlockBreakEvents.After { world, player, pos, state, _ ->
             invoke(world, player, pos, state)
         })
@@ -26,6 +28,7 @@ object VeinMining {
 
     private operator fun invoke(world: World, player: PlayerEntity, pos: BlockPos, state: BlockState) {
         val veinMining = EnchantmentHelper.getLevel(AwesomeEnchantments.veinMining, player.mainHandStack)
+        // FIXME check for tool
         if (!isVeinMining && !player.isSneaking && veinMining > 0) {
             if (state.block.isOre && state.isIn(BlockTags.PICKAXE_MINEABLE)) {
                 veinMining(world, pos, player, veinMining, state.block.asItem())

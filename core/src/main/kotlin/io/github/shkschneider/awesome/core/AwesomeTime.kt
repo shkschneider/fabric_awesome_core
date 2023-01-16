@@ -25,6 +25,7 @@ object AwesomeTime {
         world.time / ticksPerInGameDay
 
     operator fun invoke() {
+        @Event("EntitySleepEvents.StartSleeping")
         EntitySleepEvents.START_SLEEPING.register(EntitySleepEvents.StartSleeping { livingEntity, _ ->
             (livingEntity as? PlayerEntity)?.let { player ->
                 player.world.players.filterNot { it.uuid == player.uuid }.forEach { otherPlayer ->
@@ -35,6 +36,7 @@ object AwesomeTime {
                 }
             }
         })
+        @Event("EntitySleepEvents.StopSleeping")
         EntitySleepEvents.STOP_SLEEPING.register(EntitySleepEvents.StopSleeping { livingEntity, _ ->
             (livingEntity as? PlayerEntity)?.let { player ->
                 AwesomeChat.overlay(player, Texts.join(listOf(
