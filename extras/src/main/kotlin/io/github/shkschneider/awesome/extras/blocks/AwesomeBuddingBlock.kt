@@ -11,7 +11,7 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
-import java.util.*
+import net.minecraft.util.math.random.Random
 
 abstract class AwesomeBuddingBlock(
     private val id: Identifier,

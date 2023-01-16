@@ -32,9 +32,9 @@
   "depends": {
     "fabricloader": ">=0.14.12",
     "fabric-api": "*",
-    "minecraft": "~1.18",
+    "minecraft": "~1.19",
     "java": ">=17",
-    "fabric-language-kotlin": ">=1.8.7+kotlin.1.7.22",
+    "fabric-language-kotlin": ">=1.9.0+kotlin.1.8.0",
     "awesome-core": ">=0.1.0"
   },
   "suggests": {

@@ -25,7 +25,6 @@ import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.recipe.Ingredient
 import net.minecraft.text.Text
-import net.minecraft.text.TranslatableText
 import kotlin.math.max
 
 @Environment(EnvType.CLIENT)
@@ -66,7 +65,7 @@ class AwesomeReiCategory(
     override fun getCategoryIdentifier(): CategoryIdentifier<out AwesomeReiDisplay> =
         CategoryIdentifier.of(machine.id.namespace, machine.id.path)
 
-    override fun getTitle(): Text = TranslatableText(machine.block.translationKey)
+    override fun getTitle(): Text = Text.translatable(machine.block.translationKey)
 
     override fun getIcon(): Renderer = EntryStacks.of(machine.block.asItem())
 

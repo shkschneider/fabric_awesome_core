@@ -7,10 +7,10 @@ import io.github.shkschneider.awesome.custom.Minecraft
 import io.github.shkschneider.awesome.extras.entities.goals.AngerGoal
 import io.github.shkschneider.awesome.extras.entities.goals.StareAtPlayerGoal
 import io.github.shkschneider.awesome.extras.entities.goals.SwiftAttackAndVanishGoal
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors
 import net.minecraft.command.argument.EntityAnchorArgumentType
-import net.minecraft.entity.EntityDimensions
-import net.minecraft.entity.EntityPose
-import net.minecraft.entity.EntityType
+import net.minecraft.entity.*
 import net.minecraft.entity.ai.TargetPredicate
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.damage.DamageSource
@@ -22,6 +22,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvent
 import net.minecraft.sound.SoundEvents
+import net.minecraft.world.Heightmap
 import net.minecraft.world.World
 
 class Herobrine(entityType: EntityType<out HostileEntity>, world: World) : HostileEntity(entityType, world) {
@@ -36,10 +37,10 @@ class Herobrine(entityType: EntityType<out HostileEntity>, world: World) : Hosti
         fun attributes(): DefaultAttributeContainer.Builder = createHostileAttributes()
 
         fun spawnRules(entityType: EntityType<Herobrine>) {
-//            BiomeModifications.addSpawn(BiomeSelectors.foundInOverworld(), SpawnGroup.MONSTER, entityType, 50, 1, 1);
-//            SpawnRestriction.register(entityType, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.WORLD_SURFACE) { type, world, spawnReason, pos, random ->
-//                world.toServerWorld().isRaining && canSpawnIgnoreLightLevel(type, world, spawnReason, pos, random)
-//            }
+            BiomeModifications.addSpawn(BiomeSelectors.foundInOverworld(), SpawnGroup.MONSTER, entityType, 50, 1, 1);
+            SpawnRestriction.register(entityType, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.WORLD_SURFACE) { type, world, spawnReason, pos, random ->
+                world.toServerWorld().isRaining && canSpawnIgnoreLightLevel(type, world, spawnReason, pos, random)
+            }
         }
 
     }
@@ -58,7 +59,7 @@ class Herobrine(entityType: EntityType<out HostileEntity>, world: World) : Hosti
     override fun canBreatheInWater(): Boolean = true
     override fun canFreeze(): Boolean = false
     override fun canHaveStatusEffect(effect: StatusEffectInstance): Boolean = false
-    // 1.19 override fun canHit(): Boolean = true
+    override fun canHit(): Boolean = true
     override fun canPickupItem(stack: ItemStack): Boolean = false
     override fun canTarget(type: EntityType<*>): Boolean = type == EntityType.PLAYER
     override fun canUsePortals(): Boolean = false
@@ -68,7 +69,7 @@ class Herobrine(entityType: EntityType<out HostileEntity>, world: World) : Hosti
     override fun getMaxHeadRotation(): Int = 90
     override fun getMaxLookPitchChange(): Int = 90
     override fun getMaxLookYawChange(): Int = 90
-    // 1.19 override fun getXpToDrop(): Int = 0
+    override fun getXpToDrop(): Int = 0
     override fun isAttackable(): Boolean = false
     override fun isCollidable(): Boolean = true
     override fun isDisallowedInPeaceful(): Boolean = true
@@ -86,7 +87,7 @@ class Herobrine(entityType: EntityType<out HostileEntity>, world: World) : Hosti
         player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, this.eyePos)
         player.addStatusEffect(StatusEffectInstance(StatusEffects.LEVITATION, Minecraft.TICKS), this)
         AwesomeSounds(this.world to player.blockPos, SoundEvents.ENTITY_WITHER_SPAWN to SoundCategory.HOSTILE)
-        // 1.19 player.addStatusEffect(StatusEffectInstance(StatusEffects.DARKNESS, Minecraft.TICKS * 15), this)
+        player.addStatusEffect(StatusEffectInstance(StatusEffects.DARKNESS, Minecraft.TICKS * 15), this)
         player.addStatusEffect(StatusEffectInstance(StatusEffects.POISON, Minecraft.TICKS * 15), this)
         kill()
     }

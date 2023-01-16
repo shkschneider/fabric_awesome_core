@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.item.FoodComponent
 import net.minecraft.item.FoodComponents
 import net.minecraft.text.Text
-import net.minecraft.text.TranslatableText
 
 class Baguette : AwesomeItem(
     AwesomeUtils.identifier(NAME),
@@ -27,6 +26,6 @@ class Baguette : AwesomeItem(
     }
 
     override fun appendShiftableTooltip(): Text =
-        TranslatableText(AwesomeUtils.translatable("item", NAME, "hint"))
+        Text.translatable(AwesomeUtils.translatable("item", NAME, "hint"))
 
 }

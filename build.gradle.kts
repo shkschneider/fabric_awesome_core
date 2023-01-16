@@ -35,9 +35,9 @@ dependencies {
     // runtime mods (for development only)
     listOf(
         // projectId to fileId
-        "emi-580555" to "4337340", // https://www.curseforge.com/minecraft/mc-mods/emi/files
-        "jade-324717" to "3970956", // https://www.curseforge.com/minecraft/mc-mods/jade/files
-        "xaeros-minimap-263420" to "4181104", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files
+        "emi-580555" to "4337341", // https://www.curseforge.com/minecraft/mc-mods/emi/files
+        "jade-324717" to "4328558", // https://www.curseforge.com/minecraft/mc-mods/jade/files
+        "xaeros-minimap-263420" to "4181107", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files
     ).forEach { mod ->
         modRuntimeOnly("curse.maven:${mod.first}:${mod.second}") //{ exclude(group = "net.fabricmc") ; exclude(group = "net.fabricmc.fabric-api") }
     }
