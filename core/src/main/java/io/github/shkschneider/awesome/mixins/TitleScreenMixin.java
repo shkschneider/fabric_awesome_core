@@ -4,6 +4,7 @@ import io.github.shkschneider.awesome.core.AwesomeColors;
 import io.github.shkschneider.awesome.custom.Minecraft;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
@@ -28,7 +29,7 @@ public abstract class TitleScreenMixin extends Screen {
     @Inject(method = "render", at = @At(value="INVOKE", target="Lnet/minecraft/client/gui/screen/TitleScreen;drawStringWithShadow(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V", ordinal = 0), cancellable = true)
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         DrawableHelper.drawStringWithShadow(matrices, textRenderer,
-                String.format("Minecraft/Fabric %s + Awesome Mods!", Minecraft.INSTANCE.getVERSION()),
+                String.format("Minecraft/Fabric %s + %d Mods!", Minecraft.INSTANCE.getVERSION(), FabricLoader.getInstance().getAllMods().size()),
                 2, height - 10, AwesomeColors.INSTANCE.getWhite());
         super.render(matrices, mouseX, mouseY, delta);
         ci.cancel();
