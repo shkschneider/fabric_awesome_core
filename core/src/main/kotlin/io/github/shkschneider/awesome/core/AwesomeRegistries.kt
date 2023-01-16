@@ -6,7 +6,7 @@ import com.mojang.brigadier.context.CommandContext
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.custom.Permissions
 import io.github.shkschneider.awesome.mixins.IBrewingRecipesMixin
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
@@ -48,27 +48,27 @@ object AwesomeRegistries {
         Registry.register(Registry.BLOCK_ENTITY_TYPE, id, FabricBlockEntityTypeBuilder.create({ pos, state -> createBlockEntity(pos, state) }, block).build(null))
 
     fun command(name: String, permission: Permissions = Permissions.Commands, run: (CommandContext<ServerCommandSource>) -> Int) {
-        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource?>, _, _ ->
+        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource?>, _ ->
             dispatcher.register(CommandManager.literal(name).requires { it.hasPermissionLevel(permission.level) }.executes(run))
         })
     }
 
     fun commandWithText(name: String, permission: Permissions = Permissions.Commands, run: (CommandContext<ServerCommandSource>) -> Int) {
-        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource?>, _, _ ->
+        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource?>, _ ->
             dispatcher.register(CommandManager.literal(name).requires { it.hasPermissionLevel(permission.level) }
                 .then(CommandManager.argument("text", string()).executes(run)))
         })
     }
 
     fun commandForPlayer(name: String, permission: Permissions = Permissions.Commands, run: (CommandContext<ServerCommandSource>) -> Int) {
-        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource?>, _, _ ->
+        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource?>, _ ->
             dispatcher.register(CommandManager.literal(name).requires { it.hasPermissionLevel(permission.level) }
                 .then(CommandManager.argument("player", EntityArgumentType.player()).executes(run)))
         })
     }
 
     fun commandForPlayers(name: String, permission: Permissions = Permissions.Commands, run: (CommandContext<ServerCommandSource>) -> Int) {
-        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource?>, _, _ ->
+        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher: CommandDispatcher<ServerCommandSource?>, _ ->
             dispatcher.register(CommandManager.literal(name).requires { it.hasPermissionLevel(permission.level) }
                 .then(CommandManager.argument("players", EntityArgumentType.players()).executes(run)))
         })

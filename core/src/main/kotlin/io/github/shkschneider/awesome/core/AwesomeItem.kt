@@ -7,6 +7,7 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.*
 import net.minecraft.world.World
 
@@ -29,7 +30,7 @@ abstract class AwesomeItem(
             if (AwesomeInputs.shift()) {
                 tooltip.add(text)
             } else {
-                tooltip.add(Text.translatable(AwesomeUtils.translatable("item", "hint")).formatted(Formatting.DARK_GRAY))
+                tooltip.add(TranslatableText(AwesomeUtils.translatable("item", "hint")).formatted(Formatting.GRAY))
             }
         }
     }

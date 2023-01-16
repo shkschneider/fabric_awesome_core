@@ -3,14 +3,13 @@ package io.github.shkschneider.awesome.mixins;
 import io.github.shkschneider.awesome.Awesome;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SpawnerBlock;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  * Author: LordDeatHunter
@@ -20,12 +19,10 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(SpawnerBlock.class)
 public class SpawnerBlockOnStacksDroppedMixin {
 
-    @ModifyVariable(method = "onStacksDropped", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockWithEntity;onStacksDropped(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/item/ItemStack;Z)V", shift = At.Shift.BEFORE), argsOnly = true)
-    public boolean onStacksDropped(boolean dropExperience, BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, boolean _dropExperience) {
+    @Inject(method = "onStacksDropped", at = @At("HEAD"), cancellable = true)
+    public void cancelXP(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, CallbackInfo ci) {
         if (Awesome.INSTANCE.getCONFIG().getEnchantments().getSilkTouchSpawners()) {
-            return !EnchantmentHelper.get(stack).containsKey(Enchantments.SILK_TOUCH);
-        } else {
-            return dropExperience;
+            ci.cancel();
         }
     }
 

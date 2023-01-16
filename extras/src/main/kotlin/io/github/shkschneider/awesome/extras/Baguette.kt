@@ -6,9 +6,11 @@ import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.item.FoodComponent
 import net.minecraft.item.FoodComponents
+import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 
 class Baguette : AwesomeItem(
-    AwesomeUtils.identifier("baguette"),
+    AwesomeUtils.identifier(NAME),
     FabricItemSettings()
         .group(Awesome.GROUP)
         .food(FoodComponent.Builder()
@@ -16,4 +18,15 @@ class Baguette : AwesomeItem(
             .saturationModifier(FoodComponents.BREAD.saturationModifier)
             .build()
         )
-)
+) {
+
+    companion object {
+
+        const val NAME = "baguette"
+
+    }
+
+    override fun appendShiftableTooltip(): Text =
+        TranslatableText(AwesomeUtils.translatable("item", NAME, "hint"))
+
+}

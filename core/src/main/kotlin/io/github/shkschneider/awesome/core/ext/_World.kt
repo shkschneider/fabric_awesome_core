@@ -7,7 +7,7 @@ import io.github.shkschneider.awesome.custom.Location
 import net.minecraft.world.World
 
 fun World.id(): Int {
-    val identifier = dimensionKey.value
+    val identifier = registryKey.value
     return when (identifier.namespace) {
         "minecraft" -> when (identifier.path) {
             World.NETHER.value.namespace -> Dimensions.NETHER

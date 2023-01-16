@@ -23,6 +23,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.Hand
 import net.minecraft.util.Rarity
 import net.minecraft.util.TypeFilter
@@ -78,8 +79,8 @@ class Prospector : AwesomeItem(
 
     override fun hasGlint(stack: ItemStack): Boolean = true
 
-    override fun appendShiftableTooltip(): Text? =
-        Text.translatable(AwesomeUtils.translatable("item", ID, "hint"))
+    override fun appendShiftableTooltip(): Text =
+        TranslatableText(AwesomeUtils.translatable("item", ID, "hint"))
 
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         if (world.isClient) return super.use(world, user, hand)

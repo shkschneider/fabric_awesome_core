@@ -6,7 +6,9 @@ import io.github.shkschneider.awesome.custom.Location;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.DeathScreen;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Pseudo;
@@ -38,11 +40,11 @@ public class DeathScreenMixin {
                 client.player.getYaw(),
                 client.player.getPitch()
         );
-        scoreText = Text.translatable(AwesomeUtils.INSTANCE.translatable("ui", "died"))
+        scoreText = new TranslatableText(AwesomeUtils.INSTANCE.translatable("ui", "died"))
                 .append(" ")
-                .append(Text.literal(clock.getDays() + "d" + clock.getHours() + "h" + clock.getMinutes()).formatted(Formatting.YELLOW))
+                .append(new LiteralText(clock.getDays() + "d" + clock.getHours() + "h" + clock.getMinutes()).formatted(Formatting.YELLOW))
                 .append(" @ ")
-                .append(Text.literal(location.toString()).formatted(Formatting.YELLOW));
+                .append(new LiteralText(location.toString()).formatted(Formatting.YELLOW));
     }
 
 }

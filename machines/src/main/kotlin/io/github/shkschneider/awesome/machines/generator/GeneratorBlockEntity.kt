@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.math.BlockPos
 
 class GeneratorBlockEntity(
@@ -27,7 +28,7 @@ class GeneratorBlockEntity(
         set(value) = properties.set(2, value)
 
     override fun getDisplayName(): Text =
-        Text.translatable(AwesomeUtils.translatable("block", Generator.NAME))
+        TranslatableText(AwesomeUtils.translatable("block", Generator.NAME))
 
     override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): ScreenHandler =
         GeneratorScreenHandler(syncId, this as SidedInventory, playerInventory, properties)

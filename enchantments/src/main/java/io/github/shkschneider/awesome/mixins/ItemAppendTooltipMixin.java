@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,7 +33,7 @@ public class ItemAppendTooltipMixin {
                 .getCompound("entity")
                 .getString("id");
         if (!spawnDataEntityId.isBlank()) {
-            tooltip.add(Text.literal(spawnDataEntityId));
+            tooltip.add(new LiteralText(spawnDataEntityId));
         }
     }
 

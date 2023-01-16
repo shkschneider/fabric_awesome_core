@@ -6,10 +6,7 @@ import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.toVec3d
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
-import net.minecraft.block.Block
-import net.minecraft.block.BlockState
-import net.minecraft.block.Blocks
-import net.minecraft.block.OreBlock
+import net.minecraft.block.*
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.command.argument.EntityAnchorArgumentType
 import net.minecraft.enchantment.EnchantmentHelper
@@ -54,19 +51,12 @@ class RandomiumOre(
                     Items.REDSTONE,
                 )
                 val amplifier = max(1, 1 + EnchantmentHelper.getLevel(Enchantments.FORTUNE, player.mainHandStack))
-                world.spawnEntity(
-                    ItemEntity(
-                        world,
-                        pos.x.toDouble(),
-                        pos.y.toDouble(),
-                        pos.z.toDouble(),
-                        ItemStack(loot.random(), amplifier)
-                    )
-                )
+                world.spawnEntity(ItemEntity(world, pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble(), ItemStack(loot.random(), amplifier)))
             }
         }
     }
 
+    @Suppress("DEPRECATION")
     override fun onBlockBreakStart(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity) {
         super.onBlockBreakStart(state, world, pos, player)
         particles(world, pos)
@@ -74,20 +64,18 @@ class RandomiumOre(
 
     override fun onBreak(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity) {
         super.onBreak(world, pos, state, player)
-        if (world.dimensionKey != World.END) return
+        if (world.registryKey != World.END) return
         val start = pos.mutableCopy().add(-1, -1, -1)
         val end = pos.mutableCopy().add(1, 1, 1)
-        val tp = BlockPos.iterate(
+        BlockPos.iterate(
             min(start.x, end.x), min(start.y, end.y), min(start.z, end.z),
-            max(start.x, end.x), max(start.y, end.y), max(start.z, end.z)
+            max(start.x, end.x), max(start.y, end.y), max(start.z, end.z),
         ).toList().filter {
-            !world.isAir(it.add(0, -1, 0)) && world.isAir(it) && world.isAir(it.add(0, 1, 0))
-        }.random()
-        player.teleport(tp.x.toDouble() + 0.5, tp.y.toDouble() + 0.25, tp.z.toDouble() + 0.5)
-        player.lookAt(
-            EntityAnchorArgumentType.EntityAnchor.EYES,
-            pos.toVec3d(),
-        )
+            world.canPlace(state, it, ShapeContext.of(player))
+        }.takeUnless { it.isEmpty() }?.random()?.let { tp ->
+            player.teleport(tp.x.toDouble() + 0.5, tp.y.toDouble() + 0.25, tp.z.toDouble() + 0.5, false)
+            player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, pos.toVec3d())
+        }
     }
 
     // net.minecraft.block.RedstoneOreBlock.class

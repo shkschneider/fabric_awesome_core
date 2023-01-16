@@ -16,6 +16,7 @@ import net.minecraft.item.ItemUsageContext
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
 import net.minecraft.util.Rarity
@@ -52,7 +53,7 @@ class Imprisoner : AwesomeItem(
     }
 
     override fun appendShiftableTooltip(): Text? =
-        Text.translatable(AwesomeUtils.translatable("item", ID, "hint"))
+        TranslatableText(AwesomeUtils.translatable("item", ID, "hint"))
 
     //region capture
 

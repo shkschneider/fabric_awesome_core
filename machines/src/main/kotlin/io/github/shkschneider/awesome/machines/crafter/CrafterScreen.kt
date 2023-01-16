@@ -1,7 +1,8 @@
 package io.github.shkschneider.awesome.machines.crafter
 
-import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import io.github.shkschneider.awesome.AwesomeMachines
+import io.github.shkschneider.awesome.core.ext.getStacks
+import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
@@ -54,7 +55,7 @@ class CrafterScreen(
         }
 
         override fun canInsertIntoSlot(stack: ItemStack, slot: Slot): Boolean =
-            canInsertIntoSlot(slot) && (sidedInventory.containsAny { it.isEmpty || it.item == stack.item })
+            canInsertIntoSlot(slot) && (sidedInventory.getStacks().any { it.isEmpty || it.item == stack.item })
 
         override fun canInsertIntoSlot(slot: Slot): Boolean =
             Crafter.PORTS.isInput(slot.index) && (slot.index < Crafter.INVENTORY || slot.index >= Crafter.PORTS.size)

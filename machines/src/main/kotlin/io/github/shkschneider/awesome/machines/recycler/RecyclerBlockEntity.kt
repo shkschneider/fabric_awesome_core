@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.math.BlockPos
 
 class RecyclerBlockEntity(
@@ -30,7 +31,7 @@ class RecyclerBlockEntity(
         set(value) = _delegate.set(1, value)
 
     override fun getDisplayName(): Text =
-        Text.translatable(AwesomeUtils.translatable("block", Recycler.NAME))
+        TranslatableText(AwesomeUtils.translatable("block", Recycler.NAME))
 
     override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): ScreenHandler =
         RecyclerScreenHandler(syncId, this, playerInventory, _delegate)

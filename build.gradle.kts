@@ -35,13 +35,9 @@ dependencies {
     // runtime mods (for development only)
     listOf(
         // projectId to fileId
-        "emi-580555" to "4337341", // https://www.curseforge.com/minecraft/mc-mods/emi/files https://maven.terraformersmc.com/dev/emi/emi
-        "jade-324717" to "4328558", // https://www.curseforge.com/minecraft/mc-mods/jade/files
-        "xaeros-minimap-263420" to "4181107", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files
-        //"cloth-api-317121" to "3853858", // https://www.curseforge.com/minecraft/mc-mods/cloth-api/files
-        //"cloth-config-348521" to "3972423", // https://www.curseforge.com/minecraft/mc-mods/cloth-config/files
-        // FIXME "appleskin-248787" to "3927567", // https://www.curseforge.com/minecraft/mc-mods/appleskin/files
-        //"time-in-a-bottle-440243" to "3827555", // https://www.curseforge.com/minecraft/mc-mods/time-in-a-bottle/files
+        "emi-580555" to "4337340", // https://www.curseforge.com/minecraft/mc-mods/emi/files
+        "jade-324717" to "3970956", // https://www.curseforge.com/minecraft/mc-mods/jade/files
+        "xaeros-minimap-263420" to "4181104", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files
     ).forEach { mod ->
         modRuntimeOnly("curse.maven:${mod.first}:${mod.second}") //{ exclude(group = "net.fabricmc") ; exclude(group = "net.fabricmc.fabric-api") }
     }
