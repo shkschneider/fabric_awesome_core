@@ -7,11 +7,7 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.text.Text
-import net.minecraft.util.ActionResult
-import net.minecraft.util.Formatting
-import net.minecraft.util.Hand
-import net.minecraft.util.Identifier
-import net.minecraft.util.TypedActionResult
+import net.minecraft.util.*
 import net.minecraft.world.World
 
 abstract class AwesomeItem(
@@ -33,7 +29,7 @@ abstract class AwesomeItem(
             if (AwesomeInputs.shift()) {
                 tooltip.add(text)
             } else {
-                tooltip.add(Text.translatable(AwesomeUtils.translatable("item", "hint")).formatted(Formatting.GRAY))
+                tooltip.add(Text.translatable(AwesomeUtils.translatable("item", "hint")).formatted(Formatting.DARK_GRAY))
             }
         }
     }

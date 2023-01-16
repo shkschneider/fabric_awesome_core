@@ -5,14 +5,13 @@ import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeItem
 import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeUtils
+import io.github.shkschneider.awesome.core.ext.isOre
 import io.github.shkschneider.awesome.core.ext.positions
 import io.github.shkschneider.awesome.core.ext.toBox
 import io.github.shkschneider.awesome.custom.Minecraft
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
-import net.minecraft.block.OreBlock
-import net.minecraft.block.RedstoneOreBlock
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.SpawnReason
@@ -112,7 +111,7 @@ class Prospector : AwesomeItem(
         positions.forEach { pos ->
             val state = world.getBlockState(pos)
             val block = state.block
-            if (block is OreBlock || block is RedstoneOreBlock) {
+            if (block.isOre) {
                 val entity = prospectorEntity(world, pos, player) ?: return@forEach
                 Executors.newSingleThreadScheduledExecutor().schedule(Runnable {
                    entity.discard()

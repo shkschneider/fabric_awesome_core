@@ -19,19 +19,21 @@ import net.minecraft.item.SpawnEggItem
 object AwesomeEntities {
 
     operator fun invoke() {
-        AwesomeRegistries.hostileEntity(
-            Herobrine.ID,
-            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER) { type, world ->
-                Herobrine(type, world)
-            }.dimensions(EntityDimensions.fixed(Herobrine.SIZE.first, Herobrine.SIZE.second))
-        ).also { entityType ->
-            if (Minecraft.isClient) {
-                FabricDefaultAttributeRegistry.register(entityType, Herobrine.attributes())
-                EntityRendererRegistry.register(entityType, ::HerobrineRenderer)
-            }
-            Herobrine.spawnRules(entityType)
-            if (Awesome.CONFIG.extras.spawnEggs) {
-                spawnEgg(Herobrine.NAME, AwesomeColors.valencia to AwesomeColors.tuna, entityType)
+        if (Awesome.CONFIG.extras.herobrine) {
+            AwesomeRegistries.hostileEntity(
+                Herobrine.ID,
+                FabricEntityTypeBuilder.create(SpawnGroup.MONSTER) { type, world ->
+                    Herobrine(type, world)
+                }.dimensions(EntityDimensions.fixed(Herobrine.SIZE.first, Herobrine.SIZE.second))
+            ).also { entityType ->
+                if (Minecraft.isClient) {
+                    FabricDefaultAttributeRegistry.register(entityType, Herobrine.attributes())
+                    EntityRendererRegistry.register(entityType, ::HerobrineRenderer)
+                }
+                Herobrine.spawnRules(entityType)
+                if (Awesome.CONFIG.extras.spawnEggs) {
+                    spawnEgg(Herobrine.NAME, AwesomeColors.valencia to AwesomeColors.tuna, entityType)
+                }
             }
         }
         if (Awesome.CONFIG.extras.spawnEggs) {

@@ -32,7 +32,7 @@ public abstract class TrashScreenHandlerMixin extends ScreenHandler {
     private void init(PlayerInventory inventory, boolean onServer, final PlayerEntity owner, CallbackInfo ci) {
         if (Awesome.INSTANCE.getCONFIG().getExtras().getTrashSlot()) {
             trashInventory = new SimpleInventory(1);
-            addSlot(new Slot(trashInventory, 0,152, 66));
+            addSlot(new Slot(trashInventory, 0, 152, 66));
             trashIndex = slots.size() - 1;
         }
     }
@@ -44,7 +44,7 @@ public abstract class TrashScreenHandlerMixin extends ScreenHandler {
             final ItemStack cursorStack = getCursorStack() != null ? getCursorStack() : ItemStack.EMPTY;
             final ItemStack slotStack = getSlot(slotIndex) != null ? getSlot(slotIndex).getStack() : ItemStack.EMPTY;
             if (!cursorStack.isEmpty() && !slotStack.isEmpty()) {
-                getSlot(slotIndex).setStack(ItemStack.EMPTY);
+                trashInventory.clear();
             }
         }
         super.onSlotClick(slotIndex, button, actionType, player);
