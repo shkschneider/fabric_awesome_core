@@ -12,17 +12,22 @@ import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.ItemEntity
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.item.*
+import net.minecraft.item.BlockItem
+import net.minecraft.item.Item
+import net.minecraft.item.ItemGroup
+import net.minecraft.item.ItemPlacementContext
+import net.minecraft.item.ItemStack
 import net.minecraft.loot.context.LootContext
 import net.minecraft.loot.context.LootContextParameters
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.registry.Registries
+import net.minecraft.registry.Registry
 import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
 import net.minecraft.util.Identifier
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 
 abstract class AwesomeBlock(
@@ -41,10 +46,8 @@ abstract class AwesomeBlock(
     }
 
     private fun init(group: ItemGroup) {
-        AwesomeRegistries.blockWithItem(id, this as Block, group).let {
-            _self = it.first
-            blockItem = it.second
-        }
+        blockItem = AwesomeRegistries.blockItem(id, this as Block, group)
+        _self = blockItem.block
     }
 
     override fun asItem(): Item = blockItem
@@ -64,7 +67,7 @@ abstract class AwesomeBlock(
     ) : AwesomeBlock(id, settings, group), BlockEntityProvider, BlockEntityTicker<BE> {
 
         val entityType: BlockEntityType<BE> = Registry.register(
-            Registry.BLOCK_ENTITY_TYPE, id,
+            Registries.BLOCK_ENTITY_TYPE, id,
             FabricBlockEntityTypeBuilder.create({ pos, state -> createBlockEntity(pos, state) }, self).build(null)
         )
 

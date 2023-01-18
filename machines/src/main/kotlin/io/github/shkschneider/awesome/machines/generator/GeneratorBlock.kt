@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.machines.generator
 
 import io.github.shkschneider.awesome.core.AwesomeBlockWithEntity
+import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.entity.player.PlayerEntity
@@ -19,7 +20,7 @@ import net.minecraft.world.World
 
 class GeneratorBlock(
     settings: Settings,
-) : AwesomeBlockWithEntity<GeneratorBlockEntity>(Generator.ID, settings) {
+) : AwesomeBlockWithEntity<GeneratorBlockEntity>(AwesomeUtils.identifier(Generator.ID), settings) {
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState =
         defaultState.with(Properties.HORIZONTAL_FACING, ctx.playerFacing.opposite).with(Properties.LIT, false)

@@ -6,7 +6,7 @@ import net.minecraft.entity.ai.goal.Goal
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.entity.mob.HostileEntity
-import java.util.*
+import java.util.EnumSet
 
 class AngerGoal(
     private val mob: HostileEntity,

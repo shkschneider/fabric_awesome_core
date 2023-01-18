@@ -15,11 +15,11 @@ import net.minecraft.util.math.Direction
 class CrateBlockEntity(
     pos: BlockPos, state: BlockState,
 ) : AwesomeBlockEntity.WithInventory(
-    Crate.NAME, Crate.self.entityType, pos, state, Crate.PORTS, 0 to 0,
+    Crate.ID, Crate.self.entityType, pos, state, Crate.PORTS, 0 to 0,
 ), AwesomeBlockEntity.WithScreen {
 
     override fun getDisplayName(): Text =
-        Text.translatable(AwesomeUtils.translatable("block", Crate.NAME))
+        Text.translatable(AwesomeUtils.translatable("block", Crate.ID))
 
     override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): ScreenHandler =
         CrateBlockScreenHandler(syncId, this, playerInventory, ArrayPropertyDelegate(0))

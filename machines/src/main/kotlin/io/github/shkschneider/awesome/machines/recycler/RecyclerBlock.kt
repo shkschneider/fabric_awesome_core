@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.machines.recycler
 
 import io.github.shkschneider.awesome.core.AwesomeBlock
+import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.entity.player.PlayerEntity
@@ -19,7 +20,7 @@ import net.minecraft.world.World
 
 class RecyclerBlock(
     settings: Settings,
-) : AwesomeBlock.WithScreen<RecyclerBlockEntity>(Recycler.ID, settings) {
+) : AwesomeBlock.WithScreen<RecyclerBlockEntity>(AwesomeUtils.identifier(Recycler.ID), settings) {
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState = defaultState
         .with(Properties.HORIZONTAL_FACING, ctx.playerFacing.opposite)

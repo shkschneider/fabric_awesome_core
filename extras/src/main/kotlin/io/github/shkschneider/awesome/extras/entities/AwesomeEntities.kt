@@ -21,7 +21,7 @@ object AwesomeEntities {
     operator fun invoke() {
         if (Awesome.CONFIG.extras.herobrine) {
             AwesomeRegistries.hostileEntity(
-                Herobrine.ID,
+                AwesomeUtils.identifier(Herobrine.ID),
                 FabricEntityTypeBuilder.create(SpawnGroup.MONSTER) { type, world ->
                     Herobrine(type, world)
                 }.dimensions(EntityDimensions.fixed(Herobrine.SIZE.first, Herobrine.SIZE.second))
@@ -32,19 +32,19 @@ object AwesomeEntities {
                 }
                 Herobrine.spawnRules(entityType)
                 if (Awesome.CONFIG.extras.spawnEggs) {
-                    spawnEgg(Herobrine.NAME, AwesomeColors.valencia to AwesomeColors.tuna, entityType)
+                    spawnEgg(Herobrine.ID, AwesomeColors.valencia to AwesomeColors.tuna, entityType)
                 }
             }
         }
         if (Awesome.CONFIG.extras.spawnEggs) {
-            spawnEgg("wither", AwesomeColors.black to AwesomeColors.white, EntityType.WITHER, ItemGroup.MISC)
-            spawnEgg("dragon", AwesomeColors.black to AwesomeColors.valencia, EntityType.ENDER_DRAGON, ItemGroup.MISC)
+            spawnEgg("wither", AwesomeColors.black to AwesomeColors.white, EntityType.WITHER)
+            spawnEgg("dragon", AwesomeColors.black to AwesomeColors.valencia, EntityType.ENDER_DRAGON)
         }
     }
 
     private fun spawnEgg(name: String, colors: Pair<Int, Int>, entityType: EntityType<out MobEntity>, group: ItemGroup = Awesome.GROUP): SpawnEggItem {
-        val spawnEgg = SpawnEggItem(entityType, colors.first, colors.second, FabricItemSettings().group(group))
-        AwesomeRegistries.item(AwesomeUtils.identifier("${name}_spawn_egg"), spawnEgg)
+        val spawnEgg = SpawnEggItem(entityType, colors.first, colors.second, FabricItemSettings())
+        AwesomeRegistries.item(AwesomeUtils.identifier("${name}_spawn_egg"), spawnEgg, group)
         return spawnEgg
     }
 

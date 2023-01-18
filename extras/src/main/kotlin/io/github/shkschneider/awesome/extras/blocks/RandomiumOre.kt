@@ -1,5 +1,6 @@
-package io.github.shkschneider.awesome.blocks
+package io.github.shkschneider.awesome.extras.blocks
 
+import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeColors
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeUtils
@@ -7,7 +8,11 @@ import io.github.shkschneider.awesome.core.Event
 import io.github.shkschneider.awesome.core.ext.toVec3d
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
-import net.minecraft.block.*
+import net.minecraft.block.Block
+import net.minecraft.block.BlockState
+import net.minecraft.block.Blocks
+import net.minecraft.block.ExperienceDroppingBlock
+import net.minecraft.block.ShapeContext
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.command.argument.EntityAnchorArgumentType
 import net.minecraft.enchantment.EnchantmentHelper
@@ -20,14 +25,13 @@ import net.minecraft.particle.DustParticleEffect
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Vec3d
-import net.minecraft.util.math.Vec3f
 import net.minecraft.world.World
 import kotlin.math.max
 import kotlin.math.min
 
 class RandomiumOre(
     name: String,
-) : OreBlock(
+) : ExperienceDroppingBlock(
     FabricBlockSettings.copyOf(Blocks.REDSTONE_BLOCK)
 ) {
 
@@ -38,10 +42,10 @@ class RandomiumOre(
     }
 
     private fun init() {
-        AwesomeRegistries.blockWithItem(id, this as Block)
+        AwesomeRegistries.blockItem(id, this as Block, Awesome.GROUP)
         @Event("PlayerBlockBreakEvents.After")
         PlayerBlockBreakEvents.AFTER.register { world: World, player: PlayerEntity, pos: BlockPos, state: BlockState, _: BlockEntity? ->
-            if (state.block == this) {
+            if (state.block is RandomiumOre) {
                 val loot = listOf(
                     Items.COAL,
                     Items.DIAMOND,
@@ -92,7 +96,7 @@ class RandomiumOre(
                 val f = if (direction.axis === Direction.Axis.Y) 0.5 + offset * direction.offsetY.toDouble() else world.random.nextFloat().toDouble()
                 val g = if (direction.axis === Direction.Axis.Z) 0.5 + offset * direction.offsetZ.toDouble() else world.random.nextFloat().toDouble()
                 world.addParticle(
-                    DustParticleEffect(Vec3f(Vec3d.unpackRgb(color)), 1.0F),
+                    DustParticleEffect(Vec3d.unpackRgb(color).toVector3f(), 1.0F),
                     pos.x.toDouble() + e,
                     pos.y.toDouble() + f,
                     pos.z.toDouble() + g,

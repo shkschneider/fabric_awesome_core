@@ -1,7 +1,6 @@
 package io.github.shkschneider.awesome.extras.entities
 
 import io.github.shkschneider.awesome.core.AwesomeSounds
-import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.isBeingLookedAt
 import io.github.shkschneider.awesome.custom.Minecraft
 import io.github.shkschneider.awesome.extras.entities.goals.AngerGoal
@@ -10,7 +9,11 @@ import io.github.shkschneider.awesome.extras.entities.goals.SwiftAttackAndVanish
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors
 import net.minecraft.command.argument.EntityAnchorArgumentType
-import net.minecraft.entity.*
+import net.minecraft.entity.EntityDimensions
+import net.minecraft.entity.EntityPose
+import net.minecraft.entity.EntityType
+import net.minecraft.entity.SpawnGroup
+import net.minecraft.entity.SpawnRestriction
 import net.minecraft.entity.ai.TargetPredicate
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.damage.DamageSource
@@ -29,8 +32,7 @@ class Herobrine(entityType: EntityType<out HostileEntity>, world: World) : Hosti
 
     companion object {
 
-        const val NAME = "herobrine"
-        val ID = AwesomeUtils.identifier(NAME)
+        const val ID = "herobrine"
         val SIZE = 1.0F to 2.0F
         val RANGE = Minecraft.CHUNK
 

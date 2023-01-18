@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.extras.blocks
 
+import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.AmethystBlock
@@ -23,7 +24,7 @@ abstract class AwesomeBuddingBlock(
     }
 
     private fun init() {
-        AwesomeRegistries.blockWithItem(id, this as Block)
+        AwesomeRegistries.blockItem(id, this as Block, Awesome.GROUP)
     }
 
     override fun randomTick(state: BlockState, world: ServerWorld, pos: BlockPos, random: Random) {

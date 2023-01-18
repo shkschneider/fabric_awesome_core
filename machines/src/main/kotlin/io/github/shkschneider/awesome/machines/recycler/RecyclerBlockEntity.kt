@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos
 class RecyclerBlockEntity(
     pos: BlockPos,
     state: BlockState,
-) : AwesomeBlockEntity.WithInventory(Recycler.NAME, Recycler.block.entityType, pos, state, Recycler.PORTS, Recycler.PROPERTIES to 0), AwesomeBlockEntity.WithScreen {
+) : AwesomeBlockEntity.WithInventory(Recycler.ID, Recycler.block.entityType, pos, state, Recycler.PORTS, Recycler.PROPERTIES to 0), AwesomeBlockEntity.WithScreen {
 
     private val _properties = mutableMapOf<Int, Int>()
     private val _delegate = object: PropertyDelegate {
@@ -30,7 +30,7 @@ class RecyclerBlockEntity(
         set(value) = _delegate.set(1, value)
 
     override fun getDisplayName(): Text =
-        Text.translatable(AwesomeUtils.translatable("block", Recycler.NAME))
+        Text.translatable(AwesomeUtils.translatable("block", Recycler.ID))
 
     override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): ScreenHandler =
         RecyclerScreenHandler(syncId, this, playerInventory, _delegate)

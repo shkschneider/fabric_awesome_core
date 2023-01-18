@@ -20,12 +20,13 @@ import net.minecraft.item.ItemStack
 import net.minecraft.loot.context.LootContext
 import net.minecraft.loot.context.LootContextParameters
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.registry.Registries
+import net.minecraft.registry.Registry
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
 import net.minecraft.util.Identifier
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 
 abstract class AwesomeBlockWithEntity<BE : BlockEntity>(
@@ -44,10 +45,8 @@ abstract class AwesomeBlockWithEntity<BE : BlockEntity>(
     }
 
     private fun init(group: ItemGroup) {
-        AwesomeRegistries.blockWithItem(id, this as Block, group).let {
-            _self = it.first
-            blockItem = it.second
-        }
+        blockItem = AwesomeRegistries.blockItem(id, this as Block, group)
+        _self = blockItem.block
     }
 
     override fun asItem(): Item = blockItem
@@ -60,7 +59,7 @@ abstract class AwesomeBlockWithEntity<BE : BlockEntity>(
         defaultState
 
     val entityType: BlockEntityType<BE> = Registry.register(
-        Registry.BLOCK_ENTITY_TYPE, id,
+        Registries.BLOCK_ENTITY_TYPE, id,
         FabricBlockEntityTypeBuilder.create({ pos, state -> createBlockEntity(pos, state) }, self).build(null)
     )
 

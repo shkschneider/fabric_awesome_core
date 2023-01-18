@@ -2,7 +2,7 @@ package io.github.shkschneider.awesome.extras
 
 import io.github.shkschneider.awesome.core.ext.positions
 import net.minecraft.block.Blocks
-import net.minecraft.tag.FluidTags
+import net.minecraft.registry.tag.FluidTags
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Box
 import net.minecraft.world.World

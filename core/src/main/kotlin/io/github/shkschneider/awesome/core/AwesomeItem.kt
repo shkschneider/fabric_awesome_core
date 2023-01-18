@@ -1,26 +1,33 @@
 package io.github.shkschneider.awesome.core
 
+import io.github.shkschneider.awesome.Awesome
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
+import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.text.Text
-import net.minecraft.util.*
+import net.minecraft.util.ActionResult
+import net.minecraft.util.Formatting
+import net.minecraft.util.Hand
+import net.minecraft.util.Identifier
+import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
 
 abstract class AwesomeItem(
     val id: Identifier,
     settings: Settings,
+    group: ItemGroup = Awesome.GROUP,
 ) : Item(settings) {
 
     init {
-        init()
+        init(group)
     }
 
-    private fun init() {
-        AwesomeRegistries.item(id, this as Item)
+    private fun init(group: ItemGroup) {
+        AwesomeRegistries.item(id, this as Item, group)
     }
 
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, context: TooltipContext) {

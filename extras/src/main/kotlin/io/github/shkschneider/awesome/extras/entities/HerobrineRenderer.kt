@@ -13,7 +13,6 @@ import net.minecraft.client.render.entity.feature.FeatureRendererContext
 import net.minecraft.client.render.entity.model.EntityModelLayers
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.Identifier
-import java.util.*
 
 @Environment(EnvType.CLIENT)
 class HerobrineRenderer(

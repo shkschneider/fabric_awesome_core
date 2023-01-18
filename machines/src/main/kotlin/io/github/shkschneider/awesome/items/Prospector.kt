@@ -6,13 +6,14 @@ import io.github.shkschneider.awesome.core.AwesomeItem
 import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.Event
-import io.github.shkschneider.awesome.core.ext.isOre
 import io.github.shkschneider.awesome.core.ext.positions
 import io.github.shkschneider.awesome.core.ext.toBox
 import io.github.shkschneider.awesome.custom.Minecraft
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
+import net.minecraft.block.ExperienceDroppingBlock
+import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.SpawnReason
@@ -24,6 +25,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
+import net.minecraft.util.Formatting
 import net.minecraft.util.Hand
 import net.minecraft.util.Rarity
 import net.minecraft.util.TypeFilter
@@ -36,7 +38,8 @@ import java.util.concurrent.TimeUnit
 
 class Prospector : AwesomeItem(
     id = AwesomeUtils.identifier(ID),
-    settings = FabricItemSettings().group(Awesome.GROUP).maxCount(1).rarity(Rarity.UNCOMMON),
+    settings = FabricItemSettings().maxCount(1).rarity(Rarity.UNCOMMON),
+    group = Awesome.GROUP,
 ) {
 
     companion object {
@@ -79,10 +82,9 @@ class Prospector : AwesomeItem(
         }
     }
 
-    override fun hasGlint(stack: ItemStack): Boolean = true
-
-    override fun appendShiftableTooltip(): Text =
-        Text.translatable(AwesomeUtils.translatable("item", ID, "hint"))
+    override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, context: TooltipContext) {
+        tooltip.add(Text.translatable(AwesomeUtils.translatable("item", ID, "hint")).formatted(Formatting.GRAY))
+    }
 
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         if (world.isClient) return super.use(world, user, hand)
@@ -96,7 +98,7 @@ class Prospector : AwesomeItem(
     }
 
     private fun prospectorEntity(world: ServerWorld, pos: BlockPos, player: PlayerEntity): LivingEntity? =
-        ENTITY.first.spawn(world, NbtCompound(), null, null, pos.down(), SpawnReason.COMMAND, true, false)?.apply {
+        ENTITY.first.spawn(world, NbtCompound(), null, pos.down(), SpawnReason.COMMAND, true, false)?.apply {
             addScoreboardTag("${ID}_${player.uuidAsString}")
             clearGoalsAndTasks()
             isAiDisabled = true
@@ -114,7 +116,7 @@ class Prospector : AwesomeItem(
         positions.forEach { pos ->
             val state = world.getBlockState(pos)
             val block = state.block
-            if (block.isOre) {
+            if (block is ExperienceDroppingBlock) {
                 val entity = prospectorEntity(world, pos, player) ?: return@forEach
                 Executors.newSingleThreadScheduledExecutor().schedule(Runnable {
                    entity.discard()

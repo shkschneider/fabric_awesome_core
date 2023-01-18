@@ -51,6 +51,7 @@ abstract class AwesomeMachineBlock<BE : BlockEntity>(
 
     override fun emitsRedstonePower(state: BlockState): Boolean = false
 
+    @Suppress("DEPRECATION")
     override fun onStateReplaced(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
         if (state.block !== newState.block) {
             (world.getBlockEntity(pos) as? Inventory)?.let { ItemScatterer.spawn(world, pos, it) }

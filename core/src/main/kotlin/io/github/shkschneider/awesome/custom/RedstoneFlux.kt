@@ -11,7 +11,8 @@ import net.minecraft.util.Rarity
 
 class RedstoneFlux : AwesomeItem(
     id = AwesomeUtils.identifier("redstone_flux"),
-    settings = FabricItemSettings().maxCount(Minecraft.STACK).group(Awesome.GROUP).rarity(Rarity.UNCOMMON),
+    settings = FabricItemSettings().maxCount(Minecraft.STACK).rarity(Rarity.UNCOMMON),
+    group = Awesome.GROUP,
 ) {
 
     val time = FuelRegistry.INSTANCE.get(Items.COAL) * 2 // ~3200t

@@ -7,5 +7,5 @@ import net.minecraft.text.Text
 class CrateBlockScreen(
     handler: CrateBlockScreenHandler, playerInventory: PlayerInventory, title: Text,
 ) : AwesomeBlockScreen<CrateBlockScreenHandler>(
-    Crate.NAME, handler, playerInventory, title,
+    Crate.ID, handler, playerInventory, title,
 )

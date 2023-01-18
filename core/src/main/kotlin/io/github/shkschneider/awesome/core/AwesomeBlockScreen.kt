@@ -31,7 +31,7 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
         // when drawing 1+ textures, only the first appears
         // resetting the Shader, even in the children (calling super already) fixes it
         // FIXME i doubt this is how it should be done -- nor optimized :/
-        RenderSystem.setShader(GameRenderer::getPositionTexShader)
+        RenderSystem.setShader(GameRenderer::getRenderTypeTextProgram)
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
         RenderSystem.setShaderTexture(0, AwesomeUtils.identifier("textures/gui/$name.png"))
     }
@@ -95,7 +95,7 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
          * Link: https://github.com/FabricMC/yarn/issues/2944
          *
          */
-        override fun transferSlot(player: PlayerEntity, i: Int): ItemStack {
+        override fun quickMove(player: PlayerEntity, i: Int): ItemStack {
             val slot = slots.getOrNull(i)?.takeIf { it.hasStack() } ?: return ItemStack.EMPTY
             val stack = slot.stack.copy()
             if (i < sidedInventory.size()) {

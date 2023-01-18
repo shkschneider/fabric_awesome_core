@@ -2,7 +2,7 @@ package io.github.shkschneider.awesome.extras.entities.goals
 
 import net.minecraft.entity.ai.goal.Goal
 import net.minecraft.entity.mob.HostileEntity
-import java.util.*
+import java.util.EnumSet
 
 class StareAtPlayerGoal constructor(
     private val mob: HostileEntity,

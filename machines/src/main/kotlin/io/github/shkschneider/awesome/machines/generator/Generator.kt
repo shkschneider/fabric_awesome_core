@@ -1,7 +1,6 @@
 package io.github.shkschneider.awesome.machines.generator
 
 import io.github.shkschneider.awesome.AwesomeMachines
-import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.custom.Minecraft
 import io.github.shkschneider.awesome.custom.SimpleSidedInventory
@@ -18,8 +17,7 @@ import net.minecraft.world.World
 
 object Generator {
 
-    const val NAME = "generator"
-    val ID = AwesomeUtils.identifier(NAME)
+    const val ID = "generator"
     val PORTS = MachinePorts(inputs = 1, outputs = 0)
     private val IGNITE = Minecraft.TICKS
     const val PROPERTIES = 3
@@ -67,7 +65,7 @@ object Generator {
                 GeneratorScreenHandler(syncId, SimpleSidedInventory(PORTS.size), playerInventory, ArrayPropertyDelegate(PROPERTIES))
             }
             HandledScreens.register(SCREEN) { handler, playerInventory, title ->
-                GeneratorScreen(NAME, handler, playerInventory, title)
+                GeneratorScreen(ID, handler, playerInventory, title)
             }
         }
     }

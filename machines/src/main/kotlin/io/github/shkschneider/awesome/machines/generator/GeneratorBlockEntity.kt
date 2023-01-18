@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos
 class GeneratorBlockEntity(
     pos: BlockPos, state: BlockState,
 ) : AwesomeBlockEntity.WithInventory(
-    Generator.NAME, Generator.block.entityType, pos, state, Generator.PORTS, Generator.PROPERTIES to 0,
+    Generator.ID, Generator.block.entityType, pos, state, Generator.PORTS, Generator.PROPERTIES to 0,
 ), AwesomeBlockEntity.WithScreen {
 
     var power: Int
@@ -27,7 +27,7 @@ class GeneratorBlockEntity(
         set(value) = properties.set(2, value)
 
     override fun getDisplayName(): Text =
-        Text.translatable(AwesomeUtils.translatable("block", Generator.NAME))
+        Text.translatable(AwesomeUtils.translatable("block", Generator.ID))
 
     override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): ScreenHandler =
         GeneratorScreenHandler(syncId, this as SidedInventory, playerInventory, properties)

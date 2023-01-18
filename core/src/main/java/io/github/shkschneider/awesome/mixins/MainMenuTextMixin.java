@@ -23,7 +23,12 @@ public class MainMenuTextMixin {
     @Inject(method = "get()Ljava/lang/String;", at = @At("HEAD"), cancellable = true)
     public String get(CallbackInfoReturnable<String> info) {
         info.setReturnValue(info.getReturnValue());
-        info.setReturnValue(String.format("%s %s!", Awesome.INSTANCE.getNAME(), SharedConstants.getGameVersion().getName()));
+        info.setReturnValue(
+                String.format("%s %s!",
+                        Awesome.INSTANCE.getID().substring(0, 1).toUpperCase() + Awesome.INSTANCE.getID().substring(1).toLowerCase(),
+                        SharedConstants.getGameVersion().getName()
+                )
+        );
         return null;
     }
 

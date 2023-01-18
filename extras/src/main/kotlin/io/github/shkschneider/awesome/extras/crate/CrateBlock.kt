@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.extras.crate
 
 import io.github.shkschneider.awesome.core.AwesomeBlock
+import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.getStacks
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockRenderType
@@ -23,7 +24,7 @@ import net.minecraft.world.World
 import net.minecraft.world.WorldView
 
 class CrateBlock : AwesomeBlock.WithScreen<CrateBlockEntity>(
-    Crate.ID, FabricBlockSettings.copy(Blocks.BARREL).strength(0.25F).nonOpaque(),
+    AwesomeUtils.identifier(Crate.ID), FabricBlockSettings.copy(Blocks.BARREL).strength(0.25F).nonOpaque(),
 ), AwesomeBlock.WithEntity.RetainsInventory {
 
     override fun getRenderType(state: BlockState): BlockRenderType =

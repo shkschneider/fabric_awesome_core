@@ -68,16 +68,16 @@ class CrafterScreen(
             }
         }
 
-        override fun transferSlot(player: PlayerEntity, i: Int): ItemStack =
+        override fun quickMove(player: PlayerEntity, i: Int): ItemStack =
             if (i in (0 until Crafter.INVENTORY) || i == Crafter.PORTS.size - 1) {
-                super.transferSlot(player, i)
+                super.quickMove(player, i)
             } else if (i >= Crafter.PORTS.size) {
-                internalTransferSlot(i)
+                internalQuickMove(i)
             } else {
                 ItemStack.EMPTY
             }
 
-        private fun internalTransferSlot(index: Int): ItemStack {
+        private fun internalQuickMove(index: Int): ItemStack {
             val slot = slots.getOrNull(index)?.takeIf { it.hasStack() } ?: return ItemStack.EMPTY
             val stack = slot.stack.copy()
             if (!insertItem(slot.stack, 0, Crafter.INVENTORY, false)) {

@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome.extras.crate
 
-import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.custom.Minecraft
 import net.minecraft.client.gui.screen.ingame.HandledScreens
@@ -11,8 +10,7 @@ import net.minecraft.screen.ScreenHandlerType
 // Inspired from the ShulkerBox
 object Crate {
 
-    const val NAME = "crate"
-    val ID = AwesomeUtils.identifier(NAME)
+    const val ID = "crate"
     val PORTS = MachinePorts(inputs = 9, outputs = 0)
 
     val self = CrateBlock()

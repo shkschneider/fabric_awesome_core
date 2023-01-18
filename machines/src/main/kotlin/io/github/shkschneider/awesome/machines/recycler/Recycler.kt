@@ -1,7 +1,6 @@
 package io.github.shkschneider.awesome.machines.recycler
 
 import io.github.shkschneider.awesome.core.AwesomeLogger
-import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.getStacks
 import io.github.shkschneider.awesome.core.ext.id
 import io.github.shkschneider.awesome.custom.MachinePorts
@@ -22,8 +21,7 @@ import kotlin.math.roundToInt
 
 object Recycler {
 
-    const val NAME = "recycler"
-    val ID = AwesomeUtils.identifier(NAME)
+    const val ID = "recycler"
     val PORTS = MachinePorts(inputs = 1, outputs = 9)
     val PROPERTIES = 2
     const val EFFICIENCY = 0.6 // much like GregTech's Disassembler
@@ -71,7 +69,7 @@ object Recycler {
                 ))
             }
             HandledScreens.register(SCREEN) { handler, playerInventory, title ->
-                RecyclerScreen(NAME, handler, playerInventory, title)
+                RecyclerScreen(ID, handler, playerInventory, title)
             }
         }
     }

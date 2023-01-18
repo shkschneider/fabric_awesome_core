@@ -17,6 +17,7 @@ import net.minecraft.nbt.NbtCompound
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
 import net.minecraft.util.ActionResult
+import net.minecraft.util.Formatting
 import net.minecraft.util.Hand
 import net.minecraft.util.Rarity
 import net.minecraft.util.math.BlockPos
@@ -24,13 +25,14 @@ import net.minecraft.world.World
 import net.minecraft.world.event.GameEvent
 
 class Imprisoner : AwesomeItem(
-    id = AwesomeUtils.identifier(ID),
-    settings = FabricItemSettings().group(Awesome.GROUP).maxCount(1).rarity(Rarity.UNCOMMON),
+    id = AwesomeUtils.identifier(NAME),
+    settings = FabricItemSettings().maxCount(1).rarity(Rarity.UNCOMMON),
+    group = Awesome.GROUP,
 ) {
 
     companion object {
 
-        const val ID = "imprisoner"
+        const val NAME = "imprisoner"
         const val IMPRISONED = "Imprisoned"
         private val EXPERIENCE = 1
         val COOLDOWN = AwesomeUtils.secondsToTicks(1)
@@ -48,11 +50,10 @@ class Imprisoner : AwesomeItem(
         super.appendTooltip(stack, world, tooltip, context)
         stack.nbt?.get(IMPRISONED)?.asString()?.let { prisoner ->
             tooltip.add(Text.of(prisoner))
+        } ?: run {
+            tooltip.add(Text.translatable(AwesomeUtils.translatable("item", NAME, "hint")).formatted(Formatting.GRAY))
         }
     }
-
-    override fun appendShiftableTooltip(): Text =
-        Text.translatable(AwesomeUtils.translatable("item", ID, "hint"))
 
     //region capture
 
@@ -73,6 +74,7 @@ class Imprisoner : AwesomeItem(
     private fun capture(player: PlayerEntity, hand: Hand, stack: ItemStack, entity: LivingEntity): Boolean {
         player.swingHand(hand)
         stack.nbt = entity.writeNbt(NbtCompound()).apply {
+            val s = entity.type.toString().toString()
             putString(IMPRISONED, entity.type.registryEntry.registryKey().value.toString())
             remove("Pos")
         }
@@ -106,7 +108,7 @@ class Imprisoner : AwesomeItem(
         val id = stack.nbt?.getString(IMPRISONED) ?: return false
         val entityType = EntityType.get(id).takeIf { it.isPresent }?.get() ?: return false
         // FIXME loosing any CustomName
-        val entity = entityType.spawn(world, stack.nbt, null, player, pos, SpawnReason.SPAWN_EGG, true, false)?.apply {
+        val entity = entityType.spawn(world, stack.nbt, null, pos, SpawnReason.SPAWN_EGG, true, false)?.apply {
             (this as? LivingEntity)?.apply {
                 setVelocity(0.toDouble(), 0.toDouble(), 0.toDouble())
             }

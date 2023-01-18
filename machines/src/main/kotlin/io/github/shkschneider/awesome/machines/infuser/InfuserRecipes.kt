@@ -1,8 +1,8 @@
 package io.github.shkschneider.awesome.machines.infuser
 
-import io.github.shkschneider.awesome.AwesomeItems
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.AwesomeRecipeType
+import io.github.shkschneider.awesome.items.AwesomeItems
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 

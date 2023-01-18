@@ -29,6 +29,7 @@ data class AwesomeConfig(
         @SerializedName("nadirLengthInDays") val nadirLengthInDays: Float = 0F,
         @SerializedName("playerHeads") val playerHeads: Boolean = true,
         @SerializedName("pvp") val pvp: Boolean = true,
+        @SerializedName("randomium") val randomium: Boolean = true,
         @SerializedName("sleepingHeals") val sleepingHeals: Boolean = true,
         @SerializedName("spawnEggs") val spawnEggs: Boolean = true,
         @SerializedName("spongesInLava") val spongesInLava: Boolean = true,
@@ -46,10 +47,8 @@ data class AwesomeConfig(
         @SerializedName("diamondDustFromCrushingCoalBlock") val diamondDustFromCrushingCoalBlock: Boolean = true,
         @SerializedName("gravelFromCobblestone") val gravelFromCobblestone: Boolean = true,
         @SerializedName("redstoneFluxAsVanillaFuel") val redstoneFluxAsVanillaFuel: Boolean = true,
-        @SerializedName("redstoneFluxFromRandomiumOre") val redstoneFluxFromRandomiumOre: Boolean = true,
         @SerializedName("redstoneFromCrushingNetherrack") val redstoneFromCrushingNetherrack: Boolean = true,
         @SerializedName("sandFromGravel") val sandFromGravel: Boolean = true,
-        @SerializedName("randomium") val randomium: Boolean = true,
     )
 
 }

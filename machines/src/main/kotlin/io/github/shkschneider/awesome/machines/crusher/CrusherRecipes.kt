@@ -1,9 +1,9 @@
 package io.github.shkschneider.awesome.machines.crusher
 
 import io.github.shkschneider.awesome.Awesome
-import io.github.shkschneider.awesome.AwesomeItems
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.AwesomeRecipeType
+import io.github.shkschneider.awesome.items.AwesomeItems
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 

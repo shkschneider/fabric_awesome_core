@@ -34,7 +34,7 @@ class DummyCraftingInventory(widget: Int, height: Int, _stacks: DefaultedList<It
 
     private class DummyHandler : ScreenHandler(null, 0) {
         override fun canUse(player: PlayerEntity): Boolean = false
-        override fun transferSlot(player: PlayerEntity, index: Int): ItemStack = ItemStack.EMPTY
+        override fun quickMove(player: PlayerEntity, index: Int): ItemStack = ItemStack.EMPTY
         override fun onContentChanged(inventory: Inventory) = Unit
     }
 
