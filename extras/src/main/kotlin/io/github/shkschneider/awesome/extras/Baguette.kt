@@ -13,7 +13,7 @@ import net.minecraft.util.Formatting
 import net.minecraft.world.World
 
 class Baguette : AwesomeItem(
-    id = AwesomeUtils.identifier(NAME),
+    id = AwesomeUtils.identifier(ID),
     settings = FabricItemSettings()
         .food(FoodComponent.Builder()
             .hunger(FoodComponents.BREAD.hunger * 2)
@@ -25,12 +25,12 @@ class Baguette : AwesomeItem(
 
     companion object {
 
-        const val NAME = "baguette"
+        const val ID = "baguette"
 
     }
 
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, context: TooltipContext) {
-        tooltip.add(Text.translatable(AwesomeUtils.translatable("item", NAME, "hint")).formatted(Formatting.GRAY))
+        tooltip.add(Text.translatable(AwesomeUtils.translatable("item", ID, "hint")).formatted(Formatting.GRAY))
     }
 
 }

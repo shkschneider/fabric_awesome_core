@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.extras.blocks
+package io.github.shkschneider.awesome.extras.budding
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeRegistries
@@ -8,6 +8,8 @@ import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.piston.PistonBehavior
+import net.minecraft.item.ItemStack
+import net.minecraft.loot.context.LootContext
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
@@ -35,6 +37,10 @@ abstract class AwesomeBuddingBlock(
             }
         }
     }
+
+    override fun getDroppedStacks(state: BlockState, builder: LootContext.Builder): MutableList<ItemStack> = mutableListOf(
+        ItemStack(state.block.asItem(), 1)
+    )
 
     override fun getPistonBehavior(state: BlockState): PistonBehavior = PistonBehavior.DESTROY
 

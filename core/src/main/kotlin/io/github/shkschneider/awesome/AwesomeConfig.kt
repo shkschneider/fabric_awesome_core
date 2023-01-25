@@ -21,7 +21,7 @@ data class AwesomeConfig(
 
     data class Extras(
         @SerializedName("baguette") val baguette: Boolean = true,
-        @SerializedName("blocks") val blocks: Boolean = true,
+        @SerializedName("budding") val budding: Boolean = true,
         @SerializedName("crate") val crate: Boolean = true,
         @SerializedName("entities") val entities: Boolean = true,
         @SerializedName("gameRulesOverrides") val gameRulesOverrides: Boolean = false,
@@ -38,6 +38,7 @@ data class AwesomeConfig(
         @SerializedName("unlockRecipes") val unlockRecipes: Boolean = true,
         @SerializedName("villagersFollowEmeraldBlock") val villagersFollowEmeraldBlock: Boolean = true,
         @SerializedName("villagersInfiniteTrading") val villagersInfiniteTrading: Boolean = true,
+        @SerializedName("void") val void: Boolean = true,
         @SerializedName("zenithLengthInDays") val zenithLengthInDays: Float = 0.5F,
     )
 

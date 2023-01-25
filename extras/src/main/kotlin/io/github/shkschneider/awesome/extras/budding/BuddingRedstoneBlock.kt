@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.extras.blocks
+package io.github.shkschneider.awesome.extras.budding
 
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.minecraft.block.Blocks

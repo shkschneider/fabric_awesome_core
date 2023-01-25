@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.worldgen
+package io.github.shkschneider.awesome.extras.randomium
 
 object RandomiumWorldGen {
 

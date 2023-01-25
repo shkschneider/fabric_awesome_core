@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.extras.blocks
+package io.github.shkschneider.awesome.extras.randomium
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeColors
@@ -22,6 +22,7 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.particle.DustParticleEffect
+import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Vec3d
@@ -35,13 +36,11 @@ class RandomiumOre(
     FabricBlockSettings.copyOf(Blocks.REDSTONE_BLOCK)
 ) {
 
-    private val id = AwesomeUtils.identifier(name)
-
     init {
-        init()
+        init(AwesomeUtils.identifier(name))
     }
 
-    private fun init() {
+    private fun init(id: Identifier) {
         AwesomeRegistries.blockItem(id, this as Block, Awesome.GROUP)
         @Event("PlayerBlockBreakEvents.After")
         PlayerBlockBreakEvents.AFTER.register { world: World, player: PlayerEntity, pos: BlockPos, state: BlockState, _: BlockEntity? ->

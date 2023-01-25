@@ -25,14 +25,14 @@ import net.minecraft.world.World
 import net.minecraft.world.event.GameEvent
 
 class Imprisoner : AwesomeItem(
-    id = AwesomeUtils.identifier(NAME),
+    id = AwesomeUtils.identifier(ID),
     settings = FabricItemSettings().maxCount(1).rarity(Rarity.UNCOMMON),
     group = Awesome.GROUP,
 ) {
 
     companion object {
 
-        const val NAME = "imprisoner"
+        const val ID = "imprisoner"
         const val IMPRISONED = "Imprisoned"
         private val EXPERIENCE = 1
         val COOLDOWN = AwesomeUtils.secondsToTicks(1)
@@ -51,7 +51,7 @@ class Imprisoner : AwesomeItem(
         stack.nbt?.get(IMPRISONED)?.asString()?.let { prisoner ->
             tooltip.add(Text.of(prisoner))
         } ?: run {
-            tooltip.add(Text.translatable(AwesomeUtils.translatable("item", NAME, "hint")).formatted(Formatting.GRAY))
+            tooltip.add(Text.translatable(AwesomeUtils.translatable("item", ID, "hint")).formatted(Formatting.GRAY))
         }
     }
 
