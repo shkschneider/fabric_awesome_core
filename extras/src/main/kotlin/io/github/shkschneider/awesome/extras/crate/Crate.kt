@@ -13,11 +13,14 @@ object Crate {
     const val ID = "crate"
     val PORTS = MachinePorts(inputs = 9, outputs = 0)
 
+    private lateinit var _self: CrateBlock
+    val self: CrateBlock get() = _self
+
     private lateinit var SCREEN: ScreenHandlerType<CrateBlockScreenHandler>
     val screen get() = SCREEN
 
     operator fun invoke() {
-        CrateBlock()
+        _self = CrateBlock()
         if (Minecraft.isClient) {
             SCREEN = ScreenHandlerType { syncId, playerInventory ->
                 CrateBlockScreenHandler(syncId, SimpleInventory(PORTS.size), playerInventory, ArrayPropertyDelegate(0))
