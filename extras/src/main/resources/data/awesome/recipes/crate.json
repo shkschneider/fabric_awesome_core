@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "121",
+    "2 2",
+    "121"
+  ],
+  "key": {
+    "1": { "item": "minecraft:stick" },
+    "2": { "item": "minecraft:oak_planks" }
+  },
+  "result": {
+    "item": "awesome:crate",
+    "count": 1
+  }
+}

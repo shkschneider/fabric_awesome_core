@@ -7,8 +7,6 @@ import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.piston.PistonBehavior
-import net.minecraft.item.ItemStack
-import net.minecraft.loot.context.LootContext
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
@@ -27,10 +25,6 @@ class VoidBlock : AwesomeBlockWithEntity<VoidBlockEntity>(
     override fun createBlockEntity(pos: BlockPos, state: BlockState): VoidBlockEntity = VoidBlockEntity(entityType, pos, state)
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: VoidBlockEntity) {}
-
-    override fun getDroppedStacks(state: BlockState, builder: LootContext.Builder): MutableList<ItemStack> = mutableListOf(
-        ItemStack(state.block.asItem(), 1)
-    )
 
     override fun getPistonBehavior(state: BlockState): PistonBehavior = PistonBehavior.DESTROY
 

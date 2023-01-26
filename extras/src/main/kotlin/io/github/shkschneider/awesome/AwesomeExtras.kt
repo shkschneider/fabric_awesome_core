@@ -10,7 +10,6 @@ import io.github.shkschneider.awesome.extras.budding.BuddingRedstoneBlock
 import io.github.shkschneider.awesome.extras.crate.Crate
 import io.github.shkschneider.awesome.extras.entities.AwesomeEntities
 import io.github.shkschneider.awesome.extras.randomium.Randomium
-import io.github.shkschneider.awesome.extras.randomium.RandomiumWorldGen
 import io.github.shkschneider.awesome.extras.void.Void
 
 object AwesomeExtras {
@@ -24,7 +23,6 @@ object AwesomeExtras {
         if (Awesome.CONFIG.extras.entities) AwesomeEntities()
         if (Awesome.CONFIG.extras.gameRulesOverrides) GameRulesOverrides()
         if (Awesome.CONFIG.extras.randomium) Randomium()
-        if (Awesome.CONFIG.extras.randomium) RandomiumWorldGen()
         if (Awesome.CONFIG.extras.sleepingHeals) SleepingHeals()
         if (Awesome.CONFIG.extras.void) Void()
         if (Awesome.CONFIG.extras.zenithLengthInDays + Awesome.CONFIG.extras.nadirLengthInDays > 0F) ZenithNadirLengths()

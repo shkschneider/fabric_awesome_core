@@ -33,6 +33,7 @@ and with **Extras** giving a Vanilla++ feeling.
   - sponges can absorb lava
   - a 2-way trash slot in your inventory that only clears upon closing
   - early game crates that retain inventory
+  - worldgen: randomium (random ore & teleports)
   - hero... herobrine?!
 - Awesome **Commands**
   - `/fly` `/invulnerable` `/heal` `/repair`
@@ -52,7 +53,6 @@ and with **Extras** giving a Vanilla++ feeling.
   - collector
   - crafter / recycler
   - ore processing...
-  - worldgen: randomium (random ore & teleports)
   - item: imprisoner (to capture and release entities)
   - item: prospector (to make ores glow)
 

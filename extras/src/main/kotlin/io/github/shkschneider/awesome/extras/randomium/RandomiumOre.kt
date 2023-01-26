@@ -4,23 +4,15 @@ import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeColors
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.core.Event
 import io.github.shkschneider.awesome.core.ext.toVec3d
-import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.ExperienceDroppingBlock
 import net.minecraft.block.ShapeContext
-import net.minecraft.block.entity.BlockEntity
 import net.minecraft.command.argument.EntityAnchorArgumentType
-import net.minecraft.enchantment.EnchantmentHelper
-import net.minecraft.enchantment.Enchantments
-import net.minecraft.entity.ItemEntity
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
 import net.minecraft.particle.DustParticleEffect
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
@@ -42,23 +34,6 @@ class RandomiumOre(
 
     private fun init(id: Identifier) {
         AwesomeRegistries.blockItem(id, this as Block, Awesome.GROUP)
-        @Event("PlayerBlockBreakEvents.After")
-        PlayerBlockBreakEvents.AFTER.register { world: World, player: PlayerEntity, pos: BlockPos, state: BlockState, _: BlockEntity? ->
-            if (state.block is RandomiumOre) {
-                val loot = listOf(
-                    Items.COAL,
-                    Items.DIAMOND,
-                    Items.EMERALD,
-                    Items.LAPIS_LAZULI,
-                    Items.RAW_COPPER,
-                    Items.RAW_GOLD,
-                    Items.RAW_IRON,
-                    Items.REDSTONE,
-                )
-                val amplifier = max(1, 1 + EnchantmentHelper.getLevel(Enchantments.FORTUNE, player.mainHandStack))
-                world.spawnEntity(ItemEntity(world, pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble(), ItemStack(loot.random(), amplifier)))
-            }
-        }
     }
 
     @Suppress("DEPRECATION")

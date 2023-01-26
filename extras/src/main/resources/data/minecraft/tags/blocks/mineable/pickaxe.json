@@ -1,8 +1,11 @@
 {
   "replace": false,
   "values": [
-    "awesome:budding_redstone",
     "awesome:budding_lapis",
+    "awesome:budding_redstone",
+    "awesome:deepslate_randomium_ore",
+    "awesome:end_randomium_ore",
+    "awesome:randomium_ore",
     "awesome:void"
   ]
 }
