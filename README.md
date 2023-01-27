@@ -18,6 +18,7 @@ and with **Extras** giving a Vanilla++ feeling.
 ## Modules
 
 - Awesome **Core** (required!)
+  - Flux is a new fuel (from redstone and lapis) twice the power of Coal
 - Awesome **Extras**
   - `/gamerule keepXp` upon death
   - pvp

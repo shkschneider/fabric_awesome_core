@@ -1,6 +1,6 @@
 {
   "display": {
-    "icon": { "item": "awesome:redstone_flux" },
+    "icon": { "item": "awesome:flux" },
     "title": { "translate": "advancements.awesome.title" },
     "description": { "translate": "advancements.awesome.description" },
     "frame": "task",
@@ -12,7 +12,7 @@
     "awesome": {
       "conditions": {
         "items": [
-          { "items": [ "awesome:redstone_flux" ] }
+          { "items": [ "awesome:flux" ] }
         ]
       },
       "trigger": "minecraft:inventory_changed"

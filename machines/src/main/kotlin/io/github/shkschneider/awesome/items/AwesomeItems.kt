@@ -1,9 +1,7 @@
 package io.github.shkschneider.awesome.items
 
 import io.github.shkschneider.awesome.Awesome
-import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.custom.Minecraft
-import io.github.shkschneider.awesome.custom.RedstoneFlux
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.item.Items
 import net.minecraft.util.Rarity
@@ -138,8 +136,6 @@ object AwesomeItems {
         private const val ID = "redstone"
         const val COLOR = 0xC80000
 
-        val flux = RedstoneFlux()
-
         val chip = AwesomeOres.Chip(ID, settings, Awesome.GROUP)
         val dust = Items.REDSTONE // "wire"
         val powder = AwesomeOres.Powder(ID, settings, Awesome.GROUP)
@@ -149,12 +145,7 @@ object AwesomeItems {
         val plate = AwesomeMaterials.Plate(ID, settings, Awesome.GROUP)
         val rod = AwesomeMaterials.Rod(ID, settings, Awesome.GROUP)
 
-        operator fun invoke() {
-            if (Awesome.CONFIG.machines.redstoneFluxAsVanillaFuel) {
-                // AbstractFurnaceBlockEntity.createFuelTimeMap()
-                AwesomeRegistries.fuel(flux, flux.time)
-            }
-        }
+        operator fun invoke() = Unit
 
     }
 

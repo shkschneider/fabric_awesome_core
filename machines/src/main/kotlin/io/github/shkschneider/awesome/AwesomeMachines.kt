@@ -13,7 +13,7 @@ import io.github.shkschneider.awesome.machines.smelter.Smelter
 
 object AwesomeMachines {
 
-    val fuel = AwesomeItems.Redstone.flux
+    val fuel get() = Awesome.flux
 
     val collector = Collector()
     val crafter = Crafter()

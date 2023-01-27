@@ -9,8 +9,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.util.Rarity
 
-class RedstoneFlux : AwesomeItem(
-    id = AwesomeUtils.identifier("redstone_flux"),
+class Flux : AwesomeItem(
+    id = AwesomeUtils.identifier("flux"),
     settings = FabricItemSettings().maxCount(Minecraft.STACK).rarity(Rarity.UNCOMMON),
     group = Awesome.GROUP,
 ) {

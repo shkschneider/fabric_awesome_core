@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.machines.infuser
 
+import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.AwesomeRecipeType
 import io.github.shkschneider.awesome.items.AwesomeItems
@@ -31,8 +32,8 @@ object InfuserRecipes {
         AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Lapis.chip, 4), ItemStack(Items.SAND, 1)), time = 20, ItemStack(AwesomeItems.Lapis.powder, 8)),
         AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Quartz.chip, 4), ItemStack(Items.SAND, 1)), time = 20, ItemStack(AwesomeItems.Quartz.powder, 8)),
         AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Redstone.chip, 4), ItemStack(Items.SAND, 1)), time = 20, ItemStack(AwesomeItems.Redstone.powder, 8)),
-        // RedstoneFlux
-        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Lapis.dust, 1), ItemStack(AwesomeItems.Redstone.dust, 1)), time = 20, ItemStack(AwesomeItems.Redstone.flux, 2)),
+        // Flux
+        AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Lapis.dust, 1), ItemStack(AwesomeItems.Redstone.dust, 1)), time = 20, ItemStack(Awesome.flux, 2)),
     )
 
 }
