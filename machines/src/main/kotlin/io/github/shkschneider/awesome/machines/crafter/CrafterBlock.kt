@@ -30,7 +30,7 @@ class CrafterBlock(settings: Settings) : AwesomeMachineBlock<CrafterBlock.Entity
             return slot < Crafter.INVENTORY && dir != Direction.DOWN
         }
 
-        override fun canExtract(slot: Int, stack: ItemStack, dir: Direction): Boolean =
+        override fun canExtract(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
             slot == Crafter.PORTS.size - 1 && dir == Direction.DOWN
 
         override fun readNbt(nbt: NbtCompound) {

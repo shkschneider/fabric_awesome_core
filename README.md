@@ -51,6 +51,7 @@ and with **Extras** giving a Vanilla++ feeling.
   - potions: experience (1 to 9 levels)
 - Awesome **Machines**
   - collector
+  - quarry (with efficency & fortune)
   - crafter / recycler
   - ore processing...
   - item: imprisoner (to capture and release entities)

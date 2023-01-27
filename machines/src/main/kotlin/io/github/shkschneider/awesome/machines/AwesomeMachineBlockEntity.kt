@@ -52,7 +52,7 @@ abstract class AwesomeMachineBlockEntity(
         super.canInsert(slot, stack, dir)
                 && recipes.any { recipe -> recipe.inputs.any { it.item == stack.item } }
 
-    override fun canExtract(slot: Int, stack: ItemStack, dir: Direction): Boolean =
+    override fun canExtract(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
         super.canExtract(slot, stack, dir)
                 && recipes.any { recipe -> recipe.output.item == stack.item }
 

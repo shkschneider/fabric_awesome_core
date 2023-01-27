@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "awesome:block/quarry_off",
+    "side": "awesome:block/quarry_off",
+    "top": "awesome:block/quarry_off",
+    "bottom": "awesome:block/quarry_off"
+  }
+}

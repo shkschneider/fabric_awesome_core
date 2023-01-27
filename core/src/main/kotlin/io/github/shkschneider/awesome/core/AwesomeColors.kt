@@ -8,6 +8,7 @@ object AwesomeColors {
     val black = 0x000000
     val blue = 0x0000ff
     val charcoal = 0x434343
+    val ender = 0x258273
     val green = 0x00ff00
     val mischka = 0xacadb2
     val mojang = 0xdb1f29

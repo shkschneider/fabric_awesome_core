@@ -26,6 +26,6 @@ class CrateBlockEntity(
 
     override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean = true
 
-    override fun canExtract(slot: Int, stack: ItemStack, dir: Direction): Boolean = true
+    override fun canExtract(slot: Int, stack: ItemStack, dir: Direction?): Boolean = true
 
 }

@@ -12,6 +12,7 @@ import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.ItemEntity
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.inventory.Inventory
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
@@ -25,6 +26,7 @@ import net.minecraft.registry.Registry
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
 import net.minecraft.util.Identifier
+import net.minecraft.util.ItemScatterer
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
@@ -121,6 +123,30 @@ abstract class AwesomeBlockWithEntity<BE : BlockEntity>(
     override fun onStateReplaced(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
         // do NOT ItemScatterer.spawn()
         super.onStateReplaced(state, world, pos, newState, moved)
+    }
+
+    abstract class WithInventory<BE : BlockEntity>(
+        id: Identifier,
+        settings: Settings,
+        group: ItemGroup = Awesome.GROUP,
+    ) : AwesomeBlockWithEntity<BE>(id, settings, group) {
+
+        override fun onStateReplaced(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
+            if (state.block != newState.block) {
+                (world.getBlockEntity(pos) as? Inventory)?.let { ItemScatterer.spawn(world, pos, it) }
+                world.updateComparators(pos, this)
+                @Suppress("DEPRECATION")
+                super.onStateReplaced(state, world, pos, newState, moved)
+            }
+        }
+
+        override fun onUse(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, hit: BlockHitResult): ActionResult {
+            if (!world.isClient) {
+                state.createScreenHandlerFactory(world, pos)?.let(player::openHandledScreen)
+            }
+            return ActionResult.SUCCESS
+        }
+
     }
 
 }

@@ -39,6 +39,7 @@ class RecyclerBlock(
     }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: RecyclerBlockEntity) {
+        if (world.isClient) return
         Recycler.tick(world, pos, state, blockEntity)
     }
 

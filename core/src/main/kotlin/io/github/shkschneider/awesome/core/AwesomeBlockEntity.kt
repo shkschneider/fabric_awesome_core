@@ -67,7 +67,7 @@ abstract class AwesomeBlockEntity(
         type: BlockEntityType<out AwesomeBlockEntity>,
         pos: BlockPos,
         private val state: BlockState,
-        private val ports: MachinePorts,
+        protected val ports: MachinePorts,
         delegates: Pair<Int, Int>,
     ) : AwesomeBlockEntity(id, type, pos, state, ports, delegates), IInventory, SidedInventory {
 
@@ -88,8 +88,9 @@ abstract class AwesomeBlockEntity(
             if (dir == null) ports.isInput(slot)
             else ports.canInsert(slot, dir.relativeFace(state))
 
-        override fun canExtract(slot: Int, stack: ItemStack, dir: Direction): Boolean =
-            ports.canExtract(slot, dir.relativeFace(state))
+        override fun canExtract(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
+            if (dir == null) ports.isOutput(slot)
+            else ports.canExtract(slot, dir.relativeFace(state))
 
         public override fun writeNbt(nbt: NbtCompound) {
             super.writeNbt(nbt)
