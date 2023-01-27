@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome
 
-import io.github.shkschneider.awesome.blocks.AwesomeBlocks
 import io.github.shkschneider.awesome.items.AwesomeItems
 import io.github.shkschneider.awesome.machines.collector.Collector
 import io.github.shkschneider.awesome.machines.crafter.Crafter
@@ -26,7 +25,6 @@ object AwesomeMachines {
     val smelter = Smelter()
 
     operator fun invoke() {
-        AwesomeBlocks()
         AwesomeItems()
         if (Awesome.CONFIG.machines.quarry) Quarry()
     }
