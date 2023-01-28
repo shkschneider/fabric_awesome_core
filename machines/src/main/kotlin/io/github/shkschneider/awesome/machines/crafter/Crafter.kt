@@ -2,7 +2,6 @@ package io.github.shkschneider.awesome.machines.crafter
 
 import io.github.shkschneider.awesome.core.ext.test
 import io.github.shkschneider.awesome.custom.DummyCraftingInventory
-import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
@@ -22,7 +21,7 @@ import net.minecraft.world.World
 
 class Crafter : AwesomeMachine<CrafterBlock.Entity, CrafterScreen.Handler>(
     id = "crafter",
-    io = InputOutput(inputs = INVENTORY + GRID * GRID to listOf(Faces.Top), outputs = 1 to listOf(Faces.Bottom)),
+    io = InputOutput(inputs = INVENTORY + GRID * GRID, outputs = 1),
 ) {
 
     companion object {
@@ -48,7 +47,7 @@ class Crafter : AwesomeMachine<CrafterBlock.Entity, CrafterScreen.Handler>(
         if (world.isClient) return
         // do NOT super.tick() unless this uses power
         val stacks = DefaultedList.ofSize(GRID * GRID, ItemStack.EMPTY).apply {
-            (INVENTORY until io.inputs.first).forEach { index ->
+            (INVENTORY until io.inputs).forEach { index ->
                 set(index - INVENTORY, (blockEntity as Inventory).getStack(index))
             }
         }

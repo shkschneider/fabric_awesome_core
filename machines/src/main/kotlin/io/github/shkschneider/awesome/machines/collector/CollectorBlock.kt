@@ -39,6 +39,14 @@ class CollectorBlock(
         machine, pos, state,
     ) {
 
+        var efficiency: Int
+            get() = getCustomProperty(0)
+            set(value) = setCustomProperty(0, value)
+
+        init {
+            efficiency = 1
+        }
+
         override fun screen(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate): ScreenHandler =
             CollectorScreen.Handler(syncId, sidedInventory, playerInventory, properties)
     }

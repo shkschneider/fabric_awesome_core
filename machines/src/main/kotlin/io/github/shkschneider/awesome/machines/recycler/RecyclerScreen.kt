@@ -35,7 +35,6 @@ class RecyclerScreen(
             AwesomeMachines.recycler.screen, syncId, sidedInventory, playerInventory, properties)
 
         init {
-            addProperties(properties)
             addSlots(
                 30 + 4 to 31 + 4,
                 92 to 17, 110 to 17, 128 to 17,
@@ -43,6 +42,16 @@ class RecyclerScreen(
                 92 to 53, 110 to 53, 128 to 53,
             )
             addPlayerSlots()
+//            this.addDrawableChild<TexturedButtonWidget>(TexturedButtonWidget(
+//                this.x + 20, this.height / 2 - 49, 20, 18, 0, 0, 19, AbstractFurnaceScreen.RECIPE_BUTTON_TEXTURE
+//            ) { button: ButtonWidget ->
+//                this.recipeBook.toggleOpen()
+//                this.x = this.recipeBook.findLeftEdge(this.width, this.backgroundWidth)
+//                (button as TexturedButtonWidget).setPos(
+//                    this.x + 20,
+//                    this.height / 2 - 49
+//                )
+//            })
         }
 
     }

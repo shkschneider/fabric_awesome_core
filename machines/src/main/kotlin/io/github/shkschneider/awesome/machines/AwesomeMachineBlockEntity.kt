@@ -2,6 +2,7 @@ package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.core.AwesomeBlockEntity
 import io.github.shkschneider.awesome.core.AwesomeUtils
+import io.github.shkschneider.awesome.core.ext.getStacks
 import io.github.shkschneider.awesome.custom.Minecraft
 import net.minecraft.block.BlockState
 import net.minecraft.entity.player.PlayerEntity
@@ -33,10 +34,21 @@ abstract class AwesomeMachineBlockEntity<BE : AwesomeBlockEntity.WithInventory, 
     var duration: Int
         get() = properties.get(1)
         set(value) = properties.set(1, value)
+    var fuel: Int
+        get() = properties.get(2)
+        set(value) = properties.set(2, value)
+
+    fun getCustomProperty(index: Int): Int =
+        properties.get(AwesomeMachine.PROPERTIES + index)
+
+    fun setCustomProperty(index: Int, value: Int) {
+        properties.set(AwesomeMachine.PROPERTIES + index, value)
+    }
 
     init {
         progress = 0
         duration = Minecraft.TICKS
+        fuel = 0
     }
 
     override fun getDisplayName(): Text =
@@ -52,5 +64,22 @@ abstract class AwesomeMachineBlockEntity<BE : AwesomeBlockEntity.WithInventory, 
 
     override fun canExtract(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
         io.isOutput(slot)
+
+    fun insert(stack: ItemStack): ItemStack {
+        val stacks = getStacks().mapIndexed { index, itemStack -> index to itemStack }.filter { io.isOutput(it.first) }
+        stacks.filter { it.second.item == stack.item }.map { it.first }.forEach { slot ->
+            if (stack.isEmpty) return@forEach
+            while (stack.count > 0 && getStack(slot).count < getStack(slot).maxCount) {
+                getStack(slot).count++
+                stack.count--
+            }
+        }
+        stacks.filter { it.second.isEmpty }.map { it.first }.forEach { slot ->
+            setStack(slot, stack.copy())
+            stack.count = 0
+        }
+        markDirty()
+        return stack
+    }
 
 }

@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome.machines.crusher
 
-import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
@@ -15,13 +14,13 @@ import net.minecraft.world.World
 
 class Crusher : AwesomeMachine<CrusherBlock.Entity, CrusherScreen.Handler>(
     id = "crusher",
-    io = InputOutput(inputs = 1 to listOf(Faces.Top), outputs = 1 to listOf(Faces.Bottom)),
+    io = InputOutput(inputs = 1, outputs = 1),
 ) {
 
     val recipes = CrusherRecipes()
 
     init {
-        check(recipes.all { it.inputs.size == io.inputs.first })
+        check(recipes.all { it.inputs.size == io.inputs })
     }
 
     override fun block(): AwesomeMachineBlock<CrusherBlock.Entity, CrusherScreen.Handler> =

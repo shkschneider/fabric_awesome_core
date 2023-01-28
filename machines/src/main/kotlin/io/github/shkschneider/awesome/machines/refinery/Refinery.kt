@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome.machines.refinery
 
-import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
@@ -15,13 +14,13 @@ import net.minecraft.world.World
 
 class Refinery : AwesomeMachine<RefineryBlock.Entity, RefineryScreen.Handler>(
     id = "refinery",
-    io = InputOutput(inputs = 1 to listOf(Faces.Top), outputs = 1 to listOf(Faces.Bottom)),
+    io = InputOutput(inputs = 1, outputs = 1),
 ) {
 
     val recipes = RefineryRecipes()
 
     init {
-        check(recipes.all { it.inputs.size == io.inputs.first })
+        check(recipes.all { it.inputs.size == io.inputs })
     }
 
     override fun block(): AwesomeMachineBlock<RefineryBlock.Entity, RefineryScreen.Handler> =

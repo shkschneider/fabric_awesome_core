@@ -21,6 +21,10 @@ class SmelterScreen(
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
+        if (handler.fuel > 0) {
+            val progress = ((handler.fuel.toFloat() / AwesomeMachines.fuel.time.toFloat()) * 14.0).roundToInt()
+            drawTexture(matrices, x + 57 - 1, y + 36 + 14 - progress - 1, 176, 14 - progress - 1, 14, progress + 1)
+        }
         if (handler.progress > 0) {
             val progress = ((handler.progress.toFloat() / handler.duration.toFloat()) * 24.0).roundToInt()
             drawTexture(matrices, x + 80 - 1, y + 36 - 1, 176, 15, progress, 30 - 15)
@@ -36,9 +40,9 @@ class SmelterScreen(
             AwesomeMachines.smelter.screen, syncId, sidedInventory, playerInventory, properties)
 
         init {
-            addProperties(properties)
             addSlots(
-                56 to 35,
+                56 to 17,
+                56 to 53,
                 112 + 4 to 31 + 4,
             )
             addPlayerSlots()

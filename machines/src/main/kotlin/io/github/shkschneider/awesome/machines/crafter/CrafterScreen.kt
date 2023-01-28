@@ -43,7 +43,6 @@ class CrafterScreen(
         private val machine: AwesomeMachine<CrafterBlock.Entity, CrafterScreen.Handler> get() = AwesomeMachines.crafter
 
         init {
-            addProperties(properties)
             addSlots(
                 // inputs
                 80 to 17, 98 to 17, 116 to 17, 134 to 17, 152 to 17,
@@ -64,7 +63,7 @@ class CrafterScreen(
             machine.io.isInput(slot.index) && (slot.index < Crafter.INVENTORY || slot.index >= machine.io.size)
 
         override fun onSlotClick(slotIndex: Int, button: Int, actionType: SlotActionType, player: PlayerEntity) {
-            if (slotIndex in (Crafter.INVENTORY until machine.io.inputs.first)) {
+            if (slotIndex in (Crafter.INVENTORY until machine.io.inputs)) {
                 slots[slotIndex].stack = ItemStack(cursorStack.item, 1)
             } else {
                 super.onSlotClick(slotIndex, button, actionType, player)

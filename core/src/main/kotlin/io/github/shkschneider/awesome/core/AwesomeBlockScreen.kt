@@ -58,15 +58,22 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
         syncId: Int,
         protected val sidedInventory: Inventory,
         protected val playerInventory: PlayerInventory,
-        protected val properties: PropertyDelegate,
+        private val properties: PropertyDelegate,
     ) : ScreenHandler(screen, syncId) {
 
         init {
-            // addProperties(properties)
+            addProperties()
             sidedInventory.onOpen(playerInventory.player)
             // addSlots(...)
             // addPlayerSlots()
         }
+
+        private fun addProperties() {
+            addProperties(properties)
+        }
+
+        open fun getProperty(index: Int): Int =
+            properties.get(index)
 
         fun addSlots(vararg slots: Pair<Int, Int>) {
             slots.forEachIndexed { index, pair ->

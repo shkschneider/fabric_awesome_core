@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.machines.quarry
 
+import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.core.ext.getEnchantmentLevel
-import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.Minecraft
 import io.github.shkschneider.awesome.custom.SimpleSidedInventory
@@ -11,6 +11,7 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.client.gui.screen.ingame.HandledScreens
 import net.minecraft.enchantment.Enchantments
+import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.ScreenHandlerType
@@ -21,8 +22,8 @@ import net.minecraft.world.World
 
 class Quarry : AwesomeMachine<QuarryBlock.Entity, QuarryScreen.Handler>(
     id = "quarry",
-    io = InputOutput(inputs = 1 to listOf(Faces.Top), outputs = 1 to listOf(Faces.Bottom)),
-    properties = 4,
+    io = InputOutput(inputs = 1, fueled = true, outputs = 1),
+    properties = PROPERTIES + 2,
 ) {
 
     override fun block(): AwesomeMachineBlock<QuarryBlock.Entity, QuarryScreen.Handler> =
@@ -38,23 +39,43 @@ class Quarry : AwesomeMachine<QuarryBlock.Entity, QuarryScreen.Handler>(
         }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: QuarryBlock.Entity) {
-        if (blockEntity.getStack(1).count == blockEntity.getStack(1).maxCount) {
+        fun on() {
+            blockEntity.setPropertyState(state.with(Properties.LIT, true))
+            blockEntity.markDirty()
+        }
+        fun off() {
             blockEntity.setPropertyState(state.with(Properties.LIT, false))
             blockEntity.progress = 0
+            blockEntity.markDirty()
+        }
+        // shut off if no output room
+        if (io.getOutputs(blockEntity as Inventory).all { it.second.count == it.second.maxCount }) {
+            off()
             return
         }
-        blockEntity.setPropertyState(state.with(Properties.LIT, true))
+        // if no fuel, burn some
+        if (blockEntity.fuel == 0) {
+            val (_, fuelStack) = io.getFuel(blockEntity as Inventory)
+            if (fuelStack.count > 0) {
+                fuelStack.count--
+                blockEntity.fuel += AwesomeMachines.fuel.time
+            } else {
+                // otherwise shut off
+                off()
+                return
+            }
+        } else {
+            on()
+            blockEntity.fuel--
+        }
+        // ...
         blockEntity.progress++
         if (blockEntity.progress >= blockEntity.duration) {
-            blockEntity.progress = 0
-            blockEntity.insert(ores(world.random).apply { count = blockEntity.fortune })
-            blockEntity.efficiency = 1 + blockEntity.getStack(0).getEnchantmentLevel(Enchantments.EFFICIENCY)
-            blockEntity.duration = Minecraft.TICKS / blockEntity.efficiency
-            blockEntity.fortune = 1 + blockEntity.getStack(0).getEnchantmentLevel(Enchantments.FORTUNE)
+            quarry(blockEntity, world.random)
         }
     }
 
-    private fun ores(random: Random): ItemStack {
+    private fun quarry(blockEntity: QuarryBlock.Entity, random: Random) {
         val ores = listOf(
             // block to placed_feature.count * configured_feature.size
             Blocks.COAL_ORE to 20 * 17,
@@ -71,10 +92,14 @@ class Quarry : AwesomeMachine<QuarryBlock.Entity, QuarryScreen.Handler>(
         ores.forEach { ore ->
             v += ore.second
             if (v >= r) {
-                return ItemStack(ore.first, 1)
+                blockEntity.progress = 0
+                blockEntity.insert(ItemStack(ore.first, blockEntity.fortune))
+                blockEntity.efficiency = 1 + io.getInputs(blockEntity).maxOf { it.second.getEnchantmentLevel(Enchantments.EFFICIENCY) }
+                blockEntity.duration = Minecraft.TICKS / blockEntity.efficiency
+                blockEntity.fortune = 1 + io.getInputs(blockEntity).maxOf { it.second.getEnchantmentLevel(Enchantments.FORTUNE) }
+                return@forEach
             }
         }
-        return ItemStack.EMPTY
     }
 
 }

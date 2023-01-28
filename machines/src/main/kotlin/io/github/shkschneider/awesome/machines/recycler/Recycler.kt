@@ -3,22 +3,25 @@ package io.github.shkschneider.awesome.machines.recycler
 import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.ext.getStacks
 import io.github.shkschneider.awesome.core.ext.id
-import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
 import net.minecraft.block.BlockState
 import net.minecraft.client.gui.screen.ingame.HandledScreens
+import net.minecraft.inventory.SimpleInventory
 import net.minecraft.recipe.RecipeType
 import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import kotlin.math.floor
+import kotlin.math.roundToInt
 
+// TODO action to process
 class Recycler : AwesomeMachine<RecyclerBlock.Entity, RecyclerScreen.Handler>(
     id = "recycler",
-    io = InputOutput(inputs = 1 to listOf(Faces.Top), outputs = 9 to listOf(Faces.Bottom)),
+    io = InputOutput(inputs = 1, outputs = 9),
 ) {
 
     companion object {
@@ -44,27 +47,28 @@ class Recycler : AwesomeMachine<RecyclerBlock.Entity, RecyclerScreen.Handler>(
         }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: RecyclerBlock.Entity) {
-        val input = blockEntity.getStacks().take(io.inputs.first).first()
-        val outputs = blockEntity.getStacks().drop(io.inputs.first)
+        if (world.isClient) return
+        val input = blockEntity.getStacks().take(io.inputs).first()
+        val outputs = blockEntity.getStacks().drop(io.inputs)
         if (input.isEmpty.not() && outputs.all { it.isEmpty }) {
             world.recipeManager.values().filter { it.type == RecipeType.CRAFTING }
                 .filter { input.item == it.output.item && input.count >= it.output.count }
                 .randomOrNull()?.let { recipe ->
                     val n = input.count / recipe.output.count
                     AwesomeLogger.debug("Recycler: ${recipe.output.item.id()}*$n")
-//                    SimpleInventory(io.outputs.first).apply {
-//                        // FIXME Array is empty.
+                    SimpleInventory(io.outputs).apply {
+                        // FIXME Array is empty.
 //                        recipe.ingredients.map { it.matchingStacks.first() }.forEach { ingredient ->
 //                            addStack(ingredient)
 //                        }
-//                    }.apply {
-//                        getStacks().forEachIndexed { index, itemStack ->
-//                            blockEntity.setStack(1 + index, itemStack.apply {
-//                                count = floor((count * n) * EFFICIENCY).roundToInt()
-//                            })
-//                        }
-//                    }
-//                    input.count -= recipe.output.count * n
+                    }.apply {
+                        getStacks().forEachIndexed { index, itemStack ->
+                            blockEntity.setStack(1 + index, itemStack.apply {
+                                count = floor((count * n) * EFFICIENCY).roundToInt()
+                            })
+                        }
+                    }
+                    input.count -= recipe.output.count * n
                 }
             blockEntity.markDirty()
         }

@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.machines.quarry
 
+import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.Minecraft
 import io.github.shkschneider.awesome.machines.AwesomeMachine
@@ -16,6 +17,7 @@ import net.minecraft.screen.ScreenHandler
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
 
 @Suppress("RemoveRedundantQualifierName")
 class QuarryBlock(
@@ -41,11 +43,11 @@ class QuarryBlock(
     ) {
 
         var efficiency: Int
-            get() = properties.get(2)
-            set(value) = properties.set(2, value)
+            get() = getCustomProperty(0)
+            set(value) = setCustomProperty(0, value)
         var fortune: Int
-            get() = properties.get(3)
-            set(value) = properties.set(3, value)
+            get() = getCustomProperty(1)
+            set(value) = setCustomProperty(1, value)
 
         init {
             efficiency = 1
@@ -53,23 +55,16 @@ class QuarryBlock(
             duration = Minecraft.TICKS / efficiency
         }
 
+        override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean {
+            return if (stack.item == AwesomeMachines.fuel) {
+                slot == io.inputs - 1
+            } else {
+                super.canInsert(slot, stack, dir)
+            }
+        }
+
         override fun screen(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate): ScreenHandler =
             QuarryScreen.Handler(syncId, sidedInventory, playerInventory, properties)
-
-        fun insert(stack: ItemStack) {
-            while (stack.count > 0) {
-                if (getStack(1).isEmpty) {
-                    setStack(1, stack)
-                    break
-                }  else if (getStack(1).item == stack.item && getStack(1).count < getStack(1).maxCount) {
-                    getStack(1).count++
-                    stack.count--
-                } else {
-                    break
-                }
-            }
-            markDirty()
-        }
 
     }
 

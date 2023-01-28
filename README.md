@@ -70,14 +70,15 @@ Almost everything is configurable via `config/awesome.json`.
 - Tier1: 1raw (crushing) 4powder (crushing) 2dust (smelting) 2ingot
 - Tier2: 1raw (crushing) 4powder (infusing) 4dust (smelting) 4ingot
 - Tier3: 1ore (refining) 16chip (crushing) 8powder (infusing) 8dust (smelting) 8ingot
+- Bonus: 1ancient_debris (crushing) 1netherite_scrap (infusing) 1netherite_ingot
 
 ## Recipes
 
+- Redstone + Lapis Lazuli (+ Coal) = Flux
 - More torches using coal chips or dusts
 - End portal frame
 - Optional: 1 coal block (crushing) 1 diamond dust (smelting) 1diamond
 - Optional: 1 cobblestone (crushing) 1 gravel (crushing) 1sand
-- Optional: 1 randomium ore (smelting) 1 redstone flux
 - Optional: 64 netherrack (crushing) 9 redstone (dust)
 
 ## License & Credits

@@ -10,6 +10,7 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.text.Text
+import kotlin.math.roundToInt
 
 @Suppress("RemoveRedundantQualifierName")
 class QuarryScreen(
@@ -21,6 +22,10 @@ class QuarryScreen(
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
+        if (handler.fuel > 0) {
+            val progress = ((handler.fuel.toFloat() / AwesomeMachines.fuel.time.toFloat()) * 14.0).roundToInt()
+            drawTexture(matrices, x + 81 - 1, y + 36 + 14 - progress - 1, 176, 14 - progress - 1, 14, progress + 1)
+        }
         if (handler.progress > 0) {
             val progress = handler.progress * 55 / handler.duration
             drawTexture(matrices, x + 8, y + 7 + 55 - progress - 1, 176, 111, 192 - 176, progress + 1)
@@ -36,14 +41,14 @@ class QuarryScreen(
         constructor(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
             AwesomeMachines.quarry.screen, syncId, sidedInventory, playerInventory, properties)
 
-        val efficiency: Int get() = properties.get(2)
-        val fortune: Int get() = properties.get(3)
+        val efficiency: Int get() = getCustomProperty(0)
+        val fortune: Int get() = getCustomProperty(1)
 
         init {
-            addProperties(properties)
             addSlots(
-                62 to 35,
-                98 to 35,
+                44 to 35,
+                80 to 53,
+                116 to 35,
             )
             addPlayerSlots()
         }

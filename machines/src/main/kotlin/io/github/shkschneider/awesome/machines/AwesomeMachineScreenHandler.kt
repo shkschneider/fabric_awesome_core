@@ -16,17 +16,18 @@ abstract class AwesomeMachineScreenHandler<BE : AwesomeBlockEntity.WithInventory
         screen, syncId, sidedInventory, playerInventory, properties
     )
 
-    val progress: Int get() = properties.get(0)
-    val duration: Int get() = properties.get(1)
+    val progress: Int get() = getProperty(0)
+    val duration: Int get() = getProperty(1)
+    val fuel: Int get() = getProperty(2)
 
+    fun getCustomProperty(index: Int): Int =
+        getProperty(AwesomeMachine.PROPERTIES + index)
+
+    /*
     init {
-        init()
-        // addSlots()
-        // addPlayerSlots()
+        addSlots()
+        addPlayerSlots()
     }
-
-    private fun init() {
-        addProperties(properties)
-    }
+    */
 
 }

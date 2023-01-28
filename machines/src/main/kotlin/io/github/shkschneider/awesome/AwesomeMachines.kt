@@ -12,6 +12,8 @@ import io.github.shkschneider.awesome.machines.smelter.Smelter
 
 object AwesomeMachines {
 
+    val fuel = Awesome.flux
+
     val collector = Collector()
     val crafter = Crafter()
     val crusher = Crusher()

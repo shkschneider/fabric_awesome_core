@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome.machines.infuser
 
-import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
@@ -15,13 +14,13 @@ import net.minecraft.world.World
 
 class Infuser : AwesomeMachine<InfuserBlock.Entity, InfuserScreen.Handler>(
     id = "infuser",
-    io = InputOutput(inputs = 2 to listOf(Faces.Top), outputs = 1 to listOf(Faces.Bottom)),
+    io = InputOutput(inputs = 2, outputs = 1),
 ) {
 
     val recipes = InfuserRecipes()
 
     init {
-        check(recipes.all { it.inputs.size == io.inputs.first })
+        check(recipes.all { it.inputs.size == io.inputs })
     }
 
     override fun block(): AwesomeMachineBlock<InfuserBlock.Entity, InfuserScreen.Handler> =

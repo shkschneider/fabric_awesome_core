@@ -36,7 +36,6 @@ class RefineryScreen(
             AwesomeMachines.refinery.screen, syncId, sidedInventory, playerInventory, properties)
 
         init {
-            addProperties(properties)
             addSlots(
                 56 to 35,
                 112 + 4 to 31 + 4,

@@ -11,8 +11,14 @@ import net.minecraft.world.World
 abstract class AwesomeMachine<BE : AwesomeBlockEntity.WithInventory, SH : AwesomeMachineScreenHandler<BE>>(
     val id: String,
     val io: InputOutput,
-    val properties: Int = 2,
+    val properties: Int = PROPERTIES,
 ) {
+
+    companion object {
+
+        const val PROPERTIES = 3
+
+    }
 
     private lateinit var _block: AwesomeMachineBlock<BE, SH>
     val block get() = _block

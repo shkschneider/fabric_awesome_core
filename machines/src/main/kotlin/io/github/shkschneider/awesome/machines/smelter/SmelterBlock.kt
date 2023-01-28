@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.machines.smelter
 
+import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
@@ -15,6 +16,7 @@ import net.minecraft.screen.ScreenHandler
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
 
 @Suppress("RemoveRedundantQualifierName")
 class SmelterBlock(
@@ -41,6 +43,14 @@ class SmelterBlock(
 
         override fun screen(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate): ScreenHandler =
             SmelterScreen.Handler(syncId, sidedInventory, playerInventory, properties)
+
+        override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean {
+            return if (stack.item == AwesomeMachines.fuel) {
+                slot == io.inputs - 1
+            } else {
+                super.canInsert(slot, stack, dir)
+            }
+        }
 
     }
 

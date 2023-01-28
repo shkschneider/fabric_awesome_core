@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome.extras.crate
 
-import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.Minecraft
 import net.minecraft.client.gui.screen.ingame.HandledScreens
@@ -12,7 +11,7 @@ import net.minecraft.screen.ScreenHandlerType
 object Crate {
 
     const val ID = "crate"
-    val IO = InputOutput(inputs = 9 to listOf(Faces.Top, Faces.Sides(), Faces.Front, Faces.Back))
+    val IO = InputOutput(inputs = 9)
 
     private lateinit var _block: CrateBlock
     val block: CrateBlock get() = _block

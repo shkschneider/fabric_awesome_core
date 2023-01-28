@@ -9,6 +9,7 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.ShapeContext
 import net.minecraft.client.item.TooltipContext
+import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.SimpleInventory
 import net.minecraft.item.BlockItem
@@ -35,6 +36,8 @@ class CrateBlock : AwesomeBlockWithEntity<CrateBlockEntity>(
 
     override fun canPlaceAt(state: BlockState, world: WorldView, pos: BlockPos): Boolean =
         world.getBlockState(pos).isAir && world.getBlockState(pos.down()).isSolidBlock(world, pos.down())
+
+    override fun canPathfindThrough(state: BlockState, world: BlockView, pos: BlockPos, type: NavigationType): Boolean = false
 
     override fun createBlockEntity(pos: BlockPos, state: BlockState): CrateBlockEntity =
         CrateBlockEntity(pos, state)

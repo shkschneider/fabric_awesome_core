@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.machines.smelter
 
-import io.github.shkschneider.awesome.custom.Faces
+import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
@@ -15,13 +15,13 @@ import net.minecraft.world.World
 
 class Smelter : AwesomeMachine<SmelterBlock.Entity, SmelterScreen.Handler>(
     id = "smelter",
-    io = InputOutput(inputs = 1 to listOf(Faces.Top), outputs = 1 to listOf(Faces.Bottom)),
+    io = InputOutput(inputs = 1, fueled = true, outputs = 1),
 ) {
 
     val recipes = SmelterRecipes()
 
     init {
-        check(recipes.all { it.inputs.size == io.inputs.first })
+        check(recipes.all { it.inputs.none { it.item == AwesomeMachines.fuel } })
     }
 
     override fun block(): AwesomeMachineBlock<SmelterBlock.Entity, SmelterScreen.Handler> =

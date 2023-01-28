@@ -36,7 +36,6 @@ class InfuserScreen(
             AwesomeMachines.infuser.screen, syncId, sidedInventory, playerInventory, properties)
 
         init {
-            addProperties(properties)
             addSlots(
                 66 to 16,
                 66 to 50,

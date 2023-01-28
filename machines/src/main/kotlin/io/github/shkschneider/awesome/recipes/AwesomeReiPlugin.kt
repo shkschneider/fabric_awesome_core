@@ -61,7 +61,7 @@ class AwesomeReiCategory(
     private val machine: AwesomeMachine<*, *>,
 ) : DisplayCategory<AwesomeReiDisplay> {
 
-    private val max: Int = max(machine.io.inputs.first, machine.io.outputs.first)
+    private val max: Int = max(machine.io.inputs, machine.io.outputs)
 
     override fun getCategoryIdentifier(): CategoryIdentifier<out AwesomeReiDisplay> =
         CategoryIdentifier.of(Awesome.ID, machine.id)
@@ -89,7 +89,7 @@ class AwesomeReiCategory(
 
 class AwesomeReiDisplay(
     private val category: CategoryIdentifier<*>,
-    val recipe: AwesomeRecipe<*>,
+    private val recipe: AwesomeRecipe<*>,
 ) : BasicDisplay(
     EntryIngredients.ofIngredients(recipe.ingredients),
     mutableListOf(EntryIngredients.of(recipe.output)),

@@ -66,8 +66,8 @@ abstract class AwesomeBlockEntity(
         id: String,
         type: BlockEntityType<out AwesomeBlockEntity>,
         pos: BlockPos,
-        private val state: BlockState,
-        protected val io: InputOutput,
+        val state: BlockState,
+        val io: InputOutput,
         delegates: Pair<Int, Int>,
     ) : AwesomeBlockEntity(id, type, pos, state, io, delegates), IInventory, SidedInventory {
 
