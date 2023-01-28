@@ -1,14 +1,9 @@
 package io.github.shkschneider.awesome.custom
 
-data class MachinePorts(
-    var inputs: Pair<Int, List<Faces>>,
-    val outputs: Pair<Int, List<Faces>>,
+data class InputOutput(
+    var inputs: Pair<Int, List<Faces>> = 0 to emptyList(),
+    val outputs: Pair<Int, List<Faces>> = 0 to emptyList(),
 ) {
-
-    constructor(inputs: Int, outputs: Int) : this(
-        inputs = inputs to listOf(Faces.Top, Faces.Side(), Faces.Front),
-        outputs = outputs to listOf(Faces.Bottom, Faces.Back),
-    )
 
     val size: Int = inputs.first + outputs.first
 

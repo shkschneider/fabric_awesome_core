@@ -14,37 +14,37 @@ import io.github.shkschneider.awesome.potions.AwesomePotions
 
 object AwesomeEnchantments {
 
-    private lateinit var EXPERIENCE: AwesomeEnchantment
-    val experience get() = EXPERIENCE
-    private lateinit var ICE_ASPECT: AwesomeEnchantment
-    val iceAspect get() = ICE_ASPECT
-    private lateinit var MAGNETISM: AwesomeEnchantment
-    val magnetism get() = MAGNETISM
-    private lateinit var POISON_ASPECT: AwesomeEnchantment
-    val poisonAspect get() = POISON_ASPECT
-    private lateinit var UNBREAKABLE: AwesomeEnchantment
-    val unbreakable get() = UNBREAKABLE
-    private lateinit var VEIN_MINING: AwesomeEnchantment
-    val veinMining get() = VEIN_MINING
+    private lateinit var _experience: AwesomeEnchantment
+    val experience get() = _experience
+    private lateinit var _iceAspect: AwesomeEnchantment
+    val iceAspect get() = _iceAspect
+    private lateinit var _magnetism: AwesomeEnchantment
+    val magnetism get() = _magnetism
+    private lateinit var _poisonAspect: AwesomeEnchantment
+    val poisonAspect get() = _poisonAspect
+    private lateinit var _unbreakable: AwesomeEnchantment
+    val unbreakable get() = _unbreakable
+    private lateinit var _veinMining: AwesomeEnchantment
+    val veinMining get() = _veinMining
 
     operator fun invoke() {
         AwesomeEffects()
         AwesomePotions()
         if (Awesome.CONFIG.enchantments.experience) {
-            EXPERIENCE = ExperienceEnchantment()
+            _experience = ExperienceEnchantment()
         }
         if (Awesome.CONFIG.enchantments.magnetism) {
-            MAGNETISM = MagnetismEnchantment()
+            _magnetism = MagnetismEnchantment()
         }
         if (Awesome.CONFIG.enchantments.unbreakable) {
-            UNBREAKABLE = UnbreakableEnchantment()
+            _unbreakable = UnbreakableEnchantment()
         }
         if (Awesome.CONFIG.enchantments.veinMining) {
-            VEIN_MINING = VeinMiningEnchantment()
+            _veinMining = VeinMiningEnchantment()
         }
         if (Awesome.CONFIG.enchantments.aspects) {
-            ICE_ASPECT = IceAspectEnchantment()
-            POISON_ASPECT = PoisonAspectEnchantment()
+            _iceAspect = IceAspectEnchantment()
+            _poisonAspect = PoisonAspectEnchantment()
         }
         if (Awesome.CONFIG.enchantments.oreXp) {
             OreXp()

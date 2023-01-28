@@ -2,8 +2,9 @@ package io.github.shkschneider.awesome.machines.collector
 
 import com.google.common.base.Predicates
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.core.ext.insert
+import io.github.shkschneider.awesome.custom.Faces
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
@@ -15,7 +16,7 @@ import net.minecraft.world.World
 
 class Collector : AwesomeMachine<CollectorBlock, CollectorBlock.Entity, CollectorScreen.Handler>(
     id = AwesomeUtils.identifier(ID),
-    ports = PORTS,
+    io = IO,
     blockProvider = {
         CollectorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK))
     },
@@ -33,7 +34,7 @@ class Collector : AwesomeMachine<CollectorBlock, CollectorBlock.Entity, Collecto
     companion object {
 
         const val ID = "collector"
-        val PORTS = MachinePorts(inputs = 0, outputs = 9)
+        val IO = InputOutput(outputs = 9 to listOf(Faces.Front, Faces.Back, Faces.Sides(), Faces.Bottom))
 
     }
 

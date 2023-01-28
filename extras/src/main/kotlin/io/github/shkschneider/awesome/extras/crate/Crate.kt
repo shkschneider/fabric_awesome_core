@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.extras.crate
 
-import io.github.shkschneider.awesome.custom.MachinePorts
+import io.github.shkschneider.awesome.custom.Faces
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.Minecraft
 import net.minecraft.client.gui.screen.ingame.HandledScreens
 import net.minecraft.inventory.SimpleInventory
@@ -11,21 +12,21 @@ import net.minecraft.screen.ScreenHandlerType
 object Crate {
 
     const val ID = "crate"
-    val PORTS = MachinePorts(inputs = 9, outputs = 0)
+    val IO = InputOutput(inputs = 9 to listOf(Faces.Top, Faces.Sides(), Faces.Front, Faces.Back))
 
-    private lateinit var _self: CrateBlock
-    val self: CrateBlock get() = _self
+    private lateinit var _block: CrateBlock
+    val block: CrateBlock get() = _block
 
-    private lateinit var SCREEN: ScreenHandlerType<CrateBlockScreenHandler>
-    val screen get() = SCREEN
+    private lateinit var _screen: ScreenHandlerType<CrateBlockScreenHandler>
+    val screen get() = _screen
 
     operator fun invoke() {
-        _self = CrateBlock()
+        _block = CrateBlock()
         if (Minecraft.isClient) {
-            SCREEN = ScreenHandlerType { syncId, playerInventory ->
-                CrateBlockScreenHandler(syncId, SimpleInventory(PORTS.size), playerInventory, ArrayPropertyDelegate(0))
+            _screen = ScreenHandlerType { syncId, playerInventory ->
+                CrateBlockScreenHandler(syncId, SimpleInventory(IO.size), playerInventory, ArrayPropertyDelegate(0))
             }
-            HandledScreens.register(SCREEN) { handler, playerInventory, title ->
+            HandledScreens.register(_screen) { handler, playerInventory, title ->
                 CrateBlockScreen(handler, playerInventory, title)
             }
         }

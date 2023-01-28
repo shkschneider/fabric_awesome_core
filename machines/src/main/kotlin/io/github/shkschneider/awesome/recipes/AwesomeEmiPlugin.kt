@@ -8,10 +8,10 @@ import dev.emi.emi.api.render.EmiTexture
 import dev.emi.emi.api.stack.EmiIngredient
 import dev.emi.emi.api.stack.EmiStack
 import dev.emi.emi.api.widget.WidgetHolder
+import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.machines.AwesomeMachine
-import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.machines.crusher.Crusher
 import io.github.shkschneider.awesome.machines.infuser.Infuser
 import io.github.shkschneider.awesome.machines.refinery.Refinery

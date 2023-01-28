@@ -2,14 +2,14 @@ package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.ext.getStacks
-import io.github.shkschneider.awesome.custom.MachinePorts
+import io.github.shkschneider.awesome.custom.InputOutput
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.world.World
 
 class AwesomeMachineTicker(
     private val entity: AwesomeMachineBlockEntity,
-    private val slots: MachinePorts,
+    private val io: InputOutput,
     private val recipes: List<AwesomeRecipe<out Inventory>>?,
 ) {
 
@@ -23,14 +23,14 @@ class AwesomeMachineTicker(
     }
 
     fun getInputs(): List<Pair<Int, ItemStack>> =
-        inventory.getStacks().take(slots.inputs.first).mapIndexed { index, itemStack -> index to itemStack }
+        inventory.getStacks().take(io.inputs.first).mapIndexed { index, itemStack -> index to itemStack }
 
     fun getOutputs(): List<Pair<Int, ItemStack>> =
-        inventory.getStacks().drop(slots.inputs.first).mapIndexed { index, itemStack -> slots.inputs.first + index to itemStack }
+        inventory.getStacks().drop(io.inputs.first).mapIndexed { index, itemStack -> io.inputs.first + index to itemStack }
 
     fun getRecipe(): AwesomeRecipe<out Inventory>? =
         recipes?.firstOrNull { recipe ->
-            (0 until slots.inputs.first).all { index ->
+            (0 until io.inputs.first).all { index ->
                 getInputs()[index].second.item == recipe.inputs[index].item && getInputs()[index].second.count >= recipe.inputs[index].count
             } && getOutputs().map { it.second }.any { output ->
                 output.isEmpty || (output.item == recipe.output.item && output.count + recipe.output.count <= output.maxCount)

@@ -60,7 +60,7 @@ class AwesomeReiCategory(
     private val machine: AwesomeMachine<*, *, *>,
 ) : DisplayCategory<AwesomeReiDisplay> {
 
-    private val max: Int = max(machine.ports.inputs.first, machine.ports.outputs.first)
+    private val max: Int = max(machine.io.inputs.first, machine.io.outputs.first)
 
     override fun getCategoryIdentifier(): CategoryIdentifier<out AwesomeReiDisplay> =
         CategoryIdentifier.of(machine.id.namespace, machine.id.path)

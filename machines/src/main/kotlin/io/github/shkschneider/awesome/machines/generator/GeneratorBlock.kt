@@ -36,7 +36,6 @@ class GeneratorBlock(
     }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: GeneratorBlockEntity) {
-        if (world.isClient) return
         Generator.tick(world, pos, state, blockEntity)
     }
 

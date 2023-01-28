@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.machines.collector
 
-import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import io.github.shkschneider.awesome.AwesomeMachines
+import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
@@ -31,7 +31,7 @@ class CollectorScreen(
         }
 
         override fun onSlotClick(slotIndex: Int, button: Int, actionType: SlotActionType, player: PlayerEntity) {
-            if (slotIndex in 0 until Collector.PORTS.inputs.first) {
+            if (slotIndex in 0 until Collector.IO.inputs.first) {
                 {}
             } else {
                 super.onSlotClick(slotIndex, button, actionType, player)

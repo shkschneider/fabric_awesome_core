@@ -16,8 +16,8 @@ abstract class AwesomeBlock(
     group: ItemGroup = Awesome.GROUP,
 ) : Block(settings) {
 
-    private lateinit var _self: Block
-    val self: Block get() = _self
+    private lateinit var _block: Block
+    val block: Block get() = _block
 
     private lateinit var blockItem: BlockItem
 
@@ -27,7 +27,7 @@ abstract class AwesomeBlock(
 
     private fun init(group: ItemGroup) {
         blockItem = AwesomeRegistries.blockItem(id, this as Block, group)
-        _self = blockItem.block
+        _block = blockItem.block
     }
 
     override fun asItem(): Item = blockItem

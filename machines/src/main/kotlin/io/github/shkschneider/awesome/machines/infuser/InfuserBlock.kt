@@ -15,7 +15,7 @@ class InfuserBlock(settings: Settings) : AwesomeMachineBlock<InfuserBlock.Entity
 
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
         Infuser.ID, AwesomeMachines.infuser.entityType,
-        pos, state, AwesomeMachines.infuser.ports, Infuser.RECIPES,
+        pos, state, AwesomeMachines.infuser.io, Infuser.RECIPES,
         screenHandlerProvider = { syncId, blockEntity, playerInventory, properties ->
             InfuserScreen.Handler(syncId, blockEntity, playerInventory, properties)
         },

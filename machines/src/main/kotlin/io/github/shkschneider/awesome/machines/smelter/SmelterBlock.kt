@@ -15,7 +15,7 @@ class SmelterBlock(settings: Settings) : AwesomeMachineBlock<SmelterBlock.Entity
 
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
         Smelter.ID, AwesomeMachines.smelter.entityType,
-        pos, state, AwesomeMachines.smelter.ports, Smelter.RECIPES,
+        pos, state, AwesomeMachines.smelter.io, Smelter.RECIPES,
         screenHandlerProvider = { syncId, blockEntity, playerInventory, properties ->
             SmelterScreen.Handler(syncId, blockEntity, playerInventory, properties)
         },

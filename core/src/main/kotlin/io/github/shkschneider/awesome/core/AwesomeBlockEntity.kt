@@ -4,7 +4,7 @@ import io.github.shkschneider.awesome.core.ext.readNbt
 import io.github.shkschneider.awesome.core.ext.relativeFace
 import io.github.shkschneider.awesome.core.ext.writeNbt
 import io.github.shkschneider.awesome.custom.IInventory
-import io.github.shkschneider.awesome.custom.MachinePorts
+import io.github.shkschneider.awesome.custom.InputOutput
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
@@ -26,7 +26,7 @@ abstract class AwesomeBlockEntity(
     type: BlockEntityType<out AwesomeBlockEntity>,
     pos: BlockPos,
     state: BlockState,
-    private val ports: MachinePorts,
+    private val io: InputOutput,
     delegates: Pair<Int, Int>,
 ) : BlockEntity(type, pos, state) {
 
@@ -67,11 +67,11 @@ abstract class AwesomeBlockEntity(
         type: BlockEntityType<out AwesomeBlockEntity>,
         pos: BlockPos,
         private val state: BlockState,
-        protected val ports: MachinePorts,
+        protected val io: InputOutput,
         delegates: Pair<Int, Int>,
-    ) : AwesomeBlockEntity(id, type, pos, state, ports, delegates), IInventory, SidedInventory {
+    ) : AwesomeBlockEntity(id, type, pos, state, io, delegates), IInventory, SidedInventory {
 
-        override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(ports.size, ItemStack.EMPTY)
+        override val items: DefaultedList<ItemStack> = DefaultedList.ofSize(io.size, ItemStack.EMPTY)
 
         override fun onOpen(player: PlayerEntity?) {
             world?.emitGameEvent(player, GameEvent.CONTAINER_OPEN, pos)
@@ -82,15 +82,15 @@ abstract class AwesomeBlockEntity(
         }
 
         override fun getAvailableSlots(side: Direction?): IntArray =
-            (0 until ports.size).toList().toIntArray()
+            (0 until io.size).toList().toIntArray()
 
         override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
-            if (dir == null) ports.isInput(slot)
-            else ports.canInsert(slot, dir.relativeFace(state))
+            if (dir == null) io.isInput(slot)
+            else io.canInsert(slot, dir.relativeFace(state))
 
         override fun canExtract(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
-            if (dir == null) ports.isOutput(slot)
-            else ports.canExtract(slot, dir.relativeFace(state))
+            if (dir == null) io.isOutput(slot)
+            else io.canExtract(slot, dir.relativeFace(state))
 
         public override fun writeNbt(nbt: NbtCompound) {
             super.writeNbt(nbt)

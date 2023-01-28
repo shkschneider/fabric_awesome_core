@@ -38,7 +38,6 @@ class QuarryBlock : AwesomeBlockWithEntity.WithInventory<QuarryBlockEntity>(
     }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: QuarryBlockEntity) {
-        if (world.isClient) return
         Quarry.tick(world, pos, state, blockEntity)
     }
 

@@ -4,7 +4,7 @@ import io.github.shkschneider.awesome.core.AwesomeBlockEntity
 import io.github.shkschneider.awesome.core.AwesomeBlockScreen
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.custom.MachinePorts
+import io.github.shkschneider.awesome.custom.InputOutput
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.player.PlayerEntity
@@ -21,10 +21,10 @@ abstract class AwesomeMachineBlockEntity(
     type: BlockEntityType<out AwesomeMachineBlockEntity>,
     pos: BlockPos,
     state: BlockState,
-    ports: MachinePorts,
+    io: InputOutput,
     private val recipes: List<AwesomeRecipe<out AwesomeMachineBlockEntity>>,
     private val screenHandlerProvider: (syncId: Int, blockEntity: AwesomeMachineBlockEntity, playerInventory: PlayerInventory, properties: PropertyDelegate) -> AwesomeBlockScreen.Handler,
-) : AwesomeBlockEntity.WithInventory(id, type, pos, state, ports, PROPERTIES to 0), NamedScreenHandlerFactory {
+) : AwesomeBlockEntity.WithInventory(id, type, pos, state, io, PROPERTIES to 0), NamedScreenHandlerFactory {
 
     //region Properties
 

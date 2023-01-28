@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos
 class RecyclerBlockEntity(
     pos: BlockPos,
     state: BlockState,
-) : AwesomeBlockEntity.WithInventory(Recycler.ID, Recycler.block.entityType, pos, state, Recycler.PORTS, Recycler.PROPERTIES to 0), AwesomeBlockEntity.WithScreen {
+) : AwesomeBlockEntity.WithInventory(Recycler.ID, Recycler.block.entityType, pos, state, Recycler.IO, Recycler.PROPERTIES to 0), AwesomeBlockEntity.WithScreen {
 
     private val _properties = mutableMapOf<Int, Int>()
     private val _delegate = object: PropertyDelegate {

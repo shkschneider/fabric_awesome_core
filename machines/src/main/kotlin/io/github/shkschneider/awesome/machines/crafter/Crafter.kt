@@ -1,9 +1,10 @@
 package io.github.shkschneider.awesome.machines.crafter
 
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.custom.MachinePorts
 import io.github.shkschneider.awesome.core.ext.test
 import io.github.shkschneider.awesome.custom.DummyCraftingInventory
+import io.github.shkschneider.awesome.custom.Faces
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
@@ -19,7 +20,7 @@ import net.minecraft.world.World
 
 class Crafter : AwesomeMachine<CrafterBlock, CrafterBlock.Entity, CrafterScreen.Handler>(
     id = AwesomeUtils.identifier(ID),
-    ports = PORTS,
+    io = IO,
     blockProvider = {
         CrafterBlock(FabricBlockSettings.copyOf(Blocks.FURNACE))
     },
@@ -39,7 +40,7 @@ class Crafter : AwesomeMachine<CrafterBlock, CrafterBlock.Entity, CrafterScreen.
         const val ID = "crafter"
         const val INVENTORY = 5
         const val GRID = 3
-        val PORTS = MachinePorts(inputs = INVENTORY + GRID * GRID, outputs = 1)
+        val IO = InputOutput(inputs = INVENTORY + GRID * GRID to listOf(), outputs = 1 to listOf(Faces.Bottom))
 
     }
 
@@ -47,7 +48,7 @@ class Crafter : AwesomeMachine<CrafterBlock, CrafterBlock.Entity, CrafterScreen.
         if (world.isClient) return
         // do NOT super.tick() unless this uses power
         val stacks = DefaultedList.ofSize(GRID * GRID, ItemStack.EMPTY).apply {
-            (INVENTORY until PORTS.inputs.first).forEach { index ->
+            (INVENTORY until IO.inputs.first).forEach { index ->
                 set(index - INVENTORY, (blockEntity as Inventory).getStack(index))
             }
         }
@@ -59,7 +60,7 @@ class Crafter : AwesomeMachine<CrafterBlock, CrafterBlock.Entity, CrafterScreen.
 
     private fun craft(entity: CrafterBlock.Entity, inventory: CraftingInventory, recipe: CraftingRecipe): Int {
         val stack = recipe.craft(inventory)
-        val outputIndex = PORTS.size - 1
+        val outputIndex = IO.size - 1
         if (stack.isEmpty) return -1
         if (entity.getStack(outputIndex).count + stack.count > entity.getStack(outputIndex).maxCount) return -2
         recipe.ingredients.forEach { ingredient ->

@@ -93,7 +93,6 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
          * Link: https://www.youtube.com/c/TKaupenjoe
          * Link: https://fabricmc.net/wiki/tutorial:containers
          * Link: https://github.com/FabricMC/yarn/issues/2944
-         *
          */
         override fun quickMove(player: PlayerEntity, i: Int): ItemStack {
             val slot = slots.getOrNull(i)?.takeIf { it.hasStack() } ?: return ItemStack.EMPTY

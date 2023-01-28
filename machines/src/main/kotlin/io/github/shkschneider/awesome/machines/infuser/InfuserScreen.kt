@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.machines.infuser
 
-import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import io.github.shkschneider.awesome.AwesomeMachines
+import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
@@ -23,7 +23,7 @@ class InfuserScreen(
             val progress = (handler.percent * 24.0).roundToInt()
             drawTexture(matrices, x + 84, y + 23 - 1, 176, 32, progress, 68 - 32)
         }
-        drawPorts(matrices, Infuser.PORTS)
+        drawInputOutputs(matrices, Infuser.IO)
     }
 
     class Handler(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : AwesomeMachineBlockScreen.Handler(

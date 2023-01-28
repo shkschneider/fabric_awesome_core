@@ -15,7 +15,7 @@ import net.minecraft.util.math.Direction
 class CrateBlockEntity(
     pos: BlockPos, state: BlockState,
 ) : AwesomeBlockEntity.WithInventory(
-    Crate.ID, Crate.self.entityType, pos, state, Crate.PORTS, 0 to 0,
+    Crate.ID, Crate.block.entityType, pos, state, Crate.IO, 0 to 0,
 ), AwesomeBlockEntity.WithScreen {
 
     override fun getDisplayName(): Text =

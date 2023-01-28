@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos
 class GeneratorBlockEntity(
     pos: BlockPos, state: BlockState,
 ) : AwesomeBlockEntity.WithInventory(
-    Generator.ID, Generator.block.entityType, pos, state, Generator.PORTS, Generator.PROPERTIES to 0,
+    Generator.ID, Generator.block.entityType, pos, state, Generator.IO, Generator.PROPERTIES to 0,
 ), AwesomeBlockEntity.WithScreen {
 
     var power: Int

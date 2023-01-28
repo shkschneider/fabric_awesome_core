@@ -6,11 +6,13 @@ import net.minecraft.world.GameRules
 
 object KeepXpGameRule {
 
-    private lateinit var KEY: GameRules.Key<GameRules.BooleanRule>
-    val key get() = KEY
+    private const val ID = "keepXp"
+
+    private lateinit var _key: GameRules.Key<GameRules.BooleanRule>
+    val key get() = _key
 
     operator fun invoke() {
-        KEY = AwesomeRegistries.gameRule("keepXp", GameRules.Category.PLAYER, true)
+        _key = AwesomeRegistries.gameRule(ID, GameRules.Category.PLAYER, true)
     }
 
     operator fun invoke(oldPlayer: ServerPlayerEntity, newPlayer: ServerPlayerEntity) {

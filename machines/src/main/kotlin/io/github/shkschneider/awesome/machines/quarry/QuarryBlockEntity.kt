@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
 
 class QuarryBlockEntity(
     pos: BlockPos,
@@ -20,7 +21,7 @@ class QuarryBlockEntity(
     type = Quarry.block.entityType,
     pos = pos,
     state = state,
-    ports = Quarry.PORTS,
+    io = Quarry.IO,
     delegates = Quarry.PROPERTIES to 0,
 ), AwesomeBlockEntity.WithScreen {
 
@@ -50,13 +51,19 @@ class QuarryBlockEntity(
     override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): ScreenHandler =
         QuarryScreenHandler(syncId, this as SidedInventory, playerInventory, properties)
 
+    override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
+        io.isInput(slot)
+
+    override fun canExtract(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
+        io.isOutput(slot)
+
     fun insert(stack: ItemStack) {
         while (stack.count > 0) {
-            if (getStack(Quarry.OUTPUT).isEmpty) {
-                setStack(Quarry.OUTPUT, stack)
+            if (getStack(1).isEmpty) {
+                setStack(1, stack)
                 break
-            }  else if (getStack(Quarry.OUTPUT).item == stack.item && getStack(Quarry.OUTPUT).count < getStack(Quarry.OUTPUT).maxCount) {
-                getStack(Quarry.OUTPUT).count++
+            }  else if (getStack(1).item == stack.item && getStack(1).count < getStack(1).maxCount) {
+                getStack(1).count++
                 stack.count--
             } else {
                 break

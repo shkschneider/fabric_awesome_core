@@ -1,7 +1,8 @@
 package io.github.shkschneider.awesome.machines.generator
 
 import io.github.shkschneider.awesome.AwesomeMachines
-import io.github.shkschneider.awesome.custom.MachinePorts
+import io.github.shkschneider.awesome.custom.Faces
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.Minecraft
 import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -18,9 +19,25 @@ import net.minecraft.world.World
 object Generator {
 
     const val ID = "generator"
-    val PORTS = MachinePorts(inputs = 1, outputs = 0)
+    val IO = InputOutput(inputs = 1 to listOf(Faces.Top))
     private val IGNITE = Minecraft.TICKS
     const val PROPERTIES = 3
+
+    val block = GeneratorBlock(FabricBlockSettings.copyOf(Blocks.FURNACE))
+
+    private lateinit var _screen: ScreenHandlerType<GeneratorScreenHandler>
+    val screen get() = _screen
+
+    operator fun invoke() {
+        if (Minecraft.isClient) {
+            _screen = ScreenHandlerType { syncId, playerInventory ->
+                GeneratorScreenHandler(syncId, SimpleSidedInventory(IO.size), playerInventory, ArrayPropertyDelegate(PROPERTIES))
+            }
+            HandledScreens.register(_screen) { handler, playerInventory, title ->
+                GeneratorScreen(ID, handler, playerInventory, title)
+            }
+        }
+    }
 
     fun tick(world: World, pos: BlockPos, state: BlockState, entity: GeneratorBlockEntity) = with(entity) {
         if (world.isClient) return
@@ -52,22 +69,6 @@ object Generator {
         }
         setPropertyState(state.with(Properties.LIT, power > 0))
         markDirty()
-    }
-
-    val block = GeneratorBlock(FabricBlockSettings.copyOf(Blocks.FURNACE))
-
-    private lateinit var SCREEN: ScreenHandlerType<GeneratorScreenHandler>
-    val screen get() = SCREEN
-
-    operator fun invoke() {
-        if (Minecraft.isClient) {
-            SCREEN = ScreenHandlerType { syncId, playerInventory ->
-                GeneratorScreenHandler(syncId, SimpleSidedInventory(PORTS.size), playerInventory, ArrayPropertyDelegate(PROPERTIES))
-            }
-            HandledScreens.register(SCREEN) { handler, playerInventory, title ->
-                GeneratorScreen(ID, handler, playerInventory, title)
-            }
-        }
     }
 
 }

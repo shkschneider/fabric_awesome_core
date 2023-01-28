@@ -7,15 +7,14 @@ sealed class Faces {
     object Front : Faces()
     object Back : Faces()
 
-    data class Side(val right: Boolean = true, val left: Boolean = true) : Faces() {
+    data class Sides(val right: Boolean = true, val left: Boolean = true) : Faces() {
 
         override fun toString(): String =
-            (this as Faces).toString() + if (right) "(right)" else "(left)"
+            (this as Faces).toString() + if (right) "(right)" else "" + if (left) "(left)" else ""
 
     }
 
-    override fun toString(): String {
-        return this::class.java.simpleName
-    }
+    override fun toString(): String =
+        this::class.java.simpleName
 
 }

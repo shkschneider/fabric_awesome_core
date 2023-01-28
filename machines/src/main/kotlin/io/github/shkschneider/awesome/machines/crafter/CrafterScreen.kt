@@ -58,10 +58,10 @@ class CrafterScreen(
             canInsertIntoSlot(slot) && (sidedInventory.getStacks().any { it.isEmpty || it.item == stack.item })
 
         override fun canInsertIntoSlot(slot: Slot): Boolean =
-            Crafter.PORTS.isInput(slot.index) && (slot.index < Crafter.INVENTORY || slot.index >= Crafter.PORTS.size)
+            Crafter.IO.isInput(slot.index) && (slot.index < Crafter.INVENTORY || slot.index >= Crafter.IO.size)
 
         override fun onSlotClick(slotIndex: Int, button: Int, actionType: SlotActionType, player: PlayerEntity) {
-            if (slotIndex in (Crafter.INVENTORY until Crafter.PORTS.inputs.first)) {
+            if (slotIndex in (Crafter.INVENTORY until Crafter.IO.inputs.first)) {
                 slots[slotIndex].stack = ItemStack(cursorStack.item, 1)
             } else {
                 super.onSlotClick(slotIndex, button, actionType, player)
@@ -69,9 +69,9 @@ class CrafterScreen(
         }
 
         override fun quickMove(player: PlayerEntity, i: Int): ItemStack =
-            if (i in (0 until Crafter.INVENTORY) || i == Crafter.PORTS.size - 1) {
+            if (i in (0 until Crafter.INVENTORY) || i == Crafter.IO.size - 1) {
                 super.quickMove(player, i)
-            } else if (i >= Crafter.PORTS.size) {
+            } else if (i >= Crafter.IO.size) {
                 internalQuickMove(i)
             } else {
                 ItemStack.EMPTY

@@ -37,8 +37,8 @@ abstract class AwesomeBlockWithEntity<BE : BlockEntity>(
     group: ItemGroup = Awesome.GROUP,
 ) : BlockWithEntity(settings), BlockEntityTicker<BE> {
 
-    private lateinit var _self: Block
-    val self: Block get() = _self
+    private lateinit var _block: Block
+    val block: Block get() = _block
 
     private lateinit var blockItem: BlockItem
 
@@ -48,7 +48,7 @@ abstract class AwesomeBlockWithEntity<BE : BlockEntity>(
 
     private fun init(group: ItemGroup) {
         blockItem = AwesomeRegistries.blockItem(id, this as Block, group)
-        _self = blockItem.block
+        _block = blockItem.block
     }
 
     override fun asItem(): Item = blockItem
@@ -62,7 +62,7 @@ abstract class AwesomeBlockWithEntity<BE : BlockEntity>(
 
     val entityType: BlockEntityType<BE> = Registry.register(
         Registries.BLOCK_ENTITY_TYPE, id,
-        FabricBlockEntityTypeBuilder.create({ pos, state -> createBlockEntity(pos, state) }, self).build(null)
+        FabricBlockEntityTypeBuilder.create({ pos, state -> createBlockEntity(pos, state) }, block).build(null)
     )
 
     abstract override fun createBlockEntity(pos: BlockPos, state: BlockState): BE

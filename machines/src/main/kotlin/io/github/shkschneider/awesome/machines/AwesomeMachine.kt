@@ -2,7 +2,7 @@ package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeRegistries
-import io.github.shkschneider.awesome.custom.MachinePorts
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.Minecraft
 import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
@@ -26,7 +26,7 @@ import net.minecraft.world.World
 
 abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEntity>, BE : AwesomeMachineBlockEntity, SH : AwesomeMachineBlockScreen.Handler>(
     val id: Identifier,
-    val ports: MachinePorts,
+    val io: InputOutput,
     blockProvider: () -> B,
     blockEntityProvider: (BlockPos, BlockState) -> BE,
     screenProvider: (SH, PlayerInventory, Text) -> HandledScreen<SH>,
@@ -51,7 +51,7 @@ abstract class AwesomeMachine<B : AwesomeMachineBlock<out AwesomeMachineBlockEnt
         AwesomeRegistries.item(id, BlockItem(block, FabricItemSettings()), Awesome.GROUP)
         if (Minecraft.isClient) {
             _screen = ScreenHandlerType { syncId, playerInventory ->
-                screenHandlerProvider(syncId, SimpleSidedInventory(ports.size), playerInventory, ArrayPropertyDelegate(AwesomeMachineBlockEntity.PROPERTIES))
+                screenHandlerProvider(syncId, SimpleSidedInventory(io.size), playerInventory, ArrayPropertyDelegate(AwesomeMachineBlockEntity.PROPERTIES))
             }
             HandledScreens.register(screen) { handler, playerInventory, title ->
                 screenProvider(handler, playerInventory, title)

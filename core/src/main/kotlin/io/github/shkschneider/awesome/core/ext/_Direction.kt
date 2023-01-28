@@ -9,7 +9,7 @@ internal fun Direction.toFace(): Faces =
     when (this) {
         Direction.UP -> Faces.Top
         Direction.DOWN -> Faces.Bottom
-        else -> Faces.Side()
+        else -> Faces.Sides()
     }
 
 fun Direction.relativeFace(state: BlockState): Faces {
@@ -20,7 +20,7 @@ fun Direction.relativeFace(state: BlockState): Faces {
         this == Direction.DOWN -> Faces.Bottom
         this == facing -> Faces.Front
         this == facing.opposite -> Faces.Back
-        this.rotateYClockwise() == facing -> Faces.Side(left = false)
-        else -> Faces.Side(right = false)
+        this.rotateYClockwise() == facing -> Faces.Sides(left = false)
+        else -> Faces.Sides(right = false)
     }
 }

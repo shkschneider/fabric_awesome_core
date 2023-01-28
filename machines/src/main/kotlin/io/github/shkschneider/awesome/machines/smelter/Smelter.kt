@@ -1,7 +1,8 @@
 package io.github.shkschneider.awesome.machines.smelter
 
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.custom.MachinePorts
+import io.github.shkschneider.awesome.custom.Faces
+import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineTicker
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -12,7 +13,7 @@ import net.minecraft.world.World
 
 class Smelter : AwesomeMachine<SmelterBlock, SmelterBlock.Entity, SmelterScreen.Handler>(
     id = AwesomeUtils.identifier(ID),
-    ports = PORTS,
+    io = IO,
     blockProvider = {
         SmelterBlock(FabricBlockSettings.copyOf(Blocks.FURNACE))
     },
@@ -30,11 +31,11 @@ class Smelter : AwesomeMachine<SmelterBlock, SmelterBlock.Entity, SmelterScreen.
     companion object {
 
         const val ID = "smelter"
-        val PORTS = MachinePorts(inputs = 1, outputs = 1)
+        val IO = InputOutput(inputs = 1 to listOf(Faces.Top), outputs = 1 to listOf(Faces.Bottom))
         val RECIPES = SmelterRecipes()
 
         init {
-            check(RECIPES.all { it.inputs.size == PORTS.inputs.first })
+            check(RECIPES.all { it.inputs.size == IO.inputs.first })
         }
 
     }
@@ -42,7 +43,7 @@ class Smelter : AwesomeMachine<SmelterBlock, SmelterBlock.Entity, SmelterScreen.
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: SmelterBlock.Entity) {
         if (world.isClient) return
         super.tick(world, pos, state, blockEntity)
-        AwesomeMachineTicker(blockEntity, ports, RECIPES)(world)
+        AwesomeMachineTicker(blockEntity, io, RECIPES)(world)
     }
 
 }

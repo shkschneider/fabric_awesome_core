@@ -43,8 +43,8 @@ class CrateBlock : AwesomeBlockWithEntity<CrateBlockEntity>(
         super.appendTooltip(stack, world, tooltip, options)
         BlockItem.getBlockEntityNbt(stack)?.let { nbt ->
             if (nbt.contains("Items", NbtElement.LIST_TYPE.toInt())) {
-                SimpleInventory(Crate.PORTS.size).apply {
-                    DefaultedList.ofSize(Crate.PORTS.size, ItemStack.EMPTY).apply {
+                SimpleInventory(Crate.IO.size).apply {
+                    DefaultedList.ofSize(Crate.IO.size, ItemStack.EMPTY).apply {
                         Inventories.readNbt(nbt, this)
                     }.forEach(this::addStack)
                 }.getStacks().filterNot { it.isEmpty }.forEach { itemStack ->

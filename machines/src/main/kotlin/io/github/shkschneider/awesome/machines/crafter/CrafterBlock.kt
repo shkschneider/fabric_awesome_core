@@ -19,7 +19,7 @@ class CrafterBlock(settings: Settings) : AwesomeMachineBlock<CrafterBlock.Entity
 
     class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
         Crafter.ID, AwesomeMachines.crafter.entityType,
-        pos, state, Crafter.PORTS, emptyList(),
+        pos, state, Crafter.IO, emptyList(),
         screenHandlerProvider = { syncId, blockEntity, playerInventory, properties ->
             CrafterScreen.Handler(syncId, blockEntity, playerInventory, properties)
         },
@@ -31,7 +31,7 @@ class CrafterBlock(settings: Settings) : AwesomeMachineBlock<CrafterBlock.Entity
         }
 
         override fun canExtract(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
-            slot == Crafter.PORTS.size - 1 && dir == Direction.DOWN
+            slot == Crafter.IO.size - 1 && dir == Direction.DOWN
 
         override fun readNbt(nbt: NbtCompound) {
             Inventories.readNbt(nbt, items)
