@@ -1,42 +1,37 @@
 package io.github.shkschneider.awesome.machines.collector
 
 import com.google.common.base.Predicates
-import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.insert
 import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.InputOutput
+import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
-import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
+import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
 import net.minecraft.block.BlockState
-import net.minecraft.block.Blocks
+import net.minecraft.client.gui.screen.ingame.HandledScreens
 import net.minecraft.entity.ItemEntity
+import net.minecraft.screen.ArrayPropertyDelegate
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Box
 import net.minecraft.world.World
 
-class Collector : AwesomeMachine<CollectorBlock, CollectorBlock.Entity, CollectorScreen.Handler>(
-    id = AwesomeUtils.identifier(ID),
-    io = IO,
-    blockProvider = {
-        CollectorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK))
-    },
-    blockEntityProvider = { pos, state ->
-        CollectorBlock.Entity(pos, state)
-    },
-    screenProvider = { handler, inventory, title ->
-        CollectorScreen(ID, handler, inventory, title)
-    },
-    screenHandlerProvider = { syncId, sidedInventory, playerInventory, properties ->
-        CollectorScreen.Handler(syncId, sidedInventory, playerInventory, properties)
-    },
+class Collector : AwesomeMachine<CollectorBlock.Entity, CollectorScreen.Handler>(
+    id = "collector",
+    io = InputOutput(outputs = 9 to listOf(Faces.Front, Faces.Back, Faces.Sides(), Faces.Bottom)),
 ) {
 
-    companion object {
+    override fun block(): AwesomeMachineBlock<CollectorBlock.Entity, CollectorScreen.Handler> =
+        CollectorBlock(this)
 
-        const val ID = "collector"
-        val IO = InputOutput(outputs = 9 to listOf(Faces.Front, Faces.Back, Faces.Sides(), Faces.Bottom))
-
-    }
+    override fun screen(): ScreenHandlerType<CollectorScreen.Handler> =
+        ScreenHandlerType { syncId, playerInventory ->
+            CollectorScreen.Handler(syncId, SimpleSidedInventory(io.size), playerInventory, ArrayPropertyDelegate(properties))
+        }.also {
+            HandledScreens.register(it) { handler, playerInventory, title ->
+                CollectorScreen(this, handler, playerInventory, title)
+            }
+        }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: CollectorBlock.Entity) {
         if (world.isClient) return

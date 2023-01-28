@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.recipes
 
+import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.machines.AwesomeMachine
@@ -49,7 +50,7 @@ class AwesomeReiPlugin : REIClientPlugin {
         SmelterRecipes().forEach { registry.add(AwesomeReiDisplay(smelter, it)) }
     }
 
-    private fun addWorkstation(registry: CategoryRegistry, category: CategoryIdentifier<AwesomeReiDisplay>, machine: AwesomeMachine<*, *, *>) {
+    private fun addWorkstation(registry: CategoryRegistry, category: CategoryIdentifier<AwesomeReiDisplay>, machine: AwesomeMachine<*, *>) {
         registry.add(AwesomeReiCategory(machine))
         registry.addWorkstations(category, EntryStacks.of(machine.block.asItem()))
     }
@@ -57,13 +58,13 @@ class AwesomeReiPlugin : REIClientPlugin {
 }
 
 class AwesomeReiCategory(
-    private val machine: AwesomeMachine<*, *, *>,
+    private val machine: AwesomeMachine<*, *>,
 ) : DisplayCategory<AwesomeReiDisplay> {
 
     private val max: Int = max(machine.io.inputs.first, machine.io.outputs.first)
 
     override fun getCategoryIdentifier(): CategoryIdentifier<out AwesomeReiDisplay> =
-        CategoryIdentifier.of(machine.id.namespace, machine.id.path)
+        CategoryIdentifier.of(Awesome.ID, machine.id)
 
     override fun getTitle(): Text = Text.translatable(machine.block.translationKey)
 

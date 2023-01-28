@@ -1,50 +1,43 @@
 package io.github.shkschneider.awesome.machines.infuser
 
-import io.github.shkschneider.awesome.AwesomeMachines
-import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.InputOutput
+import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
+import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
 import io.github.shkschneider.awesome.machines.AwesomeMachineTicker
-import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
-import net.minecraft.block.Blocks
+import net.minecraft.client.gui.screen.ingame.HandledScreens
+import net.minecraft.screen.ArrayPropertyDelegate
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-class Infuser : AwesomeMachine<InfuserBlock, InfuserBlock.Entity, InfuserScreen.Handler>(
-    id = AwesomeUtils.identifier(ID),
-    io = IO,
-    blockProvider = {
-        InfuserBlock(FabricBlockSettings.copyOf(Blocks.FURNACE))
-    },
-    blockEntityProvider = { pos, state ->
-        InfuserBlock.Entity(pos, state)
-    },
-    screenProvider = { handler, inventory, title ->
-        InfuserScreen(ID, handler, inventory, title)
-    },
-    screenHandlerProvider = { syncId, sidedInventory, playerInventory, properties ->
-        InfuserScreen.Handler(syncId, sidedInventory, playerInventory, properties)
-    },
+class Infuser : AwesomeMachine<InfuserBlock.Entity, InfuserScreen.Handler>(
+    id = "infuser",
+    io = InputOutput(inputs = 2 to listOf(Faces.Top), outputs = 1 to listOf(Faces.Bottom)),
 ) {
 
-    companion object {
+    val recipes = InfuserRecipes()
 
-        const val ID = "infuser"
-        val IO = InputOutput(inputs = 2 to listOf(Faces.Top), outputs = 1 to listOf(Faces.Bottom))
-        val RECIPES = InfuserRecipes()
-
-        init {
-            check(RECIPES.all { it.inputs.size == IO.inputs.first })
-        }
-
+    init {
+        check(recipes.all { it.inputs.size == io.inputs.first })
     }
 
+    override fun block(): AwesomeMachineBlock<InfuserBlock.Entity, InfuserScreen.Handler> =
+        InfuserBlock(this)
+
+    override fun screen(): ScreenHandlerType<InfuserScreen.Handler> =
+        ScreenHandlerType { syncId, playerInventory ->
+            InfuserScreen.Handler(syncId, SimpleSidedInventory(io.size), playerInventory, ArrayPropertyDelegate(properties))
+        }.also {
+            HandledScreens.register(it) { handler, playerInventory, title ->
+                InfuserScreen(this, handler, playerInventory, title)
+            }
+        }
+
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: InfuserBlock.Entity) {
-        if (world.isClient) return
-        super.tick(world, pos, state, blockEntity)
-        AwesomeMachineTicker(blockEntity, AwesomeMachines.infuser.io, RECIPES)(world)
+        AwesomeMachineTicker(blockEntity, io, recipes)(world)
     }
 
 }

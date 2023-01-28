@@ -1,40 +1,36 @@
 package io.github.shkschneider.awesome.machines
 
+import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.core.AwesomeBlockEntity
+import io.github.shkschneider.awesome.core.AwesomeBlockWithEntity
+import io.github.shkschneider.awesome.core.AwesomeUtils
+import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.Block
-import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
-import net.minecraft.block.BlockWithEntity
-import net.minecraft.block.entity.BlockEntity
-import net.minecraft.block.entity.BlockEntityTicker
-import net.minecraft.block.entity.BlockEntityType
-import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.inventory.Inventory
+import net.minecraft.client.item.TooltipContext
 import net.minecraft.item.ItemPlacementContext
+import net.minecraft.item.ItemStack
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.Properties
-import net.minecraft.util.ActionResult
+import net.minecraft.text.Text
 import net.minecraft.util.BlockMirror
 import net.minecraft.util.BlockRotation
-import net.minecraft.util.Hand
-import net.minecraft.util.ItemScatterer
-import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
+import net.minecraft.world.BlockView
 import net.minecraft.world.World
 
-abstract class AwesomeMachineBlock<BE : BlockEntity>(
-    settings: Settings,
-    private val entityTypeProvider: () -> BlockEntityType<BE>,
-    private val blockEntityProvider: (BlockPos, BlockState) -> BE,
-    private val tickerProvider: () -> BlockEntityTicker<BE>,
-) : BlockWithEntity(settings) {
-
-    override fun getRenderType(state: BlockState): BlockRenderType =
-        BlockRenderType.MODEL
+abstract class AwesomeMachineBlock<BE : AwesomeBlockEntity.WithInventory, SH : AwesomeMachineScreenHandler<BE>>(
+    protected val machine: AwesomeMachine<BE, SH>,
+    settings: FabricBlockSettings,
+) : AwesomeBlockWithEntity.WithInventory<BE>(
+    id = AwesomeUtils.identifier(machine.id),
+    settings = settings,
+    group = Awesome.GROUP,
+) {
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState = defaultState
         .with(Properties.HORIZONTAL_FACING, ctx.playerFacing.opposite)
         .with(Properties.LIT, false)
-        .with(Properties.POWERED, false)
 
     override fun rotate(state: BlockState, rotation: BlockRotation): BlockState =
         state.with(Properties.HORIZONTAL_FACING, rotation.rotate(state.get(Properties.HORIZONTAL_FACING)))
@@ -46,34 +42,22 @@ abstract class AwesomeMachineBlock<BE : BlockEntity>(
         builder
             .add(Properties.HORIZONTAL_FACING)
             .add(Properties.LIT)
-            .add(Properties.POWERED)
     }
 
-    override fun emitsRedstonePower(state: BlockState): Boolean = false
-
-    @Suppress("DEPRECATION")
-    override fun onStateReplaced(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
-        if (state.block !== newState.block) {
-            (world.getBlockEntity(pos) as? Inventory)?.let { ItemScatterer.spawn(world, pos, it) }
-            world.updateComparators(pos, this)
-            super.onStateReplaced(state, world, pos, newState, moved)
-        }
+    override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {
+        tooltip.addAll(tooltips(stack))
     }
 
-    override fun onUse(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand, hit: BlockHitResult): ActionResult {
-        if (!world.isClient) state.createScreenHandlerFactory(world, pos)?.let(player::openHandledScreen)
-        return ActionResult.SUCCESS
-    }
+    abstract fun tooltips(stack: ItemStack): List<Text>
 
-    override fun createBlockEntity(pos: BlockPos, state: BlockState): BE {
-        return blockEntityProvider(pos, state)
-    }
+    override fun createBlockEntity(pos: BlockPos, state: BlockState): BE =
+        blockEntity(machine, pos, state)
 
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : BlockEntity> getTicker(_world: World, _state: BlockState, type: BlockEntityType<T>): BlockEntityTicker<T>? {
-        return checkType(type, type) { world, pos, state, entity ->
-            tickerProvider().tick(world, pos, state, entity as BE)
-        }
+    abstract fun blockEntity(machine: AwesomeMachine<BE, SH>, pos: BlockPos, state: BlockState): BE
+
+    override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: BE) {
+        if (world.isClient) return
+        machine.tick(world, pos, state, blockEntity)
     }
 
 }

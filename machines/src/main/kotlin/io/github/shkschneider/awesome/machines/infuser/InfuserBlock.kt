@@ -1,24 +1,47 @@
 package io.github.shkschneider.awesome.machines.infuser
 
-import io.github.shkschneider.awesome.AwesomeMachines
+import io.github.shkschneider.awesome.core.AwesomeUtils
+import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlockEntity
+import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
+import net.minecraft.block.Blocks
+import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.inventory.SidedInventory
+import net.minecraft.item.ItemStack
+import net.minecraft.screen.PropertyDelegate
+import net.minecraft.screen.ScreenHandler
+import net.minecraft.text.Text
+import net.minecraft.util.Formatting
 import net.minecraft.util.math.BlockPos
 
-class InfuserBlock(settings: Settings) : AwesomeMachineBlock<InfuserBlock.Entity>(
-    settings,
-    entityTypeProvider = { AwesomeMachines.infuser.entityType },
-    blockEntityProvider = { pos, state -> Entity(pos, state) },
-    tickerProvider = { AwesomeMachines.infuser },
+@Suppress("RemoveRedundantQualifierName")
+class InfuserBlock(
+    machine: AwesomeMachine<InfuserBlock.Entity, InfuserScreen.Handler>
+) : AwesomeMachineBlock<InfuserBlock.Entity, InfuserScreen.Handler>(
+    machine = machine,
+    settings = FabricBlockSettings.copyOf(Blocks.FURNACE),
 ) {
 
-    class Entity(pos: BlockPos, state: BlockState) : AwesomeMachineBlockEntity(
-        Infuser.ID, AwesomeMachines.infuser.entityType,
-        pos, state, AwesomeMachines.infuser.io, Infuser.RECIPES,
-        screenHandlerProvider = { syncId, blockEntity, playerInventory, properties ->
-            InfuserScreen.Handler(syncId, blockEntity, playerInventory, properties)
-        },
+    override fun tooltips(stack: ItemStack): List<Text> = listOf(
+        Text.translatable(AwesomeUtils.translatable("block", machine.id, "hint")).formatted(Formatting.GRAY),
     )
+
+    override fun blockEntity(machine: AwesomeMachine<InfuserBlock.Entity, InfuserScreen.Handler>, pos: BlockPos, state: BlockState): InfuserBlock.Entity =
+        InfuserBlock.Entity(machine, pos, state)
+
+    class Entity(
+        machine: AwesomeMachine<InfuserBlock.Entity, InfuserScreen.Handler>,
+        pos: BlockPos,
+        state: BlockState,
+    ) : AwesomeMachineBlockEntity<InfuserBlock.Entity, InfuserScreen.Handler>(
+        machine, pos, state,
+    ) {
+
+        override fun screen(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate): ScreenHandler =
+            InfuserScreen.Handler(syncId, sidedInventory, playerInventory, properties)
+
+    }
 
 }

@@ -14,9 +14,9 @@ object AwesomeUtils {
 
     fun identifier(id: String) = Identifier("${Awesome.ID}:$id")
 
-    fun key(vararg k: String) = "${Awesome.ID}_${k.joinToString(separator = "_")}"
+    fun key(vararg k: String): String = "${Awesome.ID}_${k.joinToString(separator = "_")}"
 
-    fun translatable(vararg k: String) = "${k.first()}.${Awesome.ID}.${k.drop(1).joinToString(separator = ".")}"
+    fun translatable(vararg k: String): String = "${k.first()}.${Awesome.ID}.${k.drop(1).joinToString(separator = ".")}"
 
     fun secondsToTicks(s: Int): Int = s * Minecraft.TICKS
 

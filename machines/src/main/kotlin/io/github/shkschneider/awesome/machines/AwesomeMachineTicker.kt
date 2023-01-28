@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.machines
 
+import io.github.shkschneider.awesome.core.AwesomeBlockEntity
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.ext.getStacks
 import io.github.shkschneider.awesome.custom.InputOutput
@@ -7,8 +8,8 @@ import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.world.World
 
-class AwesomeMachineTicker(
-    private val entity: AwesomeMachineBlockEntity,
+class AwesomeMachineTicker<BE : AwesomeBlockEntity.WithInventory, SH : AwesomeMachineScreenHandler<BE>>(
+    private val entity: AwesomeMachineBlockEntity<BE, SH>,
     private val io: InputOutput,
     private val recipes: List<AwesomeRecipe<out Inventory>>?,
 ) {
@@ -54,9 +55,8 @@ class AwesomeMachineTicker(
                 progress = 0
             }
             if (recipes == null) { off() ; return -1 }
-            if (power == 0) { off() ; return -2 }
             if (duration > 0) progress++
-            val recipe = getRecipe() ?: run { off() ; return -3 }
+            val recipe = getRecipe() ?: run { off() ; return -2 }
             if (duration == 0) {
                 duration = recipe.time
                 progress = 0

@@ -1,7 +1,9 @@
 package io.github.shkschneider.awesome.machines.infuser
 
 import io.github.shkschneider.awesome.AwesomeMachines
-import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
+import io.github.shkschneider.awesome.machines.AwesomeMachine
+import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
+import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
@@ -9,26 +11,29 @@ import net.minecraft.screen.PropertyDelegate
 import net.minecraft.text.Text
 import kotlin.math.roundToInt
 
+@Suppress("RemoveRedundantQualifierName")
 class InfuserScreen(
-    name: String,
-    handler: Handler,
+    machine: AwesomeMachine<InfuserBlock.Entity, InfuserScreen.Handler>,
+    handler: InfuserScreen.Handler,
     playerInventory: PlayerInventory,
-    title: Text,
-) : AwesomeMachineBlockScreen<InfuserScreen.Handler>(name, handler, playerInventory, title) {
+    title: Text?,
+) : AwesomeMachineScreen<InfuserBlock.Entity, InfuserScreen.Handler>(machine, handler, playerInventory, title) {
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
-        setShader()
         if (handler.progress > 0) {
-            val progress = (handler.percent * 24.0).roundToInt()
+            val progress = ((handler.progress.toFloat() / handler.duration.toFloat()) * 24.0).roundToInt()
             drawTexture(matrices, x + 84, y + 23 - 1, 176, 32, progress, 68 - 32)
         }
-        drawInputOutputs(matrices, Infuser.IO)
     }
 
-    class Handler(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : AwesomeMachineBlockScreen.Handler(
-        AwesomeMachines.infuser.screen, syncId, sidedInventory, playerInventory, properties
-    ) {
+    class Handler : AwesomeMachineScreenHandler<InfuserBlock.Entity> {
+
+        constructor(syncId: Int, blockEntity: InfuserBlock.Entity, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
+            AwesomeMachines.infuser.screen, syncId, blockEntity, playerInventory, properties
+        )
+        constructor(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
+            AwesomeMachines.infuser.screen, syncId, sidedInventory, playerInventory, properties)
 
         init {
             addProperties(properties)

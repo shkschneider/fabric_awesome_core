@@ -1,54 +1,54 @@
 package io.github.shkschneider.awesome.machines.crafter
 
-import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.test
 import io.github.shkschneider.awesome.custom.DummyCraftingInventory
 import io.github.shkschneider.awesome.custom.Faces
 import io.github.shkschneider.awesome.custom.InputOutput
+import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
-import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
+import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
 import net.minecraft.block.BlockState
-import net.minecraft.block.Blocks
+import net.minecraft.client.gui.screen.ingame.HandledScreens
 import net.minecraft.inventory.CraftingInventory
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.CraftingRecipe
 import net.minecraft.recipe.RecipeType
+import net.minecraft.screen.ArrayPropertyDelegate
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-class Crafter : AwesomeMachine<CrafterBlock, CrafterBlock.Entity, CrafterScreen.Handler>(
-    id = AwesomeUtils.identifier(ID),
-    io = IO,
-    blockProvider = {
-        CrafterBlock(FabricBlockSettings.copyOf(Blocks.FURNACE))
-    },
-    blockEntityProvider = { pos, state ->
-        CrafterBlock.Entity(pos, state)
-    },
-    screenProvider = { handler, inventory, title ->
-        CrafterScreen(ID, handler, inventory, title)
-    },
-    screenHandlerProvider = { syncId, sidedInventory, playerInventory, properties ->
-        CrafterScreen.Handler(syncId, sidedInventory, playerInventory, properties)
-    },
+class Crafter : AwesomeMachine<CrafterBlock.Entity, CrafterScreen.Handler>(
+    id = "crafter",
+    io = InputOutput(inputs = INVENTORY + GRID * GRID to listOf(Faces.Top), outputs = 1 to listOf(Faces.Bottom)),
 ) {
 
     companion object {
 
-        const val ID = "crafter"
         const val INVENTORY = 5
-        const val GRID = 3
-        val IO = InputOutput(inputs = INVENTORY + GRID * GRID to listOf(), outputs = 1 to listOf(Faces.Bottom))
+        const val GRID = 3 // *3
 
     }
+
+    override fun block(): AwesomeMachineBlock<CrafterBlock.Entity, CrafterScreen.Handler> =
+        CrafterBlock(this)
+
+    override fun screen(): ScreenHandlerType<CrafterScreen.Handler> =
+        ScreenHandlerType { syncId, playerInventory ->
+            CrafterScreen.Handler(syncId, SimpleSidedInventory(io.size), playerInventory, ArrayPropertyDelegate(properties))
+        }.also {
+            HandledScreens.register(it) { handler, playerInventory, title ->
+                CrafterScreen(this, handler, playerInventory, title)
+            }
+        }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: CrafterBlock.Entity) {
         if (world.isClient) return
         // do NOT super.tick() unless this uses power
         val stacks = DefaultedList.ofSize(GRID * GRID, ItemStack.EMPTY).apply {
-            (INVENTORY until IO.inputs.first).forEach { index ->
+            (INVENTORY until io.inputs.first).forEach { index ->
                 set(index - INVENTORY, (blockEntity as Inventory).getStack(index))
             }
         }
@@ -60,7 +60,7 @@ class Crafter : AwesomeMachine<CrafterBlock, CrafterBlock.Entity, CrafterScreen.
 
     private fun craft(entity: CrafterBlock.Entity, inventory: CraftingInventory, recipe: CraftingRecipe): Int {
         val stack = recipe.craft(inventory)
-        val outputIndex = IO.size - 1
+        val outputIndex = io.size - 1
         if (stack.isEmpty) return -1
         if (entity.getStack(outputIndex).count + stack.count > entity.getStack(outputIndex).maxCount) return -2
         recipe.ingredients.forEach { ingredient ->

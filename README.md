@@ -9,11 +9,12 @@
 ![Tag](https://img.shields.io/github/v/tag/shkschneider/mc_awesome?style=for-the-badge)
 [![license](https://img.shields.io/github/license/shkschneider/mc_awesome?style=for-the-badge)](https://github.com/shkschneider/mc_awesome/LICENSE)
 
-Shamelessly took inspirations from the times of **Minecraft Joules** and **Redstone Flux**: *Thermal Expansion*, *Greg Tech*, *Industrial Craft*...
+Shamelessly took inspirations from the times of *Thermal Expansion*, *Greg Tech*, *Industrial Craft*...
 
-Evolves around Vanilla *copper*, *redstone* and *lapis lazuli* (with ingots for each!),
+Evolves around Vanilla *copper*, *redstone* and *lapis lazuli* - with ingots for each!
 with ore processing involving *powders*, *chips* and *dusts*,
-and with **Extras** giving a Vanilla++ feeling.
+with **Extras** giving a Vanilla++ feeling,
+with **Machines** adding powerful blocks!
 
 ## Modules
 
@@ -52,7 +53,7 @@ and with **Extras** giving a Vanilla++ feeling.
   - potions: experience (1 to 9 levels)
 - Awesome **Machines**
   - collector
-  - quarry (with efficency & fortune)
+  - quarry (with efficiency & fortune)
   - crafter / recycler
   - ore processing...
   - item: imprisoner (to capture and release entities)
@@ -85,11 +86,11 @@ This project is licensed under **MIT**.
 Made by **ShkSchneider** with great help from open-sourced codes from the community of modders.
 
 - Special thanks to *Kaupenjoe*: https://github.com/Tutorials-By-Kaupenjoe
-- Most textures are from *GregTech* under **LGPL3**: https://github.com/GregTechCE/GregTech
-- Most machines frames are from *Industrial Foregoing* under **MIT**: https://github.com/InnovativeOnlineIndustries/Industrial-Foregoing
+- Many textures are from *GregTech* under **LGPL3**: https://github.com/GregTechCE/GregTech
+- Many machines frames are from *Industrial Foregoing* under **MIT**: https://github.com/InnovativeOnlineIndustries/Industrial-Foregoing
 
 - Logo based off https://www.iconfinder.com/icons/185592/table_crafting_icon
-- Redstone Flux from **Thermal Foundation**'s *Petrotheum Dust* and *Signalum Blend*
+- Flux from **Thermal Foundation**'s *Petrotheum Dust* and *Signalum Blend*
 - Imprisoner from https://ftb.fandom.com/wiki/Mob_Imprisonment_Tool
 - Prospector based off https://www.iconfinder.com/icons/9044628/machine_learning_icon
 - Crate based off https://www.iconfinder.com/icons/3338964/business_tools_crate_box_wood_wood_box_icon

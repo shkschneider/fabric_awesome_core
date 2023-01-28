@@ -1,7 +1,9 @@
 package io.github.shkschneider.awesome.machines.collector
 
 import io.github.shkschneider.awesome.AwesomeMachines
-import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
+import io.github.shkschneider.awesome.machines.AwesomeMachine
+import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
+import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
@@ -9,16 +11,23 @@ import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.slot.SlotActionType
 import net.minecraft.text.Text
 
+@Suppress("RemoveRedundantQualifierName")
 class CollectorScreen(
-    name: String,
-    handler: Handler,
+    machine: AwesomeMachine<CollectorBlock.Entity, CollectorScreen.Handler>,
+    handler: CollectorScreen.Handler,
     playerInventory: PlayerInventory,
-    title: Text,
-) : AwesomeMachineBlockScreen<CollectorScreen.Handler>(name, handler, playerInventory, title) {
+    title: Text?,
+) : AwesomeMachineScreen<CollectorBlock.Entity, CollectorScreen.Handler>(machine, handler, playerInventory, title) {
 
-    class Handler(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : AwesomeMachineBlockScreen.Handler(
-        AwesomeMachines.collector.screen, syncId, sidedInventory, playerInventory, properties
-    ) {
+    class Handler : AwesomeMachineScreenHandler<CollectorBlock.Entity> {
+
+        constructor(syncId: Int, blockEntity: CollectorBlock.Entity, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
+            AwesomeMachines.collector.screen, syncId, blockEntity, playerInventory, properties
+        )
+        constructor(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
+            AwesomeMachines.collector.screen, syncId, sidedInventory, playerInventory, properties)
+
+        private val machine: AwesomeMachine<CollectorBlock.Entity, CollectorScreen.Handler> get() = AwesomeMachines.collector
 
         init {
             addProperties(properties)
@@ -31,7 +40,7 @@ class CollectorScreen(
         }
 
         override fun onSlotClick(slotIndex: Int, button: Int, actionType: SlotActionType, player: PlayerEntity) {
-            if (slotIndex in 0 until Collector.IO.inputs.first) {
+            if (slotIndex in 0 until machine.io.inputs.first) {
                 {}
             } else {
                 super.onSlotClick(slotIndex, button, actionType, player)

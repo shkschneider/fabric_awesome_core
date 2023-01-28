@@ -2,7 +2,9 @@ package io.github.shkschneider.awesome.machines.crafter
 
 import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.core.ext.getStacks
-import io.github.shkschneider.awesome.machines.AwesomeMachineBlockScreen
+import io.github.shkschneider.awesome.machines.AwesomeMachine
+import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
+import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
@@ -14,30 +16,31 @@ import net.minecraft.screen.slot.SlotActionType
 import net.minecraft.text.Text
 import kotlin.math.roundToInt
 
+@Suppress("RemoveRedundantQualifierName")
 class CrafterScreen(
-    name: String,
-    handler: Handler,
+    machine: AwesomeMachine<CrafterBlock.Entity, CrafterScreen.Handler>,
+    handler: CrafterScreen.Handler,
     playerInventory: PlayerInventory,
-    title: Text,
-) : AwesomeMachineBlockScreen<CrafterScreen.Handler>(name, handler, playerInventory, title) {
+    title: Text?,
+) : AwesomeMachineScreen<CrafterBlock.Entity, CrafterScreen.Handler>(machine, handler, playerInventory, title) {
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
-        setShader()
         if (handler.progress > 0) {
-            val progress = (handler.percent * 76.0).roundToInt()
+            val progress = ((handler.progress.toFloat() / handler.duration.toFloat()) * 76.0).roundToInt()
             drawTexture(matrices, x + 64 - 1, y + 49 - 1, 176, 32, progress, 48 - 32)
         }
     }
 
-    class Handler(
-        syncId: Int,
-        private val sidedInventory: SidedInventory,
-        private val playerInventory: PlayerInventory,
-        properties: PropertyDelegate,
-    ) : AwesomeMachineBlockScreen.Handler(
-        AwesomeMachines.crafter.screen, syncId, sidedInventory, playerInventory, properties
-    ) {
+    class Handler : AwesomeMachineScreenHandler<CrafterBlock.Entity> {
+
+        constructor(syncId: Int, blockEntity: CrafterBlock.Entity, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
+            AwesomeMachines.crafter.screen, syncId, blockEntity, playerInventory, properties
+        )
+        constructor(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
+            AwesomeMachines.crafter.screen, syncId, sidedInventory, playerInventory, properties)
+
+        private val machine: AwesomeMachine<CrafterBlock.Entity, CrafterScreen.Handler> get() = AwesomeMachines.crafter
 
         init {
             addProperties(properties)
@@ -58,10 +61,10 @@ class CrafterScreen(
             canInsertIntoSlot(slot) && (sidedInventory.getStacks().any { it.isEmpty || it.item == stack.item })
 
         override fun canInsertIntoSlot(slot: Slot): Boolean =
-            Crafter.IO.isInput(slot.index) && (slot.index < Crafter.INVENTORY || slot.index >= Crafter.IO.size)
+            machine.io.isInput(slot.index) && (slot.index < Crafter.INVENTORY || slot.index >= machine.io.size)
 
         override fun onSlotClick(slotIndex: Int, button: Int, actionType: SlotActionType, player: PlayerEntity) {
-            if (slotIndex in (Crafter.INVENTORY until Crafter.IO.inputs.first)) {
+            if (slotIndex in (Crafter.INVENTORY until machine.io.inputs.first)) {
                 slots[slotIndex].stack = ItemStack(cursorStack.item, 1)
             } else {
                 super.onSlotClick(slotIndex, button, actionType, player)
@@ -69,9 +72,9 @@ class CrafterScreen(
         }
 
         override fun quickMove(player: PlayerEntity, i: Int): ItemStack =
-            if (i in (0 until Crafter.INVENTORY) || i == Crafter.IO.size - 1) {
+            if (i in (0 until Crafter.INVENTORY) || i == machine.io.size - 1) {
                 super.quickMove(player, i)
-            } else if (i >= Crafter.IO.size) {
+            } else if (i >= machine.io.size) {
                 internalQuickMove(i)
             } else {
                 ItemStack.EMPTY

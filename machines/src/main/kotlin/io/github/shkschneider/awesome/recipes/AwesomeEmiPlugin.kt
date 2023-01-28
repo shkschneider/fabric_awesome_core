@@ -12,10 +12,6 @@ import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.machines.AwesomeMachine
-import io.github.shkschneider.awesome.machines.crusher.Crusher
-import io.github.shkschneider.awesome.machines.infuser.Infuser
-import io.github.shkschneider.awesome.machines.refinery.Refinery
-import io.github.shkschneider.awesome.machines.smelter.Smelter
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.inventory.Inventory
@@ -26,15 +22,15 @@ import net.minecraft.util.Identifier
 class AwesomeEmiPlugin : EmiPlugin {
 
     override fun register(registry: EmiRegistry) {
-        addWorkstationAndRecipes(registry, AwesomeMachines.crusher, Crusher.RECIPES)
-        addWorkstationAndRecipes(registry, AwesomeMachines.infuser, Infuser.RECIPES)
-        addWorkstationAndRecipes(registry, AwesomeMachines.refinery, Refinery.RECIPES)
-        addWorkstationAndRecipes(registry, AwesomeMachines.smelter, Smelter.RECIPES)
+        addWorkstationAndRecipes(registry, AwesomeMachines.crusher, AwesomeMachines.crusher.recipes)
+        addWorkstationAndRecipes(registry, AwesomeMachines.infuser, AwesomeMachines.infuser.recipes)
+        addWorkstationAndRecipes(registry, AwesomeMachines.refinery, AwesomeMachines.refinery.recipes)
+        addWorkstationAndRecipes(registry, AwesomeMachines.smelter, AwesomeMachines.smelter.recipes)
     }
 
-    private fun addWorkstationAndRecipes(registry: EmiRegistry, machine: AwesomeMachine<*, *, *>, recipes: List<AwesomeRecipe<*>>) {
+    private fun addWorkstationAndRecipes(registry: EmiRegistry, machine: AwesomeMachine<*, *>, recipes: List<AwesomeRecipe<*>>) {
         with(registry) {
-            val category = EmiRecipeCategory(machine.id, EmiStack.of(machine.block.asItem()))
+            val category = EmiRecipeCategory(AwesomeUtils.identifier(machine.id), EmiStack.of(machine.block.asItem()))
             addCategory(category)
             addWorkstation(category, EmiStack.of(machine.block.asItem()))
             recipes.forEach { recipe ->

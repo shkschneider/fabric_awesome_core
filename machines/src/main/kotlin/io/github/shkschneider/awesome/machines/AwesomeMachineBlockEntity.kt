@@ -1,71 +1,56 @@
 package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.core.AwesomeBlockEntity
-import io.github.shkschneider.awesome.core.AwesomeBlockScreen
-import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.custom.InputOutput
+import io.github.shkschneider.awesome.custom.Minecraft
 import net.minecraft.block.BlockState
-import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.ItemStack
-import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.screen.PropertyDelegate
+import net.minecraft.screen.ScreenHandler
 import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 
-abstract class AwesomeMachineBlockEntity(
-    private val id: String,
-    type: BlockEntityType<out AwesomeMachineBlockEntity>,
+abstract class AwesomeMachineBlockEntity<BE : AwesomeBlockEntity.WithInventory, SH : AwesomeMachineScreenHandler<BE>>(
+    protected val machine: AwesomeMachine<BE, SH>,
     pos: BlockPos,
     state: BlockState,
-    io: InputOutput,
-    private val recipes: List<AwesomeRecipe<out AwesomeMachineBlockEntity>>,
-    private val screenHandlerProvider: (syncId: Int, blockEntity: AwesomeMachineBlockEntity, playerInventory: PlayerInventory, properties: PropertyDelegate) -> AwesomeBlockScreen.Handler,
-) : AwesomeBlockEntity.WithInventory(id, type, pos, state, io, PROPERTIES to 0), NamedScreenHandlerFactory {
+) : AwesomeBlockEntity.WithInventory(
+    id = machine.id,
+    type = machine.block.entityType,
+    pos = pos,
+    state = state,
+    io = machine.io,
+    delegates = machine.properties to 0,
+), AwesomeBlockEntity.WithScreen {
 
-    //region Properties
-
-    companion object {
-
-        const val PROPERTIES = 3
-
-    }
-
-    var power: Int
+    var progress: Int
         get() = properties.get(0)
         set(value) = properties.set(0, value)
-    var progress: Int
+    var duration: Int
         get() = properties.get(1)
         set(value) = properties.set(1, value)
-    var duration: Int
-        get() = properties.get(2)
-        set(value) = properties.set(2, value)
 
-    //endregion
-
-    //region Inventory
-
-    override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
-        super.canInsert(slot, stack, dir)
-                && recipes.any { recipe -> recipe.inputs.any { it.item == stack.item } }
-
-    override fun canExtract(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
-        super.canExtract(slot, stack, dir)
-                && recipes.any { recipe -> recipe.output.item == stack.item }
-
-    //endregion
-
-    //region ScreenHandler
+    init {
+        progress = 0
+        duration = Minecraft.TICKS
+    }
 
     override fun getDisplayName(): Text =
-        Text.translatable(AwesomeUtils.translatable("block", id))
+        Text.translatable(AwesomeUtils.translatable("block", machine.id))
 
-    override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): AwesomeBlockScreen.Handler =
-        screenHandlerProvider(syncId, this, playerInventory, properties)
+    override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): ScreenHandler =
+        screen(syncId, this as SidedInventory, playerInventory, properties)
 
-    //endregion
+    abstract fun screen(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate): ScreenHandler
+
+    override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
+        io.isInput(slot)
+
+    override fun canExtract(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
+        io.isOutput(slot)
 
 }

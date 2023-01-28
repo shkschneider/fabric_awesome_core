@@ -56,8 +56,8 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
     abstract class Handler(
         screen: ScreenHandlerType<*>,
         syncId: Int,
-        private val sidedInventory: Inventory,
-        private val playerInventory: PlayerInventory,
+        protected val sidedInventory: Inventory,
+        protected val playerInventory: PlayerInventory,
         protected val properties: PropertyDelegate,
     ) : ScreenHandler(screen, syncId) {
 
@@ -87,6 +87,28 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
                 addSlot(Slot(playerInventory, i, 8 + i * 18, 142))
             }
         }
+
+//        protected fun drawInputOutputs(matrices: MatrixStack, io: InputOutput) {
+//            val input = 177 to 91
+//            val output = 177 to 101
+//            val w = 161 - 153
+//            val h = 12 - 4
+//            if (io.inputs.second.any { it is Faces.Top }) {
+//                drawTexture(matrices, x + 153, y + 4, input.first, input.second, w, h)
+//            }
+//            if (io.inputs.second.any { it is Faces.Sides && it.left }) {
+//                drawTexture(matrices, x + 143, y + 14, input.first, input.second, w, h)
+//            }
+//            if (io.inputs.second.any { it is Faces.Sides && it.right }) {
+//                drawTexture(matrices, x + 163, y + 14, input.first, input.second, w, h)
+//            }
+//            if (io.outputs.second.any { it is Faces.Bottom }) {
+//                drawTexture(matrices, x + 153, y + 24, output.first, output.second, w, h)
+//            }
+//            if (io.outputs.second.any { it is Faces.Back }) {
+//                drawTexture(matrices, x + 163, y + 24, output.first, output.second, w, h)
+//            }
+//        }
 
         /**
          * Thanks to Kaupenjoe
