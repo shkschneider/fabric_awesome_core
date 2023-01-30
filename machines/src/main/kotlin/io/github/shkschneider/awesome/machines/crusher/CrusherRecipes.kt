@@ -4,6 +4,7 @@ import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.AwesomeRecipeType
 import io.github.shkschneider.awesome.items.AwesomeItems
+import net.minecraft.block.Blocks
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 
@@ -48,6 +49,8 @@ object CrusherRecipes {
         if (Awesome.CONFIG.machines.sandFromGravel) {
             add(AwesomeRecipe(CRUSHING, listOf(ItemStack(Items.GRAVEL, 1)), time = 20, ItemStack(Items.SAND, 1)))
         }
+    }.apply {
+        add(AwesomeRecipe(CRUSHING, listOf(ItemStack(Blocks.ANCIENT_DEBRIS, 1)), time = 200, ItemStack(Items.NETHERITE_SCRAP, 1)))
     }
 
 }

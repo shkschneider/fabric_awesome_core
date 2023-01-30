@@ -5,8 +5,8 @@ import io.github.shkschneider.awesome.core.AwesomeItem
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.registry.FuelRegistry
+import net.minecraft.block.Blocks
 import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
 import net.minecraft.util.Rarity
 
 class Flux : AwesomeItem(
@@ -15,7 +15,7 @@ class Flux : AwesomeItem(
     group = Awesome.GROUP,
 ) {
 
-    val time = FuelRegistry.INSTANCE.get(Items.COAL) * 2 // ~3200t
+    val time: Int = FuelRegistry.INSTANCE.get(Blocks.COAL_BLOCK)
 
     override fun hasGlint(stack: ItemStack): Boolean = false
 

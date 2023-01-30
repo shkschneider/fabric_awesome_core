@@ -47,6 +47,7 @@ data class AwesomeConfig(
         @SerializedName("fluxAsVanillaFuel") val fluxAsVanillaFuel: Boolean = true,
         @SerializedName("gravelFromCobblestone") val gravelFromCobblestone: Boolean = true,
         @SerializedName("imprisoner") val imprisoner: Boolean = true,
+        @SerializedName("moreNetherite") val moreNetherite: Boolean = true,
         @SerializedName("prospector") val prospector: Boolean = true,
         @SerializedName("quarry") val quarry: Boolean = true,
         @SerializedName("redstoneFromCrushingNetherrack") val redstoneFromCrushingNetherrack: Boolean = true,

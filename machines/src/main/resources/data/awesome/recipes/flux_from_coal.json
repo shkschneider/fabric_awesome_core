@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:redstone" },
+    { "item": "awesome:lapis_dust" },
+    { "item": "minecraft:coal" }
+  ],
+  "result": {
+    "item": "awesome:flux",
+    "count": 2
+  }
+}
