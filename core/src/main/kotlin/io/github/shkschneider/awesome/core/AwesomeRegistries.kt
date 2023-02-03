@@ -96,8 +96,10 @@ object AwesomeRegistries {
     fun <T : HostileEntity> hostileEntity(id: Identifier, builder: FabricEntityTypeBuilder<T>): EntityType<T> =
         Registry.register(Registries.ENTITY_TYPE, id, builder.build())
 
-    fun item(id: Identifier, item: Item, group: ItemGroup): Item =
-        Registry.register(Registries.ITEM, id, item).also { group(group, it) }
+    fun item(id: Identifier, item: Item, group: ItemGroup?): Item =
+        Registry.register(Registries.ITEM, id, item).also {
+            if (group != null) group(group, it)
+        }
 
     fun potion(name: String, effectInstance: StatusEffectInstance, recipe: Pair<Potion, Item>?): Potion =
         Registry.register(Registries.POTION, name, Potion(effectInstance)).also {
