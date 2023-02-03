@@ -11,7 +11,7 @@ object RefineryRecipes {
     private val REFINING = AwesomeRecipeType<AwesomeRecipe<RefineryBlock.Entity>>()
 
     operator fun invoke(): List<AwesomeRecipe<RefineryBlock.Entity>> = mutableListOf(
-        // Ore+Water -> Chip
+        // Ore -> Chip
         AwesomeRecipe(REFINING, listOf(ItemStack(Items.COAL_ORE, 1)), time = 20, ItemStack(AwesomeItems.Coal.chip, 8)),
         AwesomeRecipe(REFINING, listOf(ItemStack(Items.COPPER_ORE, 1)), time = 20, ItemStack(AwesomeItems.Copper.chip, 8)),
         AwesomeRecipe(REFINING, listOf(ItemStack(Items.DEEPSLATE_COAL_ORE, 1)), time = 20, ItemStack(AwesomeItems.Coal.chip, 8)),

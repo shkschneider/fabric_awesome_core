@@ -25,6 +25,8 @@ class AwesomeMachineTicker<BE : AwesomeBlockEntity.WithInventory, SH : AwesomeMa
         }
     }
 
+    // I/O
+
     private fun getInputs(): List<ItemStack> =
         // remove 1 slot because fuel is the last input
         inventory.getStacks().take(io.inputs)
@@ -46,47 +48,53 @@ class AwesomeMachineTicker<BE : AwesomeBlockEntity.WithInventory, SH : AwesomeMa
             }
         }
 
+    // State
+
+    private fun on() {
+        entity.setPropertyState(entity.state.with(Properties.LIT, true))
+    }
+
+    private fun off() {
+        entity.setPropertyState(entity.state.with(Properties.LIT, false))
+        entity.duration = 0
+        entity.progress = 0
+    }
+
+    // Tick
+
     operator fun invoke(world: World): Int {
         if (world.isClient) return 0
-        with(entity) {
-            fun on() {
-                setPropertyState(state.with(Properties.LIT, true))
-            }
-            fun off() {
-                setPropertyState(state.with(Properties.LIT, false))
-                duration = 0
-                progress = 0
-            }
-            if (io.fueled && fuel > 0) fuel--
-            if (recipes == null) { off() ; return -1 }
-            getRecipe()?.let { recipe ->
-                if (duration > 0) progress++
-                if (progress > 0) on()
-                if (io.fueled) {
-                    if (fuel == 0) {
-                        if (getFuel().count > 0) {
-                            getFuel().count--
-                            fuel += AwesomeMachines.fuel.time
-                        } else {
-                            off()
-                            return 1
-                        }
-                    }
+        val recipe = getRecipe()
+        if (io.fueled) {
+            if (entity.fuel > 0) {
+                entity.fuel--
+                on()
+            } else if (recipe != null && entity.fuel == 0) {
+                if (getFuel().count > 0) {
+                    getFuel().count--
+                    entity.fuel += AwesomeMachines.fuel.time
+                } else {
+                    off()
+                    return 0
                 }
-                if (duration == 0) {
-                    duration = recipe.time
-                    progress = 0
-                } else if (progress >= duration) {
-                    craft(recipe)
-                    duration = recipe.time
-                    progress = 0
-                }
-            } ?: run {
-                off()
-                return -2
             }
         }
-        return entity.duration - entity.progress
+        if (recipe != null) {
+            on()
+            if (entity.duration > 0) entity.progress++
+            if (entity.duration == 0) {
+                entity.duration = recipe.time
+                entity.progress = 0
+            } else if (entity.progress >= entity.duration) {
+                craft(recipe)
+                entity.duration = recipe.time
+                entity.progress = 0
+            }
+            return entity.duration - entity.progress
+        } else {
+            off()
+            return 0
+        }
     }
 
     private fun craft(recipe: AwesomeRecipe<out Inventory>) {

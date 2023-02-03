@@ -4,6 +4,7 @@ import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.AwesomeRecipeType
 import io.github.shkschneider.awesome.items.AwesomeItems
+import net.minecraft.block.Blocks
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 
@@ -36,7 +37,7 @@ object InfuserRecipes {
         AwesomeRecipe(INFUSING, listOf(ItemStack(AwesomeItems.Redstone.chip, 4), ItemStack(Awesome.flux, 1)), time = 20, ItemStack(AwesomeItems.Redstone.powder, 8)),
     ).apply {
         if (Awesome.CONFIG.machines.moreNetherite) {
-            add(AwesomeRecipe(INFUSING, listOf(ItemStack(Items.NETHERITE_SCRAP, 1), ItemStack(Items.GOLD_INGOT, 1)), time = 200, ItemStack(Items.NETHERITE_INGOT, 1)))
+            add(AwesomeRecipe(INFUSING, listOf(ItemStack(Items.NETHERITE_SCRAP, 1), ItemStack(Blocks.GOLD_BLOCK, 1)), time = 200, ItemStack(Items.NETHERITE_INGOT, 1)))
         }
     }
 

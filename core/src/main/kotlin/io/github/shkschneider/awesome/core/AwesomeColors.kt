@@ -2,6 +2,7 @@ package io.github.shkschneider.awesome.core
 
 /**
  * Link: https://www.htmlcsscolor.com
+ * Link: https://colorswall.com/palette/3847
  */
 object AwesomeColors {
 
