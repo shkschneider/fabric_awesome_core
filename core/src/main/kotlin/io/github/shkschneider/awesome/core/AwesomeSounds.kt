@@ -10,6 +10,7 @@ object AwesomeSounds {
 
     val teleport = SoundEvents.ENTITY_ENDERMAN_TELEPORT to SoundCategory.PLAYERS
     val experience = SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP to SoundCategory.PLAYERS
+    val crop = SoundEvents.BLOCK_CROP_BREAK to SoundCategory.AMBIENT
 
     operator fun invoke(where: Pair<World, BlockPos>, sound: Pair<SoundEvent, SoundCategory>): Boolean {
         val world = where.first

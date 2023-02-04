@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome
 
-import io.github.shkschneider.awesome.extras.Baguette
 import io.github.shkschneider.awesome.extras.GameRulesOverrides
 import io.github.shkschneider.awesome.extras.KeepXpGameRule
 import io.github.shkschneider.awesome.extras.SleepingHeals
@@ -10,6 +9,8 @@ import io.github.shkschneider.awesome.extras.budding.BuddingRedstoneBlock
 import io.github.shkschneider.awesome.extras.crate.Crate
 import io.github.shkschneider.awesome.extras.elevator.Elevator
 import io.github.shkschneider.awesome.extras.entities.AwesomeEntities
+import io.github.shkschneider.awesome.extras.items.Baguette
+import io.github.shkschneider.awesome.extras.items.Scythe
 import io.github.shkschneider.awesome.extras.randomium.Randomium
 import io.github.shkschneider.awesome.extras.void.Void
 
@@ -25,6 +26,7 @@ object AwesomeExtras {
         if (Awesome.CONFIG.extras.entities) AwesomeEntities()
         if (Awesome.CONFIG.extras.gameRulesOverrides) GameRulesOverrides()
         if (Awesome.CONFIG.extras.randomium) Randomium()
+        if (Awesome.CONFIG.extras.scythe) Scythe()
         if (Awesome.CONFIG.extras.sleepingHeals) SleepingHeals()
         if (Awesome.CONFIG.extras.void) Void()
         if (Awesome.CONFIG.extras.zenithLengthInDays + Awesome.CONFIG.extras.nadirLengthInDays > 0F) ZenithNadirLengths()

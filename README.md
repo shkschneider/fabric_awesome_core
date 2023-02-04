@@ -36,6 +36,7 @@ with **Machines** adding powerful blocks!
   - a 2-way trash slot in your inventory that only clears upon closing
   - early game crates that retain inventory
   - elevators to teleport vertically
+  - scythe to clear grass
   - worldgen: randomium (random ore & teleports)
   - hero... herobrine?!
 - Awesome **Commands**
