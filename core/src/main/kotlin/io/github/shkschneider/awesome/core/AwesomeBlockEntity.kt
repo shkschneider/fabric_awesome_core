@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.core
 
+import io.github.shkschneider.awesome.core.ext.getStacks
 import io.github.shkschneider.awesome.core.ext.readNbt
 import io.github.shkschneider.awesome.core.ext.relativeFace
 import io.github.shkschneider.awesome.core.ext.writeNbt
@@ -91,6 +92,23 @@ abstract class AwesomeBlockEntity(
         override fun canExtract(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
             if (dir == null) io.isOutput(slot)
             else io.canExtract(slot, dir.relativeFace(state))
+
+        open fun insert(stack: ItemStack): ItemStack {
+            val stacks = getStacks().mapIndexed { index, itemStack -> index to itemStack }
+            stacks.filter { it.second.item == stack.item }.map { it.first }.forEach { slot ->
+                if (stack.isEmpty) return@forEach
+                while (stack.count > 0 && getStack(slot).count < getStack(slot).maxCount) {
+                    getStack(slot).count++
+                    stack.count--
+                }
+            }
+            stacks.filter { it.second.isEmpty }.map { it.first }.forEach { slot ->
+                setStack(slot, stack.copy())
+                stack.count = 0
+            }
+            markDirty()
+            return stack
+        }
 
         public override fun writeNbt(nbt: NbtCompound) {
             super.writeNbt(nbt)

@@ -1,7 +1,6 @@
 package io.github.shkschneider.awesome.custom
 
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.core.Event
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents
 import net.minecraft.enchantment.Enchantments
 import net.minecraft.item.Items

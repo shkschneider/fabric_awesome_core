@@ -8,7 +8,8 @@ import net.minecraft.world.World
 
 object AwesomeSounds {
 
-    val teleport = SoundEvents.ENTITY_ENDERMAN_TELEPORT to SoundCategory.NEUTRAL
+    val teleport = SoundEvents.ENTITY_ENDERMAN_TELEPORT to SoundCategory.PLAYERS
+    val experience = SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP to SoundCategory.PLAYERS
 
     operator fun invoke(where: Pair<World, BlockPos>, sound: Pair<SoundEvent, SoundCategory>): Boolean {
         val world = where.first

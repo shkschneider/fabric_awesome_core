@@ -1,4 +1,6 @@
 {
+  "block.awesome.obelisk": "Obelisk",
+  "block.awesome.obelisk.hint": "Stores knowledge!",
   "effect.minecraft.experience1": "Experience (1)",
   "effect.minecraft.experience9": "Experience (9)",
   "effect.minecraft.magnetism": "Magnetism",

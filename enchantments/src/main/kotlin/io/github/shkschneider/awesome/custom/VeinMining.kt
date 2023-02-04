@@ -1,7 +1,6 @@
 package io.github.shkschneider.awesome.custom
 
 import io.github.shkschneider.awesome.AwesomeEnchantments
-import io.github.shkschneider.awesome.core.Event
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
 import net.minecraft.block.ExperienceDroppingBlock

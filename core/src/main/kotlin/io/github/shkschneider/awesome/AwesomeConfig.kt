@@ -13,6 +13,7 @@ data class AwesomeConfig(
         @SerializedName("experience") val experience: Boolean = true,
         @SerializedName("infinity") val infinity: Boolean = true,
         @SerializedName("magnetism") val magnetism: Boolean = true,
+        @SerializedName("obelisk") val obelisk: Boolean = true,
         @SerializedName("oreXp") val oreXp: Boolean = true,
         @SerializedName("silkTouchSpawners") val silkTouchSpawners: Boolean = true,
         @SerializedName("unbreakable") val unbreakable: Boolean = true,

@@ -10,6 +10,7 @@ import io.github.shkschneider.awesome.enchantments.MagnetismEnchantment
 import io.github.shkschneider.awesome.enchantments.PoisonAspectEnchantment
 import io.github.shkschneider.awesome.enchantments.UnbreakableEnchantment
 import io.github.shkschneider.awesome.enchantments.VeinMiningEnchantment
+import io.github.shkschneider.awesome.obelisk.ObeliskBlock
 import io.github.shkschneider.awesome.potions.AwesomePotions
 
 object AwesomeEnchantments {
@@ -46,12 +47,9 @@ object AwesomeEnchantments {
             _iceAspect = IceAspectEnchantment()
             _poisonAspect = PoisonAspectEnchantment()
         }
-        if (Awesome.CONFIG.enchantments.oreXp) {
-            OreXp()
-        }
-        if (Awesome.CONFIG.enchantments.silkTouchSpawners) {
-            SilkTouchSpawners()
-        }
+        if (Awesome.CONFIG.enchantments.obelisk) ObeliskBlock()
+        if (Awesome.CONFIG.enchantments.oreXp) OreXp()
+        if (Awesome.CONFIG.enchantments.silkTouchSpawners) SilkTouchSpawners()
     }
 
 }

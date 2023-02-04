@@ -3,7 +3,7 @@ package io.github.shkschneider.awesome.enchantments
 import io.github.shkschneider.awesome.AwesomeEnchantments
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.core.Event
+import io.github.shkschneider.awesome.custom.Event
 import io.github.shkschneider.awesome.custom.Magnetism
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.enchantment.EnchantmentHelper

@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.extras
 
-import io.github.shkschneider.awesome.core.Event
+import io.github.shkschneider.awesome.custom.Event
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.effect.StatusEffectInstance

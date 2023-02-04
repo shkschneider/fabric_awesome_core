@@ -1,6 +1,4 @@
-package io.github.shkschneider.awesome.custom
-
-import io.github.shkschneider.awesome.core.AwesomeTime
+package io.github.shkschneider.awesome.core
 
 data class AwesomeClock(
     val days: Int,

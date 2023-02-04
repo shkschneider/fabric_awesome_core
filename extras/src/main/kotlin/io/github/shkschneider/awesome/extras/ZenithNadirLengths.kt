@@ -1,11 +1,11 @@
 package io.github.shkschneider.awesome.extras
 
 import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.core.AwesomeClock
 import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeTime
-import io.github.shkschneider.awesome.core.Event
 import io.github.shkschneider.awesome.core.ext.clock
-import io.github.shkschneider.awesome.custom.AwesomeClock
+import io.github.shkschneider.awesome.custom.Event
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
 import net.minecraft.world.GameRules
 import net.minecraft.world.World

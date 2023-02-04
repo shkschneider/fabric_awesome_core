@@ -2,7 +2,6 @@ package io.github.shkschneider.awesome.custom
 
 import io.github.shkschneider.awesome.core.AwesomeChat
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import io.github.shkschneider.awesome.core.Event
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.minecraft.client.MinecraftClient

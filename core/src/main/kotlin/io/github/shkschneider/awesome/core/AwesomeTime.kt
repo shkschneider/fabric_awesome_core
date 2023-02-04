@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.core
 
+import io.github.shkschneider.awesome.custom.Event
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents
 import net.minecraft.SharedConstants
 import net.minecraft.entity.player.PlayerEntity

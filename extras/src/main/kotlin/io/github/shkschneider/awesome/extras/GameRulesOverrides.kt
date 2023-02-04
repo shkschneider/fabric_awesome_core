@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.extras
 
-import io.github.shkschneider.awesome.core.Event
+import io.github.shkschneider.awesome.custom.Event
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents
 import net.minecraft.world.GameRules
 

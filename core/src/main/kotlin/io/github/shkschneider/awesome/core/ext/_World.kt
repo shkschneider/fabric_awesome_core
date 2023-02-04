@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.core.ext
 
+import io.github.shkschneider.awesome.core.AwesomeClock
 import io.github.shkschneider.awesome.core.AwesomeTime
-import io.github.shkschneider.awesome.custom.AwesomeClock
 import io.github.shkschneider.awesome.custom.Dimensions
 import io.github.shkschneider.awesome.custom.Location
 import net.minecraft.world.World

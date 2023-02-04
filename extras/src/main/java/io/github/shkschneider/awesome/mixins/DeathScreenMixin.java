@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.mixins;
 
+import io.github.shkschneider.awesome.core.AwesomeClock;
 import io.github.shkschneider.awesome.core.AwesomeUtils;
-import io.github.shkschneider.awesome.custom.AwesomeClock;
 import io.github.shkschneider.awesome.custom.Location;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.DeathScreen;

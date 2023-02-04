@@ -43,6 +43,7 @@ with **Machines** adding powerful blocks!
   - `/sethome` `/home`
   - `/back`
 - Awesome **Enchantments**
+  - obelisk to store and retrieve xp 
   - experience (xp from breaking ore blocks)
   - ice & poison aspects
   - infinity bow requires no arrow

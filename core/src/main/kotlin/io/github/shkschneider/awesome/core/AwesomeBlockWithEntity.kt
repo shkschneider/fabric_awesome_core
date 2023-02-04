@@ -107,6 +107,10 @@ abstract class AwesomeBlockWithEntity<BE : BlockEntity>(
                     setBlockEntityTag(builder.get(LootContextParameters.BLOCK_ENTITY) as AwesomeBlockEntity.WithInventory, stack)
                 }
             }
+        } else {
+            (builder.get(LootContextParameters.BLOCK_ENTITY) as? AwesomeBlockEntity.WithInventory)?.let { blockEntity ->
+                ItemScatterer.spawn(builder.world as World, blockEntity.pos as BlockPos, blockEntity as Inventory)
+            }
         }
         return items
     }

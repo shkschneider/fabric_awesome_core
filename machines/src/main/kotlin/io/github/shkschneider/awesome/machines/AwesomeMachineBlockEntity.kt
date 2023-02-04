@@ -65,7 +65,7 @@ abstract class AwesomeMachineBlockEntity<BE : AwesomeBlockEntity.WithInventory, 
     override fun canExtract(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
         io.isOutput(slot)
 
-    fun insert(stack: ItemStack): ItemStack {
+    override fun insert(stack: ItemStack): ItemStack {
         val stacks = getStacks().mapIndexed { index, itemStack -> index to itemStack }.filter { io.isOutput(it.first) }
         stacks.filter { it.second.item == stack.item }.map { it.first }.forEach { slot ->
             if (stack.isEmpty) return@forEach
