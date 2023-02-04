@@ -6,11 +6,14 @@
   "mixins": [
     "DeathScreenMixin",
     "DropXpMixin",
+    "ElevatorCooldownMixin",
+    "ElevatorJumpMixin",
+    "ElevatorSneakMixin",
     "KeepXpMixin",
-    "SpongeMixin",
     "PlayerKillMixin",
     "PlayerRecipesMixin",
     "PvpMixin",
+    "SpongeMixin",
     "TotemOfUndyingMixin",
     "VillagersFollowEmeraldBlockMixin",
     "VillagersInfiniteTradingMixin"

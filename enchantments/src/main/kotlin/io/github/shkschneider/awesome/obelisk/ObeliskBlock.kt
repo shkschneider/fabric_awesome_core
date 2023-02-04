@@ -31,7 +31,7 @@ import net.minecraft.world.BlockView
 import net.minecraft.world.World
 
 class ObeliskBlock : AwesomeBlockWithEntity<ObeliskBlockEntity>(
-    AwesomeUtils.identifier("obelisk"), FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque().noBlockBreakParticles(),
+    AwesomeUtils.identifier("obelisk"), FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).luminance(1).nonOpaque().noBlockBreakParticles(),
 ) {
 
     override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {

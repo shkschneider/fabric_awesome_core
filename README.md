@@ -35,6 +35,7 @@ with **Machines** adding powerful blocks!
   - sponges can absorb lava
   - a 2-way trash slot in your inventory that only clears upon closing
   - early game crates that retain inventory
+  - elevators to teleport vertically
   - worldgen: randomium (random ore & teleports)
   - hero... herobrine?!
 - Awesome **Commands**
@@ -43,7 +44,7 @@ with **Machines** adding powerful blocks!
   - `/sethome` `/home`
   - `/back`
 - Awesome **Enchantments**
-  - obelisk to store and retrieve xp 
+  - obelisk to store and retrieve xp
   - experience (xp from breaking ore blocks)
   - ice & poison aspects
   - infinity bow requires no arrow

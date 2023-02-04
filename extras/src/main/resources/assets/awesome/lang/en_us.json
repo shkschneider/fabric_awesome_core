@@ -3,6 +3,8 @@
   "block.awesome.budding_redstone": "Budding Redstone",
   "block.awesome.crate": "Crate",
   "block.awesome.deepslate_randomium_ore": "Deepslate Randomium Ore",
+  "block.awesome.elevator": "Elevator",
+  "block.awesome.elevator.hint": "Teleports vertically!",
   "block.awesome.end_randomium_ore": "End Randomium Ore",
   "block.awesome.randomium_ore": "Randomium Ore",
   "block.awesome.void": "Void",
