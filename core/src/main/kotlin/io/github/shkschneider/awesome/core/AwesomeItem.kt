@@ -36,7 +36,7 @@ abstract class AwesomeItem(
             if (AwesomeInputs.shift()) {
                 tooltip.add(text)
             } else {
-                tooltip.add(Text.translatable(AwesomeUtils.translatable("item", "hint")).formatted(Formatting.GRAY))
+                tooltip.add(Text.translatable(AwesomeUtils.translatable("item", id.path, "hint")).formatted(Formatting.GRAY))
             }
         }
     }

@@ -32,6 +32,7 @@ data class AwesomeConfig(
         @SerializedName("playerHeads") val playerHeads: Boolean = true,
         @SerializedName("pvp") val pvp: Boolean = true,
         @SerializedName("randomium") val randomium: Boolean = true,
+        @SerializedName("rope") val rope: Boolean = true,
         @SerializedName("scythe") val scythe: Boolean = true,
         @SerializedName("sleepingHeals") val sleepingHeals: Boolean = true,
         @SerializedName("spawnEggs") val spawnEggs: Boolean = true,

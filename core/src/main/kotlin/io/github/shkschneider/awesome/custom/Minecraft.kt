@@ -15,6 +15,7 @@ object Minecraft {
     val isClient get() = FabricLoader.getInstance().environmentType == EnvType.CLIENT
 
     const val CHUNK = SharedConstants.CHUNK_WIDTH
+    @Deprecated("Use world.topY/bottomY")
     const val HEIGHT = SharedConstants.DEFAULT_WORLD_HEIGHT
     const val PORT = SharedConstants.DEFAULT_PORT
     const val STACK = 64

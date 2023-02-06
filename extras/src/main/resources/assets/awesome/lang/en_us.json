@@ -7,6 +7,8 @@
   "block.awesome.elevator.hint": "Teleports vertically!",
   "block.awesome.end_randomium_ore": "End Randomium Ore",
   "block.awesome.randomium_ore": "Randomium Ore",
+  "block.awesome.rope": "Rope",
+  "block.awesome.rope.hint": "To climb up and down!",
   "block.awesome.void": "Void",
   "block.awesome.void.hint": "Mesmerizing !",
   "entity.awesome.herobrine": "Herobrine",

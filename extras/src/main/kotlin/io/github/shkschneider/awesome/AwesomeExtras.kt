@@ -12,6 +12,7 @@ import io.github.shkschneider.awesome.extras.entities.AwesomeEntities
 import io.github.shkschneider.awesome.extras.items.Baguette
 import io.github.shkschneider.awesome.extras.items.Scythe
 import io.github.shkschneider.awesome.extras.randomium.Randomium
+import io.github.shkschneider.awesome.extras.rope.Rope
 import io.github.shkschneider.awesome.extras.void.Void
 
 object AwesomeExtras {
@@ -26,6 +27,7 @@ object AwesomeExtras {
         if (Awesome.CONFIG.extras.entities) AwesomeEntities()
         if (Awesome.CONFIG.extras.gameRulesOverrides) GameRulesOverrides()
         if (Awesome.CONFIG.extras.randomium) Randomium()
+        if (Awesome.CONFIG.extras.rope) Rope()
         if (Awesome.CONFIG.extras.scythe) Scythe()
         if (Awesome.CONFIG.extras.sleepingHeals) SleepingHeals()
         if (Awesome.CONFIG.extras.void) Void()

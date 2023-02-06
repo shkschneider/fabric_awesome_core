@@ -1,13 +1,9 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "1  ",
-    "1  ",
-    "   "
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:bread" },
+    { "item": "minecraft:bread" }
   ],
-  "key": {
-    "1": { "item": "minecraft:bread" }
-  },
   "result": {
     "item": "awesome:baguette",
     "count": 1

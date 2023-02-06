@@ -1,7 +1,9 @@
 package io.github.shkschneider.awesome.extras.elevator
 
 import io.github.shkschneider.awesome.Awesome
+import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeSounds
+import io.github.shkschneider.awesome.core.ext.copy
 import io.github.shkschneider.awesome.custom.Minecraft
 import io.github.shkschneider.awesome.mixins.ElevatorCooldownMixin
 import net.minecraft.entity.LivingEntity
@@ -27,13 +29,13 @@ object Elevator {
         val world = player.world
         val at = player.blockPos
         return when (direction) {
-            Direction.UP -> (at.y + 2 until world.height - 2)
-            Direction.DOWN -> (at.y - 2 downTo 0 + 2)
+            Direction.UP -> (at.y + 2 until world.topY - 2)
+            Direction.DOWN -> (at.y - 2 downTo world.bottomY + 2)
             else -> throw IllegalArgumentException()
         }.firstOrNull { y ->
-            world.getBlockState(BlockPos(at.x, y, at.z))?.block == block
+            world.getBlockState(at.copy(y = y))?.block == block
         }?.let { y ->
-            BlockPos(at.x, y + 1, at.z)
+            at.copy(y = y + 1)
         }
     }
 
@@ -54,6 +56,7 @@ object Elevator {
     }
 
     private fun teleport(player: PlayerEntity, target: BlockPos) {
+        AwesomeLogger.debug("Teleporting to $target...")
         (player as ElevatorCooldownMixin).jumpingCooldown = Minecraft.TICKS
         player.requestTeleportAndDismount(target.x + 0.5, target.y.toDouble(), target.z + 0.5)
         AwesomeSounds(player.world to target, AwesomeSounds.teleport)
