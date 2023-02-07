@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.extras.items
+package io.github.shkschneider.awesome.extras.scythe
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeRegistries

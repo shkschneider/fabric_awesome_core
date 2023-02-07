@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "awesome-crystals",
+  "version": "${version}",
+  "name": "Awesome Crystals",
+  "description": "Awesome Crystals...",
+  "authors": [
+    "ShkSchneider"
+  ],
+  "contact": {
+    "homepage": "https://github.com/shkschneider/mc_awesome",
+    "sources": "https://github.com/shkschneider/mc_awesome"
+  },
+  "license": "MIT",
+  "icon": "assets/awesome/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "io.github.shkschneider.awesome.AwesomeCrystalsMod"
+      }
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.14.12",
+    "fabric-api": "*",
+    "minecraft": "~1.19",
+    "java": ">=17",
+    "fabric-language-kotlin": ">=1.9.0+kotlin.1.8.0"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
