@@ -100,7 +100,6 @@ class Rope : AwesomeBlock(
 
     override fun onBreak(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity) {
         if (world.isClient) return
-        drop(world, pos)
         rollup(world, pos)
     }
 
