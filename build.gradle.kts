@@ -8,7 +8,7 @@ import java.net.URL
 
 plugins {
     // https://github.com/JetBrains/kotlin/releases
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.8.10"
     // https://maven.fabricmc.net/fabric-loom/fabric-loom.gradle.plugin/
     id("fabric-loom") version "1.0.17"
 }
@@ -35,10 +35,9 @@ dependencies {
     // runtime mods (for development only)
     listOf(
         // projectId to fileId
-        "emi-580555" to "4337339", // https://www.curseforge.com/minecraft/mc-mods/emi/files
+        "emi-580555" to "4373429", // https://www.curseforge.com/minecraft/mc-mods/emi/files
         "jade-324717" to "4328555", // https://www.curseforge.com/minecraft/mc-mods/jade/files
-        // FIXME Xaero's Minimap (1.19.3_22.17.1_fabric) has crashed!
-        // "xaeros-minimap-263420" to "4338624", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files
+        // FIXME "xaeros-minimap-263420" to "4338624", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files
     ).forEach { mod ->
         modRuntimeOnly("curse.maven:${mod.first}:${mod.second}") { exclude(group = "net.fabricmc") }
     }

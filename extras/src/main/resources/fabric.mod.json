@@ -26,11 +26,11 @@
     "awesome-extras.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.12",
+    "fabricloader": ">=0.14.14",
     "fabric-api": "*",
     "minecraft": "~1.19",
     "java": ">=17",
-    "fabric-language-kotlin": ">=1.9.0+kotlin.1.8.0"
+    "fabric-language-kotlin": ">=1.9.1+kotlin.1.8.10"
   },
   "suggests": {
     "another-mod": "*"
