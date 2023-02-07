@@ -10,6 +10,12 @@ data class AwesomeConfig(
 ) {
 
     data class Crystals(
+        @SerializedName("coal") val coal: Boolean = true,
+        @SerializedName("copper") val copper: Boolean = true,
+        @SerializedName("diamond") val diamond: Boolean = true,
+        @SerializedName("emerald") val emerald: Boolean = true,
+        @SerializedName("gold") val gold: Boolean = true,
+        @SerializedName("iron") val iron: Boolean = true,
         @SerializedName("lapis") val lapis: Boolean = true,
         @SerializedName("redstone") val redstone: Boolean = true,
     )

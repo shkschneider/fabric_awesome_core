@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "awesome:block/copper_crystal",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "awesome:block/copper_crystal",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "awesome:block/copper_crystal",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "awesome:block/copper_crystal",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "awesome:block/copper_crystal"
+    },
+    "facing=west": {
+      "model": "awesome:block/copper_crystal",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

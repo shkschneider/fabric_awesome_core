@@ -6,7 +6,9 @@ import io.github.shkschneider.awesome.custom.Minecraft
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.AmethystClusterBlock
+import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
+import net.minecraft.block.piston.PistonBehavior
 import net.minecraft.client.render.RenderLayer
 import net.minecraft.util.Identifier
 
@@ -27,5 +29,7 @@ class AwesomeCrystalBlock(
             BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), this)
         }
     }
+
+    override fun getPistonBehavior(state: BlockState): PistonBehavior = PistonBehavior.NORMAL
 
 }

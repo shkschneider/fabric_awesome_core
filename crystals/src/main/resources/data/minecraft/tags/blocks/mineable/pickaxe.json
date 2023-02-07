@@ -1,8 +1,19 @@
 {
-  "replace": false,
   "values": [
+    "awesome:budding_coal",
+    "awesome:budding_copper",
+    "awesome:budding_diamond",
+    "awesome:budding_emerald",
+    "awesome:budding_gold",
+    "awesome:budding_iron",
     "awesome:budding_lapis",
     "awesome:budding_redstone",
+    "awesome:coal_crystal",
+    "awesome:copper_crystal",
+    "awesome:diamond_crystal",
+    "awesome:emerald_crystal",
+    "awesome:gold_crystal",
+    "awesome:iron_crystal",
     "awesome:lapis_crystal",
     "awesome:redstone_crystal"
   ]
