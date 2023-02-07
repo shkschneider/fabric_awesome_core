@@ -1,12 +1,14 @@
 package io.github.shkschneider.awesome.crystals
 
 import io.github.shkschneider.awesome.core.AwesomeUtils
+import net.minecraft.item.ItemStack
 
-object AwesomeCrystal {
+class AwesomeCrystal(val id: String, val output: ItemStack) {
 
-    operator fun invoke(id: String) {
-        val crystal = AwesomeCrystalBlock(AwesomeUtils.identifier("${id}_crystal"))
+    val crystal: AwesomeCrystalBlock =
+        AwesomeCrystalBlock(AwesomeUtils.identifier("${id}_crystal"), output)
+
+    val budding: AwesomeBuddingBlock =
         AwesomeBuddingBlock(AwesomeUtils.identifier("budding_${id}"), crystal)
-    }
 
 }

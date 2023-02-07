@@ -13,6 +13,10 @@
   "block.awesome.budding_iron.hint": "Produces Iron!",
   "block.awesome.budding_lapis": "Budding Lapis",
   "block.awesome.budding_lapis.hint": "Produces Lapis!",
+  "block.awesome.budding_netherite": "Budding Netherite",
+  "block.awesome.budding_netherite.hint": "Produces Netherite!",
+  "block.awesome.budding_quartz": "Budding Quartz",
+  "block.awesome.budding_quartz.hint": "Produces Quartz!",
   "block.awesome.budding_redstone": "Budding Redstone",
   "block.awesome.budding_redstone.hint": "Produces Redstone!",
   "block.awesome.coal_crystal": "Coal Crystal",
@@ -22,5 +26,8 @@
   "block.awesome.gold_crystal": "Gold Crystal",
   "block.awesome.iron_crystal": "Iron Crystal",
   "block.awesome.lapis_crystal": "Lapis Crystal",
-  "block.awesome.redstone_crystal": "Redstone Crystal"
+  "block.awesome.netherite_crystal": "Netherite Crystal",
+  "block.awesome.quartz_crystal": "Quartz Crystal",
+  "block.awesome.redstone_crystal": "Redstone Crystal",
+  "emi.category.awesome.budding_crystals": "Budding Crystals"
 }

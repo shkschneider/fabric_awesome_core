@@ -17,6 +17,8 @@ data class AwesomeConfig(
         @SerializedName("gold") val gold: Boolean = true,
         @SerializedName("iron") val iron: Boolean = true,
         @SerializedName("lapis") val lapis: Boolean = true,
+        @SerializedName("netherite") val netherite: Boolean = true,
+        @SerializedName("quartz") val quartz: Boolean = true,
         @SerializedName("redstone") val redstone: Boolean = true,
     )
 
