@@ -2,7 +2,7 @@
 
 > Modularized Vanilla++ & machines mods for Minecraft.
 
-![Minecraft: 1.19.2](https://img.shields.io/badge/minecraft-1.19.2-637f40?style=for-the-badge)
+![Minecraft: 1.19.3](https://img.shields.io/badge/minecraft-1.19.3-637f40?style=for-the-badge)
 ![Mod loader: Fabric](https://img.shields.io/badge/modloader-fabric-926c4d?style=for-the-badge)
 ![Language: Kotlin](https://img.shields.io/badge/language-kotlin-a97bff?style=for-the-badge)
 [![build](https://img.shields.io/github/workflow/status/shkschneider/mc_awesome/build?style=for-the-badge)](https://github.com/shkschneider/mc_awesome/actions/workflows/build.yml)
@@ -20,45 +20,52 @@ with **Machines** adding powerful blocks!
 
 - Awesome **Core** (required!)
   - Flux is a new fuel (from redstone and lapis) twice the power of Coal
+  - Splash screen made black
+- Awesome **Crystals**
+  - Same logic as Budding Amethyst but for all ores!
+  - Craft budding blocks using amethyst blocks and a block of the resource
+  - Grows on all sides at once
 - Awesome **Extras**
   - `/gamerule keepXp` upon death
-  - pvp
-  - sleeping heals
-  - villagers follow emerald blocks
-  - villagers infinite trading
-  - extract enchantments using the grindstone
-  - player heads on death (by another player)
-  - coordinates on death screen
-  - bonus recipes for vanilla items
-  - upgradable tools and armors using smithing table
-  - configurable zenith (mid-day) and nadir (mid-night) times
-  - sponges can absorb lava
   - a 2-way trash slot in your inventory that only clears upon closing
+  - bonus recipes for vanilla items
+  - configurable zenith (mid-day) and nadir (mid-night) times
+  - coordinates on death screen
   - early game crates that retain inventory
   - elevators to teleport vertically
-  - scythe to clear grass
-  - worldgen: randomium (random ore & teleports)
+  - extract enchantments using the grindstone
   - hero... herobrine?!
+  - player heads on death (by another player)
+  - pvp
+  - ropes than unroll and rollup vertically for exploration
+  - scythe to clear grass
+  - sleeping heals
+  - sponges can absorb lava
+  - upgradable tools and armors using smithing table (using blocks)
+  - villagers follow emerald blocks
+  - villagers infinite trading
+  - void block for decoration (like the end portal)
+  - worldgen: randomium (random ore & teleports)
 - Awesome **Commands**
   - `/fly` `/invulnerable` `/heal` `/repair`
   - `/spawn` `/top`
   - `/sethome` `/home`
   - `/back`
 - Awesome **Enchantments**
-  - obelisk to store and retrieve xp
   - experience (xp from breaking ore blocks)
   - ice & poison aspects
   - infinity bow requires no arrow
   - magnetism
+  - obelisk to store and retrieve xp
+  - potions: experience (1 to 9 levels) using lapis lazuli
   - silk touch spawners
-  - unbreakable
+  - unbreakable (truly unbreaking)
   - vein mining (ores and logs)
-  - potions: experience (1 to 9 levels)
 - Awesome **Machines**
-  - collector
+  - collector (with efficiency)
   - quarry (with efficiency & fortune)
   - crafter / recycler
-  - ore processing...
+  - ore processing x2 x4 x8!
   - item: imprisoner (to capture and release entities)
   - item: prospector (to make ores glow)
 
@@ -73,13 +80,14 @@ Almost everything is configurable via `config/awesome.json`.
 - Tier1: 1raw (crushing) 4powder (crushing) 2dust (smelting) 2ingot
 - Tier2: 1raw (crushing) 4powder (infusing) 4dust (smelting) 4ingot
 - Tier3: 1ore (refining) 16chip (crushing) 8powder (infusing) 8dust (smelting) 8ingot
-- Bonus: 1ancient_debris (crushing) 1netherite_scrap (infusing) 1netherite_ingot
+- Bonus: 1ancient_debris (crushing) 1netherite_scrap+1gold_block (infusing) 1netherite_ingot
 
 ## Recipes
 
-- Redstone + Lapis Lazuli (+ Coal) = Flux
+- Baguette: better bread!
 - More torches using coal chips or dusts
-- End portal frame
+- Redstone + Lapis Lazuli (+ Coal) = Flux
+- Vanilla now craftable: bell, cobweb, crying obsidian, elytra, grass, mycelium, name tag, trident...
 - Optional: 1 coal block (crushing) 1 diamond dust (smelting) 1diamond
 - Optional: 1 cobblestone (crushing) 1 gravel (crushing) 1sand
 - Optional: 64 netherrack (crushing) 9 redstone (dust)
@@ -94,7 +102,7 @@ Made by **ShkSchneider** with great help from open-sourced codes from the commun
 - Many machines frames are from *Industrial Foregoing* under **MIT**: https://github.com/InnovativeOnlineIndustries/Industrial-Foregoing
 
 - Logo based off https://www.iconfinder.com/icons/185592/table_crafting_icon
-- Flux from **Thermal Foundation**'s *Petrotheum Dust* and *Signalum Blend*
+- Flux from **Thermal Foundation**'s *Cryotheum Dust* and *Signalum Blend*
 - Imprisoner from https://ftb.fandom.com/wiki/Mob_Imprisonment_Tool
 - Prospector based off https://www.iconfinder.com/icons/9044628/machine_learning_icon
 - Crate based off https://www.iconfinder.com/icons/3338964/business_tools_crate_box_wood_wood_box_icon
