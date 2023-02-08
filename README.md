@@ -5,7 +5,7 @@
 ![Minecraft: 1.19.3](https://img.shields.io/badge/minecraft-1.19.3-637f40?style=for-the-badge)
 ![Mod loader: Fabric](https://img.shields.io/badge/modloader-fabric-926c4d?style=for-the-badge)
 ![Language: Kotlin](https://img.shields.io/badge/language-kotlin-a97bff?style=for-the-badge)
-[![build](https://img.shields.io/github/actions/workflow/status/shkschneider/mc_awesome/build.yml?branch=main?style=for-the-badge)](https://github.com/shkschneider/mc_awesome/actions/workflows/build.yml)
+[![build](https://img.shields.io/github/actions/workflow/status/shkschneider/mc_awesome/build.yml?branch=main&style=for-the-badge)](https://github.com/shkschneider/mc_awesome/actions/workflows/build.yml)
 ![Tag](https://img.shields.io/github/v/tag/shkschneider/mc_awesome?style=for-the-badge)
 [![license](https://img.shields.io/github/license/shkschneider/mc_awesome?style=for-the-badge)](https://github.com/shkschneider/mc_awesome/LICENSE)
 
@@ -14,7 +14,8 @@ Shamelessly took inspirations from the times of *Thermal Expansion*, *Greg Tech*
 Evolves around Vanilla *copper*, *redstone* and *lapis lazuli* - with ingots for each!
 with ore processing involving *powders*, *chips* and *dusts*,
 with **Extras** giving a Vanilla++ feeling,
-with **Machines** adding powerful blocks!
+with **Crystals** to produce ores out of craftable budding blocks,
+with **Machines** adding powerful blocks and mechanisms!
 
 - **New!** Crystals working like Budding Amethyst producing all vanilla ores!
 - **New!** Ropes that unroll and rollup, Obelisks to store and retrieve experience, Void block for decoration & more!
