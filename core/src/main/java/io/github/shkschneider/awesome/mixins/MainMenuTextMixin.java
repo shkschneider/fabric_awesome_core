@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.mixins;
 
 import io.github.shkschneider.awesome.Awesome;
+import io.github.shkschneider.awesome.custom.Minecraft;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.SharedConstants;
@@ -21,15 +22,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MainMenuTextMixin {
 
     @Inject(method = "get()Ljava/lang/String;", at = @At("HEAD"), cancellable = true)
-    public String get(CallbackInfoReturnable<String> info) {
-        info.setReturnValue(info.getReturnValue());
-        info.setReturnValue(
-                String.format("%s %s!",
-                        Awesome.INSTANCE.getID().substring(0, 1).toUpperCase() + Awesome.INSTANCE.getID().substring(1).toLowerCase(),
-                        SharedConstants.getGameVersion().getName()
-                )
-        );
-        return null;
+    public void get(CallbackInfoReturnable<String> info) {
+        if (Minecraft.INSTANCE.isDevelopment()) {
+            info.setReturnValue(
+                    String.format("%s %s!",
+                            Awesome.INSTANCE.getID().substring(0, 1).toUpperCase() + Awesome.INSTANCE.getID().substring(1).toLowerCase(),
+                            SharedConstants.getGameVersion().getName()
+                    )
+            );
+        }
     }
 
 }
