@@ -23,13 +23,14 @@ abstract class AwesomeEnchantment(
         AwesomeRegistries.enchantment(id, this as Enchantment)
     }
 
-    abstract fun invoke(livingEntity: LivingEntity, entity: Entity, level: Int)
-
     override fun onTargetDamaged(user: LivingEntity, target: Entity, level: Int) {
-        if (!user.world.isClient) {
-            invoke(user, target, level)
-        }
+        // !user.world.isClient
         super.onTargetDamaged(user, target, level)
+    }
+
+    override fun onUserDamaged(user: LivingEntity, attacker: Entity, level: Int) {
+        // !user.world.isClient
+        super.onUserDamaged(user, attacker, level)
     }
 
     override fun getMinLevel(): Int {

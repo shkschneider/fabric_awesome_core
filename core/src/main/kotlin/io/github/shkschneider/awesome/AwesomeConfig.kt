@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class AwesomeConfig(
     @SerializedName("crystals") val crystals: Crystals = Crystals(),
     @SerializedName("enchantments") val enchantments: Enchantments = Enchantments(),
+    @SerializedName("experience") val experience: Experience = Experience(),
     @SerializedName("extras") val extras: Extras = Extras(),
     @SerializedName("machines") val machines: Machines = Machines(),
 ) {
@@ -24,15 +25,18 @@ data class AwesomeConfig(
 
     data class Enchantments(
         @SerializedName("aspects") val aspects: Boolean = true,
-        @SerializedName("experience") val experience: Boolean = true,
         @SerializedName("infinity") val infinity: Boolean = true,
         @SerializedName("magnetism") val magnetism: Boolean = true,
-        @SerializedName("obelisk") val obelisk: Boolean = true,
-        @SerializedName("oreXp") val oreXp: Boolean = true,
         @SerializedName("silkTouchSpawners") val silkTouchSpawners: Boolean = true,
         @SerializedName("sixthSense") val sixthSense: Boolean = true,
         @SerializedName("unbreakable") val unbreakable: Boolean = true,
         @SerializedName("veinMining") val veinMining: Boolean = true,
+    )
+
+    data class Experience(
+        @SerializedName("obelisk") val obelisk: Boolean = true,
+        @SerializedName("oneXpPerBlock") val oneXpPerBlock: Boolean = true,
+        @SerializedName("potions") val potions: Boolean = true,
     )
 
     data class Extras(

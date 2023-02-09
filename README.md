@@ -31,6 +31,10 @@ with **Machines** adding powerful blocks and mechanisms!
   - Same logic as Budding Amethyst but for all ores!
   - Craft budding blocks using amethyst blocks and a block of the resource
   - Grows on all sides at once
+- Awesome **Experience**
+  - experience enchantment that gives 1 xp per block mined
+  - obelisk to store and retrieve xp
+  - experience potions
 - Awesome **Extras**
   - `/gamerule keepXp` upon death
   - a 2-way trash slot in your inventory that only clears upon closing
@@ -58,12 +62,9 @@ with **Machines** adding powerful blocks and mechanisms!
   - `/sethome` `/home`
   - `/back`
 - Awesome **Enchantments**
-  - experience (xp from breaking ore blocks)
   - ice & poison aspects
   - infinity bow requires no arrow
   - magnetism
-  - obelisk to store and retrieve xp
-  - potions: experience (1 to 9 levels) using lapis lazuli
   - silk touch spawners
   - unbreakable (truly unbreaking)
   - vein mining (ores and logs)

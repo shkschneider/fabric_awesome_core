@@ -22,9 +22,10 @@ class IceAspectEnchantment : AwesomeEnchantment(
     listOf(EquipmentSlot.MAINHAND),
 ) {
 
-    override fun invoke(livingEntity: LivingEntity, entity: Entity, level: Int) {
-        if (livingEntity is PlayerEntity && !livingEntity.world.isClient && !livingEntity.isSneaking) {
-            (entity as? LivingEntity)?.addStatusEffect(StatusEffectInstance(StatusEffects.SLOWNESS, Minecraft.TICKS, level))
+    override fun onTargetDamaged(user: LivingEntity, target: Entity, level: Int) {
+        if (user.world.isClient) return
+        if (user is PlayerEntity && !user.world.isClient && !user.isSneaking) {
+            (target as? LivingEntity)?.addStatusEffect(StatusEffectInstance(StatusEffects.SLOWNESS, Minecraft.TICKS, level))
         }
     }
 

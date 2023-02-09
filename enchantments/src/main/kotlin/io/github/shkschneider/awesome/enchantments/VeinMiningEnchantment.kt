@@ -4,9 +4,7 @@ import io.github.shkschneider.awesome.core.AwesomeEnchantment
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.VeinMining
 import net.minecraft.enchantment.EnchantmentTarget
-import net.minecraft.entity.Entity
 import net.minecraft.entity.EquipmentSlot
-import net.minecraft.entity.LivingEntity
 
 class VeinMiningEnchantment : AwesomeEnchantment(
     id = AwesomeUtils.identifier("vein_mining"),
@@ -19,7 +17,5 @@ class VeinMiningEnchantment : AwesomeEnchantment(
     init {
         VeinMining()
     }
-
-    override fun invoke(livingEntity: LivingEntity, entity: Entity, level: Int) = Unit
 
 }

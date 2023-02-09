@@ -5,11 +5,9 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "DeathScreenMixin",
-    "DropXpMixin",
     "ElevatorCooldownMixin",
     "ElevatorJumpMixin",
     "ElevatorSneakMixin",
-    "KeepXpMixin",
     "PlayerKillMixin",
     "PlayerRecipesMixin",
     "PvpMixin",

@@ -54,6 +54,6 @@ class CrateBlock : AwesomeBlockWithEntity<CrateBlockEntity>(
     override fun getComparatorOutput(state: BlockState, world: World, pos: BlockPos): Int =
         ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos))
 
-    override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: CrateBlockEntity) {}
+    override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: CrateBlockEntity) = Unit
 
 }

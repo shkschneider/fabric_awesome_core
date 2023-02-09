@@ -24,7 +24,7 @@ class VoidBlock : AwesomeBlockWithEntity<VoidBlockEntity>(
 
     override fun createBlockEntity(pos: BlockPos, state: BlockState): VoidBlockEntity = VoidBlockEntity(entityType, pos, state)
 
-    override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: VoidBlockEntity) {}
+    override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: VoidBlockEntity) = Unit
 
     override fun getPistonBehavior(state: BlockState): PistonBehavior = PistonBehavior.DESTROY
 
