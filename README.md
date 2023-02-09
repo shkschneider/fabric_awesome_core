@@ -17,6 +17,7 @@ with **Extras** giving a Vanilla++ feeling,
 with **Crystals** to produce ores out of craftable budding blocks,
 with **Machines** adding powerful blocks and mechanisms!
 
+- **New!** Sixth Sense that makes surrounding entities glow!
 - **New!** Crystals working like Budding Amethyst producing all vanilla ores!
 - **New!** Ropes that unroll and rollup, Obelisks to store and retrieve experience, Void block for decoration & more!
 
