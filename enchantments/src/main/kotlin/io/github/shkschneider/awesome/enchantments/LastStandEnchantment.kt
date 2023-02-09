@@ -2,6 +2,7 @@ package io.github.shkschneider.awesome.enchantments
 
 import io.github.shkschneider.awesome.AwesomeEnchantments
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
+import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentTarget
@@ -9,12 +10,14 @@ import net.minecraft.enchantment.Enchantments
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.LivingEntity
+import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.SwordItem
 
-class VampirismEnchantment : AwesomeEnchantment(
-    id = AwesomeUtils.identifier("vampirism"),
-    Enchantments.FORTUNE.rarity,
-    levels = 1 to 5,
+class LastStandEnchantment : AwesomeEnchantment(
+    id = AwesomeUtils.identifier("last_stand"),
+    Enchantments.MENDING.rarity,
+    levels = 1 to 1,
     EnchantmentTarget.WEAPON,
     listOf(EquipmentSlot.MAINHAND),
 ) {
@@ -23,17 +26,22 @@ class VampirismEnchantment : AwesomeEnchantment(
         if (user.world.isClient) return
         (user as? PlayerEntity)?.takeIf { it.isAlive }?.let { playerEntity ->
             (target as? LivingEntity)?.takeIf { it.isAlive }?.let { livingEntity ->
-                leech(playerEntity, level, livingEntity)
+                lastStand(playerEntity, livingEntity)
             }
         }
     }
 
     override fun canAccept(other: Enchantment): Boolean =
-        listOf(Enchantments.FIRE_ASPECT, AwesomeEnchantments.iceAspect, AwesomeEnchantments.poisonAspect).contains(other).not()
+        listOf(this, Enchantments.FIRE_ASPECT, AwesomeEnchantments.iceAspect, AwesomeEnchantments.poisonAspect).contains(other).not()
 
-    private fun leech(playerEntity: PlayerEntity, level: Int, livingEntity: LivingEntity) {
-        val life = livingEntity.health
-        playerEntity.heal(life * (level / 100F))
+    private fun lastStand(playerEntity: PlayerEntity, livingEntity: LivingEntity) {
+        val sword = (playerEntity.mainHandStack.item as? SwordItem) ?: return
+        val ratio = (playerEntity.maxHealth / playerEntity.health) / 2F
+        val damage = sword.attackDamage * ratio
+        if (livingEntity.isAlive && damage > 1F) {
+            AwesomeLogger.debug("lastStand: $damage")
+            livingEntity.damage(DamageSource.MAGIC, damage)
+        }
     }
 
 }

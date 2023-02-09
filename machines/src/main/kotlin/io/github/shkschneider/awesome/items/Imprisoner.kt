@@ -10,6 +10,7 @@ import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.SpawnReason
+import net.minecraft.entity.mob.Monster
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
@@ -61,7 +62,7 @@ class Imprisoner : AwesomeItem(
         if (user.world.isClient) return ActionResult.PASS
         if (isEmpty(stack).not()) return ActionResult.FAIL
         if (user.isCreative.not() && user.experienceLevel < EXPERIENCE) return ActionResult.FAIL
-        if (entity.isDead || entity.isUndead) return ActionResult.FAIL
+        if (entity is Monster || entity.isBaby || entity.isDead || entity.isUndead) return ActionResult.FAIL
         if (entity is PlayerEntity || entity.isAttackable.not()) return ActionResult.FAIL
         return if (capture(user, hand, stack, entity)) {
             user.itemCooldownManager.set(this, COOLDOWN)
@@ -74,7 +75,6 @@ class Imprisoner : AwesomeItem(
     private fun capture(player: PlayerEntity, hand: Hand, stack: ItemStack, entity: LivingEntity): Boolean {
         player.swingHand(hand)
         stack.nbt = entity.writeNbt(NbtCompound()).apply {
-            val s = entity.type.toString().toString()
             putString(IMPRISONED, entity.type.registryEntry.registryKey().value.toString())
             remove("Pos")
         }

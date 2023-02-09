@@ -66,6 +66,7 @@ with **Machines** adding powerful blocks and mechanisms!
 - Awesome **Enchantments**
   - ice & poison aspects
   - infinity bow requires no arrow
+  - last stand
   - magnetism
   - silk touch spawners
   - unbreakable (truly unbreaking)
