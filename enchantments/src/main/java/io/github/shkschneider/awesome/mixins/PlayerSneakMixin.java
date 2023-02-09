@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.mixins;
 
 import io.github.shkschneider.awesome.Awesome;
-import io.github.shkschneider.awesome.custom.SixthSense;
+import io.github.shkschneider.awesome.enchantments.SixthSenseEnchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,7 +15,7 @@ public abstract class PlayerSneakMixin {
     @Inject(method = "setSneaking", at = @At(value = "TAIL"))
     private void onSneak(boolean sneaking, CallbackInfo ci) {
         if (sneaking && Awesome.INSTANCE.getCONFIG().getEnchantments().getSixthSense()) {
-            SixthSense.INSTANCE.invoke((LivingEntity) (Object) this);
+            SixthSenseEnchantment.Companion.invoke((LivingEntity) (Object) this);
         }
     }
 

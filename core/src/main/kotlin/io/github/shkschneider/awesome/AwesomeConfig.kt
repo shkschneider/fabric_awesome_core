@@ -24,9 +24,11 @@ data class AwesomeConfig(
     )
 
     data class Enchantments(
-        @SerializedName("aspects") val aspects: Boolean = true,
+        @SerializedName("iceAspect") val iceAspect: Boolean = true,
         @SerializedName("infinity") val infinity: Boolean = true,
         @SerializedName("magnetism") val magnetism: Boolean = true,
+        @SerializedName("paralysis") val paralysis: Boolean = true,
+        @SerializedName("poisonAspect") val poisonAspect: Boolean = true,
         @SerializedName("silkTouchSpawners") val silkTouchSpawners: Boolean = true,
         @SerializedName("sixthSense") val sixthSense: Boolean = true,
         @SerializedName("unbreakable") val unbreakable: Boolean = true,
