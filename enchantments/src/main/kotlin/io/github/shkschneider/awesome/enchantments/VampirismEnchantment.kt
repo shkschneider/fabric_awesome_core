@@ -10,28 +10,30 @@ import net.minecraft.entity.Entity
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.util.math.Vec3d
 
-class ParalysisEnchantment : AwesomeEnchantment(
-    id = AwesomeUtils.identifier("paralysis"),
-    Enchantments.FIRE_ASPECT.rarity,
-    levels = 1 to Enchantments.FIRE_ASPECT.maxLevel,
+class VampirismEnchantment : AwesomeEnchantment(
+    id = AwesomeUtils.identifier("vampirism"),
+    Enchantments.FORTUNE.rarity,
+    levels = 1 to 5,
     EnchantmentTarget.WEAPON,
     listOf(EquipmentSlot.MAINHAND),
 ) {
 
     override fun onTargetDamaged(user: LivingEntity, target: Entity, level: Int) {
         if (user.world.isClient) return
-        if (user is PlayerEntity && !user.isSneaking) {
-            (target as? LivingEntity)?.let { livingEntity ->
-                livingEntity.teleport(livingEntity.x, livingEntity.y, livingEntity.z)
-                livingEntity.velocity = Vec3d.ZERO
+        (user as? PlayerEntity)?.takeIf { it.isAlive }?.let { playerEntity ->
+            (target as? LivingEntity)?.takeIf { it.isAlive }?.let { livingEntity ->
+                leech(playerEntity, level, livingEntity)
             }
         }
     }
 
-    override fun canAccept(other: Enchantment): Boolean {
-        return listOf(this, Enchantments.FIRE_ASPECT, AwesomeEnchantments.iceAspect, AwesomeEnchantments.poisonAspect).contains(other).not()
+    override fun canAccept(other: Enchantment): Boolean =
+        listOf(Enchantments.FIRE_ASPECT, AwesomeEnchantments.iceAspect, AwesomeEnchantments.poisonAspect).contains(other).not()
+
+    private fun leech(playerEntity: PlayerEntity, level: Int, livingEntity: LivingEntity) {
+        val life = livingEntity.health
+        playerEntity.health += life * (0.01F * level)
     }
 
 }

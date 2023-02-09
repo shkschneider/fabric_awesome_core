@@ -11,6 +11,8 @@
   "enchantment.awesome.sixth_sense.desc": "Make nearby entities glow while crouch!",
   "enchantment.awesome.unbreakable": "Unbreakable",
   "enchantment.awesome.unbreakable.desc": "Item no longer gets damaged, ever!",
+  "enchantment.awesome.vampirism": "Vampirism",
+  "enchantment.awesome.vampirism.desc": "Steels health from target!",
   "enchantment.awesome.vein_mining": "Vein Mining",
   "enchantment.awesome.vein_mining.desc": "Mine adjacent similar blocks at once!",
   "gamerule.pvp": "Player vs Player",

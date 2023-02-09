@@ -8,6 +8,7 @@ import io.github.shkschneider.awesome.enchantments.ParalysisEnchantment
 import io.github.shkschneider.awesome.enchantments.PoisonAspectEnchantment
 import io.github.shkschneider.awesome.enchantments.SixthSenseEnchantment
 import io.github.shkschneider.awesome.enchantments.UnbreakableEnchantment
+import io.github.shkschneider.awesome.enchantments.VampirismEnchantment
 import io.github.shkschneider.awesome.enchantments.VeinMiningEnchantment
 
 object AwesomeEnchantments {
@@ -24,6 +25,8 @@ object AwesomeEnchantments {
     val sixthSense get() = _sixthSense
     private lateinit var _unbreakable: AwesomeEnchantment
     val unbreakable get() = _unbreakable
+    private lateinit var _vampirism: AwesomeEnchantment
+    val vampirism get() = _vampirism
     private lateinit var _veinMining: AwesomeEnchantment
     val veinMining get() = _veinMining
 
@@ -35,6 +38,7 @@ object AwesomeEnchantments {
         if (Awesome.CONFIG.enchantments.silkTouchSpawners) SilkTouchSpawners()
         if (Awesome.CONFIG.enchantments.sixthSense) _sixthSense = SixthSenseEnchantment()
         if (Awesome.CONFIG.enchantments.unbreakable) _unbreakable = UnbreakableEnchantment()
+        if (Awesome.CONFIG.enchantments.vampirism) _vampirism = VampirismEnchantment()
         if (Awesome.CONFIG.enchantments.veinMining) _veinMining = VeinMiningEnchantment()
     }
 

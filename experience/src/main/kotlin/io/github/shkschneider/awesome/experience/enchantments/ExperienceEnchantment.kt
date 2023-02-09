@@ -31,8 +31,7 @@ class ExperienceEnchantment : AwesomeEnchantment(
         })
     }
 
-    override fun canAccept(other: Enchantment): Boolean {
-        return listOf(this, Enchantments.SILK_TOUCH).contains(other).not()
-    }
+    override fun canAccept(other: Enchantment): Boolean =
+        listOf(this, Enchantments.SILK_TOUCH).contains(other).not()
 
 }

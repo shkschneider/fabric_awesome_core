@@ -13,10 +13,12 @@ Shamelessly took inspirations from the times of *Thermal Expansion*, *Greg Tech*
 
 Evolves around Vanilla *copper*, *redstone* and *lapis lazuli* - with ingots for each!
 with ore processing involving *powders*, *chips* and *dusts*,
-with **Extras** giving a Vanilla++ feeling,
 with **Crystals** to produce ores out of craftable budding blocks,
+with **Experience** easing the gain of xp,
+with **Extras** giving a Vanilla++ feeling,
 with **Machines** adding powerful blocks and mechanisms!
 
+- **New!** Vamprism!
 - **New!** Sixth Sense that makes surrounding entities glow!
 - **New!** Crystals working like Budding Amethyst producing all vanilla ores!
 - **New!** Ropes that unroll and rollup, Obelisks to store and retrieve experience, Void block for decoration & more!
@@ -67,6 +69,7 @@ with **Machines** adding powerful blocks and mechanisms!
   - magnetism
   - silk touch spawners
   - unbreakable (truly unbreaking)
+  - vampirism
   - vein mining (ores and logs)
 - Awesome **Machines**
   - collector (with efficiency)
