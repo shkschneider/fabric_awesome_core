@@ -1,9 +1,7 @@
 package io.github.shkschneider.awesome.enchantments
 
-import io.github.shkschneider.awesome.AwesomeEnchantments
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentTarget
 import net.minecraft.enchantment.Enchantments
 import net.minecraft.entity.Entity
@@ -27,9 +25,6 @@ class VampirismEnchantment : AwesomeEnchantment(
             }
         }
     }
-
-    override fun canAccept(other: Enchantment): Boolean =
-        listOf(Enchantments.FIRE_ASPECT, AwesomeEnchantments.iceAspect, AwesomeEnchantments.poisonAspect).contains(other).not()
 
     private fun leech(playerEntity: PlayerEntity, level: Int, livingEntity: LivingEntity) {
         val life = livingEntity.health

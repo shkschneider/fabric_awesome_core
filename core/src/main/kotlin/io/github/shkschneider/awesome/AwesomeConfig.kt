@@ -24,6 +24,7 @@ data class AwesomeConfig(
     )
 
     data class Enchantments(
+        @SerializedName("critical") val critical: Boolean = true,
         @SerializedName("iceAspect") val iceAspect: Boolean = true,
         @SerializedName("infinity") val infinity: Boolean = true,
         @SerializedName("lastStand") val lastStand: Boolean = true,

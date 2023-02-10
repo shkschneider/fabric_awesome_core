@@ -18,9 +18,10 @@ with **Experience** easing the gain of xp,
 with **Extras** giving a Vanilla++ feeling,
 with **Machines** adding powerful blocks and mechanisms!
 
-- **New!** All-In-One Tool!
-- **New!** Vamprism!
-- **New!** Sixth Sense that makes surrounding entities glow!
+- **New!** Critical enchantment
+- **New!** All-In-One Tool
+- **New!** Vamprism enchantment
+- **New!** Sixth Sense enchantment
 - **New!** Crystals working like Budding Amethyst producing all vanilla ores!
 - **New!** Ropes that unroll and rollup, Obelisks to store and retrieve experience, Void block for decoration & more!
 
@@ -66,6 +67,7 @@ with **Machines** adding powerful blocks and mechanisms!
   - `/sethome` `/home`
   - `/back`
 - Awesome **Enchantments**
+  - critical
   - ice & poison aspects
   - infinity bow requires no arrow
   - last stand

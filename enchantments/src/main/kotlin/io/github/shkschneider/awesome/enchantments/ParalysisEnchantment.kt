@@ -1,9 +1,7 @@
 package io.github.shkschneider.awesome.enchantments
 
-import io.github.shkschneider.awesome.AwesomeEnchantments
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
 import io.github.shkschneider.awesome.core.AwesomeUtils
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentTarget
 import net.minecraft.enchantment.Enchantments
 import net.minecraft.entity.Entity
@@ -14,8 +12,8 @@ import net.minecraft.util.math.Vec3d
 
 class ParalysisEnchantment : AwesomeEnchantment(
     id = AwesomeUtils.identifier("paralysis"),
-    Enchantments.FIRE_ASPECT.rarity,
-    levels = 1 to Enchantments.FIRE_ASPECT.maxLevel,
+    Enchantments.MENDING.rarity,
+    levels = 1 to 1,
     EnchantmentTarget.WEAPON,
     listOf(EquipmentSlot.MAINHAND),
 ) {
@@ -28,10 +26,6 @@ class ParalysisEnchantment : AwesomeEnchantment(
                 livingEntity.velocity = Vec3d.ZERO
             }
         }
-    }
-
-    override fun canAccept(other: Enchantment): Boolean {
-        return listOf(this, Enchantments.FIRE_ASPECT, AwesomeEnchantments.iceAspect, AwesomeEnchantments.poisonAspect).contains(other).not()
     }
 
 }

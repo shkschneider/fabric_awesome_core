@@ -15,8 +15,7 @@ class UnbreakableEnchantment : AwesomeEnchantment(
     listOf(EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND, EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD),
 ) {
 
-    override fun canAccept(other: Enchantment): Boolean {
-        return listOf(this, Enchantments.MENDING).contains(other).not()
-    }
+    override fun canAccept(other: Enchantment): Boolean =
+        listOf(this, Enchantments.MENDING).contains(other).not()
 
 }

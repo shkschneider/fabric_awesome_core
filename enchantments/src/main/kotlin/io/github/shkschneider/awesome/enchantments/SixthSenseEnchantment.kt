@@ -21,7 +21,7 @@ import kotlin.math.sqrt
 class SixthSenseEnchantment : AwesomeEnchantment(
     id = AwesomeUtils.identifier("sixth_sense"),
     Enchantments.MENDING.rarity,
-    levels = 1 to Enchantments.MENDING.maxLevel,
+    levels = 1 to 1,
     EnchantmentTarget.ARMOR_HEAD,
     listOf(EquipmentSlot.HEAD),
 ) {

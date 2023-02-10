@@ -32,7 +32,10 @@ class LastStandEnchantment : AwesomeEnchantment(
     }
 
     override fun canAccept(other: Enchantment): Boolean =
-        listOf(this, Enchantments.FIRE_ASPECT, AwesomeEnchantments.iceAspect, AwesomeEnchantments.poisonAspect).contains(other).not()
+        listOf(
+            AwesomeEnchantments.critical,
+            AwesomeEnchantments.lastStand,
+        ).contains(other).not()
 
     private fun lastStand(playerEntity: PlayerEntity, livingEntity: LivingEntity) {
         val sword = (playerEntity.mainHandStack.item as? SwordItem) ?: return

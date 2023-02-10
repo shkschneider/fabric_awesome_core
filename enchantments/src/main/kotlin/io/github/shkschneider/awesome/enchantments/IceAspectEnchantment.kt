@@ -29,8 +29,11 @@ class IceAspectEnchantment : AwesomeEnchantment(
         }
     }
 
-    override fun canAccept(other: Enchantment): Boolean {
-        return listOf(this, Enchantments.FIRE_ASPECT, AwesomeEnchantments.iceAspect, AwesomeEnchantments.poisonAspect).contains(other).not()
-    }
+    override fun canAccept(other: Enchantment): Boolean =
+        listOf(
+            AwesomeEnchantments.iceAspect,
+            AwesomeEnchantments.poisonAspect,
+            Enchantments.FIRE_ASPECT,
+        ).contains(other).not()
 
 }

@@ -2,6 +2,7 @@ package io.github.shkschneider.awesome
 
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
 import io.github.shkschneider.awesome.custom.SilkTouchSpawners
+import io.github.shkschneider.awesome.enchantments.CriticalEnchantment
 import io.github.shkschneider.awesome.enchantments.IceAspectEnchantment
 import io.github.shkschneider.awesome.enchantments.LastStandEnchantment
 import io.github.shkschneider.awesome.enchantments.MagnetismEnchantment
@@ -14,6 +15,8 @@ import io.github.shkschneider.awesome.enchantments.VeinMiningEnchantment
 
 object AwesomeEnchantments {
 
+    private lateinit var _critical: AwesomeEnchantment
+    val critical get() = _critical
     private lateinit var _iceAspect: AwesomeEnchantment
     val iceAspect get() = _iceAspect
     private lateinit var _lastStand: AwesomeEnchantment
@@ -34,6 +37,7 @@ object AwesomeEnchantments {
     val veinMining get() = _veinMining
 
     operator fun invoke() {
+        if (Awesome.CONFIG.enchantments.critical) _critical = CriticalEnchantment()
         if (Awesome.CONFIG.enchantments.iceAspect) _iceAspect = IceAspectEnchantment()
         if (Awesome.CONFIG.enchantments.lastStand) _lastStand = LastStandEnchantment()
         if (Awesome.CONFIG.enchantments.magnetism) _magnetism = MagnetismEnchantment()
