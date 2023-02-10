@@ -26,6 +26,7 @@ import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.mob.HostileEntity
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
+import net.minecraft.item.ItemConvertible
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.potion.Potion
@@ -89,7 +90,7 @@ object AwesomeRegistries {
     fun group(id: Identifier, item: Item): ItemGroup =
         FabricItemGroup.builder(id).displayName(Text.translatable(AwesomeUtils.translatable("itemGroup", id.path))).icon { ItemStack(item, 1) }.build()
 
-    fun group(group: ItemGroup, item: Item) {
+    fun group(group: ItemGroup, item: ItemConvertible) {
         ItemGroupEvents.modifyEntriesEvent(group).register { entries -> entries.add(item) }
     }
 

@@ -2,6 +2,7 @@ package io.github.shkschneider.awesome.experience.obelisk
 
 import io.github.shkschneider.awesome.core.AwesomeBlockWithEntity
 import io.github.shkschneider.awesome.core.AwesomeColors
+import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeSounds
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.toVec3d
@@ -15,6 +16,7 @@ import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.ExperienceOrbEntity
 import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.ItemGroups
 import net.minecraft.item.ItemStack
 import net.minecraft.loot.context.LootContext
 import net.minecraft.loot.context.LootContextParameters
@@ -33,6 +35,10 @@ import net.minecraft.world.World
 class ObeliskBlock : AwesomeBlockWithEntity<ObeliskBlockEntity>(
     AwesomeUtils.identifier("obelisk"), FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).luminance(1).nonOpaque().noBlockBreakParticles(),
 ) {
+
+    init {
+        AwesomeRegistries.group(ItemGroups.FUNCTIONAL, this)
+    }
 
     override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {
         tooltip.add(Text.translatable(AwesomeUtils.translatable("block", id.path, "hint")).formatted(Formatting.GRAY))

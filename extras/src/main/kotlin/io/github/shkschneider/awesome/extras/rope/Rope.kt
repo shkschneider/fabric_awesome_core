@@ -2,6 +2,7 @@ package io.github.shkschneider.awesome.extras.rope
 
 import io.github.shkschneider.awesome.core.AwesomeBlock
 import io.github.shkschneider.awesome.core.AwesomeLogger
+import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeSounds
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.copy
@@ -18,6 +19,7 @@ import net.minecraft.entity.ItemEntity
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.ItemGroups
 import net.minecraft.item.ItemStack
 import net.minecraft.loot.context.LootContext
 import net.minecraft.sound.BlockSoundGroup
@@ -46,6 +48,7 @@ class Rope : AwesomeBlock(
     // FIXME while breaking, hits blocks behind
 
     init {
+        AwesomeRegistries.group(ItemGroups.FUNCTIONAL, this)
         if (Minecraft.isClient) {
             BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), this)
         }

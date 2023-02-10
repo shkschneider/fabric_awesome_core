@@ -11,7 +11,8 @@ class AwesomePotion(
 ) {
 
     init {
-        AwesomeRegistries.potion(name, effectInstance, Potions.AWKWARD to item)
+        val potion = AwesomeRegistries.potion(name, effectInstance, Potions.AWKWARD to item)
+        // FIXME AwesomeRegistries.group(ItemGroups.FOOD_AND_DRINK, potion)
     }
 
 }

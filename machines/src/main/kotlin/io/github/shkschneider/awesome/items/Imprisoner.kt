@@ -2,6 +2,7 @@ package io.github.shkschneider.awesome.items
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeItem
+import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeSounds
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
@@ -12,6 +13,7 @@ import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.SpawnReason
 import net.minecraft.entity.mob.Monster
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.ItemGroups
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.nbt.NbtCompound
@@ -38,6 +40,10 @@ class Imprisoner : AwesomeItem(
         private val EXPERIENCE = 1
         val COOLDOWN = AwesomeUtils.secondsToTicks(1)
 
+    }
+
+    init {
+        AwesomeRegistries.group(ItemGroups.FUNCTIONAL, this)
     }
 
     private fun isEmpty(stack: ItemStack): Boolean =

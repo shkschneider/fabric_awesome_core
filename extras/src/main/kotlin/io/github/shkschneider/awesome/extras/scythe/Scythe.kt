@@ -10,6 +10,7 @@ import net.minecraft.block.Blocks
 import net.minecraft.block.PlantBlock
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.enchantment.Enchantments
+import net.minecraft.item.ItemGroups
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.item.MiningToolItem
 import net.minecraft.item.ToolMaterials
@@ -29,6 +30,7 @@ class Scythe : MiningToolItem(
 
     init {
         AwesomeRegistries.item(AwesomeUtils.identifier("scythe"), this, Awesome.GROUP)
+        AwesomeRegistries.group(ItemGroups.TOOLS, this)
     }
 
     private fun check(block: Block): Boolean =

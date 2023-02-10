@@ -13,6 +13,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.block.BlockState
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.ItemGroups
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.item.MiningToolItem
@@ -33,6 +34,7 @@ class AwesomeTool(
 
     init {
         AwesomeRegistries.item(AwesomeUtils.identifier("${material.name}_tool"), this, Awesome.GROUP)
+        AwesomeRegistries.group(ItemGroups.TOOLS, this)
     }
 
     private fun tools(): List<MiningToolItem> =

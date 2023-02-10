@@ -2,11 +2,13 @@ package io.github.shkschneider.awesome.extras.void
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeBlockWithEntity
+import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.piston.PistonBehavior
+import net.minecraft.item.ItemGroups
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
@@ -19,6 +21,10 @@ class VoidBlock : AwesomeBlockWithEntity<VoidBlockEntity>(
         .allowsSpawning { _, _, _, _ -> false },
     group = Awesome.GROUP,
 ) {
+
+    init {
+        AwesomeRegistries.group(ItemGroups.BUILDING_BLOCKS, this)
+    }
 
     // FIXME cannot place one on top of another
 
