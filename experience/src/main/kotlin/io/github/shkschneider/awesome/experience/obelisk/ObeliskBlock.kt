@@ -79,7 +79,7 @@ class ObeliskBlock : AwesomeBlockWithEntity<ObeliskBlockEntity>(
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: ObeliskBlockEntity) {
         if (!world.isClient) return
-        if (world.time % Minecraft.TICKS != 0L) return
+        if (world.time % (Minecraft.TICKS / 2) != 0L) return
         particle(world, pos)
     }
 
