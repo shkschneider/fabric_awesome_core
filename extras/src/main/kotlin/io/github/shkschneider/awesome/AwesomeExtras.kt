@@ -10,11 +10,13 @@ import io.github.shkschneider.awesome.extras.entities.AwesomeEntities
 import io.github.shkschneider.awesome.extras.randomium.Randomium
 import io.github.shkschneider.awesome.extras.rope.Rope
 import io.github.shkschneider.awesome.extras.scythe.Scythe
+import io.github.shkschneider.awesome.extras.tool.AwesomeTools
 import io.github.shkschneider.awesome.extras.void.Void
 
 object AwesomeExtras {
 
     operator fun invoke() {
+        if (Awesome.CONFIG.extras.allInOneTools) AwesomeTools()
         if (Awesome.CONFIG.extras.baguette) Baguette()
         if (Awesome.CONFIG.extras.crate) Crate()
         if (Awesome.CONFIG.extras.elevator) Elevator()

@@ -18,6 +18,7 @@ with **Experience** easing the gain of xp,
 with **Extras** giving a Vanilla++ feeling,
 with **Machines** adding powerful blocks and mechanisms!
 
+- **New!** All-In-One Tool!
 - **New!** Vamprism!
 - **New!** Sixth Sense that makes surrounding entities glow!
 - **New!** Crystals working like Budding Amethyst producing all vanilla ores!
@@ -40,6 +41,7 @@ with **Machines** adding powerful blocks and mechanisms!
 - Awesome **Extras**
   - `/gamerule keepXp` upon death
   - a 2-way trash slot in your inventory that only clears upon closing
+  - all-in-one tool
   - bonus recipes for vanilla items
   - configurable zenith (mid-day) and nadir (mid-night) times
   - coordinates on death screen

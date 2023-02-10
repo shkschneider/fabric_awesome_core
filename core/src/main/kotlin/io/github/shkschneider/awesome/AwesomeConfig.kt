@@ -44,6 +44,7 @@ data class AwesomeConfig(
     )
 
     data class Extras(
+        @SerializedName("allInOneTools") val allInOneTools: Boolean = true,
         @SerializedName("baguette") val baguette: Boolean = true,
         @SerializedName("crate") val crate: Boolean = true,
         @SerializedName("elevator") val elevator: Boolean = true,

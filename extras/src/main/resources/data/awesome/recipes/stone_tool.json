@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:stone_axe" },
+    { "item": "minecraft:stone_hoe" },
+    { "item": "minecraft:stone_pickaxe" },
+    { "item": "minecraft:stone_shovel" }
+  ],
+  "result": {
+    "item": "awesome:stone_tool",
+    "count": 1
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:netherite_axe" },
+    { "item": "minecraft:netherite_hoe" },
+    { "item": "minecraft:netherite_pickaxe" },
+    { "item": "minecraft:netherite_shovel" }
+  ],
+  "result": {
+    "item": "awesome:netherite_tool",
+    "count": 1
+  }
+}

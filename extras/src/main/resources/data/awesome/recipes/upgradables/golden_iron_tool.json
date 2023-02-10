@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "base": {
+        "item": "awesome:golden_tool"
+    },
+    "addition": {
+        "item": "minecraft:iron_block"
+    },
+    "result": {
+        "item": "awesome:iron_tool"
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:golden_axe" },
+    { "item": "minecraft:golden_hoe" },
+    { "item": "minecraft:golden_pickaxe" },
+    { "item": "minecraft:golden_shovel" }
+  ],
+  "result": {
+    "item": "awesome:golden_tool",
+    "count": 1
+  }
+}
