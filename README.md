@@ -18,6 +18,7 @@ with **Experience** easing the gain of xp,
 with **Extras** giving a Vanilla++ feeling,
 with **Machines** adding powerful blocks and mechanisms!
 
+- **New!** /enderchest and /inventory commands
 - **New!** Critical enchantment
 - **New!** All-In-One Tool
 - **New!** Vamprism enchantment
@@ -62,10 +63,17 @@ with **Machines** adding powerful blocks and mechanisms!
   - void block for decoration (like the end portal)
   - worldgen: randomium (random ore & teleports)
 - Awesome **Commands**
-  - `/fly` `/invulnerable` `/heal` `/repair`
-  - `/spawn` `/top`
-  - `/sethome` `/home`
-  - `/back`
+  - back
+  - enderchest [player]
+  - fly [player]
+  - heal [player]
+  - home
+  - inventory [player]
+  - invulnerable [player]
+  - repair [player]
+  - sethome
+  - spawn
+  - top [player]
 - Awesome **Enchantments**
   - critical
   - ice & poison aspects

@@ -3,12 +3,28 @@ package io.github.shkschneider.awesome
 import com.google.gson.annotations.SerializedName
 
 data class AwesomeConfig(
+    @SerializedName("commands") val commands: Commands = Commands(),
     @SerializedName("crystals") val crystals: Crystals = Crystals(),
     @SerializedName("enchantments") val enchantments: Enchantments = Enchantments(),
     @SerializedName("experience") val experience: Experience = Experience(),
     @SerializedName("extras") val extras: Extras = Extras(),
     @SerializedName("machines") val machines: Machines = Machines(),
 ) {
+
+    data class Commands(
+        @SerializedName("back") val back: Boolean = true,
+        @SerializedName("broadcast") val broadcast: Boolean = true,
+        @SerializedName("enderChest") val enderChest: Boolean = true,
+        @SerializedName("fly") val fly: Boolean = true,
+        @SerializedName("heal") val heal: Boolean = true,
+        @SerializedName("home") val home: Boolean = true,
+        @SerializedName("inventory") val inventory: Boolean = true,
+        @SerializedName("invulnerable") val invulnerable: Boolean = true,
+        @SerializedName("repair") val repair: Boolean = true,
+        @SerializedName("setHome") val setHome: Boolean = true,
+        @SerializedName("spawn") val spawn: Boolean = true,
+        @SerializedName("top") val top: Boolean = true,
+    )
 
     data class Crystals(
         @SerializedName("coal") val coal: Boolean = true,

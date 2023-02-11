@@ -7,13 +7,13 @@ import io.github.shkschneider.awesome.custom.Location
 import io.github.shkschneider.awesome.custom.Location.Companion.writeLocation
 import io.github.shkschneider.awesome.custom.Permissions
 import net.minecraft.server.command.ServerCommandSource
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-class TopCommand : AwesomeCommand("top", Permissions.Moderator) {
+class TopCommand : AwesomeCommand.ForPlayer("top", Permissions.Moderator) {
 
-    override fun run(context: CommandContext<ServerCommandSource>): Int {
-        val player = context.source?.player ?: return error(context.source, code = -1)
+    override fun run(context: CommandContext<ServerCommandSource>, player: ServerPlayerEntity): Int {
         if (player.isOnGround.not()) return error(context.source, code = -2)
         val world = player.world
         var position = player.blockPos.up()
