@@ -8,7 +8,6 @@
     "ElevatorCooldownMixin",
     "ElevatorJumpMixin",
     "ElevatorSneakMixin",
-    "PlayerKillMixin",
     "PlayerRecipesMixin",
     "PvpMixin",
     "SpongeMixin",
