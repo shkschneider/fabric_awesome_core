@@ -27,16 +27,16 @@ data class AwesomeConfig(
     )
 
     data class Crystals(
-        @SerializedName("coal") val coal: Boolean = true,
-        @SerializedName("copper") val copper: Boolean = true,
-        @SerializedName("diamond") val diamond: Boolean = true,
-        @SerializedName("emerald") val emerald: Boolean = true,
-        @SerializedName("gold") val gold: Boolean = true,
-        @SerializedName("iron") val iron: Boolean = true,
-        @SerializedName("lapis") val lapis: Boolean = true,
-        @SerializedName("netherite") val netherite: Boolean = true,
-        @SerializedName("quartz") val quartz: Boolean = true,
-        @SerializedName("redstone") val redstone: Boolean = true,
+        @SerializedName("coal") val coal: Int = 4,
+        @SerializedName("copper") val copper: Int = 2,
+        @SerializedName("diamond") val diamond: Int = 1,
+        @SerializedName("emerald") val emerald: Int = 1,
+        @SerializedName("gold") val gold: Int = 2,
+        @SerializedName("iron") val iron: Int = 2,
+        @SerializedName("lapis") val lapis: Int = 4,
+        @SerializedName("netherite") val netherite: Int = 1,
+        @SerializedName("quartz") val quartz: Int = 2,
+        @SerializedName("redstone") val redstone: Int = 4,
     )
 
     data class Enchantments(

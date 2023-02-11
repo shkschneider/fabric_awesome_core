@@ -28,16 +28,16 @@ object AwesomeCrystals {
     val redstone: AwesomeCrystal get() = _redstone
 
     operator fun invoke() {
-        if (Awesome.CONFIG.crystals.coal) _coal = AwesomeCrystal("coal", ItemStack(Items.COAL, 4))
-        if (Awesome.CONFIG.crystals.copper) _copper = AwesomeCrystal("copper", ItemStack(Items.RAW_COPPER, 2))
-        if (Awesome.CONFIG.crystals.diamond) _diamond = AwesomeCrystal("diamond", ItemStack(Items.DIAMOND, 1))
-        if (Awesome.CONFIG.crystals.emerald) _emerald = AwesomeCrystal("emerald", ItemStack(Items.EMERALD, 1))
-        if (Awesome.CONFIG.crystals.gold) _gold = AwesomeCrystal("gold", ItemStack(Items.RAW_GOLD, 2))
-        if (Awesome.CONFIG.crystals.iron) _iron = AwesomeCrystal("iron", ItemStack(Items.RAW_IRON, 2))
-        if (Awesome.CONFIG.crystals.lapis) _lapis = AwesomeCrystal("lapis", ItemStack(Items.LAPIS_LAZULI, 4))
-        if (Awesome.CONFIG.crystals.netherite) _netherite = AwesomeCrystal("netherite", ItemStack(Items.ANCIENT_DEBRIS, 1))
-        if (Awesome.CONFIG.crystals.quartz) _quartz = AwesomeCrystal("quartz", ItemStack(Items.QUARTZ, 2))
-        if (Awesome.CONFIG.crystals.redstone) _redstone = AwesomeCrystal("redstone", ItemStack(Items.REDSTONE, 4))
+        if (Awesome.CONFIG.crystals.coal > 0) _coal = AwesomeCrystal("coal", ItemStack(Items.COAL, Awesome.CONFIG.crystals.coal))
+        if (Awesome.CONFIG.crystals.copper > 0) _copper = AwesomeCrystal("copper", ItemStack(Items.RAW_COPPER, Awesome.CONFIG.crystals.coal))
+        if (Awesome.CONFIG.crystals.diamond > 0) _diamond = AwesomeCrystal("diamond", ItemStack(Items.DIAMOND, Awesome.CONFIG.crystals.diamond))
+        if (Awesome.CONFIG.crystals.emerald > 0) _emerald = AwesomeCrystal("emerald", ItemStack(Items.EMERALD, Awesome.CONFIG.crystals.emerald))
+        if (Awesome.CONFIG.crystals.gold > 0) _gold = AwesomeCrystal("gold", ItemStack(Items.RAW_GOLD, Awesome.CONFIG.crystals.gold))
+        if (Awesome.CONFIG.crystals.iron > 0) _iron = AwesomeCrystal("iron", ItemStack(Items.RAW_IRON, Awesome.CONFIG.crystals.iron))
+        if (Awesome.CONFIG.crystals.lapis > 0) _lapis = AwesomeCrystal("lapis", ItemStack(Items.LAPIS_LAZULI, Awesome.CONFIG.crystals.lapis))
+        if (Awesome.CONFIG.crystals.netherite > 0) _netherite = AwesomeCrystal("netherite", ItemStack(Items.ANCIENT_DEBRIS, Awesome.CONFIG.crystals.netherite))
+        if (Awesome.CONFIG.crystals.quartz > 0) _quartz = AwesomeCrystal("quartz", ItemStack(Items.QUARTZ, Awesome.CONFIG.crystals.quartz))
+        if (Awesome.CONFIG.crystals.redstone > 0) _redstone = AwesomeCrystal("redstone", ItemStack(Items.REDSTONE, Awesome.CONFIG.crystals.redstone))
     }
 
 }

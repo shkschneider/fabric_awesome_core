@@ -13,7 +13,6 @@ object AwesomeItems {
     object Coal {
 
         private const val ID = "coal"
-        const val COLOR = 0x464646
 
         val chip = AwesomeOres.Chip(ID, settings, Awesome.GROUP)
         val dust = AwesomeOres.Dust(ID, settings, Awesome.GROUP)
@@ -26,7 +25,6 @@ object AwesomeItems {
     object Copper {
 
         private const val ID = "copper"
-        const val COLOR = 0xFF6400
 
         val chip = AwesomeOres.Chip(ID, settings, Awesome.GROUP)
         val dust = AwesomeOres.Dust(ID, settings, Awesome.GROUP)
@@ -44,7 +42,6 @@ object AwesomeItems {
     object Diamond {
 
         private const val ID = "diamond"
-        const val COLOR = 0xC8FFFF
 
         val chip = AwesomeOres.Chip(ID, settings, Awesome.GROUP)
         val dust = AwesomeOres.Dust(ID, settings, Awesome.GROUP)
@@ -57,7 +54,6 @@ object AwesomeItems {
     object Emerald {
 
         private const val ID = "emerald"
-        const val COLOR = 0x50FF50
 
         val chip = AwesomeOres.Chip(ID, settings, Awesome.GROUP)
         val dust = AwesomeOres.Dust(ID, settings, Awesome.GROUP)
@@ -70,7 +66,6 @@ object AwesomeItems {
     object Gold {
 
         private const val ID = "gold"
-        const val COLOR = 0xFFFF1E
 
         val chip = AwesomeOres.Chip(ID, settings, Awesome.GROUP)
         val dust = AwesomeOres.Dust(ID, settings, Awesome.GROUP)
@@ -83,7 +78,6 @@ object AwesomeItems {
     object Iron {
 
         private const val ID = "iron"
-        const val COLOR = 0xC8C8C8
 
         val chip = AwesomeOres.Chip(ID, settings, Awesome.GROUP)
         val dust = AwesomeOres.Dust(ID, settings, Awesome.GROUP)
@@ -96,7 +90,6 @@ object AwesomeItems {
     object Lapis {
 
         private const val ID = "lapis"
-        const val COLOR = 0x4646DC
 
         val chip = AwesomeOres.Chip(ID, settings, Awesome.GROUP)
         val dust = AwesomeOres.Dust(ID, settings, Awesome.GROUP)
@@ -114,14 +107,12 @@ object AwesomeItems {
     object Netherite {
 
         private const val ID = "netherite"
-        const val COLOR = 0x4B484B
 
     }
 
     object Quartz {
 
         private const val ID = "quartz"
-        const val COLOR = 0xE6D2D2
 
         val chip = AwesomeOres.Chip(ID, settings, Awesome.GROUP)
         val dust = AwesomeOres.Dust(ID, settings, Awesome.GROUP)
@@ -134,7 +125,6 @@ object AwesomeItems {
     object Redstone {
 
         private const val ID = "redstone"
-        const val COLOR = 0xC80000
 
         val chip = AwesomeOres.Chip(ID, settings, Awesome.GROUP)
         val dust = Items.REDSTONE // "wire"
