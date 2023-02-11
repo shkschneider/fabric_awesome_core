@@ -81,6 +81,7 @@ with **Machines** adding powerful blocks and mechanisms!
   - last stand
   - magnetism
   - silk touch spawners
+  - sixth sense
   - unbreakable (truly unbreaking)
   - vampirism
   - vein mining (ores and logs)
