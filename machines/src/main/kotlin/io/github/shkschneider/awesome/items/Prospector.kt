@@ -6,6 +6,7 @@ import io.github.shkschneider.awesome.core.AwesomeItem
 import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeUtils
+import io.github.shkschneider.awesome.core.ext.isOre
 import io.github.shkschneider.awesome.core.ext.positions
 import io.github.shkschneider.awesome.core.ext.toBox
 import io.github.shkschneider.awesome.custom.Event
@@ -13,10 +14,8 @@ import io.github.shkschneider.awesome.custom.Minecraft
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
-import net.minecraft.block.ExperienceDroppingBlock
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.EntityType
-import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.SpawnReason
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
@@ -32,17 +31,16 @@ import net.minecraft.util.Hand
 import net.minecraft.util.Rarity
 import net.minecraft.util.TypeFilter
 import net.minecraft.util.TypedActionResult
-import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Box
 import net.minecraft.world.World
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
 
 class Prospector : AwesomeItem(
     id = AwesomeUtils.identifier(ID),
     settings = FabricItemSettings().maxCount(1).rarity(Rarity.UNCOMMON),
     group = Awesome.GROUP,
 ) {
+
+    // FIXME when mining, the Shulkers get exposed
 
     companion object {
 
@@ -56,7 +54,9 @@ class Prospector : AwesomeItem(
 
         fun discardAll(world: ServerWorld, player: PlayerEntity?) {
             world.getEntitiesByType(TypeFilter.instanceOf(ENTITY.second), Predicates.alwaysTrue())
-                .filter { it.scoreboardTags.contains(ID + if (player != null) "_${player.uuidAsString}" else "") }
+                .filter { it.scoreboardTags.any { tag ->
+                    tag.startsWith(ID + if (player != null) "_${player.uuidAsString}" else "")
+                }}
                 .forEach { entity ->
                     AwesomeLogger.debug("Killing Prospector.Entity{${entity.uuidAsString}} ${entity.blockPos}")
                     entity.discard()
@@ -80,7 +80,7 @@ class Prospector : AwesomeItem(
             ClientPlayConnectionEvents.DISCONNECT.register(ClientPlayConnectionEvents.Disconnect { _, client ->
                 val player = client.player ?: return@Disconnect
                 val world: ServerWorld = client.server?.getWorld(client.world?.registryKey) ?: return@Disconnect
-                Prospector.discardAll(world, player)
+                discardAll(world, player)
             })
         }
     }
@@ -100,33 +100,25 @@ class Prospector : AwesomeItem(
         return TypedActionResult.success(user.mainHandStack)
     }
 
-    private fun prospectorEntity(world: ServerWorld, pos: BlockPos, player: PlayerEntity): LivingEntity? =
-        ENTITY.first.spawn(world, NbtCompound(), null, pos.down(), SpawnReason.COMMAND, true, false)?.apply {
-            addScoreboardTag("${ID}_${player.uuidAsString}")
-            clearGoalsAndTasks()
-            isAiDisabled = true
-            isGlowing = true
-            isInvulnerable = true
-            isSilent = true
-            setNoDrag(true)
-            setNoGravity(true)
-            addStatusEffect(StatusEffectInstance(StatusEffects.INVISIBILITY, DURATION, 1, false, false))
-        }
-
     private fun prospect(world: ServerWorld, player: PlayerEntity) {
-        val box = Box(player.blockPos).expand(RANGE.toDouble())
-        val positions = box.positions()
-        positions.forEach { pos ->
-            val state = world.getBlockState(pos)
-            val block = state.block
-            if (block is ExperienceDroppingBlock) {
-                val entity = prospectorEntity(world, pos, player) ?: return@forEach
-                Executors.newSingleThreadScheduledExecutor().schedule(Runnable {
-                   entity.discard()
-                }, AwesomeUtils.ticksToSeconds(DURATION).toLong(), TimeUnit.SECONDS)
-                world.spawnEntity(entity)
+        discardAll(world, player)
+        Box(player.blockPos).expand(RANGE.toDouble()).positions().filter { pos ->
+            world.getBlockState(pos).isOre
+        }.forEachIndexed { i, pos ->
+            ENTITY.first.spawn(world, NbtCompound(), null, pos.down(), SpawnReason.COMMAND, true, false)?.apply {
+                addScoreboardTag("${ID}_${player.uuidAsString}_$i")
+                clearGoalsAndTasks()
+                isAiDisabled = true
+                isGlowing = true
+                // isInvisible = true
+                isInvulnerable = true
+                isSilent = true
+                setNoDrag(true)
+                setNoGravity(true)
+                addStatusEffect(StatusEffectInstance(StatusEffects.INVISIBILITY, DURATION, 1, false, false))
             }
         }
     }
+
 
 }

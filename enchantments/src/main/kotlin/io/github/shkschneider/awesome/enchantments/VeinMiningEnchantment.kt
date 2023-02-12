@@ -3,10 +3,10 @@ package io.github.shkschneider.awesome.enchantments
 import io.github.shkschneider.awesome.AwesomeEnchantments
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
 import io.github.shkschneider.awesome.core.AwesomeUtils
+import io.github.shkschneider.awesome.core.ext.isOre
 import io.github.shkschneider.awesome.custom.Event
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
-import net.minecraft.block.ExperienceDroppingBlock
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.enchantment.EnchantmentTarget
 import net.minecraft.entity.EquipmentSlot
@@ -40,7 +40,7 @@ class VeinMiningEnchantment : AwesomeEnchantment(
         val veinMining = EnchantmentHelper.getLevel(AwesomeEnchantments.veinMining, player.mainHandStack)
         // FIXME check for tool
         if (!isVeinMining && !player.isSneaking && veinMining > 0) {
-            if (state.block is ExperienceDroppingBlock && state.isIn(BlockTags.PICKAXE_MINEABLE)) {
+            if (state.isOre && state.isIn(BlockTags.PICKAXE_MINEABLE)) {
                 veinMining(world, pos, player, veinMining, state.block.asItem())
             } else if (state.isIn(BlockTags.LOGS) && state.isIn(BlockTags.AXE_MINEABLE)) {
                 veinMining(world, pos, player, veinMining * 2, state.block.asItem())
