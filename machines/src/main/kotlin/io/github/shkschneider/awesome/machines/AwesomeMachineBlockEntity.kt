@@ -55,9 +55,9 @@ abstract class AwesomeMachineBlockEntity<BE : AwesomeBlockEntity.WithInventory, 
         Text.translatable(AwesomeUtils.translatable("block", machine.id))
 
     override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): ScreenHandler =
-        screen(syncId, this as SidedInventory, playerInventory, properties)
+        screenHandler(syncId, playerInventory, this as SidedInventory, properties)
 
-    abstract fun screen(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate): ScreenHandler
+    abstract fun screenHandler(syncId: Int, playerInventory: PlayerInventory, sidedInventory: SidedInventory, properties: PropertyDelegate): ScreenHandler
 
     override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
         io.isInput(slot)

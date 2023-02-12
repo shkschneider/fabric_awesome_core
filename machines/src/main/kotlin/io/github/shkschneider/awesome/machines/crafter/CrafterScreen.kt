@@ -2,6 +2,7 @@ package io.github.shkschneider.awesome.machines.crafter
 
 import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.core.ext.getStacks
+import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
@@ -10,7 +11,9 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.ItemStack
+import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.PropertyDelegate
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.screen.slot.Slot
 import net.minecraft.screen.slot.SlotActionType
 import net.minecraft.text.Text
@@ -32,13 +35,16 @@ class CrafterScreen(
         }
     }
 
-    class Handler : AwesomeMachineScreenHandler<CrafterBlock.Entity> {
-
-        constructor(syncId: Int, blockEntity: CrafterBlock.Entity, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
-            AwesomeMachines.crafter.screen, syncId, blockEntity, playerInventory, properties
-        )
-        constructor(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
-            AwesomeMachines.crafter.screen, syncId, sidedInventory, playerInventory, properties)
+    class Handler(
+        machine: AwesomeMachine<CrafterBlock.Entity, CrafterScreen.Handler>,
+        type: ScreenHandlerType<CrafterScreen.Handler>?,
+        syncId: Int,
+        playerInventory: PlayerInventory,
+        sidedInventory: SidedInventory = SimpleSidedInventory(machine.io.size),
+        properties: PropertyDelegate = ArrayPropertyDelegate(machine.properties),
+    ) : AwesomeMachineScreenHandler<CrafterBlock.Entity>(
+        type, syncId, playerInventory, sidedInventory, properties
+    ) {
 
         private val machine: AwesomeMachine<CrafterBlock.Entity, CrafterScreen.Handler> get() = AwesomeMachines.crafter
 
@@ -57,7 +63,7 @@ class CrafterScreen(
         }
 
         override fun canInsertIntoSlot(stack: ItemStack, slot: Slot): Boolean =
-            canInsertIntoSlot(slot) && (sidedInventory.getStacks().any { it.isEmpty || it.item == stack.item })
+            canInsertIntoSlot(slot) && (internalInventory.getStacks().any { it.isEmpty || it.item == stack.item })
 
         override fun canInsertIntoSlot(slot: Slot): Boolean =
             machine.io.isInput(slot.index) && (slot.index < Crafter.INVENTORY || slot.index >= machine.io.size)

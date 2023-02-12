@@ -47,8 +47,9 @@ class CollectorBlock(
             efficiency = 1
         }
 
-        override fun screen(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate): ScreenHandler =
-            CollectorScreen.Handler(syncId, sidedInventory, playerInventory, properties)
+        override fun screenHandler(syncId: Int, playerInventory: PlayerInventory, sidedInventory: SidedInventory, properties: PropertyDelegate): ScreenHandler =
+            CollectorScreen.Handler(machine, machine.screen, syncId, playerInventory, sidedInventory, properties)
+
     }
 
 }

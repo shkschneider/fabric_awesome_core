@@ -4,15 +4,14 @@ import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.ext.getStacks
 import io.github.shkschneider.awesome.core.ext.id
 import io.github.shkschneider.awesome.custom.InputOutput
-import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
+import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
 import net.minecraft.block.BlockState
-import net.minecraft.client.gui.screen.ingame.HandledScreens
+import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SimpleInventory
 import net.minecraft.recipe.RecipeType
-import net.minecraft.screen.ArrayPropertyDelegate
-import net.minecraft.screen.ScreenHandlerType
+import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import kotlin.math.floor
@@ -37,14 +36,11 @@ class Recycler : AwesomeMachine<RecyclerBlock.Entity, RecyclerScreen.Handler>(
     override fun block(): AwesomeMachineBlock<RecyclerBlock.Entity, RecyclerScreen.Handler> =
         RecyclerBlock(this)
 
-    override fun screen(): ScreenHandlerType<RecyclerScreen.Handler> =
-        ScreenHandlerType { syncId, playerInventory ->
-            RecyclerScreen.Handler(syncId, SimpleSidedInventory(io.size), playerInventory, ArrayPropertyDelegate(properties))
-        }.also {
-            HandledScreens.register(it) { handler, playerInventory, title ->
-                RecyclerScreen(this, handler, playerInventory, title)
-            }
-        }
+    override fun screenHandler(syncId: Int, playerInventory: PlayerInventory): RecyclerScreen.Handler =
+        RecyclerScreen.Handler(this, null, syncId, playerInventory)
+
+    override fun screen(handler: RecyclerScreen.Handler, playerInventory: PlayerInventory, title: Text): AwesomeMachineScreen<RecyclerBlock.Entity, RecyclerScreen.Handler> =
+        RecyclerScreen(this, handler, playerInventory, title)
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: RecyclerBlock.Entity) {
         if (world.isClient) return

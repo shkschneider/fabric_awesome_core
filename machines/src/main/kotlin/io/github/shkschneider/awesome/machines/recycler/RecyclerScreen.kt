@@ -1,13 +1,15 @@
 package io.github.shkschneider.awesome.machines.recycler
 
-import io.github.shkschneider.awesome.AwesomeMachines
+import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
+import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.PropertyDelegate
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.text.Text
 
 @Suppress("RemoveRedundantQualifierName")
@@ -25,15 +27,18 @@ class RecyclerScreen(
             if (progress > 0) drawTexture(matrices, x + 80, y + 36 + 13 - progress - 1, 176, 13 - progress - 1, 190 - 176, progress + 1)
         }
     }
-
-    class Handler : AwesomeMachineScreenHandler<RecyclerBlock.Entity> {
-
-        constructor(syncId: Int, blockEntity: RecyclerBlock.Entity, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
-            AwesomeMachines.recycler.screen, syncId, blockEntity, playerInventory, properties
-        )
-        constructor(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
-            AwesomeMachines.recycler.screen, syncId, sidedInventory, playerInventory, properties)
-
+    
+    class Handler(
+        machine: AwesomeMachine<RecyclerBlock.Entity, RecyclerScreen.Handler>,
+        type: ScreenHandlerType<RecyclerScreen.Handler>?,
+        syncId: Int,
+        playerInventory: PlayerInventory,
+        sidedInventory: SidedInventory = SimpleSidedInventory(machine.io.size),
+        properties: PropertyDelegate = ArrayPropertyDelegate(machine.properties),
+    ) : AwesomeMachineScreenHandler<RecyclerBlock.Entity>(
+        type, syncId, playerInventory, sidedInventory, properties
+    ) {
+        
         init {
             addSlots(
                 30 + 4 to 31 + 4,

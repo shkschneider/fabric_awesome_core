@@ -1,10 +1,13 @@
 package io.github.shkschneider.awesome.machines
 
 import io.github.shkschneider.awesome.core.AwesomeBlockEntity
+import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.Minecraft
 import net.minecraft.block.BlockState
+import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.screen.ScreenHandlerType
+import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
@@ -32,12 +35,19 @@ abstract class AwesomeMachine<BE : AwesomeBlockEntity.WithInventory, SH : Awesom
 
     private fun init() {
         _block = block()
-        if (Minecraft.isClient) _screen = screen()
+        _screen = AwesomeRegistries.screen(id) { syncId, playerInventory ->
+            screenHandler(syncId, playerInventory)
+        }
+        if (Minecraft.isClient) AwesomeRegistries.screenHandler(screen) { handler, playerInventory, title ->
+            screen(handler, playerInventory, title)
+        }
     }
 
     abstract fun block(): AwesomeMachineBlock<BE, SH>
 
-    abstract fun screen(): ScreenHandlerType<SH>
+    abstract fun screenHandler(syncId: Int, playerInventory: PlayerInventory): SH
+
+    abstract fun screen(handler: SH, playerInventory: PlayerInventory, title: Text): AwesomeMachineScreen<BE, SH>
 
     abstract fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: BE)
 

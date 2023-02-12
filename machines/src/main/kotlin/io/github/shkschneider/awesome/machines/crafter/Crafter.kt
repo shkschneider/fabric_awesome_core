@@ -3,18 +3,17 @@ package io.github.shkschneider.awesome.machines.crafter
 import io.github.shkschneider.awesome.core.ext.test
 import io.github.shkschneider.awesome.custom.DummyCraftingInventory
 import io.github.shkschneider.awesome.custom.InputOutput
-import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
+import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
 import net.minecraft.block.BlockState
-import net.minecraft.client.gui.screen.ingame.HandledScreens
+import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.CraftingInventory
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.CraftingRecipe
 import net.minecraft.recipe.RecipeType
-import net.minecraft.screen.ArrayPropertyDelegate
-import net.minecraft.screen.ScreenHandlerType
+import net.minecraft.text.Text
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
@@ -34,14 +33,11 @@ class Crafter : AwesomeMachine<CrafterBlock.Entity, CrafterScreen.Handler>(
     override fun block(): AwesomeMachineBlock<CrafterBlock.Entity, CrafterScreen.Handler> =
         CrafterBlock(this)
 
-    override fun screen(): ScreenHandlerType<CrafterScreen.Handler> =
-        ScreenHandlerType { syncId, playerInventory ->
-            CrafterScreen.Handler(syncId, SimpleSidedInventory(io.size), playerInventory, ArrayPropertyDelegate(properties))
-        }.also {
-            HandledScreens.register(it) { handler, playerInventory, title ->
-                CrafterScreen(this, handler, playerInventory, title)
-            }
-        }
+    override fun screenHandler(syncId: Int, playerInventory: PlayerInventory): CrafterScreen.Handler =
+        CrafterScreen.Handler(this, null, syncId, playerInventory)
+
+    override fun screen(handler: CrafterScreen.Handler, playerInventory: PlayerInventory, title: Text): AwesomeMachineScreen<CrafterBlock.Entity, CrafterScreen.Handler> =
+        CrafterScreen(this, handler, playerInventory, title)
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: CrafterBlock.Entity) {
         if (world.isClient) return

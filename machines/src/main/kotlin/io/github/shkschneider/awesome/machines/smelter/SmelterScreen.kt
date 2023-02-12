@@ -1,13 +1,16 @@
 package io.github.shkschneider.awesome.machines.smelter
 
 import io.github.shkschneider.awesome.AwesomeMachines
+import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
+import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.PropertyDelegate
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.text.Text
 import kotlin.math.roundToInt
 
@@ -31,14 +34,17 @@ class SmelterScreen(
         }
     }
 
-    class Handler : AwesomeMachineScreenHandler<SmelterBlock.Entity> {
-
-        constructor(syncId: Int, blockEntity: SmelterBlock.Entity, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
-            AwesomeMachines.smelter.screen, syncId, blockEntity, playerInventory, properties
-        )
-        constructor(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
-            AwesomeMachines.smelter.screen, syncId, sidedInventory, playerInventory, properties)
-
+    class Handler(
+        machine: AwesomeMachine<SmelterBlock.Entity, SmelterScreen.Handler>,
+        type: ScreenHandlerType<SmelterScreen.Handler>?,
+        syncId: Int,
+        playerInventory: PlayerInventory,
+        sidedInventory: SidedInventory = SimpleSidedInventory(machine.io.size),
+        properties: PropertyDelegate = ArrayPropertyDelegate(machine.properties),
+    ) : AwesomeMachineScreenHandler<SmelterBlock.Entity>(
+        type, syncId, playerInventory, sidedInventory, properties
+    ) {
+        
         init {
             addSlots(
                 56 to 17,

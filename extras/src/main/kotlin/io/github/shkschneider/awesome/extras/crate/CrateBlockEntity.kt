@@ -6,7 +6,6 @@ import net.minecraft.block.BlockState
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.item.ItemStack
-import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
@@ -22,7 +21,7 @@ class CrateBlockEntity(
         Text.translatable(AwesomeUtils.translatable("block", Crate.ID))
 
     override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): ScreenHandler =
-        CrateBlockScreenHandler(syncId, this, playerInventory, ArrayPropertyDelegate(0))
+        CrateBlockScreenHandler(Crate.screen, syncId, playerInventory, this)
 
     override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean = true
 

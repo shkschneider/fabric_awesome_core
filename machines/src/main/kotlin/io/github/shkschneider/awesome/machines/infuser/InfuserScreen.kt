@@ -1,13 +1,15 @@
 package io.github.shkschneider.awesome.machines.infuser
 
-import io.github.shkschneider.awesome.AwesomeMachines
+import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
+import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.PropertyDelegate
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.text.Text
 import kotlin.math.roundToInt
 
@@ -27,14 +29,17 @@ class InfuserScreen(
         }
     }
 
-    class Handler : AwesomeMachineScreenHandler<InfuserBlock.Entity> {
-
-        constructor(syncId: Int, blockEntity: InfuserBlock.Entity, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
-            AwesomeMachines.infuser.screen, syncId, blockEntity, playerInventory, properties
-        )
-        constructor(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
-            AwesomeMachines.infuser.screen, syncId, sidedInventory, playerInventory, properties)
-
+    class Handler(
+        machine: AwesomeMachine<InfuserBlock.Entity, InfuserScreen.Handler>,
+        type: ScreenHandlerType<InfuserScreen.Handler>?,
+        syncId: Int,
+        playerInventory: PlayerInventory,
+        sidedInventory: SidedInventory = SimpleSidedInventory(machine.io.size),
+        properties: PropertyDelegate = ArrayPropertyDelegate(machine.properties),
+    ) : AwesomeMachineScreenHandler<InfuserBlock.Entity>(
+        type, syncId, playerInventory, sidedInventory, properties
+    ) {
+        
         init {
             addSlots(
                 66 to 16,

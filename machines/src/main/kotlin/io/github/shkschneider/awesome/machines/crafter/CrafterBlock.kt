@@ -39,8 +39,8 @@ class CrafterBlock(
         machine, pos, state,
     ) {
 
-        override fun screen(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate): ScreenHandler =
-            CrafterScreen.Handler(syncId, sidedInventory, playerInventory, properties)
+        override fun screenHandler(syncId: Int, playerInventory: PlayerInventory, sidedInventory: SidedInventory, properties: PropertyDelegate): ScreenHandler =
+            CrafterScreen.Handler(machine, machine.screen, syncId, playerInventory, sidedInventory, properties)
 
 //        override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean {
 //            dir ?: return false

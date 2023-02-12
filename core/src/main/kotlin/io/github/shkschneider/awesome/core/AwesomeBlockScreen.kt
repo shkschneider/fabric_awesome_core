@@ -7,7 +7,9 @@ import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventory
+import net.minecraft.inventory.SimpleInventory
 import net.minecraft.item.ItemStack
+import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.screen.ScreenHandlerType
@@ -54,16 +56,16 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
     }
 
     abstract class Handler(
-        screen: ScreenHandlerType<*>,
+        type: ScreenHandlerType<out ScreenHandler>?,
         syncId: Int,
-        protected val sidedInventory: Inventory,
         protected val playerInventory: PlayerInventory,
-        private val properties: PropertyDelegate,
-    ) : ScreenHandler(screen, syncId) {
+        protected var internalInventory: Inventory = SimpleInventory(0),
+        protected var properties: PropertyDelegate = ArrayPropertyDelegate(0)
+    ) : ScreenHandler(type, syncId) {
 
         init {
             addProperties()
-            sidedInventory.onOpen(playerInventory.player)
+            internalInventory.onOpen(playerInventory.player)
             // addSlots(...)
             // addPlayerSlots()
         }
@@ -77,7 +79,7 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
 
         fun addSlots(vararg slots: Pair<Int, Int>) {
             slots.forEachIndexed { index, pair ->
-                addSlot(Slot(sidedInventory, index, pair.first, pair.second))
+                addSlot(Slot(internalInventory, index, pair.first, pair.second))
             }
         }
 
@@ -126,11 +128,11 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
         override fun quickMove(player: PlayerEntity, i: Int): ItemStack {
             val slot = slots.getOrNull(i)?.takeIf { it.hasStack() } ?: return ItemStack.EMPTY
             val stack = slot.stack.copy()
-            if (i < sidedInventory.size()) {
-                if (!insertItem(slot.stack, sidedInventory.size(), slots.size, true)) {
+            if (i < internalInventory.size()) {
+                if (!insertItem(slot.stack, internalInventory.size(), slots.size, true)) {
                     return ItemStack.EMPTY
                 }
-            } else if (!insertItem(slot.stack, 0, sidedInventory.size(), false)) {
+            } else if (!insertItem(slot.stack, 0, internalInventory.size(), false)) {
                 return ItemStack.EMPTY
             }
             slot.markDirty()
@@ -138,7 +140,7 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
         }
 
         override fun canUse(player: PlayerEntity): Boolean =
-            sidedInventory.canPlayerUse(player)
+            internalInventory.canPlayerUse(player)
 
     }
 

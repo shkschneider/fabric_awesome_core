@@ -39,8 +39,8 @@ class RecyclerBlock(
         machine, pos, state,
     ) {
 
-        override fun screen(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate): ScreenHandler =
-            RecyclerScreen.Handler(syncId, sidedInventory, playerInventory, properties)
+        override fun screenHandler(syncId: Int, playerInventory: PlayerInventory, sidedInventory: SidedInventory, properties: PropertyDelegate): ScreenHandler =
+            RecyclerScreen.Handler(machine, machine.screen, syncId, playerInventory, sidedInventory, properties)
 
     }
 

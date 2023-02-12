@@ -1,14 +1,16 @@
 package io.github.shkschneider.awesome.machines.collector
 
-import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.core.AwesomeColors
+import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
+import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.PropertyDelegate
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.text.Text
 
 @Suppress("RemoveRedundantQualifierName")
@@ -24,13 +26,16 @@ class CollectorScreen(
         drawTextWithShadow(matrices, textRenderer, Text.of("${handler.efficiency}x${handler.efficiency}"), x + 26, y + 54, AwesomeColors.white)
     }
 
-    class Handler : AwesomeMachineScreenHandler<CollectorBlock.Entity> {
-
-        constructor(syncId: Int, blockEntity: CollectorBlock.Entity, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
-            AwesomeMachines.collector.screen, syncId, blockEntity, playerInventory, properties
-        )
-        constructor(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
-            AwesomeMachines.collector.screen, syncId, sidedInventory, playerInventory, properties)
+    class Handler(
+        machine: AwesomeMachine<CollectorBlock.Entity, CollectorScreen.Handler>,
+        type: ScreenHandlerType<CollectorScreen.Handler>?,
+        syncId: Int,
+        playerInventory: PlayerInventory,
+        sidedInventory: SidedInventory = SimpleSidedInventory(machine.io.size),
+        properties: PropertyDelegate = ArrayPropertyDelegate(machine.properties),
+    ) : AwesomeMachineScreenHandler<CollectorBlock.Entity>(
+        type, syncId, playerInventory, sidedInventory, properties
+    ) {
 
         val efficiency: Int get() = getCustomProperty(0)
 

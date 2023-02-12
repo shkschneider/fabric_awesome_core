@@ -4,18 +4,17 @@ import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.core.ext.getEnchantmentLevel
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.Minecraft
-import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
+import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
-import net.minecraft.client.gui.screen.ingame.HandledScreens
 import net.minecraft.enchantment.Enchantments
+import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
-import net.minecraft.screen.ArrayPropertyDelegate
-import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.state.property.Properties
+import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.random.Random
 import net.minecraft.world.World
@@ -29,14 +28,11 @@ class Quarry : AwesomeMachine<QuarryBlock.Entity, QuarryScreen.Handler>(
     override fun block(): AwesomeMachineBlock<QuarryBlock.Entity, QuarryScreen.Handler> =
         QuarryBlock(this)
 
-    override fun screen(): ScreenHandlerType<QuarryScreen.Handler> =
-        ScreenHandlerType { syncId, playerInventory ->
-            QuarryScreen.Handler(syncId, SimpleSidedInventory(io.size), playerInventory, ArrayPropertyDelegate(properties))
-        }.also {
-            HandledScreens.register(it) { handler, playerInventory, title ->
-                QuarryScreen(this, handler, playerInventory, title)
-            }
-        }
+    override fun screenHandler(syncId: Int, playerInventory: PlayerInventory): QuarryScreen.Handler =
+        QuarryScreen.Handler(this, null, syncId, playerInventory)
+
+    override fun screen(handler: QuarryScreen.Handler, playerInventory: PlayerInventory, title: Text): AwesomeMachineScreen<QuarryBlock.Entity, QuarryScreen.Handler> =
+        QuarryScreen(this, handler, playerInventory, title)
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: QuarryBlock.Entity) {
         fun on() {

@@ -2,13 +2,16 @@ package io.github.shkschneider.awesome.machines.quarry
 
 import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.core.AwesomeColors
+import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
+import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.PropertyDelegate
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.text.Text
 import kotlin.math.roundToInt
 
@@ -33,14 +36,17 @@ class QuarryScreen(
         drawTextWithShadow(matrices, textRenderer, Text.of("${handler.efficiency * handler.fortune}/s"), x + 26, y + 54, AwesomeColors.white)
     }
 
-    class Handler : AwesomeMachineScreenHandler<QuarryBlock.Entity> {
-
-        constructor(syncId: Int, blockEntity: QuarryBlock.Entity, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
-            AwesomeMachines.quarry.screen, syncId, blockEntity, playerInventory, properties
-        )
-        constructor(syncId: Int, sidedInventory: SidedInventory, playerInventory: PlayerInventory, properties: PropertyDelegate) : super(
-            AwesomeMachines.quarry.screen, syncId, sidedInventory, playerInventory, properties)
-
+    class Handler(
+        machine: AwesomeMachine<QuarryBlock.Entity, QuarryScreen.Handler>,
+        type: ScreenHandlerType<QuarryScreen.Handler>?,
+        syncId: Int,
+        playerInventory: PlayerInventory,
+        sidedInventory: SidedInventory = SimpleSidedInventory(machine.io.size),
+        properties: PropertyDelegate = ArrayPropertyDelegate(machine.properties),
+    ) : AwesomeMachineScreenHandler<QuarryBlock.Entity>(
+        type, syncId, playerInventory, sidedInventory, properties
+    ) {
+        
         val efficiency: Int get() = getCustomProperty(0)
         val fortune: Int get() = getCustomProperty(1)
 

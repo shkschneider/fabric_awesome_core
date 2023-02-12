@@ -18,12 +18,15 @@ import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.client.gui.screen.ingame.HandledScreen
+import net.minecraft.client.gui.screen.ingame.HandledScreens
 import net.minecraft.command.argument.EntityArgumentType
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.effect.StatusEffect
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.mob.HostileEntity
+import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemConvertible
@@ -32,6 +35,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.potion.Potion
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
+import net.minecraft.screen.ScreenHandler
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text
@@ -108,6 +113,13 @@ object AwesomeRegistries {
                 IBrewingRecipesMixin.registerPotionRecipe(recipe.first, recipe.second, it)
             }
         }
+
+    fun <T : ScreenHandler> screen(name: String, factory: (Int, PlayerInventory) -> T): ScreenHandlerType<T> =
+        Registry.register(Registries.SCREEN_HANDLER, name, ScreenHandlerType { syncId, playerInventory -> factory(syncId, playerInventory) })
+
+    fun <T : ScreenHandler> screenHandler(screen: ScreenHandlerType<T>, factory: (T, PlayerInventory, Text) -> HandledScreen<T>) {
+        HandledScreens.register(screen) { handler, playerInventory, title -> factory(handler, playerInventory, title) }
+    }
 
     fun statusEffect(name: String, statusEffect: StatusEffect): StatusEffect =
         Registry.register(Registries.STATUS_EFFECT, name, statusEffect)
