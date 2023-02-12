@@ -4,7 +4,6 @@
   "package": "io.github.shkschneider.awesome.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "DeathScreenMixin",
     "ElevatorCooldownMixin",
     "ElevatorJumpMixin",
     "ElevatorSneakMixin",
@@ -17,6 +16,7 @@
   ],
   "server": [],
   "client": [
+    "DeathScreenMixin",
     "TrashScreenMixin",
     "TrashScreenHandlerMixin"
   ],

@@ -3,6 +3,8 @@ package io.github.shkschneider.awesome.mixins;
 import io.github.shkschneider.awesome.core.AwesomeClock;
 import io.github.shkschneider.awesome.core.AwesomeUtils;
 import io.github.shkschneider.awesome.custom.Location;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.DeathScreen;
 import net.minecraft.client.util.math.MatrixStack;
@@ -16,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Pseudo
+@Environment(EnvType.CLIENT)
 @Mixin(DeathScreen.class)
 public class DeathScreenMixin {
 
