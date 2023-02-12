@@ -37,9 +37,11 @@ class VeinMiningEnchantment : AwesomeEnchantment(
     }
 
     private operator fun invoke(world: World, player: PlayerEntity, pos: BlockPos, state: BlockState) {
+        if (!player.mainHandStack.isSuitableFor(state)) return
+        if (isVeinMining) return
+        if (player.isSneaking) return
         val veinMining = EnchantmentHelper.getLevel(AwesomeEnchantments.veinMining, player.mainHandStack)
-        // FIXME check for tool
-        if (!isVeinMining && !player.isSneaking && veinMining > 0) {
+        if (veinMining > 0) {
             if (state.isOre && state.isIn(BlockTags.PICKAXE_MINEABLE)) {
                 veinMining(world, pos, player, veinMining, state.block.asItem())
             } else if (state.isIn(BlockTags.LOGS) && state.isIn(BlockTags.AXE_MINEABLE)) {
