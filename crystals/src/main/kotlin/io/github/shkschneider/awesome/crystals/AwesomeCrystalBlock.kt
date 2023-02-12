@@ -11,7 +11,6 @@ import net.minecraft.block.Blocks
 import net.minecraft.block.piston.PistonBehavior
 import net.minecraft.client.render.RenderLayer
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.item.ItemGroups
 import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
@@ -31,7 +30,6 @@ class AwesomeCrystalBlock(
 
     private fun init(id: Identifier) {
         AwesomeRegistries.blockItem(id, this, Awesome.GROUP)
-        AwesomeRegistries.group(ItemGroups.FUNCTIONAL, this)
         if (Minecraft.isClient) {
             BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), this)
         }

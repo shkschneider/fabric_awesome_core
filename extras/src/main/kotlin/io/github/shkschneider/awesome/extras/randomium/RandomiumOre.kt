@@ -13,7 +13,6 @@ import net.minecraft.block.ExperienceDroppingBlock
 import net.minecraft.block.ShapeContext
 import net.minecraft.command.argument.EntityAnchorArgumentType
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.item.ItemGroups
 import net.minecraft.particle.DustParticleEffect
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
@@ -35,7 +34,6 @@ class RandomiumOre(
 
     private fun init(id: Identifier) {
         AwesomeRegistries.blockItem(id, this as Block, Awesome.GROUP)
-        AwesomeRegistries.group(ItemGroups.NATURAL, this)
     }
 
     @Suppress("DEPRECATION")

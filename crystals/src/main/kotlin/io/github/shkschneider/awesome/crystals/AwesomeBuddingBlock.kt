@@ -10,7 +10,6 @@ import net.minecraft.block.Blocks
 import net.minecraft.block.BuddingAmethystBlock
 import net.minecraft.block.piston.PistonBehavior
 import net.minecraft.client.item.TooltipContext
-import net.minecraft.item.ItemGroups
 import net.minecraft.item.ItemStack
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.state.property.Properties
@@ -33,7 +32,6 @@ class AwesomeBuddingBlock(
 
     private fun init() {
         AwesomeRegistries.blockItem(id, this as Block, Awesome.GROUP)
-        AwesomeRegistries.group(ItemGroups.NATURAL, this)
     }
 
     override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {

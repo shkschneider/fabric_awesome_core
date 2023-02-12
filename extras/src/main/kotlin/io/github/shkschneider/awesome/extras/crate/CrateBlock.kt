@@ -1,7 +1,6 @@
 package io.github.shkschneider.awesome.extras.crate
 
 import io.github.shkschneider.awesome.core.AwesomeBlockWithEntity
-import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.getStacks
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -13,7 +12,6 @@ import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.SimpleInventory
 import net.minecraft.item.BlockItem
-import net.minecraft.item.ItemGroups
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtElement
 import net.minecraft.screen.ScreenHandler
@@ -27,10 +25,6 @@ import net.minecraft.world.World
 class CrateBlock : AwesomeBlockWithEntity<CrateBlockEntity>(
     AwesomeUtils.identifier(Crate.ID), FabricBlockSettings.copy(Blocks.BARREL).nonOpaque(),
 ), AwesomeBlockWithEntity.RetainsInventory {
-
-    init {
-        AwesomeRegistries.group(ItemGroups.FUNCTIONAL, this)
-    }
 
     override fun getOutlineShape(state: BlockState, world: BlockView, pos: BlockPos, context: ShapeContext): VoxelShape =
         createCuboidShape(4.0, 0.0, 4.0, 12.0, 8.0, 12.0)
