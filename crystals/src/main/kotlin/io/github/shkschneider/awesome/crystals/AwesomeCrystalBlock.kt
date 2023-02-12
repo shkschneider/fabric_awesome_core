@@ -39,7 +39,7 @@ class AwesomeCrystalBlock(
 
     override fun onBreak(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity) {
         super.onBreak(world, pos, state, player)
-        dropStack(world, pos, output)
+        if (!player.isCreative) dropStack(world, pos, output)
     }
 
     override fun getPistonBehavior(state: BlockState): PistonBehavior = PistonBehavior.NORMAL

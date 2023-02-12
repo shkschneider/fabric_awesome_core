@@ -1,9 +1,13 @@
 package io.github.shkschneider.awesome.mixins;
 
 import io.github.shkschneider.awesome.Awesome;
+import io.github.shkschneider.awesome.AwesomeEnchantments;
 import io.github.shkschneider.awesome.enchantments.SixthSenseEnchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,8 +18,12 @@ public abstract class PlayerSneakMixin {
 
     @Inject(method = "setSneaking", at = @At(value = "TAIL"))
     private void onSneak(boolean sneaking, CallbackInfo ci) {
-        if (sneaking && Awesome.INSTANCE.getCONFIG().getEnchantments().getSixthSense()) {
-            SixthSenseEnchantment.Companion.invoke((LivingEntity) (Object) this);
+        final LivingEntity livingEntity = (LivingEntity) (Object) this;
+        if (livingEntity instanceof PlayerEntity && sneaking && Awesome.INSTANCE.getCONFIG().getEnchantments().getSixthSense()) {
+            final PlayerEntity player = (PlayerEntity) livingEntity;
+            if (EnchantmentHelper.getLevel(AwesomeEnchantments.INSTANCE.getSixthSense(), player.getEquippedStack(EquipmentSlot.HEAD)) > 0) {
+                SixthSenseEnchantment.Companion.invoke(player);
+            }
         }
     }
 

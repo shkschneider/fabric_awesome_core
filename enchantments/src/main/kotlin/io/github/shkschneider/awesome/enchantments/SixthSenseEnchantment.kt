@@ -28,16 +28,15 @@ class SixthSenseEnchantment : AwesomeEnchantment(
 
     override fun onUserDamaged(user: LivingEntity, attacker: Entity, level: Int) {
         if (user.world.isClient) return
-        invoke(user)
+        (user as? PlayerEntity)?.let(::invoke)
     }
 
     companion object {
 
-        operator fun invoke(livingEntity: LivingEntity) {
-            val playerEntity = (livingEntity as? PlayerEntity) ?: return
-            val box = playerEntity.blockPos.toBox(radius = (Minecraft.CHUNK * sqrt(Minecraft.CHUNK.toDouble())))
-            playerEntity.world.getEntitiesByClass(LivingEntity::class.java, box, Predicates.alwaysTrue()).forEach { entity ->
-                if (entity.uuid != playerEntity.uuid) {
+        operator fun invoke(player: PlayerEntity) {
+            val box = player.blockPos.toBox(radius = (Minecraft.CHUNK * sqrt(Minecraft.CHUNK.toDouble())))
+            player.world.getEntitiesByClass(LivingEntity::class.java, box, Predicates.alwaysTrue()).forEach { entity ->
+                if (entity.uuid != player.uuid && entity !is PlayerEntity) {
                     entity.addStatusEffect(StatusEffectInstance(StatusEffects.GLOWING, Minecraft.TICKS, 1))
                 }
             }
