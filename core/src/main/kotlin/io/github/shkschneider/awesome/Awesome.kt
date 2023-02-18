@@ -4,6 +4,7 @@ import io.github.shkschneider.awesome.core.AwesomeConfigFactory
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.Flux
+import io.github.shkschneider.awesome.custom.FluxDust
 import net.minecraft.item.ItemGroup
 
 object Awesome {
@@ -12,7 +13,7 @@ object Awesome {
 
     val flux = Flux()
 
-    val GROUP: ItemGroup = AwesomeRegistries.group(AwesomeUtils.identifier(ID), flux).also {
+    val GROUP: ItemGroup = AwesomeRegistries.group(AwesomeUtils.identifier(ID), FluxDust()).also {
         AwesomeRegistries.group(it, flux)
     }
 

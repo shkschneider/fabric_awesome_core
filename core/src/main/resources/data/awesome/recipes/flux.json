@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 20,
+  "experience": 0.1,
+  "group": "flux",
+  "ingredient": {
+    "item": "awesome:flux_dust"
+  },
+  "result": "awesome:flux"
+}

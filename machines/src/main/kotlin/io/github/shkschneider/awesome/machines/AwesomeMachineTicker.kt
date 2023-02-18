@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome.machines
 
-import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.core.AwesomeBlockEntity
 import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.ext.getStacks
@@ -32,10 +31,10 @@ class AwesomeMachineTicker<BE : AwesomeBlockEntity.WithInventory, SH : AwesomeMa
         inventory.getStacks().take(io.inputs)
 
     private fun getFuel(): ItemStack =
-        if (io.fueled) inventory.getStack(io.inputs) else throw IllegalStateException()
+        throw IllegalStateException()
 
     private fun getOutputs(): List<ItemStack> =
-        inventory.getStacks().drop(io.inputs + if (io.fueled) 1 else 0)
+        inventory.getStacks().drop(io.inputs)
 
     private fun getRecipe(): AwesomeRecipe<out Inventory>? =
         recipes?.firstOrNull { recipe ->
@@ -65,20 +64,6 @@ class AwesomeMachineTicker<BE : AwesomeBlockEntity.WithInventory, SH : AwesomeMa
     operator fun invoke(world: World): Int {
         if (world.isClient) return 0
         val recipe = getRecipe()
-        if (io.fueled) {
-            if (entity.fuel > 0) {
-                entity.fuel--
-                on()
-            } else if (recipe != null && entity.fuel == 0) {
-                if (getFuel().count > 0) {
-                    getFuel().count--
-                    entity.fuel += AwesomeMachines.fuel.time
-                } else {
-                    off()
-                    return 0
-                }
-            }
-        }
         if (recipe != null) {
             on()
             if (entity.duration > 0) entity.progress++
