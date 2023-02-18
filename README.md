@@ -130,4 +130,5 @@ Made by **ShkSchneider** with great help from open-sourced codes from the commun
 - Imprisoner from https://ftb.fandom.com/wiki/Mob_Imprisonment_Tool
 - Prospector based off https://www.iconfinder.com/icons/9044628/machine_learning_icon
 - Crate based off https://www.iconfinder.com/icons/3338964/business_tools_crate_box_wood_wood_box_icon
+- Rope based off https://starbounder.org/Rope
 - Herobrine was made from Mojang's Steve's
