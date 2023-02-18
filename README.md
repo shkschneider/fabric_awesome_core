@@ -9,20 +9,13 @@
 ![Tag](https://img.shields.io/github/v/tag/shkschneider/mc_awesome?style=for-the-badge)
 [![license](https://img.shields.io/github/license/shkschneider/mc_awesome?style=for-the-badge)](https://github.com/shkschneider/mc_awesome/LICENSE)
 
-Shamelessly took inspirations from the times of *Thermal Expansion*, *Greg Tech*, *Industrial Craft*...
+Shamelessly took inspirations from the times of *Thermal Expansion*, *Greg Tech*, *Industrial Craft*, *Industrial Foregoing*...
 
-Evolves around Vanilla *copper*, *redstone* and *lapis lazuli* - with ingots for each!
-with ore processing involving *powders*, *chips* and *dusts*,
-with **Crystals** to produce ores out of craftable budding blocks,
-with **Experience** easing the gain of xp,
-with **Extras** giving a Vanilla++ feeling,
-with **Machines** adding powerful blocks and mechanisms!
-
-- **New!** Refinery and Factory machines!
-- **New!** /enderchest and /inventory commands
-- **New!** All-In-One Tool
-- **New!** Crystals working like Budding Amethyst producing all vanilla ores!
-- **New!** Ropes that unroll and rollup, Obelisks to store and retrieve experience, Void block for decoration & more!
+Improved *Vanilla++* gameplay with many additions:
+**crystals** that produce ores out of craftable budding blocks;
+**experience** easing the gain, storage and retrieval (obelisk) of xp;
+**extras** adding many content (like trash slot, rope, crate, elevator, scythe, randomium...);
+and finally **commands** for players, moderators and/or admins.
 
 ## Modules
 
@@ -42,7 +35,7 @@ with **Machines** adding powerful blocks and mechanisms!
   - `/gamerule keepXp` upon death
   - a 2-way trash slot in your inventory that only clears upon closing
   - all-in-one tool
-  - bonus recipes for vanilla items
+  - baguette: bread but better
   - configurable zenith (mid-day) and nadir (mid-night) times
   - coordinates on death screen
   - early game crates that retain inventory
@@ -99,12 +92,6 @@ Almost everything is configurable via `config/awesome.json`.
 
 - Refinery processes ores with enchantments: x1-x4
 - Netherite Ingot from 1 Ancient Debris + 1 Gold Block
-
-## Recipes
-
-- Baguette: better bread!
-- Redstone + Lapis Lazuli = Flux
-- Vanilla now craftable: bell, cobweb, crying obsidian, elytra, grass, mycelium, name tag, trident...
 
 ## License & Credits
 

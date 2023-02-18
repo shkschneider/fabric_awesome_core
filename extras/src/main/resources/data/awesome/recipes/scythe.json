@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     { "item": "minecraft:wooden_hoe" },
-    { "item": "minecraft:wooden_hoe" }
+    { "item": "minecraft:shears" }
   ],
   "result": {
     "item": "awesome:scythe",
