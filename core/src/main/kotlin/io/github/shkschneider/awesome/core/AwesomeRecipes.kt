@@ -1,0 +1,18 @@
+package io.github.shkschneider.awesome.core
+
+import net.minecraft.inventory.Inventory
+import net.minecraft.item.ItemStack
+
+object AwesomeRecipes {
+
+    @Suppress("SimplifiableCallChain")
+    fun <T : Inventory> get(recipes: List<AwesomeRecipe<T>>, inputs: List<ItemStack>, outputs: List<ItemStack>): AwesomeRecipe<T>? =
+        recipes.filter { recipe ->
+            // recipe must have all its ingredients present in inputs and have room in any outputs
+            recipe.inputs.all { input -> inputs.any { stack -> stack.item == input.item && stack.count >= input.count } }
+        }.filter { recipe ->
+            // only returns a recipe when there is output space
+            outputs.any { output -> output.isEmpty || (output.item == recipe.output.item && output.count + recipe.output.count <= output.maxCount) }
+        }.firstOrNull()
+
+}

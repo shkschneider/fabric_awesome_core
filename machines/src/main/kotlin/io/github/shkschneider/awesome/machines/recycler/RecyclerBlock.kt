@@ -39,6 +39,15 @@ class RecyclerBlock(
         machine, pos, state,
     ) {
 
+        fun getInputSlot(): Pair<Int, ItemStack> =
+            0 to items[0]
+
+        fun getOutputSlots(): List<Pair<Int, ItemStack>> = listOf(
+            1 to items[1], 2 to items[2], 3 to items[3],
+            4 to items[4], 5 to items[5], 6 to items[6],
+            7 to items[7], 8 to items[8], 9 to items[9],
+        )
+
         override fun screenHandler(syncId: Int, playerInventory: PlayerInventory, sidedInventory: SidedInventory, properties: PropertyDelegate): ScreenHandler =
             RecyclerScreen.Handler(machine, machine.screen, syncId, playerInventory, sidedInventory, properties)
 

@@ -24,7 +24,7 @@ class Scythe : MiningToolItem(
     /* attackSpeed */ -3F,
     ToolMaterials.WOOD,
     BlockTags.HOE_MINEABLE,
-    FabricItemSettings().maxDamage(ToolMaterials.WOOD.durability),
+    FabricItemSettings().maxDamage(ToolMaterials.STONE.durability),
 ), Vanishable {
 
     init {

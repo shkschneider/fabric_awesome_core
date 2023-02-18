@@ -1,14 +1,9 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " 22",
-    "2 1",
-    "  1"
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:wooden_hoe" },
+    { "item": "minecraft:wooden_hoe" }
   ],
-  "key": {
-    "1": { "item": "minecraft:stick" },
-    "2": { "item": "minecraft:cobblestone" }
-  },
   "result": {
     "item": "awesome:scythe",
     "count": 1

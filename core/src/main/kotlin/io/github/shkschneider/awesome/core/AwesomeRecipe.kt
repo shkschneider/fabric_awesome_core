@@ -37,7 +37,7 @@ class AwesomeRecipe<T : Inventory>(
         }
 
     override fun getOutput(): ItemStack =
-        output
+        output.copy()
 
     override fun getId(): Identifier {
         val inputId = inputs.first().item.id()
@@ -52,5 +52,8 @@ class AwesomeRecipe<T : Inventory>(
 
     override fun getType(): RecipeType<AwesomeRecipe<T>> =
         type
+
+    override fun toString(): String =
+        output.toString()
 
 }

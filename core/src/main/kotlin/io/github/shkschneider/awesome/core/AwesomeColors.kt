@@ -4,9 +4,8 @@ package io.github.shkschneider.awesome.core
  * Link: https://www.htmlcsscolor.com
  * Link: https://colorswall.com/palette/3847
  */
+@Suppress("MayBeConstant") // do not const val because of java accessors
 object AwesomeColors {
-
-    // do not const val because of java accessors
 
     val black = 0x000000
     val blue = 0x0000ff
