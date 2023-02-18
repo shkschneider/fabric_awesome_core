@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,lit=true": { "model": "awesome:block/placer" },
+    "facing=north,lit=false": { "model": "awesome:block/placer" },
+    "facing=south,lit=true": { "model": "awesome:block/placer", "y": 180 },
+    "facing=south,lit=false": { "model": "awesome:block/placer", "y": 180 },
+    "facing=east,lit=true": { "model": "awesome:block/placer", "y": 90 },
+    "facing=east,lit=false": { "model": "awesome:block/placer", "y": 90 },
+    "facing=west,lit=true": { "model": "awesome:block/placer", "y": 270 },
+    "facing=west,lit=false": { "model": "awesome:block/placer", "y": 270 }
+  }
+}

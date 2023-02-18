@@ -19,11 +19,6 @@ object Awesome {
 
     val CONFIG = AwesomeConfigFactory<AwesomeConfig>(ID)(AwesomeConfig::class.java)
 
-    operator fun invoke() {
-        if (CONFIG.machines.fluxAsVanillaFuel) {
-            // AbstractFurnaceBlockEntity.createFuelTimeMap()
-            AwesomeRegistries.fuel(flux, flux.time)
-        }
-    }
+    operator fun invoke() = Unit
 
 }

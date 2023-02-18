@@ -9,7 +9,7 @@ fun Inventory.getStacks(): List<ItemStack> =
 fun Inventory.insert(itemStack: ItemStack): ItemStack {
     (0 until size()).filter { getStack(it).item == itemStack.item }.forEach { index ->
         if (itemStack.isEmpty) return@forEach
-        while (itemStack.count > 0 && getStack(index).count < getStack(index).maxCount) {
+        while (itemStack.count > 0 && !getStack(index).isFull) {
             getStack(index).count++
             itemStack.count--
         }

@@ -15,11 +15,11 @@ import net.minecraft.util.collection.DefaultedList
  * License: MIT
  * Source: https://gitlab.com/supersaiyansubtlety/automated_crafting
  */
-class DummyCraftingInventory(widget: Int, height: Int, _stacks: DefaultedList<ItemStack>): CraftingInventory(DummyHandler(), widget, height), Inventory {
+class DummyCraftingInventory(widget: Int, height: Int, inventory: DefaultedList<ItemStack>): CraftingInventory(DummyHandler(), widget, height), Inventory {
 
     init {
         @Suppress("CAST_NEVER_SUCCEEDS")
-        (this as ICraftingInventoryMixin).stacks = _stacks
+        (this as ICraftingInventoryMixin).stacks = inventory
     }
 
     override fun isEmpty(): Boolean = getStacks().isEmpty()

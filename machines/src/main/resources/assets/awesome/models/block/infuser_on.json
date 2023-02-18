@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "awesome:block/infuser_front_on",
-    "side": "awesome:block/infuser_side_on",
-    "top": "awesome:block/machine_top",
-    "bottom": "awesome:block/machine_bottom"
-  }
-}

@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,lit=true": { "model": "awesome:block/breaker" },
+    "facing=north,lit=false": { "model": "awesome:block/breaker" },
+    "facing=south,lit=true": { "model": "awesome:block/breaker", "y": 180 },
+    "facing=south,lit=false": { "model": "awesome:block/breaker", "y": 180 },
+    "facing=east,lit=true": { "model": "awesome:block/breaker", "y": 90 },
+    "facing=east,lit=false": { "model": "awesome:block/breaker", "y": 90 },
+    "facing=west,lit=true": { "model": "awesome:block/breaker", "y": 270 },
+    "facing=west,lit=false": { "model": "awesome:block/breaker", "y": 270 }
+  }
+}

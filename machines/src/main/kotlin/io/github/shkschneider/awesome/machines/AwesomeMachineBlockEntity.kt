@@ -3,14 +3,16 @@ package io.github.shkschneider.awesome.machines
 import io.github.shkschneider.awesome.core.AwesomeBlockEntity
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.getStacks
-import io.github.shkschneider.awesome.custom.Minecraft
+import io.github.shkschneider.awesome.core.ext.isFull
 import net.minecraft.block.BlockState
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.ItemStack
+import net.minecraft.nbt.NbtCompound
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandler
+import net.minecraft.state.property.Properties
 import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
@@ -28,13 +30,13 @@ abstract class AwesomeMachineBlockEntity<BE : AwesomeBlockEntity.WithInventory, 
     delegates = machine.properties to 0,
 ), AwesomeBlockEntity.WithScreen {
 
-    var progress: Int
+    open var progress: Int
         get() = properties.get(0)
         set(value) = properties.set(0, value)
-    var duration: Int
+    open var duration: Int
         get() = properties.get(1)
         set(value) = properties.set(1, value)
-    var fuel: Int
+    open var fuel: Int
         get() = properties.get(2)
         set(value) = properties.set(2, value)
 
@@ -45,11 +47,19 @@ abstract class AwesomeMachineBlockEntity<BE : AwesomeBlockEntity.WithInventory, 
         properties.set(AwesomeMachine.PROPERTIES + index, value)
     }
 
-    init {
-        progress = 0
-        duration = Minecraft.TICKS
-        fuel = 0
+    open fun on() {
+        setPropertyState(state.with(Properties.LIT, true))
+        markDirty()
     }
+
+    open fun off() {
+        setPropertyState(state.with(Properties.LIT, false))
+        progress = 0
+        markDirty()
+    }
+
+    fun getSlot(index: Int): Pair<Int, ItemStack> =
+        index to items[index]
 
     override fun getDisplayName(): Text =
         Text.translatable(AwesomeUtils.translatable("block", machine.id))
@@ -69,17 +79,33 @@ abstract class AwesomeMachineBlockEntity<BE : AwesomeBlockEntity.WithInventory, 
         val stacks = getStacks().mapIndexed { index, itemStack -> index to itemStack }.filter { io.isOutput(it.first) }
         stacks.filter { it.second.item == stack.item }.map { it.first }.forEach { slot ->
             if (stack.isEmpty) return@forEach
-            while (stack.count > 0 && getStack(slot).count < getStack(slot).maxCount) {
+            while (stack.count > 0 && !getStack(slot).isFull) {
                 getStack(slot).count++
                 stack.count--
             }
         }
-        stacks.filter { it.second.isEmpty }.map { it.first }.forEach { slot ->
-            setStack(slot, stack.copy())
-            stack.count = 0
+        if (!stack.isEmpty) {
+            stacks.filter { it.second.isEmpty }.map { it.first }.forEach { slot ->
+                setStack(slot, stack.copy())
+                stack.count = 0
+            }
         }
         markDirty()
         return stack
+    }
+
+    override fun writeNbt(nbt: NbtCompound) {
+        super.writeNbt(nbt)
+        nbt.putInt("progress", progress)
+        nbt.putInt("duration", duration)
+        nbt.putInt("fuel", fuel)
+    }
+
+    override fun readNbt(nbt: NbtCompound) {
+        fuel = nbt.getInt("fuel")
+        duration = nbt.getInt("duration")
+        progress = nbt.getInt("progress")
+        super.readNbt(nbt)
     }
 
 }

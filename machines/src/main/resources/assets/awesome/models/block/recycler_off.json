@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "awesome:block/recycler_off",
+    "side": "awesome:block/recycler_off",
+    "top": "awesome:block/recycler_off",
+    "bottom": "awesome:block/recycler_off"
+  }
+}

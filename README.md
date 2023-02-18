@@ -18,11 +18,9 @@ with **Experience** easing the gain of xp,
 with **Extras** giving a Vanilla++ feeling,
 with **Machines** adding powerful blocks and mechanisms!
 
+- **New!** Refinery and Factory machines!
 - **New!** /enderchest and /inventory commands
-- **New!** Critical enchantment
 - **New!** All-In-One Tool
-- **New!** Vamprism enchantment
-- **New!** Sixth Sense enchantment
 - **New!** Crystals working like Budding Amethyst producing all vanilla ores!
 - **New!** Ropes that unroll and rollup, Obelisks to store and retrieve experience, Void block for decoration & more!
 
@@ -87,9 +85,9 @@ with **Machines** adding powerful blocks and mechanisms!
   - vein mining (ores and logs)
 - Awesome **Machines**
   - collector (with efficiency)
-  - quarry (with efficiency & fortune)
   - crafter / recycler
-  - ore processing x2 x4 x8!
+  - quarry (with efficiency & fortune)
+  - refinery: ore processing x1-x4
   - item: imprisoner (to capture and release entities)
   - item: prospector (to make ores glow)
 
@@ -99,22 +97,14 @@ Almost everything is configurable via `config/awesome.json`.
 
 ## Ore Processing
 
-- Base: 1ingot (crushing) 1dust (smelting) 1ingot
-- Tier0: 1raw (smelting) 1ingot
-- Tier1: 1raw (crushing) 4powder (crushing) 2dust (smelting) 2ingot
-- Tier2: 1raw (crushing) 4powder (infusing) 4dust (smelting) 4ingot
-- Tier3: 1ore (refining) 16chip (crushing) 8powder (infusing) 8dust (smelting) 8ingot
-- Bonus: 1ancient_debris (crushing) 1netherite_scrap+1gold_block (infusing) 1netherite_ingot
+- Refinery processes ores with enchantments: x1-x4
+- Netherite Ingot from 1 Ancient Debris + 1 Gold Block
 
 ## Recipes
 
 - Baguette: better bread!
-- More torches using coal chips or dusts
-- Redstone + Lapis Lazuli (+ Coal) = Flux
+- Redstone + Lapis Lazuli = Flux
 - Vanilla now craftable: bell, cobweb, crying obsidian, elytra, grass, mycelium, name tag, trident...
-- Optional: 1 coal block (crushing) 1 diamond dust (smelting) 1diamond
-- Optional: 1 cobblestone (crushing) 1 gravel (crushing) 1sand
-- Optional: 64 netherrack (crushing) 9 redstone (dust)
 
 ## License & Credits
 

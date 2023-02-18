@@ -1,9 +1,12 @@
 {
   "values": [
+    "awesome:breaker",
     "awesome:collector",
-    "awesome:crusher",
-    "awesome:infuser",
-    "awesome:refinery",
-    "awesome:smelter"
+    "awesome:crafter",
+    "awesome:factory",
+    "awesome:placer",
+    "awesome:quarry",
+    "awesome:recycler",
+    "awesome:refinery"
   ]
 }

@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "awesome:block/collector_off",
+    "side": "awesome:block/collector_off",
+    "top": "awesome:block/collector_off",
+    "bottom": "awesome:block/collector_off"
+  }
+}

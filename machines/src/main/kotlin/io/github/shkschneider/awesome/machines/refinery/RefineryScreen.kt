@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.machines.refinery
 
+import io.github.shkschneider.awesome.AwesomeMachines
 import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
@@ -23,9 +24,15 @@ class RefineryScreen(
 
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
+        if (handler.fuel > 0) {
+            // flames
+            val progress = ((handler.fuel.toFloat() / AwesomeMachines.fuel.time.toFloat()) * (189 - 176 + 1).toFloat()).roundToInt()
+            drawTexture(matrices, x + 72 - 1, y + 37 + 14 - progress - 1, 176, 14 - progress - 1, 14, progress + 1)
+        }
         if (handler.progress > 0) {
-            val progress = ((handler.progress.toFloat() / handler.duration.toFloat()) * 24.0).roundToInt()
-            drawTexture(matrices, x + 80 - 1, y + 36 - 1, 176, 15, progress, 30 - 15)
+            // arrow
+            val progress = ((handler.progress.toFloat() / handler.duration.toFloat()) * (197 - 176 + 1).toFloat()).roundToInt()
+            drawTexture(matrices, x + 97 - 1, y + 36 - 1, 176, 15, progress, 30 - 15)
         }
     }
 
@@ -42,8 +49,10 @@ class RefineryScreen(
         
         init {
             addSlots(
-                56 to 35,
-                112 + 4 to 31 + 4,
+                44 to 35,
+                71 to 17,
+                71 to 53,
+                129 + 4 to 31 + 4,
             )
             addPlayerSlots()
         }

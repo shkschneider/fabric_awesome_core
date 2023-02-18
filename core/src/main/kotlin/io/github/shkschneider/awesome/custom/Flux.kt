@@ -15,11 +15,14 @@ class Flux : Item(
 
     init {
         AwesomeRegistries.item(AwesomeUtils.identifier("flux"), this, null)
-        FuelRegistry.INSTANCE.get(Items.COAL_BLOCK)
     }
 
     // AbstractFurnaceBlockEntity.createFuelTimeMap()
     val time: Int = FuelRegistry.INSTANCE.get(Items.BLAZE_ROD)
+
+    init {
+        AwesomeRegistries.fuel(this, this.time)
+    }
 
     override fun hasGlint(stack: ItemStack): Boolean = false
 

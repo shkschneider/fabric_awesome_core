@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.core
 
+import io.github.shkschneider.awesome.core.ext.canInsert
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 
@@ -12,7 +13,7 @@ object AwesomeRecipes {
             recipe.inputs.all { input -> inputs.any { stack -> stack.item == input.item && stack.count >= input.count } }
         }.filter { recipe ->
             // only returns a recipe when there is output space
-            outputs.any { output -> output.isEmpty || (output.item == recipe.output.item && output.count + recipe.output.count <= output.maxCount) }
+            outputs.any { output -> output.canInsert(recipe.output) }
         }.firstOrNull()
 
 }

@@ -21,11 +21,8 @@
         "value": "io.github.shkschneider.awesome.AwesomeMachinesMod"
       }
     ],
-    "rei_client": [
-      "io.github.shkschneider.awesome.recipes.AwesomeReiPlugin"
-    ],
     "emi": [
-      "io.github.shkschneider.awesome.recipes.AwesomeEmiPlugin"
+      "io.github.shkschneider.awesome.machines.AwesomeEmiPlugin"
     ]
   },
   "mixins": [],

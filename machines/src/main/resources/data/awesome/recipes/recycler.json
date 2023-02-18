@@ -1,15 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "414",
+    "111",
     "121",
     "333"
   ],
   "key": {
-    "1": { "item": "awesome:redstone_plate" },
+    "1": { "item": "minecraft:copper_ingot" },
     "2": { "item": "minecraft:composter" },
-    "3": { "item": "awesome:copper_frame" },
-    "4": { "item": "awesome:lapis_plate" }
+    "3": { "item": "minecraft:copper_block" }
   },
   "result": {
     "item": "awesome:recycler",

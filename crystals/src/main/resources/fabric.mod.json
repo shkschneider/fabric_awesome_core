@@ -20,6 +20,9 @@
         "adapter": "kotlin",
         "value": "io.github.shkschneider.awesome.AwesomeCrystalsMod"
       }
+    ],
+    "emi": [
+      "io.github.shkschneider.awesome.crystals.AwesomeEmiPlugin"
     ]
   },
   "mixins": [],

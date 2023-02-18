@@ -7,6 +7,7 @@ import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
+import net.minecraft.block.Blocks
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.item.ItemPlacementContext
 import net.minecraft.item.ItemStack
@@ -21,7 +22,7 @@ import net.minecraft.world.World
 
 abstract class AwesomeMachineBlock<BE : AwesomeBlockEntity.WithInventory, SH : AwesomeMachineScreenHandler<BE>>(
     protected val machine: AwesomeMachine<BE, SH>,
-    settings: FabricBlockSettings,
+    settings: FabricBlockSettings = FabricBlockSettings.copyOf(Blocks.FURNACE),
 ) : AwesomeBlockWithEntity.WithInventory<BE>(
     id = AwesomeUtils.identifier(machine.id),
     settings = settings,

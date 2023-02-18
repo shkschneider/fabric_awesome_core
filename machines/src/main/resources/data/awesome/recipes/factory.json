@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "111",
+    "121",
+    "333"
+  ],
+  "key": {
+    "1": { "item": "minecraft:copper_ingot" },
+    "2": { "item": "minecraft:furnace" },
+    "3": { "item": "minecraft:copper_block" }
+  },
+  "result": {
+    "item": "awesome:factory",
+    "count": 1
+  }
+}

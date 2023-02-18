@@ -1,15 +1,16 @@
 package io.github.shkschneider.awesome.machines.crafter
 
+import io.github.shkschneider.awesome.core.ext.canInsert
 import io.github.shkschneider.awesome.core.ext.test
 import io.github.shkschneider.awesome.custom.DummyCraftingInventory
 import io.github.shkschneider.awesome.custom.InputOutput
+import io.github.shkschneider.awesome.custom.Minecraft
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineBlock
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
 import net.minecraft.block.BlockState
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.CraftingInventory
-import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.CraftingRecipe
 import net.minecraft.recipe.RecipeType
@@ -20,15 +21,8 @@ import net.minecraft.world.World
 
 class Crafter : AwesomeMachine<CrafterBlock.Entity, CrafterScreen.Handler>(
     id = "crafter",
-    io = InputOutput(inputs = INVENTORY + GRID * GRID, outputs = 1),
+    io = InputOutput(inputs = 3 * 3, outputs = 1),
 ) {
-
-    companion object {
-
-        const val INVENTORY = 5
-        const val GRID = 3 // *3
-
-    }
 
     override fun block(): AwesomeMachineBlock<CrafterBlock.Entity, CrafterScreen.Handler> =
         CrafterBlock(this)
@@ -41,35 +35,41 @@ class Crafter : AwesomeMachine<CrafterBlock.Entity, CrafterScreen.Handler>(
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: CrafterBlock.Entity) {
         if (world.isClient) return
-        // do NOT super.tick() unless this uses power
-        val stacks = DefaultedList.ofSize(GRID * GRID, ItemStack.EMPTY).apply {
-            (INVENTORY until io.inputs).forEach { index ->
-                set(index - INVENTORY, (blockEntity as Inventory).getStack(index))
+        val craftingGrid = DummyCraftingInventory(3, 3, DefaultedList.ofSize<ItemStack?>(3 * 3).apply {
+            blockEntity.getInputSlots().forEach { inputSlot ->
+                this.add(inputSlot.second)
             }
+        })
+        val recipe = getRecipe(world, blockEntity, craftingGrid)
+        if (recipe == null) { blockEntity.off() ; return }
+        if (blockEntity.duration == 0) {
+            blockEntity.duration = Minecraft.TICKS
+            blockEntity.progress = 0
+            blockEntity.off()
+            return
         }
-        val craftingGrid = DummyCraftingInventory(GRID, GRID, stacks)
-        world.recipeManager.getFirstMatch(RecipeType.CRAFTING, craftingGrid, world).orElse(null)
-            ?.takeUnless { recipe -> recipe.test(blockEntity.items.take(INVENTORY)) < 0 }
-            ?.let { recipe -> craft(blockEntity, craftingGrid, recipe) }
+        blockEntity.progress++
+        blockEntity.on()
+        if (blockEntity.progress >= blockEntity.duration) {
+            craft(blockEntity, craftingGrid, recipe)
+            blockEntity.progress = 0
+        }
     }
 
-    private fun craft(entity: CrafterBlock.Entity, inventory: CraftingInventory, recipe: CraftingRecipe): Int {
-        val stack = recipe.craft(inventory)
-        val outputIndex = io.size - 1
-        if (stack.isEmpty) return -1
-        if (entity.getStack(outputIndex).count + stack.count > entity.getStack(outputIndex).maxCount) return -2
-        recipe.ingredients.forEach { ingredient ->
-            val index = entity.items.indexOfFirst { ingredient.test(it) }
-            entity.removeStack(index, 1)
+    private fun getRecipe(world: World, blockEntity: CrafterBlock.Entity, craftingGrid: CraftingInventory): CraftingRecipe? {
+        return world.recipeManager.getFirstMatch(RecipeType.CRAFTING, craftingGrid, world).orElse(null)
+            ?.takeUnless { recipe -> recipe.test(blockEntity.getInputSlots().map { it.second.copy().apply { decrement(1) } }) < 0 }
+    }
+
+    private fun craft(blockEntity: CrafterBlock.Entity, inventory: CraftingInventory, recipe: CraftingRecipe) {
+        val output = recipe.craft(inventory)
+        val outputSlot = blockEntity.getOutputSlot()
+        if (outputSlot.second.canInsert(output)) {
+            recipe.ingredients.forEach { ingredient ->
+                blockEntity.removeStack(blockEntity.getInputSlots().indexOfFirst { ingredient.test(it.second) && it.second.count > 1 }, 1)
+            }
+            blockEntity.insert(output)
         }
-        if (entity.getStack(outputIndex).isEmpty) {
-            entity.setStack(outputIndex, stack)
-        } else if (entity.getStack(outputIndex).item == stack.item) {
-            entity.getStack(outputIndex).count += stack.count
-        } else {
-            return 0
-        }
-        return stack.count
     }
 
 }

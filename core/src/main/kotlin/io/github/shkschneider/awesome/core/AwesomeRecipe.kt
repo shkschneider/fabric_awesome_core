@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.core
 
+import io.github.shkschneider.awesome.core.ext.getStacks
 import io.github.shkschneider.awesome.core.ext.id
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
@@ -18,10 +19,10 @@ class AwesomeRecipe<T : Inventory>(
     private val output: ItemStack,
 ) : Recipe<T> {
 
-    override fun matches(inventory: T, world: World): Boolean {
-        if (world.isClient) return false
-        return true // FIXME
-    }
+    override fun matches(inventory: T, world: World): Boolean =
+        inputs.all { input ->
+            inventory.getStacks().any { it.item == input.item && it.count >= input.count }
+        }
 
     override fun craft(inventory: T): ItemStack =
         output

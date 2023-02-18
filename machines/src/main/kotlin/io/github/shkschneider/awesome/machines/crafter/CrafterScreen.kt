@@ -1,8 +1,9 @@
 package io.github.shkschneider.awesome.machines.crafter
 
-import io.github.shkschneider.awesome.AwesomeMachines
-import io.github.shkschneider.awesome.core.ext.getStacks
+import io.github.shkschneider.awesome.core.ext.canInsert
+import io.github.shkschneider.awesome.core.ext.copy
 import io.github.shkschneider.awesome.custom.SimpleSidedInventory
+import io.github.shkschneider.awesome.custom.TemplateSlot
 import io.github.shkschneider.awesome.machines.AwesomeMachine
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreen
 import io.github.shkschneider.awesome.machines.AwesomeMachineScreenHandler
@@ -30,8 +31,9 @@ class CrafterScreen(
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
         if (handler.progress > 0) {
-            val progress = ((handler.progress.toFloat() / handler.duration.toFloat()) * 76.0).roundToInt()
-            drawTexture(matrices, x + 64 - 1, y + 49 - 1, 176, 32, progress, 48 - 32)
+            // arrow
+            val progress = ((handler.progress.toFloat() / handler.duration.toFloat()) * (197 - 176 + 1).toFloat()).roundToInt()
+            drawTexture(matrices, x + 90 - 1, y + 35 - 1, 176, 15, progress, 30 - 15)
         }
     }
 
@@ -46,53 +48,49 @@ class CrafterScreen(
         type, syncId, playerInventory, sidedInventory, properties
     ) {
 
-        private val machine: AwesomeMachine<CrafterBlock.Entity, CrafterScreen.Handler> get() = AwesomeMachines.crafter
-
         init {
             addSlots(
                 // inputs
-                80 to 17, 98 to 17, 116 to 17, 134 to 17, 152 to 17,
-                // crafting grid
-                8 to 17, 26 to 17, 44 to 17,
-                8 to 35, 26 to 35, 44 to 35,
-                8 to 52, 26 to 53, 44 to 52,
+                TemplateSlot(internalInventory, 0, 30, 17),
+                TemplateSlot(internalInventory, 1, 48, 17),
+                TemplateSlot(internalInventory, 2, 66, 17),
+                TemplateSlot(internalInventory, 3, 30, 35),
+                TemplateSlot(internalInventory, 4, 48, 35),
+                TemplateSlot(internalInventory, 5, 66, 35),
+                TemplateSlot(internalInventory, 6, 30, 53),
+                TemplateSlot(internalInventory, 7, 48, 53),
+                TemplateSlot(internalInventory, 8, 66, 53),
                 // output
-                144 + 4 to 45 + 4
+                Slot(internalInventory, 9, 120 + 4, 31 + 4),
             )
             addPlayerSlots()
         }
 
-        override fun canInsertIntoSlot(stack: ItemStack, slot: Slot): Boolean =
-            canInsertIntoSlot(slot) && (internalInventory.getStacks().any { it.isEmpty || it.item == stack.item })
-
-        override fun canInsertIntoSlot(slot: Slot): Boolean =
-            machine.io.isInput(slot.index) && (slot.index < Crafter.INVENTORY || slot.index >= machine.io.size)
-
         override fun onSlotClick(slotIndex: Int, button: Int, actionType: SlotActionType, player: PlayerEntity) {
-            if (slotIndex in (Crafter.INVENTORY until machine.io.inputs)) {
-                slots[slotIndex].stack = ItemStack(cursorStack.item, 1)
+            if (slotIndex in (0 until internalInventory.size() - 1)) {
+                val slot = slots[slotIndex] // beware of negative indexes
+                if (cursorStack.isEmpty) {
+                    if (slot.stack.count > 1) {
+                        cursorStack = slot.stack.copy(amount = slot.stack.count - 1)
+                        slot.stack.decrement(1)
+                    } else {
+                        slot.stack = ItemStack.EMPTY
+                    }
+                } else {
+                    if (slot.stack.count > 1) {
+                        if (cursorStack.canInsert(slot.stack.copy(amount = 1))) {
+                            cursorStack.increment(1)
+                            slot.stack.decrement(1)
+                        } else {
+                            // nothing
+                        }
+                    } else {
+                        slot.stack = cursorStack.copy(amount = 1)
+                    }
+                }
             } else {
                 super.onSlotClick(slotIndex, button, actionType, player)
             }
-        }
-
-        override fun quickMove(player: PlayerEntity, i: Int): ItemStack =
-            if (i in (0 until Crafter.INVENTORY) || i == machine.io.size - 1) {
-                super.quickMove(player, i)
-            } else if (i >= machine.io.size) {
-                internalQuickMove(i)
-            } else {
-                ItemStack.EMPTY
-            }
-
-        private fun internalQuickMove(index: Int): ItemStack {
-            val slot = slots.getOrNull(index)?.takeIf { it.hasStack() } ?: return ItemStack.EMPTY
-            val stack = slot.stack.copy()
-            if (!insertItem(slot.stack, 0, Crafter.INVENTORY, false)) {
-                return ItemStack.EMPTY
-            }
-            slot.markDirty()
-            return stack
         }
 
     }

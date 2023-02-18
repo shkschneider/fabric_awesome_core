@@ -28,24 +28,16 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2
     }
 
-    protected fun setShader() {
-        // TODO there is something I don't quite get here
-        // when drawing 1+ textures, only the first appears
-        // resetting the Shader, even in the children (calling super already) fixes it
-        // FIXME i doubt this is how it should be done -- nor optimized :/
-        RenderSystem.setShader(GameRenderer::getRenderTypeTextProgram)
-        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
-        RenderSystem.setShaderTexture(0, AwesomeUtils.identifier("textures/gui/$name.png"))
-    }
-
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
-        setShader()
+        RenderSystem.setShaderTexture(0, AwesomeUtils.identifier("textures/gui/$name.png"))
         val x = (width - backgroundWidth) / 2
         val y = (height - backgroundHeight) / 2
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight)
     }
 
     override fun drawForeground(matrices: MatrixStack, mouseX: Int, mouseY: Int) {
+        RenderSystem.setShader(GameRenderer::getRenderTypeTextProgram)
+        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
         super.drawForeground(matrices, mouseX, mouseY)
     }
 
@@ -83,6 +75,12 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
             }
         }
 
+        fun addSlots(vararg slots: Slot) {
+            slots.forEach { slot ->
+                addSlot(slot)
+            }
+        }
+
         // https://fabricmc.net/wiki/tutorial:containers
         protected fun addPlayerSlots() {
             // inventory
@@ -96,28 +94,6 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
                 addSlot(Slot(playerInventory, i, 8 + i * 18, 142))
             }
         }
-
-//        protected fun drawInputOutputs(matrices: MatrixStack, io: InputOutput) {
-//            val input = 177 to 91
-//            val output = 177 to 101
-//            val w = 161 - 153
-//            val h = 12 - 4
-//            if (io.inputs.second.any { it is Faces.Top }) {
-//                drawTexture(matrices, x + 153, y + 4, input.first, input.second, w, h)
-//            }
-//            if (io.inputs.second.any { it is Faces.Sides && it.left }) {
-//                drawTexture(matrices, x + 143, y + 14, input.first, input.second, w, h)
-//            }
-//            if (io.inputs.second.any { it is Faces.Sides && it.right }) {
-//                drawTexture(matrices, x + 163, y + 14, input.first, input.second, w, h)
-//            }
-//            if (io.outputs.second.any { it is Faces.Bottom }) {
-//                drawTexture(matrices, x + 153, y + 24, output.first, output.second, w, h)
-//            }
-//            if (io.outputs.second.any { it is Faces.Back }) {
-//                drawTexture(matrices, x + 163, y + 24, output.first, output.second, w, h)
-//            }
-//        }
 
         /**
          * Thanks to Kaupenjoe

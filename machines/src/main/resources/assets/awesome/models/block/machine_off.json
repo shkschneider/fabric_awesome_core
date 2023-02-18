@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "awesome:block/machine_front_off",
-    "side": "awesome:block/machine_side",
-    "top": "awesome:block/machine_top",
-    "bottom": "awesome:block/machine_bottom"
-  }
-}

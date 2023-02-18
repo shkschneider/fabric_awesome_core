@@ -11,6 +11,7 @@ import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.text.Text
+import kotlin.math.roundToInt
 
 @Suppress("RemoveRedundantQualifierName")
 class RecyclerScreen(
@@ -23,8 +24,9 @@ class RecyclerScreen(
     override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
         super.drawBackground(matrices, delta, mouseX, mouseY)
         if (handler.duration > 0) {
-            val progress = handler.progress * 13 / handler.duration
-            if (progress > 0) drawTexture(matrices, x + 80, y + 36 + 13 - progress - 1, 176, 13 - progress - 1, 190 - 176, progress + 1)
+            // arrow
+            val progress = ((handler.progress.toFloat() / handler.duration.toFloat()) * (197 - 176 + 1).toFloat()).roundToInt()
+            drawTexture(matrices, x + 62 - 1, y + 36 - 1, 176, 15, progress, 30 - 15)
         }
     }
     
@@ -47,16 +49,6 @@ class RecyclerScreen(
                 92 to 53, 110 to 53, 128 to 53,
             )
             addPlayerSlots()
-//            this.addDrawableChild<TexturedButtonWidget>(TexturedButtonWidget(
-//                this.x + 20, this.height / 2 - 49, 20, 18, 0, 0, 19, AbstractFurnaceScreen.RECIPE_BUTTON_TEXTURE
-//            ) { button: ButtonWidget ->
-//                this.recipeBook.toggleOpen()
-//                this.x = this.recipeBook.findLeftEdge(this.width, this.backgroundWidth)
-//                (button as TexturedButtonWidget).setPos(
-//                    this.x + 20,
-//                    this.height / 2 - 49
-//                )
-//            })
         }
 
     }

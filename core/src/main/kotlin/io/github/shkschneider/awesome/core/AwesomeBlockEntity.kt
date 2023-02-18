@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.core
 
 import io.github.shkschneider.awesome.core.ext.getStacks
+import io.github.shkschneider.awesome.core.ext.isFull
 import io.github.shkschneider.awesome.core.ext.readNbt
 import io.github.shkschneider.awesome.core.ext.relativeFace
 import io.github.shkschneider.awesome.core.ext.writeNbt
@@ -97,7 +98,7 @@ abstract class AwesomeBlockEntity(
             val stacks = getStacks().mapIndexed { index, itemStack -> index to itemStack }
             stacks.filter { it.second.item == stack.item }.map { it.first }.forEach { slot ->
                 if (stack.isEmpty) return@forEach
-                while (stack.count > 0 && getStack(slot).count < getStack(slot).maxCount) {
+                while (stack.count > 0 && !getStack(slot).isFull) {
                     getStack(slot).count++
                     stack.count--
                 }

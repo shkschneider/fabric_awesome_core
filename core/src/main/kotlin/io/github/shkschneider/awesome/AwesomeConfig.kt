@@ -87,15 +87,12 @@ data class AwesomeConfig(
     )
 
     data class Machines(
-        @SerializedName("diamondDustFromCrushingCoalBlock") val diamondDustFromCrushingCoalBlock: Boolean = true,
-        @SerializedName("fluxAsVanillaFuel") val fluxAsVanillaFuel: Boolean = true,
-        @SerializedName("gravelFromCobblestone") val gravelFromCobblestone: Boolean = true,
+        @SerializedName("crafter") val crafter: Boolean = true,
+        @SerializedName("factory") val factory: Boolean = true,
         @SerializedName("imprisoner") val imprisoner: Boolean = true,
-        @SerializedName("moreNetherite") val moreNetherite: Boolean = true,
         @SerializedName("prospector") val prospector: Boolean = true,
         @SerializedName("quarry") val quarry: Boolean = true,
-        @SerializedName("redstoneFromCrushingNetherrack") val redstoneFromCrushingNetherrack: Boolean = true,
-        @SerializedName("sandFromGravel") val sandFromGravel: Boolean = true,
+        @SerializedName("recycler") val recycler: Boolean = true,
     )
 
 }
