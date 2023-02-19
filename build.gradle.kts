@@ -26,6 +26,11 @@ version = version()
 
 repositories {
     maven(url = "https://www.cursemaven.com") { name = "curse" }
+    maven(url = "https://jm.gserv.me/repository/maven-public/") { name = "journeymap" }
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
 }
 
 dependencies {
@@ -37,8 +42,13 @@ dependencies {
         // projectId to fileId
         "emi-580555" to "4373429", // https://www.curseforge.com/minecraft/mc-mods/emi/files
         "jade-324717" to "4328555", // https://www.curseforge.com/minecraft/mc-mods/jade/files
-        // FIXME "xaeros-minimap-263420" to "4338624", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files
+        // FIXME(NoSuchFieldException:shader) "xaeros-minimap-263420" to "4381126", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files
+        "journeymap-32274" to "4385898", // https://www.curseforge.com/minecraft/mc-mods/journeymap/files
     ).forEach { mod ->
+        if (mod.first.startsWith("journeymap")) {
+            // https://jm.gserv.me/repository/maven-public/info%2Fjourneymap%2Fjourneymap-api%2Fmaven-metadata.xml
+            modCompileOnly("info.journeymap:journeymap-api:1.19.3-1.9-fabric-SNAPSHOT")
+        }
         modRuntimeOnly("curse.maven:${mod.first}:${mod.second}") { exclude(group = "net.fabricmc") }
     }
 }
