@@ -42,7 +42,6 @@ dependencies {
         // projectId to fileId
         "emi-580555" to "4373429", // https://www.curseforge.com/minecraft/mc-mods/emi/files
         "jade-324717" to "4328555", // https://www.curseforge.com/minecraft/mc-mods/jade/files
-        // FIXME(NoSuchFieldException:shader) "xaeros-minimap-263420" to "4381126", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files
         "journeymap-32274" to "4385898", // https://www.curseforge.com/minecraft/mc-mods/journeymap/files
     ).forEach { mod ->
         if (mod.first.startsWith("journeymap")) {
