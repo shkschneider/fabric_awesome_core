@@ -12,9 +12,11 @@ object Awesome {
     val ID = Awesome::class.java.simpleName.lowercase()
 
     val flux = Flux()
+    private val fluxDust = FluxDust()
 
-    val GROUP: ItemGroup = AwesomeRegistries.group(AwesomeUtils.identifier(ID), FluxDust()).also {
-        AwesomeRegistries.group(it, flux)
+    val GROUP: ItemGroup = AwesomeRegistries.group(AwesomeUtils.identifier(ID), fluxDust).also { group ->
+        AwesomeRegistries.group(group, flux)
+        AwesomeRegistries.group(group, fluxDust)
     }
 
     val CONFIG = AwesomeConfigFactory<AwesomeConfig>(ID)(AwesomeConfig::class.java)
