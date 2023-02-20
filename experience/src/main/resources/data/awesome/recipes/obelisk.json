@@ -3,12 +3,13 @@
   "pattern": [
     " 1 ",
     "232",
-    " 1 "
+    " 4 "
   ],
   "key": {
     "1": { "item": "minecraft:glowstone" },
-    "2": { "item": "minecraft:obsidian" },
-    "3": { "item": "minecraft:crying_obsidian" }
+    "2": { "item": "minecraft:ender_pearl" },
+    "3": { "item": "minecraft:obsidian" },
+    "4": { "item": "minecraft:stone" }
   },
   "result": {
     "item": "awesome:obelisk",

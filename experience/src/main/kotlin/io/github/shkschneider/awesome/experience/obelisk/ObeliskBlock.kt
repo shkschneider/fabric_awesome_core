@@ -9,16 +9,20 @@ import io.github.shkschneider.awesome.custom.Experience
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.Minecraft
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
+import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.ExperienceOrbEntity
 import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.ItemPlacementContext
 import net.minecraft.item.ItemStack
 import net.minecraft.loot.context.LootContext
 import net.minecraft.loot.context.LootContextParameters
 import net.minecraft.particle.DustParticleEffect
+import net.minecraft.state.StateManager
+import net.minecraft.state.property.IntProperty
 import net.minecraft.text.Text
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Formatting
@@ -30,9 +34,20 @@ import net.minecraft.util.math.Vec3d
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
 
+@Suppress("PrivatePropertyName")
+private val LEVELS: IntProperty get() = IntProperty.of("levels", 0, Minecraft.STACK)
+
 class ObeliskBlock : AwesomeBlockWithEntity<ObeliskBlockEntity>(
-    AwesomeUtils.identifier("obelisk"), FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).luminance(1).nonOpaque().noBlockBreakParticles(),
+    AwesomeUtils.identifier("obelisk"), FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).noBlockBreakParticles().nonOpaque()
+        .luminance { state -> state.get(LEVELS) / (Minecraft.STACK / 15) / 2 },
 ) {
+
+    override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
+        super.appendProperties(builder.add(LEVELS))
+    }
+
+    override fun getPlacementState(ctx: ItemPlacementContext): BlockState =
+        super.getPlacementState(ctx).with(LEVELS, 0)
 
     override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {
         tooltip.add(Text.translatable(AwesomeUtils.translatable("block", id.path, "hint")).formatted(Formatting.GRAY))
@@ -72,14 +87,15 @@ class ObeliskBlock : AwesomeBlockWithEntity<ObeliskBlockEntity>(
     }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: ObeliskBlockEntity) {
-        if (!world.isClient) return
-        if (world.time % (Minecraft.TICKS / 2) != 0L) return
-        particle(world, pos)
+        if (!world.isClient) blockEntity.setPropertyState(state.with(LEVELS, blockEntity.bottles))
+        if (world.random.nextBetween(0, LEVELS.values.max()) <= state.get(LEVELS)) {
+            particle(world, pos)
+        }
     }
 
     private fun particle(world: World, pos: BlockPos) {
         val color = AwesomeColors.green
-        val offset = 0.5625 / 2
+        val offset = 0.5625 / 2 / 2
         val direction = Direction.values().random()
         val blockPos = pos.offset(direction)
         if (!world.getBlockState(blockPos).isOpaqueFullCube(world, blockPos)) {

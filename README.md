@@ -102,10 +102,11 @@ Made by **ShkSchneider** with great help from open-sourced codes from the commun
 - Many textures are from *GregTech* under **LGPL3**: https://github.com/GregTechCE/GregTech
 - Many machines frames are from *Industrial Foregoing* under **MIT**: https://github.com/InnovativeOnlineIndustries/Industrial-Foregoing
 
-- Logo based off https://www.iconfinder.com/icons/185592/table_crafting_icon
-- Flux from **Thermal Foundation**'s *Cryotheum Dust* and *Signalum Blend*
-- Imprisoner from https://ftb.fandom.com/wiki/Mob_Imprisonment_Tool
-- Prospector based off https://www.iconfinder.com/icons/9044628/machine_learning_icon
 - Crate based off https://www.iconfinder.com/icons/3338964/business_tools_crate_box_wood_wood_box_icon
-- Rope based off https://starbounder.org/Rope
+- Flux from **Thermal Foundation**'s *Cryotheum Dust* and *Signalum Blend*
 - Herobrine was made from Mojang's Steve's
+- Imprisoner from https://ftb.fandom.com/wiki/Mob_Imprisonment_Tool
+- Logo based off https://www.iconfinder.com/icons/185592/table_crafting_icon
+- Oblisk shape inspired by *Alchemistry*'s *Chemical Combiner*
+- Prospector based off https://www.iconfinder.com/icons/9044628/machine_learning_icon
+- Rope based off https://starbounder.org/Rope
