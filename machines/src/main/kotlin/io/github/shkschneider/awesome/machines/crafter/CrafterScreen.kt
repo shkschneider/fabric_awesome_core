@@ -1,7 +1,5 @@
 package io.github.shkschneider.awesome.machines.crafter
 
-import io.github.shkschneider.awesome.core.ext.canInsert
-import io.github.shkschneider.awesome.core.ext.copy
 import io.github.shkschneider.awesome.custom.SimpleSidedInventory
 import io.github.shkschneider.awesome.custom.TemplateSlot
 import io.github.shkschneider.awesome.machines.AwesomeMachine
@@ -11,7 +9,6 @@ import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
-import net.minecraft.item.ItemStack
 import net.minecraft.screen.ArrayPropertyDelegate
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandlerType
@@ -67,28 +64,9 @@ class CrafterScreen(
         }
 
         override fun onSlotClick(slotIndex: Int, button: Int, actionType: SlotActionType, player: PlayerEntity) {
-            if (slotIndex in (0 until internalInventory.size() - 1)) {
-                val slot = slots[slotIndex] // beware of negative indexes
-                if (cursorStack.isEmpty) {
-                    if (slot.stack.count > 1) {
-                        cursorStack = slot.stack.copy(amount = slot.stack.count - 1)
-                        slot.stack.decrement(1)
-                    } else {
-                        slot.stack = ItemStack.EMPTY
-                    }
-                } else {
-                    if (slot.stack.count > 1) {
-                        if (cursorStack.canInsert(slot.stack.copy(amount = 1))) {
-                            cursorStack.increment(1)
-                            slot.stack.decrement(1)
-                        } else {
-                            // nothing
-                        }
-                    } else {
-                        slot.stack = cursorStack.copy(amount = 1)
-                    }
-                }
-            } else {
+            TemplateSlot.onSlotClick(slots, slotIndex, internalInventory, cursorStack)?.let { cursorStack ->
+                this.cursorStack = cursorStack
+            } ?: run {
                 super.onSlotClick(slotIndex, button, actionType, player)
             }
         }
