@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/orientable",
   "textures": {
-    "front": "awesome:block/refinery_on",
+    "front": "awesome:block/cultivator_on",
     "side": "awesome:block/machine_side",
     "top": "awesome:block/machine_top",
     "bottom": "awesome:block/machine_bottom"

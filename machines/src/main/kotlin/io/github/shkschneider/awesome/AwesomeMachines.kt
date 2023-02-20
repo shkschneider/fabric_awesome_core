@@ -4,6 +4,7 @@ import io.github.shkschneider.awesome.items.AwesomeItems
 import io.github.shkschneider.awesome.machines.breaker.Breaker
 import io.github.shkschneider.awesome.machines.collector.Collector
 import io.github.shkschneider.awesome.machines.crafter.Crafter
+import io.github.shkschneider.awesome.machines.cultivator.Cultivator
 import io.github.shkschneider.awesome.machines.factory.Factory
 import io.github.shkschneider.awesome.machines.placer.Placer
 import io.github.shkschneider.awesome.machines.quarry.Quarry
@@ -16,6 +17,7 @@ object AwesomeMachines {
 
     val breaker = Breaker()
     val collector = Collector()
+    val cultivator = Cultivator()
     val placer = Placer()
     val refinery = Refinery()
 

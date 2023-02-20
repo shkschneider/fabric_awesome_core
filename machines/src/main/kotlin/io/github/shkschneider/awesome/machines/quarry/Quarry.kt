@@ -38,7 +38,16 @@ class Quarry : AwesomeMachine<QuarryBlock.Entity, QuarryScreen.Handler>(
         if (world.isClient) return
         blockEntity.efficiency = 1 + blockEntity.getEnchantmentSlot().second.getEnchantmentLevel(Enchantments.EFFICIENCY)
         blockEntity.fortune = 1 + blockEntity.getEnchantmentSlot().second.getEnchantmentLevel(Enchantments.FORTUNE)
-        if (blockEntity.fuel > 0) { blockEntity.fuel-- ; blockEntity.on() }
+        if (blockEntity.fuel == 0) {
+            if (blockEntity.getFuelSlot().second.count > 0) {
+                blockEntity.getFuelSlot().second.count--
+                blockEntity.fuel += AwesomeMachines.fuel.time
+                blockEntity.on()
+            } else {
+                blockEntity.off()
+                return
+            }
+        }
         if (!blockEntity.getOutputSlot().second.isFull) {
             if (blockEntity.fuel == 0) {
                 if (blockEntity.getFuelSlot().second.count > 0) {

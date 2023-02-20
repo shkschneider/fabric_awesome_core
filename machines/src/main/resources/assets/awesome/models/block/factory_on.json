@@ -2,7 +2,7 @@
   "parent": "minecraft:block/orientable",
   "textures": {
     "front": "awesome:block/factory_front_on",
-    "side": "awesome:block/factory_side_on",
+    "side": "awesome:block/machine_side",
     "top": "awesome:block/machine_top",
     "bottom": "awesome:block/machine_bottom"
   }

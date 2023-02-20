@@ -22,6 +22,7 @@ import net.minecraft.util.Identifier
 class AwesomeEmiPlugin : EmiPlugin {
 
     override fun register(registry: EmiRegistry) {
+        addWorkstationAndRecipes(registry, AwesomeMachines.cultivator, AwesomeMachines.cultivator.recipes)
         addWorkstationAndRecipes(registry, AwesomeMachines.refinery, AwesomeMachines.refinery.recipes)
         if (Awesome.CONFIG.machines.factory) addWorkstationAndRecipes(registry, AwesomeMachines.factory, AwesomeMachines.factory.recipes)
         if (Awesome.CONFIG.machines.quarry) addWorkstationAndRecipes(registry, AwesomeMachines.quarry, AwesomeMachines.quarry.recipes)

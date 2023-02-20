@@ -7,13 +7,13 @@ import net.minecraft.item.ItemStack
 object AwesomeRecipes {
 
     @Suppress("SimplifiableCallChain")
-    fun <T : Inventory> get(recipes: List<AwesomeRecipe<T>>, inputs: List<ItemStack>, outputs: List<ItemStack>): AwesomeRecipe<T>? =
+    fun <T : Inventory> get(recipes: List<AwesomeRecipe<T>>, inputs: List<ItemStack>, output: ItemStack): AwesomeRecipe<T>? =
         recipes.filter { recipe ->
             // recipe must have all its ingredients present in inputs and have room in any outputs
             recipe.inputs.all { input -> inputs.any { stack -> stack.item == input.item && stack.count >= input.count } }
         }.filter { recipe ->
             // only returns a recipe when there is output space
-            outputs.any { output -> output.canInsert(recipe.output) }
+            output.canInsert(recipe.output)
         }.firstOrNull()
 
 }

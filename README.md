@@ -79,10 +79,11 @@ and finally **commands** for players, moderators and/or admins.
 - Awesome **Machines**
   - collector (with efficiency)
   - crafter / recycler
-  - quarry (with efficiency & fortune)
-  - refinery: ore processing x1-x4
+  - cultivator (sapling/seed/fungus to log/food/stem)
   - item: imprisoner (to capture and release entities)
   - item: prospector (to make ores glow)
+  - quarry (with efficiency & fortune)
+  - refinery: ore processing x1-x4
 
 ## Configuration
 
