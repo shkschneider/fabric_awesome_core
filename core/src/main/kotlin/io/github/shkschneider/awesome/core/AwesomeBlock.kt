@@ -26,7 +26,7 @@ abstract class AwesomeBlock(
     }
 
     private fun init(group: ItemGroup) {
-        blockItem = AwesomeRegistries.blockItem(id, this as Block, group)
+        blockItem = AwesomeRegistries.blockWithItem(id, this as Block, group)
         _block = blockItem.block
     }
 

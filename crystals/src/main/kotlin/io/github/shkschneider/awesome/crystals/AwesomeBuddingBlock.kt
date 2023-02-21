@@ -31,7 +31,7 @@ class AwesomeBuddingBlock(
     }
 
     private fun init() {
-        AwesomeRegistries.blockItem(id, this as Block, Awesome.GROUP)
+        AwesomeRegistries.blockWithItem(id, this as Block, Awesome.GROUP)
     }
 
     override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {

@@ -5,6 +5,9 @@ import com.mojang.brigadier.arguments.StringArgumentType.string
 import com.mojang.brigadier.context.CommandContext
 import io.github.shkschneider.awesome.custom.Permissions
 import io.github.shkschneider.awesome.mixins.IBrewingRecipesMixin
+import net.fabricmc.api.EnvType
+import net.fabricmc.api.Environment
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry
@@ -20,6 +23,7 @@ import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.client.gui.screen.ingame.HandledScreen
 import net.minecraft.client.gui.screen.ingame.HandledScreens
+import net.minecraft.client.render.RenderLayer
 import net.minecraft.command.argument.EntityArgumentType
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.EntityType
@@ -46,10 +50,20 @@ import net.minecraft.world.GameRules
 
 object AwesomeRegistries {
 
-    fun blockItem(id: Identifier, block: Block, group: ItemGroup): BlockItem {
-        return BlockItem(Registry.register(Registries.BLOCK, id, block), FabricItemSettings()).also { blockItem ->
-            item(id, blockItem, group)
+    fun block(id: Identifier, block: Block): Block =
+        Registry.register(Registries.BLOCK, id, block)
+
+    fun blockItem(id: Identifier, blockItem: BlockItem, group: ItemGroup?): Item =
+        item(id, blockItem as Item, group)
+
+    fun blockWithItem(id: Identifier, block: Block, group: ItemGroup): BlockItem =
+        BlockItem(Registry.register(Registries.BLOCK, id, block), FabricItemSettings()).also { blockItem ->
+            blockItem(id, blockItem, group)
         }
+
+    @Environment(EnvType.CLIENT)
+    fun blockRenderer(block: Block, renderLayer: RenderLayer) {
+        BlockRenderLayerMap.INSTANCE.putBlock(block, renderLayer)
     }
 
     fun blockEntityType(id: Identifier, block: Block, createBlockEntity: (BlockPos, BlockState) -> BlockEntity): BlockEntityType<BlockEntity> =

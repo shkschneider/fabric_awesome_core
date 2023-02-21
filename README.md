@@ -42,6 +42,7 @@ and finally **commands** for players, moderators and/or admins.
   - elevators to teleport vertically
   - extract enchantments using the grindstone
   - hero... herobrine?!
+  - lily pad that grows nearby stuff
   - player heads on death (by another player)
   - pvp
   - ropes than unroll and rollup vertically for exploration

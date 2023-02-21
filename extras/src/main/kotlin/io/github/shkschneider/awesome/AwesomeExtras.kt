@@ -8,6 +8,7 @@ import io.github.shkschneider.awesome.extras.baguette.Baguette
 import io.github.shkschneider.awesome.extras.crate.Crate
 import io.github.shkschneider.awesome.extras.elevator.Elevator
 import io.github.shkschneider.awesome.extras.entities.AwesomeEntities
+import io.github.shkschneider.awesome.extras.lilypad.LilyPad
 import io.github.shkschneider.awesome.extras.randomium.Randomium
 import io.github.shkschneider.awesome.extras.rope.Rope
 import io.github.shkschneider.awesome.extras.scythe.Scythe
@@ -23,6 +24,7 @@ object AwesomeExtras {
         if (Awesome.CONFIG.extras.elevator) Elevator()
         if (Awesome.CONFIG.extras.entities) AwesomeEntities()
         if (Awesome.CONFIG.extras.gameRulesOverrides) GameRulesOverrides()
+        if (Awesome.CONFIG.extras.lilypad) LilyPad()
         if (Awesome.CONFIG.extras.playerHeads) PlayerHeads()
         if (Awesome.CONFIG.extras.randomium) Randomium()
         if (Awesome.CONFIG.extras.rope) Rope()

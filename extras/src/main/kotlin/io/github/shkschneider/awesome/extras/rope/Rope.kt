@@ -2,11 +2,11 @@ package io.github.shkschneider.awesome.extras.rope
 
 import io.github.shkschneider.awesome.core.AwesomeBlock
 import io.github.shkschneider.awesome.core.AwesomeLogger
+import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeSounds
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.copy
 import io.github.shkschneider.awesome.custom.Minecraft
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
@@ -46,9 +46,7 @@ class Rope : AwesomeBlock(
     // FIXME while breaking, hits blocks behind
 
     init {
-        if (Minecraft.isClient) {
-            BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), this)
-        }
+        if (Minecraft.isClient) AwesomeRegistries.blockRenderer(this, RenderLayer.getCutout())
     }
 
     override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, context: TooltipContext) {
