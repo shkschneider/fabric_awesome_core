@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "awesome:block/duplicator_side",
+    "side": "awesome:block/duplicator_side",
+    "top": "awesome:block/duplicator_top",
+    "bottom": "awesome:block/machine_bottom"
+  }
+}

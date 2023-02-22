@@ -34,6 +34,7 @@ class Placer : AwesomeMachine<PlacerBlock.Entity, PlacerScreen.Handler>(
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: PlacerBlock.Entity) {
         if (world.isClient) return
+        if (blockEntity.getOutputSlot().second.isEmpty) { blockEntity.progress = 0 ; return }
         // ...
         blockEntity.progress++
         if (blockEntity.progress >= blockEntity.duration) {
@@ -53,7 +54,7 @@ class Placer : AwesomeMachine<PlacerBlock.Entity, PlacerScreen.Handler>(
             }
         }
         blockEntity.progress = 0
-        blockEntity.efficiency = 1 + blockEntity.getEquipmentSlot().second.getEnchantmentLevel(Enchantments.EFFICIENCY)
+        blockEntity.efficiency = 1 + blockEntity.getEnchantmentSlot().second.getEnchantmentLevel(Enchantments.EFFICIENCY)
         blockEntity.duration = Minecraft.TICKS / blockEntity.efficiency
     }
 

@@ -104,19 +104,24 @@ class Imprisoner : AwesomeItem(
         }
     }
 
-    private fun release(world: ServerWorld, player: PlayerEntity?, pos: BlockPos, stack: ItemStack): Boolean {
-        val id = stack.nbt?.getString(IMPRISONED) ?: return false
+    fun spawn(world: ServerWorld, pos: BlockPos, nbt: NbtCompound?): Boolean {
+        val id = nbt?.getString(IMPRISONED) ?: return false
         val entityType = EntityType.get(id).takeIf { it.isPresent }?.get() ?: return false
         // FIXME loosing any CustomName
-        val entity = entityType.spawn(world, stack.nbt, null, pos, SpawnReason.SPAWN_EGG, true, false)?.apply {
+        entityType.spawn(world, nbt, null, pos, SpawnReason.SPAWN_EGG, true, false)?.apply {
             (this as? LivingEntity)?.apply {
                 setVelocity(0.toDouble(), 0.toDouble(), 0.toDouble())
             }
+        }.also {
+            world.emitGameEvent(null, GameEvent.ENTITY_PLACE, pos)
         }
-        return if (entity != null) {
+        return true
+    }
+
+    private fun release(world: ServerWorld, player: PlayerEntity?, pos: BlockPos, stack: ItemStack): Boolean {
+        return if (spawn(world, pos, stack.nbt)) {
             player?.mainHandStack?.nbt = NbtCompound().also { player?.inventory?.markDirty() }
-            AwesomeSounds(world to entity.blockPos, AwesomeSounds.teleport)
-            world.emitGameEvent(player, GameEvent.ENTITY_PLACE, pos)
+            AwesomeSounds(world to pos, AwesomeSounds.teleport)
             true
         } else {
             false

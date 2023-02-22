@@ -7,6 +7,8 @@
   "block.awesome.crafter.hint": "Auto-crafting!",
   "block.awesome.cultivator": "Cultivator",
   "block.awesome.cultivator.hint": "Grows saplings as logs!",
+  "block.awesome.duplicator": "Duplicator",
+  "block.awesome.duplicator.hint": "Duplicates mobs!",
   "block.awesome.factory": "Factory",
   "block.awesome.factory.hint": "Processes multiple times!",
   "block.awesome.placer": "Placer",

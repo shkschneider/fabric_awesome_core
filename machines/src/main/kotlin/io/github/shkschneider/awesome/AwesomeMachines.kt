@@ -5,6 +5,7 @@ import io.github.shkschneider.awesome.machines.breaker.Breaker
 import io.github.shkschneider.awesome.machines.collector.Collector
 import io.github.shkschneider.awesome.machines.crafter.Crafter
 import io.github.shkschneider.awesome.machines.cultivator.Cultivator
+import io.github.shkschneider.awesome.machines.duplicator.Duplicator
 import io.github.shkschneider.awesome.machines.factory.Factory
 import io.github.shkschneider.awesome.machines.placer.Placer
 import io.github.shkschneider.awesome.machines.quarry.Quarry
@@ -23,6 +24,8 @@ object AwesomeMachines {
 
     private lateinit var _crafter: Crafter
     val crafter get() = _crafter
+    private lateinit var _duplicator: Duplicator
+    val duplicator get() = _duplicator
     private lateinit var _factory: Factory
     val factory get() = _factory
     private lateinit var _quarry: Quarry
@@ -32,6 +35,7 @@ object AwesomeMachines {
 
     operator fun invoke() {
         if (Awesome.CONFIG.machines.crafter) _crafter = Crafter()
+        if (Awesome.CONFIG.machines.duplicator) _duplicator = Duplicator()
         if (Awesome.CONFIG.machines.factory) _factory = Factory()
         if (Awesome.CONFIG.machines.quarry) _quarry = Quarry()
         if (Awesome.CONFIG.machines.recycler) _recycler = Recycler()

@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.machines.placer
+package io.github.shkschneider.awesome.machines.duplicator
 
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.Minecraft
@@ -20,9 +20,9 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 
 @Suppress("RemoveRedundantQualifierName")
-class PlacerBlock(
-    machine: AwesomeMachine<PlacerBlock.Entity, PlacerScreen.Handler>
-) : AwesomeMachineBlock<PlacerBlock.Entity, PlacerScreen.Handler>(machine) {
+class DuplicatorBlock(
+    machine: AwesomeMachine<DuplicatorBlock.Entity, DuplicatorScreen.Handler>
+) : AwesomeMachineBlock<DuplicatorBlock.Entity, DuplicatorScreen.Handler>(machine) {
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState =
         super.getPlacementState(ctx).with(Properties.HORIZONTAL_FACING, ctx.playerFacing)
@@ -31,14 +31,14 @@ class PlacerBlock(
         Text.translatable(AwesomeUtils.translatable("block", machine.id, "hint")).formatted(Formatting.GRAY),
     )
 
-    override fun blockEntity(machine: AwesomeMachine<PlacerBlock.Entity, PlacerScreen.Handler>, pos: BlockPos, state: BlockState): PlacerBlock.Entity =
+    override fun blockEntity(machine: AwesomeMachine<DuplicatorBlock.Entity, DuplicatorScreen.Handler>, pos: BlockPos, state: BlockState): DuplicatorBlock.Entity =
         Entity(machine, pos, state)
 
     class Entity(
-        machine: AwesomeMachine<PlacerBlock.Entity, PlacerScreen.Handler>,
+        machine: AwesomeMachine<DuplicatorBlock.Entity, DuplicatorScreen.Handler>,
         pos: BlockPos,
         state: BlockState,
-    ) : AwesomeMachineBlockEntity<PlacerBlock.Entity, PlacerScreen.Handler>(
+    ) : AwesomeMachineBlockEntity<DuplicatorBlock.Entity, DuplicatorScreen.Handler>(
         machine, pos, state,
     ) {
 
@@ -53,13 +53,15 @@ class PlacerBlock(
 
         fun getEnchantmentSlot(): Pair<Int, ItemStack> = getSlot(0)
 
-        fun getOutputSlot(): Pair<Int, ItemStack> = getSlot(1)
+        fun getFuelSlot(): Pair<Int, ItemStack> = getSlot(1)
+
+        fun getInputSlot(): Pair<Int, ItemStack> = getSlot(2)
 
         override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
             (stack.item == Items.ENCHANTED_BOOK && slot == 0) || slot > 0
 
         override fun screenHandler(syncId: Int, playerInventory: PlayerInventory, sidedInventory: SidedInventory, properties: PropertyDelegate): ScreenHandler =
-            PlacerScreen.Handler(machine, machine.screen, syncId, playerInventory, sidedInventory, properties)
+            DuplicatorScreen.Handler(machine, machine.screen, syncId, playerInventory, sidedInventory, properties)
 
     }
 
