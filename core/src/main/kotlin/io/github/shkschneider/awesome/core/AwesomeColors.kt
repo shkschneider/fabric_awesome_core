@@ -25,8 +25,7 @@ object AwesomeColors {
     val green = 0x5e7c16
     val iron = 0xc8c8c8
     val lapis = 0x4646dc
-    val lilyPadBlock = 0x208030
-    val lilyPadItem = 0x71c35c
+    val lilyPad = 0x208030
     val lime = 0x80c71f
     val magenta = 0xc74ebd
     val mischka = 0xacadb2

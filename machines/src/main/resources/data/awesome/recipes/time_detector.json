@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:daylight_detector" },
+    { "item": "minecraft:clock" }
+  ],
+  "result": {
+    "item": "awesome:time_detector",
+    "count": 1
+  }
+}

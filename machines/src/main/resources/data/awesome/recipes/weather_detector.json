@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:daylight_detector" },
+    { "item": "minecraft:snowball" }
+  ],
+  "result": {
+    "item": "awesome:weather_detector",
+    "count": 1
+  }
+}

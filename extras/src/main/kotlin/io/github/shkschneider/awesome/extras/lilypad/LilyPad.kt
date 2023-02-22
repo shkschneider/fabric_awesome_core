@@ -57,7 +57,7 @@ class LilyPad : LilyPadBlock(
     }
 
     override fun randomDisplayTick(state: BlockState, world: World, pos: BlockPos, random: Random) {
-        AwesomeParticles(world, pos, color = AwesomeColors.lilyPadItem, offset = 0.5625 / 2.0)
+        AwesomeParticles(world, pos, color = AwesomeColors.lilyPad, offset = 0.5625 / 2.0)
     }
 
 }

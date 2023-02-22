@@ -81,6 +81,7 @@ and finally **commands** for players, moderators and/or admins.
   - collector (with efficiency)
   - crafter / recycler
   - cultivator (sapling/seed/fungus to log/food/stem)
+  - detectors: weather/entity/time
   - duplicator (with efficiency) using imprisoner
   - item: imprisoner (to capture and release entities)
   - item: prospector (to make ores glow)

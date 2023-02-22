@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:daylight_detector" },
+    { "item": "minecraft:rotten_flesh" }
+  ],
+  "result": {
+    "item": "awesome:entity_detector",
+    "count": 1
+  }
+}
