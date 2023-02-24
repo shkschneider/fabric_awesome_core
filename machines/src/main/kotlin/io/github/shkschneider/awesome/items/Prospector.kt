@@ -24,6 +24,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.Formatting
 import net.minecraft.util.Hand
 import net.minecraft.util.Rarity
@@ -83,7 +84,7 @@ class Prospector : AwesomeItem(
     }
 
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, context: TooltipContext) {
-        tooltip.add(Text.translatable(AwesomeUtils.translatable("item", ID, "hint")).formatted(Formatting.GRAY))
+        tooltip.add(TranslatableText(AwesomeUtils.translatable("item", ID, "hint")).formatted(Formatting.GRAY))
     }
 
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
@@ -102,7 +103,7 @@ class Prospector : AwesomeItem(
         Box(player.blockPos).expand(RANGE.toDouble()).positions().filter { pos ->
             world.getBlockState(pos).isOre
         }.forEachIndexed { i, pos ->
-            ENTITY.first.spawn(world, NbtCompound(), null, pos.down(), SpawnReason.COMMAND, true, false)?.apply {
+            ENTITY.first.spawn(world, NbtCompound(), null, null, pos.down(), SpawnReason.COMMAND, true, false)?.apply {
                 addScoreboardTag("${ID}_${player.uuidAsString}_$i")
                 clearGoalsAndTasks()
                 isAiDisabled = true

@@ -3,9 +3,9 @@ package io.github.shkschneider.awesome.custom
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.minecraft.entity.Entity
 import net.minecraft.nbt.NbtCompound
-import net.minecraft.registry.RegistryKey
-import net.minecraft.registry.RegistryKeys
 import net.minecraft.util.Identifier
+import net.minecraft.util.registry.Registry
+import net.minecraft.util.registry.RegistryKey
 import net.minecraft.world.World
 import kotlin.math.roundToInt
 
@@ -48,7 +48,7 @@ data class Location(
                 || !contains(AwesomeUtils.key(prefix, "z"))
             ) return null
             return Location(
-                RegistryKey.of(RegistryKeys.WORLD, Identifier.tryParse(getString(AwesomeUtils.key(prefix, "dim")))),
+                RegistryKey.of(Registry.WORLD_KEY, Identifier.tryParse(getString(AwesomeUtils.key(prefix, "dim")))),
                 getDouble(AwesomeUtils.key(prefix, "x")),
                 getDouble(AwesomeUtils.key(prefix, "y")),
                 getDouble(AwesomeUtils.key(prefix, "z")),

@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.Formatting
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
@@ -23,7 +24,7 @@ class QuarryBlock(
 ) : AwesomeMachineBlock<QuarryBlock.Entity, QuarryScreen.Handler>(machine) {
 
     override fun tooltips(stack: ItemStack): List<Text> = listOf(
-        Text.translatable(AwesomeUtils.translatable("block", machine.id, "hint")).formatted(Formatting.GRAY),
+        TranslatableText(AwesomeUtils.translatable("block", machine.id, "hint")).formatted(Formatting.GRAY),
     )
 
     override fun blockEntity(machine: AwesomeMachine<QuarryBlock.Entity, QuarryScreen.Handler>, pos: BlockPos, state: BlockState): QuarryBlock.Entity =

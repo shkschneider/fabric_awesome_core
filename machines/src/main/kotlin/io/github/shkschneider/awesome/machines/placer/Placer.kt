@@ -15,7 +15,6 @@ import net.minecraft.state.property.Properties
 import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import net.minecraft.world.event.GameEvent
 
 class Placer : AwesomeMachine<PlacerBlock.Entity, PlacerScreen.Handler>(
     id = "placer",
@@ -48,7 +47,7 @@ class Placer : AwesomeMachine<PlacerBlock.Entity, PlacerScreen.Handler>(
             val front = pos.offset(blockEntity.getPropertyState(state, Properties.HORIZONTAL_FACING))
             if (world.getBlockState(front).isAir) {
                 world.setBlockState(front, blockItem.block.defaultState)
-                world.emitGameEvent(GameEvent.BLOCK_PLACE, pos, GameEvent.Emitter.of(null, blockItem.block.defaultState))
+                // 1.19 world.emitGameEvent(GameEvent.BLOCK_PLACE, pos, GameEvent.Emitter.of(null, blockItem.block.defaultState))
                 output.count -= 1
                 blockEntity.markDirty()
             }

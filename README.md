@@ -2,7 +2,7 @@
 
 > Modularized Vanilla++ & machines mods for Minecraft.
 
-![Minecraft: 1.19.3](https://img.shields.io/badge/minecraft-1.19.3-637f40?style=for-the-badge)
+![Minecraft: 1.18.2](https://img.shields.io/badge/minecraft-1.18.2-637f40?style=for-the-badge)
 ![Mod loader: Fabric](https://img.shields.io/badge/modloader-fabric-926c4d?style=for-the-badge)
 ![Language: Kotlin](https://img.shields.io/badge/language-kotlin-a97bff?style=for-the-badge)
 [![build](https://img.shields.io/github/actions/workflow/status/shkschneider/mc_awesome/build.yml?branch=main&style=for-the-badge)](https://github.com/shkschneider/mc_awesome/actions/workflows/build.yml)
@@ -15,6 +15,7 @@ Improved *Vanilla++* gameplay with many additions:
 **crystals** that produce ores out of craftable budding blocks;
 **experience** easing the gain, storage and retrieval (obelisk) of xp;
 **extras** adding many content (like trash slot, rope, crate, elevator, scythe, randomium...);
+even **machines**;
 and finally **commands** for players, moderators and/or admins.
 
 ## Modules

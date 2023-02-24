@@ -4,12 +4,12 @@ import io.github.shkschneider.awesome.core.AwesomeRecipe
 import io.github.shkschneider.awesome.core.AwesomeRecipeType
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
-import net.minecraft.util.math.random.Random
+import java.util.Random
 
 object CultivatorRecipes {
 
     fun shouldGiveSecondaryDrop(random: Random): Boolean =
-        (random.nextBetween(0, 100) < 60 /*%*/)
+        (random.nextInt(100) < 60 /*%*/)
 
     private val CULTIVATING = AwesomeRecipeType<AwesomeRecipe<CultivatorBlock.Entity>>()
 
@@ -20,7 +20,7 @@ object CultivatorRecipes {
         AwesomeRecipe(CULTIVATING, listOf(ItemStack(Items.BIRCH_SAPLING, 1)), time = 20, ItemStack(Items.BIRCH_LOG, 4)),
         AwesomeRecipe(CULTIVATING, listOf(ItemStack(Items.DARK_OAK_SAPLING, 1)), time = 20, ItemStack(Items.DARK_OAK_LOG, 4)),
         AwesomeRecipe(CULTIVATING, listOf(ItemStack(Items.JUNGLE_SAPLING, 1)), time = 20, ItemStack(Items.JUNGLE_LOG, 4)),
-        AwesomeRecipe(CULTIVATING, listOf(ItemStack(Items.MANGROVE_PROPAGULE, 1)), time = 20, ItemStack(Items.MANGROVE_LOG, 4)),
+        // 1.19 AwesomeRecipe(CULTIVATING, listOf(ItemStack(Items.MANGROVE_PROPAGULE, 1)), time = 20, ItemStack(Items.MANGROVE_LOG, 4)),
         AwesomeRecipe(CULTIVATING, listOf(ItemStack(Items.OAK_SAPLING, 1)), time = 20, ItemStack(Items.OAK_LOG, 4)),
         AwesomeRecipe(CULTIVATING, listOf(ItemStack(Items.SPRUCE_SAPLING, 1)), time = 20, ItemStack(Items.SPRUCE_LOG, 4)),
         // Fungus->Log

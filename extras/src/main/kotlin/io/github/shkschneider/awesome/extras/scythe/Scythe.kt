@@ -14,10 +14,9 @@ import net.minecraft.item.ItemUsageContext
 import net.minecraft.item.MiningToolItem
 import net.minecraft.item.ToolMaterials
 import net.minecraft.item.Vanishable
-import net.minecraft.registry.tag.BlockTags
+import net.minecraft.tag.BlockTags
 import net.minecraft.util.ActionResult
 import net.minecraft.util.math.BlockPos
-import net.minecraft.world.event.GameEvent
 
 class Scythe : MiningToolItem(
     /* attackDamage */ 0F,
@@ -61,7 +60,7 @@ class Scythe : MiningToolItem(
     private fun mow(context: ItemUsageContext, pos: BlockPos) {
         val state = Blocks.AIR.defaultState
         context.world.setBlockState(pos, state)
-        context.world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(context.player, state))
+        // 1.19 context.world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(context.player, state))
         AwesomeSounds(context.world to pos, AwesomeSounds.crop)
     }
 

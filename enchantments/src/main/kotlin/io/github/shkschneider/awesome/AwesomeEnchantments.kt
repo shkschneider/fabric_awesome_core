@@ -1,7 +1,6 @@
 package io.github.shkschneider.awesome
 
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
-import io.github.shkschneider.awesome.custom.SilkTouchSpawners
 import io.github.shkschneider.awesome.enchantments.CriticalEnchantment
 import io.github.shkschneider.awesome.enchantments.IceAspectEnchantment
 import io.github.shkschneider.awesome.enchantments.LastStandEnchantment
@@ -43,7 +42,6 @@ object AwesomeEnchantments {
         if (Awesome.CONFIG.enchantments.magnetism) _magnetism = MagnetismEnchantment()
         if (Awesome.CONFIG.enchantments.paralysis) _paralysis = ParalysisEnchantment()
         if (Awesome.CONFIG.enchantments.poisonAspect) _poisonAspect = PoisonAspectEnchantment()
-        if (Awesome.CONFIG.enchantments.silkTouchSpawners) SilkTouchSpawners()
         if (Awesome.CONFIG.enchantments.sixthSense) _sixthSense = SixthSenseEnchantment()
         if (Awesome.CONFIG.enchantments.unbreakable) _unbreakable = UnbreakableEnchantment()
         if (Awesome.CONFIG.enchantments.vampirism) _vampirism = VampirismEnchantment()

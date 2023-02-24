@@ -3,13 +3,18 @@
   "minVersion": "0.8",
   "package": "io.github.shkschneider.awesome.mixins",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [],
+  "mixins": [
+    "BowItemUseMixin",
+    "PlayerRecipesMixin",
+    "TotemOfUndyingMixin",
+    "VillagersFollowEmeraldBlockMixin",
+    "VillagersInfiniteTradingMixin"
+  ],
   "server": [],
   "client": [
     "LevelLoadingScreenMixin",
     "MainMenuTextMixin",
     "SplashScreenBackgroundMixin",
-    "StableLevelsMixin",
     "StableWorldsMixin",
     "TitleScreenMixin"
   ],

@@ -4,8 +4,10 @@ import io.github.shkschneider.awesome.custom.Event
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents
 import net.minecraft.SharedConstants
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.text.LiteralText
 import net.minecraft.text.Text
 import net.minecraft.text.Texts
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.Formatting
 import net.minecraft.world.World
 
@@ -30,7 +32,7 @@ object AwesomeTime {
                 player.world.players.filterNot { it.uuid == player.uuid }.forEach { otherPlayer ->
                     AwesomeChat.message(player, Texts.join(listOf(
                         Texts.toText(otherPlayer.gameProfile),
-                        Text.translatable(AwesomeUtils.translatable("ui", "wants_to_sleep")).formatted(Formatting.GRAY),
+                        TranslatableText(AwesomeUtils.translatable("ui", "wants_to_sleep")).formatted(Formatting.GRAY),
                     ), Text.of(" ")))
                 }
             }
@@ -39,8 +41,8 @@ object AwesomeTime {
         EntitySleepEvents.STOP_SLEEPING.register(EntitySleepEvents.StopSleeping { livingEntity, _ ->
             (livingEntity as? PlayerEntity)?.let { player ->
                 AwesomeChat.overlay(player, Texts.join(listOf(
-                    Text.translatable(AwesomeUtils.translatable("ui", "new_day")).formatted(Formatting.WHITE),
-                    Text.literal(day(player.world).toString()).formatted(Formatting.BOLD).formatted(Formatting.YELLOW),
+                    TranslatableText(AwesomeUtils.translatable("ui", "new_day")).formatted(Formatting.WHITE),
+                    LiteralText(day(player.world).toString()).formatted(Formatting.BOLD).formatted(Formatting.YELLOW),
                 ), Text.of(" ")))
             }
         })

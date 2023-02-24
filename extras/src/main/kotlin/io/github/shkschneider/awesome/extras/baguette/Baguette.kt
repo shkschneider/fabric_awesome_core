@@ -9,6 +9,7 @@ import net.minecraft.item.FoodComponent
 import net.minecraft.item.FoodComponents
 import net.minecraft.item.ItemStack
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.Formatting
 import net.minecraft.world.World
 
@@ -24,7 +25,7 @@ class Baguette : AwesomeItem(
 ) {
 
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: MutableList<Text>, context: TooltipContext) {
-        tooltip.add(Text.translatable(AwesomeUtils.translatable("item", id.path, "hint")).formatted(Formatting.GRAY))
+        tooltip.add(TranslatableText(AwesomeUtils.translatable("item", id.path, "hint")).formatted(Formatting.GRAY))
     }
 
 }

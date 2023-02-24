@@ -14,6 +14,7 @@ import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.state.property.Properties
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 
@@ -62,7 +63,7 @@ abstract class AwesomeMachineBlockEntity<BE : AwesomeBlockEntity.WithInventory, 
         index to items[index]
 
     override fun getDisplayName(): Text =
-        Text.translatable(AwesomeUtils.translatable("block", machine.id))
+        TranslatableText(AwesomeUtils.translatable("block", machine.id))
 
     override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): ScreenHandler =
         screenHandler(syncId, playerInventory, this as SidedInventory, properties)

@@ -36,7 +36,7 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
     }
 
     override fun drawForeground(matrices: MatrixStack, mouseX: Int, mouseY: Int) {
-        RenderSystem.setShader(GameRenderer::getRenderTypeTextProgram)
+        RenderSystem.setShader(GameRenderer::getRenderTypeTextShader)
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
         super.drawForeground(matrices, mouseX, mouseY)
     }
@@ -101,10 +101,10 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
          * Link: https://fabricmc.net/wiki/tutorial:containers
          * Link: https://github.com/FabricMC/yarn/issues/2944
          */
-        override fun quickMove(player: PlayerEntity, i: Int): ItemStack {
-            val slot = slots.getOrNull(i)?.takeIf { it.hasStack() } ?: return ItemStack.EMPTY
+        override fun transferSlot(player: PlayerEntity, index: Int): ItemStack {
+            val slot = slots.getOrNull(index)?.takeIf { it.hasStack() } ?: return ItemStack.EMPTY
             val stack = slot.stack.copy()
-            if (i < internalInventory.size()) {
+            if (index < internalInventory.size()) {
                 if (!insertItem(slot.stack, internalInventory.size(), slots.size, true)) {
                     return ItemStack.EMPTY
                 }

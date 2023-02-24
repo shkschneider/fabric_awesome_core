@@ -26,7 +26,8 @@ abstract class AwesomeCommand(
     abstract fun run(context: CommandContext<ServerCommandSource>): Int
 
     fun message(source: ServerCommandSource, txt: String) {
-        source.sendMessage(AwesomeChat.text(txt).formatted(Formatting.WHITE))
+        // 1.19 source.sendMessage(AwesomeChat.text(txt).formatted(Formatting.WHITE))
+        feedback(source, txt)
     }
 
     fun feedback(source: ServerCommandSource, txt: String, broadcastToOps: Boolean = false) {

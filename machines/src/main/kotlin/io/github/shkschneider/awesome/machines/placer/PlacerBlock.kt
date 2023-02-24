@@ -15,6 +15,7 @@ import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.state.property.Properties
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.Formatting
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
@@ -28,7 +29,7 @@ class PlacerBlock(
         super.getPlacementState(ctx).with(Properties.HORIZONTAL_FACING, ctx.playerFacing)
 
     override fun tooltips(stack: ItemStack): List<Text> = listOf(
-        Text.translatable(AwesomeUtils.translatable("block", machine.id, "hint")).formatted(Formatting.GRAY),
+        TranslatableText(AwesomeUtils.translatable("block", machine.id, "hint")).formatted(Formatting.GRAY),
     )
 
     override fun blockEntity(machine: AwesomeMachine<PlacerBlock.Entity, PlacerScreen.Handler>, pos: BlockPos, state: BlockState): PlacerBlock.Entity =

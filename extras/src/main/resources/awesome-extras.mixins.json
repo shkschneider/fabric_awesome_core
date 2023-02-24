@@ -7,12 +7,8 @@
     "ElevatorCooldownMixin",
     "ElevatorJumpMixin",
     "ElevatorSneakMixin",
-    "PlayerRecipesMixin",
     "PvpMixin",
-    "SpongeMixin",
-    "TotemOfUndyingMixin",
-    "VillagersFollowEmeraldBlockMixin",
-    "VillagersInfiniteTradingMixin"
+    "SpongeMixin"
   ],
   "server": [],
   "client": [

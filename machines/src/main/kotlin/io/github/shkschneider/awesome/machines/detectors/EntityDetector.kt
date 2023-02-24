@@ -16,6 +16,7 @@ import net.minecraft.entity.passive.PassiveEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.Formatting
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.BlockView
@@ -34,11 +35,11 @@ class EntityDetector : AwesomeDetector<EntityDetector.Entity>("entity_detector")
 
     override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {
         if (AwesomeInputs.shift()) {
-            tooltip.add(Text.translatable(AwesomeUtils.translatable("block", id.path, "hint1")).formatted(Formatting.GRAY))
-            tooltip.add(Text.translatable(AwesomeUtils.translatable("block", id.path, "hint2")).formatted(Formatting.GRAY))
-            tooltip.add(Text.translatable(AwesomeUtils.translatable("block", id.path, "hint4")).formatted(Formatting.GRAY))
+            tooltip.add(TranslatableText(AwesomeUtils.translatable("block", id.path, "hint1")).formatted(Formatting.GRAY))
+            tooltip.add(TranslatableText(AwesomeUtils.translatable("block", id.path, "hint2")).formatted(Formatting.GRAY))
+            tooltip.add(TranslatableText(AwesomeUtils.translatable("block", id.path, "hint4")).formatted(Formatting.GRAY))
         } else {
-            tooltip.add(Text.translatable(AwesomeUtils.translatable("item", "hint")).formatted(Formatting.GRAY))
+            tooltip.add(TranslatableText(AwesomeUtils.translatable("item", "hint")).formatted(Formatting.GRAY))
         }
     }
 

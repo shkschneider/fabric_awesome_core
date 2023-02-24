@@ -1,7 +1,7 @@
 package io.github.shkschneider.awesome.extras.void
 
 import io.github.shkschneider.awesome.custom.Minecraft
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactories
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry
 
 object Void {
 
@@ -10,7 +10,8 @@ object Void {
     operator fun invoke() {
         val block = VoidBlock()
         if (Minecraft.isClient) {
-            BlockEntityRendererFactories.register(block.entityType) { VoidBlockEntityRenderer(it) }
+            BlockEntityRendererRegistry.register(block.entityType) { VoidBlockEntityRenderer(it) }
+            // 1.19 BlockEntityRendererFactories.register(block.entityType) { VoidBlockEntityRenderer(it) }
         }
     }
 

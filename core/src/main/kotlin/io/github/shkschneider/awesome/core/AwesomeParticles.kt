@@ -1,6 +1,7 @@
 package io.github.shkschneider.awesome.core
 
 import io.github.shkschneider.awesome.core.ext.toBlockPos
+import io.github.shkschneider.awesome.core.ext.toVec3f
 import net.minecraft.particle.DustParticleEffect
 import net.minecraft.particle.ParticleEffect
 import net.minecraft.util.math.BlockPos
@@ -19,7 +20,7 @@ object AwesomeParticles {
             val e = if (direction.axis === Direction.Axis.X) 0.5 + offset * direction.offsetX.toDouble() else world.random.nextFloat().toDouble()
             val f = if (direction.axis === Direction.Axis.Y) 0.5 + offset * direction.offsetY.toDouble() else world.random.nextFloat().toDouble()
             val g = if (direction.axis === Direction.Axis.Z) 0.5 + offset * direction.offsetZ.toDouble() else world.random.nextFloat().toDouble()
-            invoke(world, Vec3d(pos.x.toDouble() + e, pos.y.toDouble() + f, pos.z.toDouble() + g), DustParticleEffect(Vec3d.unpackRgb(color).toVector3f(), 1.0F))
+            invoke(world, Vec3d(pos.x.toDouble() + e, pos.y.toDouble() + f, pos.z.toDouble() + g), DustParticleEffect(Vec3d.unpackRgb(color).toVec3f(), 1.0F))
         }
     }
 

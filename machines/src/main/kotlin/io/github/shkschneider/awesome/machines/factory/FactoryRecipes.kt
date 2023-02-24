@@ -26,8 +26,8 @@ object FactoryRecipes {
         AwesomeRecipe(FACTORING, listOf(ItemStack(Items.CRYING_OBSIDIAN, 1)), time = 20, ItemStack(Items.OBSIDIAN, 1)),
         // Grass -> Dirt -> Mud -> Clay
         AwesomeRecipe(FACTORING, listOf(ItemStack(Items.GRASS_BLOCK, 1)), time = 20, ItemStack(Items.DIRT, 1)),
-        AwesomeRecipe(FACTORING, listOf(ItemStack(Items.DIRT, 1)), time = 20, ItemStack(Items.MUD, 1)),
-        AwesomeRecipe(FACTORING, listOf(ItemStack(Items.MUD, 1)), time = 20, ItemStack(Items.CLAY, 1)),
+        // 1.19 AwesomeRecipe(FACTORING, listOf(ItemStack(Items.DIRT, 1)), time = 20, ItemStack(Items.MUD, 1)),
+        // 1.19 AwesomeRecipe(FACTORING, listOf(ItemStack(Items.MUD, 1)), time = 20, ItemStack(Items.CLAY, 1)),
         // AncientDebris -> NetheriteScrap
         AwesomeRecipe(FACTORING, listOf(ItemStack(Items.ANCIENT_DEBRIS, 1)), time = 200, ItemStack(Items.NETHERITE_SCRAP, 1)),
     )

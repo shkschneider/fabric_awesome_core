@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.item.MiningToolItem
 import net.minecraft.item.ToolMaterial
-import net.minecraft.registry.tag.BlockTags
+import net.minecraft.tag.BlockTags
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
 

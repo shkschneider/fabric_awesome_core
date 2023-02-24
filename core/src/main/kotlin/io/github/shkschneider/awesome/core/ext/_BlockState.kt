@@ -2,7 +2,7 @@ package io.github.shkschneider.awesome.core.ext
 
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
-import net.minecraft.registry.tag.BlockTags
+import net.minecraft.tag.BlockTags
 
 val BlockState.isOre: Boolean get() =
     this.isIn(BlockTags.IRON_ORES)

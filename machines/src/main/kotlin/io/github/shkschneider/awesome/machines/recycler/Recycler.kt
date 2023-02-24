@@ -67,7 +67,7 @@ class Recycler : AwesomeMachine<RecyclerBlock.Entity, RecyclerScreen.Handler>(
         val n =  blockEntity.getInputSlot().second.count / recipe.output.count // n >= 1
         recipe.ingredients.mapNotNull { it.matchingStacks.randomOrNull()?.item }.forEachIndexed { index, item ->
             val i = blockEntity.getOutputSlots()[index].first
-            if (world.random.nextBetween(0, 100) < (EFFICIENCY * 100)) {
+            if (world.random.nextInt(100) < (EFFICIENCY * 100)) {
                 blockEntity.setStack(i, ItemStack(item, n))
             }
         }

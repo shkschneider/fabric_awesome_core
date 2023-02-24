@@ -3,11 +3,12 @@
   "pattern": [
     "  1",
     " 2 ",
-    "   "
+    "3  "
   ],
   "key": {
     "1": { "item": "minecraft:chain" },
-    "2": { "item": "minecraft:paper" }
+    "2": { "item": "minecraft:iron_nugget" },
+    "3": { "item": "minecraft:paper" }
   },
   "result": {
     "item": "minecraft:name_tag",

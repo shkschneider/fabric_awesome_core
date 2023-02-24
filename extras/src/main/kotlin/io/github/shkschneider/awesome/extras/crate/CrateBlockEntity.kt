@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 
@@ -18,7 +19,7 @@ class CrateBlockEntity(
 ), AwesomeBlockEntity.WithScreen {
 
     override fun getDisplayName(): Text =
-        Text.translatable(AwesomeUtils.translatable("block", Crate.ID))
+        TranslatableText(AwesomeUtils.translatable("block", Crate.ID))
 
     override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity): ScreenHandler =
         CrateBlockScreenHandler(Crate.screen, syncId, playerInventory, this)

@@ -19,27 +19,21 @@ import net.minecraft.item.SpawnEggItem
 object AwesomeEntities {
 
     operator fun invoke() {
-        if (Awesome.CONFIG.extras.herobrine) {
-            AwesomeRegistries.hostileEntity(
-                AwesomeUtils.identifier(Herobrine.ID),
-                FabricEntityTypeBuilder.create(SpawnGroup.MONSTER) { type, world ->
-                    Herobrine(type, world)
-                }.dimensions(EntityDimensions.fixed(Herobrine.SIZE.first, Herobrine.SIZE.second))
-            ).also { entityType ->
-                if (Minecraft.isClient) {
-                    FabricDefaultAttributeRegistry.register(entityType, Herobrine.attributes())
-                    EntityRendererRegistry.register(entityType, ::HerobrineRenderer)
-                }
-                Herobrine.spawnRules(entityType)
-                if (Awesome.CONFIG.extras.spawnEggs) {
-                    spawnEgg(Herobrine.ID, AwesomeColors.valencia to AwesomeColors.tuna, entityType)
-                }
+        AwesomeRegistries.hostileEntity(
+            AwesomeUtils.identifier(Herobrine.ID),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER) { type, world ->
+                Herobrine(type, world)
+            }.dimensions(EntityDimensions.fixed(Herobrine.SIZE.first, Herobrine.SIZE.second))
+        ).also { entityType ->
+            if (Minecraft.isClient) {
+                FabricDefaultAttributeRegistry.register(entityType, Herobrine.attributes())
+                EntityRendererRegistry.register(entityType, ::HerobrineRenderer)
             }
+            Herobrine.spawnRules(entityType)
+            spawnEgg(Herobrine.ID, AwesomeColors.valencia to AwesomeColors.tuna, entityType)
         }
-        if (Awesome.CONFIG.extras.spawnEggs) {
-            spawnEgg("wither", AwesomeColors.black to AwesomeColors.white, EntityType.WITHER)
-            spawnEgg("dragon", AwesomeColors.black to AwesomeColors.valencia, EntityType.ENDER_DRAGON)
-        }
+        spawnEgg("wither", AwesomeColors.black to AwesomeColors.white, EntityType.WITHER)
+        spawnEgg("dragon", AwesomeColors.black to AwesomeColors.valencia, EntityType.ENDER_DRAGON)
     }
 
     private fun spawnEgg(name: String, colors: Pair<Int, Int>, entityType: EntityType<out MobEntity>, group: ItemGroup = Awesome.GROUP): SpawnEggItem {

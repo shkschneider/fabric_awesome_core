@@ -14,8 +14,8 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.random.Random
 import net.minecraft.world.World
+import java.util.Random
 
 class Quarry : AwesomeMachine<QuarryBlock.Entity, QuarryScreen.Handler>(
     id = "quarry",
@@ -72,7 +72,7 @@ class Quarry : AwesomeMachine<QuarryBlock.Entity, QuarryScreen.Handler>(
 
     private fun quarry(blockEntity: QuarryBlock.Entity, random: Random) {
         val ores = recipes.map { it.output }.map { it.item to it.count }
-        val r = random.nextBetween(0, ores.sumOf { it.second })
+        val r = random.nextInt(ores.sumOf { it.second })
         var v = 0
         ores.forEach { ore ->
             v += ore.second

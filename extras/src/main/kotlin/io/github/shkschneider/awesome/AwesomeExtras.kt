@@ -1,7 +1,5 @@
 package io.github.shkschneider.awesome
 
-import io.github.shkschneider.awesome.extras.GameRulesOverrides
-import io.github.shkschneider.awesome.extras.PlayerHeads
 import io.github.shkschneider.awesome.extras.SleepingHeals
 import io.github.shkschneider.awesome.extras.ZenithNadirLengths
 import io.github.shkschneider.awesome.extras.baguette.Baguette
@@ -23,9 +21,7 @@ object AwesomeExtras {
         if (Awesome.CONFIG.extras.crate) Crate()
         if (Awesome.CONFIG.extras.elevator) Elevator()
         if (Awesome.CONFIG.extras.entities) AwesomeEntities()
-        if (Awesome.CONFIG.extras.gameRulesOverrides) GameRulesOverrides()
         if (Awesome.CONFIG.extras.lilypad) LilyPad()
-        if (Awesome.CONFIG.extras.playerHeads) PlayerHeads()
         if (Awesome.CONFIG.extras.randomium) Randomium()
         if (Awesome.CONFIG.extras.rope) Rope()
         if (Awesome.CONFIG.extras.scythe) Scythe()

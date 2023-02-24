@@ -5,6 +5,7 @@ import io.github.shkschneider.awesome.core.AwesomeColors
 import io.github.shkschneider.awesome.core.AwesomeSounds
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.toVec3d
+import io.github.shkschneider.awesome.core.ext.toVec3f
 import io.github.shkschneider.awesome.custom.Experience
 import io.github.shkschneider.awesome.custom.InputOutput
 import io.github.shkschneider.awesome.custom.Minecraft
@@ -24,6 +25,7 @@ import net.minecraft.particle.DustParticleEffect
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.IntProperty
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Formatting
 import net.minecraft.util.Hand
@@ -38,7 +40,7 @@ import net.minecraft.world.World
 private val LEVELS: IntProperty get() = IntProperty.of("levels", 0, Minecraft.STACK)
 
 class ObeliskBlock : AwesomeBlockWithEntity<ObeliskBlockEntity>(
-    AwesomeUtils.identifier("obelisk"), FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).noBlockBreakParticles().nonOpaque()
+    AwesomeUtils.identifier("obelisk"), FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque() // 1.19 noBlockBreakParticles()
         .luminance { state -> state.get(LEVELS) / (Minecraft.STACK / 15) / 2 },
 ) {
 
@@ -50,7 +52,7 @@ class ObeliskBlock : AwesomeBlockWithEntity<ObeliskBlockEntity>(
         super.getPlacementState(ctx).with(LEVELS, 0)
 
     override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {
-        tooltip.add(Text.translatable(AwesomeUtils.translatable("block", id.path, "hint")).formatted(Formatting.GRAY))
+        tooltip.add(TranslatableText(AwesomeUtils.translatable("block", id.path, "hint")).formatted(Formatting.GRAY))
     }
 
     override fun canPathfindThrough(state: BlockState, world: BlockView, pos: BlockPos, type: NavigationType): Boolean = false
@@ -88,7 +90,7 @@ class ObeliskBlock : AwesomeBlockWithEntity<ObeliskBlockEntity>(
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: ObeliskBlockEntity) {
         if (!world.isClient) blockEntity.setPropertyState(state.with(LEVELS, blockEntity.bottles))
-        if (world.random.nextBetween(0, LEVELS.values.max()) <= state.get(LEVELS)) {
+        if (world.random.nextInt(LEVELS.values.max()) <= state.get(LEVELS)) {
             particle(world, pos)
         }
     }
@@ -103,7 +105,7 @@ class ObeliskBlock : AwesomeBlockWithEntity<ObeliskBlockEntity>(
             val f = if (direction.axis === Direction.Axis.Y) 0.5 + offset * direction.offsetY.toDouble() else world.random.nextFloat().toDouble()
             val g = if (direction.axis === Direction.Axis.Z) 0.5 + offset * direction.offsetZ.toDouble() else world.random.nextFloat().toDouble()
             world.addParticle(
-                DustParticleEffect(Vec3d.unpackRgb(color).toVector3f(), 1.0F),
+                DustParticleEffect(Vec3d.unpackRgb(color).toVec3f(), 1.0F),
                 pos.x.toDouble() + e,
                 pos.y.toDouble() + f,
                 pos.z.toDouble() + g,

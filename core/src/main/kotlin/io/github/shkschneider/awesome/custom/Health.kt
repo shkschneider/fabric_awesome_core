@@ -1,6 +1,6 @@
 package io.github.shkschneider.awesome.custom
 
-import org.joml.Math.clamp
+import net.minecraft.util.math.MathHelper.clamp
 import kotlin.math.roundToInt
 
 object Health {

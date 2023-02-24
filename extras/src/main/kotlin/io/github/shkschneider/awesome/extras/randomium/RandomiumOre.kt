@@ -10,7 +10,7 @@ import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
-import net.minecraft.block.ExperienceDroppingBlock
+import net.minecraft.block.OreBlock
 import net.minecraft.block.ShapeContext
 import net.minecraft.command.argument.EntityAnchorArgumentType
 import net.minecraft.entity.player.PlayerEntity
@@ -23,7 +23,7 @@ import kotlin.math.min
 
 class RandomiumOre(
     name: String,
-) : ExperienceDroppingBlock(
+) : OreBlock( // 1.19 ExperienceDroppingBlock
     FabricBlockSettings.copyOf(Blocks.REDSTONE_BLOCK)
 ) {
 

@@ -17,6 +17,7 @@ import net.minecraft.item.ItemUsageContext
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Formatting
 import net.minecraft.util.Hand
@@ -52,7 +53,7 @@ class Imprisoner : AwesomeItem(
         stack.nbt?.get(IMPRISONED)?.asString()?.let { prisoner ->
             tooltip.add(Text.of(prisoner))
         } ?: run {
-            tooltip.add(Text.translatable(AwesomeUtils.translatable("item", ID, "hint")).formatted(Formatting.GRAY))
+            tooltip.add(TranslatableText(AwesomeUtils.translatable("item", ID, "hint")).formatted(Formatting.GRAY))
         }
     }
 
@@ -108,7 +109,7 @@ class Imprisoner : AwesomeItem(
         val id = nbt?.getString(IMPRISONED) ?: return false
         val entityType = EntityType.get(id).takeIf { it.isPresent }?.get() ?: return false
         // FIXME loosing any CustomName
-        entityType.spawn(world, nbt, null, pos, SpawnReason.SPAWN_EGG, true, false)?.apply {
+        entityType.spawn(world, nbt, null, null, pos, SpawnReason.SPAWN_EGG, true, false)?.apply {
             (this as? LivingEntity)?.apply {
                 setVelocity(0.toDouble(), 0.toDouble(), 0.toDouble())
             }

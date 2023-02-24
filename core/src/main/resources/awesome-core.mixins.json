@@ -10,13 +10,7 @@
   ],
   "server": [],
   "client": [
-    "LevelLoadingScreenMixin",
-    "MainMenuTextMixin",
-    "OfflineDeveloper",
-    "SplashScreenBackgroundMixin",
-    "StableLevelsMixin",
-    "StableWorldsMixin",
-    "TitleScreenMixin"
+    "OfflineDeveloper"
   ],
   "injectors": {
     "defaultRequire": 1

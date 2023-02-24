@@ -14,7 +14,7 @@ import net.minecraft.world.World
 class VoidBlock : AwesomeBlockWithEntity<VoidBlockEntity>(
     id = AwesomeUtils.identifier(Void.ID),
     settings = FabricBlockSettings.copyOf(Blocks.BONE_BLOCK)
-        .noBlockBreakParticles().requiresTool()
+        .requiresTool() // 1.19 noBlockBreakParticles()
         .sounds(BlockSoundGroup.GLASS)
         .allowsSpawning { _, _, _, _ -> false },
     group = Awesome.GROUP,

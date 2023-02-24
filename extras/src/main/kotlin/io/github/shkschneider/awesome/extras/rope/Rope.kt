@@ -22,6 +22,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.loot.context.LootContext
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Formatting
 import net.minecraft.util.Hand
@@ -33,7 +34,6 @@ import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldView
-import net.minecraft.world.event.GameEvent
 
 class Rope : AwesomeBlock(
     id = AwesomeUtils.identifier("rope"),
@@ -50,7 +50,7 @@ class Rope : AwesomeBlock(
     }
 
     override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, context: TooltipContext) {
-        tooltip.add(Text.translatable(AwesomeUtils.translatable("block", id.path, "hint")).formatted(Formatting.GRAY))
+        tooltip.add(TranslatableText(AwesomeUtils.translatable("block", id.path, "hint")).formatted(Formatting.GRAY))
     }
 
     override fun getOutlineShape(state: BlockState, world: BlockView, pos: BlockPos, context: ShapeContext): VoxelShape =
@@ -90,7 +90,7 @@ class Rope : AwesomeBlock(
             if (!world.getBlockState(pos).isAir || stack.isEmpty) break
             AwesomeLogger.debug("Rope: unrolling @ $pos")
             world.setBlockState(pos, this.defaultState)
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, this.defaultState))
+            // 1.19 world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, this.defaultState))
             stack.count -= 1
             AwesomeSounds(world to pos, AwesomeSounds.vinesPlaced, volume = MathHelper.nextBetween(world.random, 0.8F, 1.2F))
         }
@@ -110,7 +110,7 @@ class Rope : AwesomeBlock(
             if (world.getBlockState(pos).block != this) break
             AwesomeLogger.debug("Rope: rollup $pos @ $origin")
             world.setBlockState(pos, state)
-            world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state))
+            // 1.19 world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state))
             drop(world, origin)
             AwesomeSounds(world to pos, AwesomeSounds.vinesBroken, volume = MathHelper.nextBetween(world.random, 0.8F, 1.2F))
         }
