@@ -1,30 +1,38 @@
 package io.github.shkschneider.awesome.extras.crates
 
-import io.github.shkschneider.awesome.core.AwesomeRegistries
-import io.github.shkschneider.awesome.custom.InputOutput
-import io.github.shkschneider.awesome.custom.Minecraft
-import net.minecraft.screen.ScreenHandlerType
-
-// Inspired from the ShulkerBox
+// Inspired from the ShulkerBox -- retains inventory
 object Crates {
 
-    const val ID = "crate"
-    val IO = InputOutput(inputs = 9)
+    sealed class Sizes(val name: String, val width: Int, val height: Int) {
 
-    private lateinit var _block: CrateBlock
-    val block: CrateBlock get() = _block
+        val total: Int  = width * height
 
-    private lateinit var _screen: ScreenHandlerType<CrateBlockScreen.Handler>
-    val screen get() = _screen
+        object Small : Sizes("small", 9, 1)
+        object Medium : Sizes("medium", 9, 3)
+        object Large : Sizes("large", 9, 6)
+
+        val backgroundHeight: Int get() = when (this) {
+            Small -> 130
+            Medium -> 166
+            Large -> 220
+        }
+        val playerInventoryOffset: Int get() = when (this) {
+            Small -> 48
+            Medium -> 84
+            Large -> 138
+        }
+        val playerHotbarOffset: Int get() = when (this) {
+            Small -> 106
+            Medium -> 142
+            Large -> 196
+        }
+
+    }
 
     operator fun invoke() {
-        _block = CrateBlock()
-        _screen = AwesomeRegistries.screen(ID) { syncId, playerInventory ->
-            CrateBlockScreen.Handler(null, syncId, playerInventory)
-        }
-        if (Minecraft.isClient) AwesomeRegistries.screenHandler(screen) { handler, playerInventory, title ->
-            CrateBlockScreen(handler, playerInventory, title)
-        }
+        Crate(Sizes.Small)
+        Crate(Sizes.Medium)
+        Crate(Sizes.Large)
     }
 
 }

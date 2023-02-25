@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "awesome:crate"
+    "awesome:large_crate",
+    "awesome:medium_crate",
+    "awesome:small_crate"
   ]
 }

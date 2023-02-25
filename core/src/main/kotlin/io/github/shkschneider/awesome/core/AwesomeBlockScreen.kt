@@ -82,7 +82,7 @@ abstract class AwesomeBlockScreen<SH : AwesomeBlockScreen.Handler>(
         }
 
         // https://fabricmc.net/wiki/tutorial:containers
-        protected fun addPlayerSlots() {
+        protected open fun addPlayerSlots() {
             // inventory
             for (i in 0..2) {
                 for (l in 0..8) {

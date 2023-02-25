@@ -18,7 +18,7 @@ object AwesomeExtras {
     operator fun invoke() {
         if (Awesome.CONFIG.extras.allInOneTools) AwesomeTools()
         if (Awesome.CONFIG.extras.baguette) Baguette()
-        if (Awesome.CONFIG.extras.crate) Crates()
+        if (Awesome.CONFIG.extras.crates) Crates()
         if (Awesome.CONFIG.extras.elevator) Elevator()
         if (Awesome.CONFIG.extras.entities) AwesomeEntities()
         if (Awesome.CONFIG.extras.lilypad) LilyPad()
