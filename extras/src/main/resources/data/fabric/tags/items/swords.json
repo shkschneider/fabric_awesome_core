@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "awesome:wooden_tool",
+    "awesome:stone_tool",
+    "awesome:iron_tool",
+    "awesome:golden_tool",
+    "awesome:diamond_tool",
+    "awesome:netherite_tool"
+  ]
+}

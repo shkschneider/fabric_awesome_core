@@ -2,10 +2,11 @@ package io.github.shkschneider.awesome.core.ext
 
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
+import net.minecraft.block.OreBlock
 import net.minecraft.tag.BlockTags
 
 val BlockState.isOre: Boolean get() =
-    this.isIn(BlockTags.IRON_ORES)
+    this.block is OreBlock || this.isIn(BlockTags.IRON_ORES)
             || this.isIn(BlockTags.COPPER_ORES)
             || this.isIn(BlockTags.REDSTONE_ORES)
             || this.isIn(BlockTags.GOLD_ORES)

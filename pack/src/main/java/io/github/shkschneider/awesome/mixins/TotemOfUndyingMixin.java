@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.mixins;
 
+import io.github.shkschneider.awesome.Awesome;
 import io.github.shkschneider.awesome.core.AwesomeLogger;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -16,12 +17,14 @@ public class TotemOfUndyingMixin {
 
     @Inject(method = "tryUseTotem", at = @At("HEAD"), cancellable = true)
     private void tryUseTotem(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
-        LivingEntity entity = (LivingEntity) (Object) this;
-        if (entity instanceof ServerPlayerEntity player) {
-            int slot = player.getInventory().getSlotWithStack(new ItemStack(Items.TOTEM_OF_UNDYING));
-            if (slot >= 0) {
-                AwesomeLogger.INSTANCE.info("swapSlotWithHotbar(" + slot + ")");
-                player.getInventory().swapSlotWithHotbar(slot);
+        if (Awesome.INSTANCE.getCONFIG().getExtras().getTotemFromInventory()) {
+            LivingEntity entity = (LivingEntity) (Object) this;
+            if (entity instanceof ServerPlayerEntity player) {
+                int slot = player.getInventory().getSlotWithStack(new ItemStack(Items.TOTEM_OF_UNDYING));
+                if (slot >= 0) {
+                    AwesomeLogger.INSTANCE.info("swapSlotWithHotbar(" + slot + ")");
+                    player.getInventory().swapSlotWithHotbar(slot);
+                }
             }
         }
         // and let the regular method do its thing

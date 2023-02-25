@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.mixins;
 
+import io.github.shkschneider.awesome.Awesome;
 import io.github.shkschneider.awesome.AwesomeEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
@@ -15,7 +16,7 @@ public class ItemStackIsDamageableMixin {
     private void isDamageable(CallbackInfoReturnable<Boolean> cir) {
         //noinspection ConstantConditions
         final ItemStack itemStack = (ItemStack) (Object) this;
-        if (EnchantmentHelper.getLevel(AwesomeEnchantments.INSTANCE.getUnbreakable(), itemStack) > 0) {
+        if (Awesome.INSTANCE.getCONFIG().getEnchantments().getUnbreakable() && EnchantmentHelper.getLevel(AwesomeEnchantments.INSTANCE.getUnbreakable(), itemStack) > 0) {
             itemStack.setDamage(0);
             cir.setReturnValue(true);
         }

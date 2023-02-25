@@ -7,7 +7,7 @@
   ],
   "key": {
     "1": { "item": "minecraft:copper_ingot" },
-    "2": { "tag": "minecraft:saplings" },
+    "2": { "item": "minecraft:wheat_seeds" },
     "3": { "item": "minecraft:copper_block" }
   },
   "result": {

@@ -3,7 +3,7 @@ package io.github.shkschneider.awesome
 import io.github.shkschneider.awesome.extras.SleepingHeals
 import io.github.shkschneider.awesome.extras.ZenithNadirLengths
 import io.github.shkschneider.awesome.extras.baguette.Baguette
-import io.github.shkschneider.awesome.extras.crate.Crate
+import io.github.shkschneider.awesome.extras.crates.Crates
 import io.github.shkschneider.awesome.extras.elevator.Elevator
 import io.github.shkschneider.awesome.extras.entities.AwesomeEntities
 import io.github.shkschneider.awesome.extras.lilypad.LilyPad
@@ -18,7 +18,7 @@ object AwesomeExtras {
     operator fun invoke() {
         if (Awesome.CONFIG.extras.allInOneTools) AwesomeTools()
         if (Awesome.CONFIG.extras.baguette) Baguette()
-        if (Awesome.CONFIG.extras.crate) Crate()
+        if (Awesome.CONFIG.extras.crate) Crates()
         if (Awesome.CONFIG.extras.elevator) Elevator()
         if (Awesome.CONFIG.extras.entities) AwesomeEntities()
         if (Awesome.CONFIG.extras.lilypad) LilyPad()

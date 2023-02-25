@@ -28,7 +28,7 @@ class AwesomeTool(
     /* attackSpeed */ -2.8F,
     material,
     BlockTags.PICKAXE_MINEABLE,
-    FabricItemSettings(),
+    FabricItemSettings().maxDamage(material.durability),
 ) {
 
     init {

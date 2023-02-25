@@ -62,7 +62,7 @@ data class AwesomeConfig(
     data class Extras(
         @SerializedName("allInOneTools") val allInOneTools: Boolean = true,
         @SerializedName("baguette") val baguette: Boolean = true,
-        @SerializedName("crate") val crate: Boolean = false,
+        @SerializedName("crate") val crate: Boolean = true,
         @SerializedName("elevator") val elevator: Boolean = true,
         @SerializedName("entities") val entities: Boolean = false,
         @SerializedName("lilypad") val lilypad: Boolean = true,
@@ -73,6 +73,7 @@ data class AwesomeConfig(
         @SerializedName("scythe") val scythe: Boolean = true,
         @SerializedName("sleepingHeals") val sleepingHeals: Boolean = true,
         @SerializedName("spongesInLava") val spongesInLava: Boolean = true,
+        @SerializedName("totemFromInventory") val totemFromInventory: Boolean = true,
         @SerializedName("trashSlot") val trashSlot: Boolean = true,
         @SerializedName("unlockRecipes") val unlockRecipes: Boolean = true,
         @SerializedName("villagersFollowEmeraldBlock") val villagersFollowEmeraldBlock: Boolean = true,

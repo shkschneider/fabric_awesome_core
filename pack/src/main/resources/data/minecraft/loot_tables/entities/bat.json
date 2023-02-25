@@ -5,7 +5,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:membrane",
+          "name": "minecraft:phantom_membrane",
           "weight": 1
         }
       ]
