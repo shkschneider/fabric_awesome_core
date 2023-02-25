@@ -10,13 +10,14 @@
 ## Vanilla lacks biomes and points-of-interest
 
 - Overworld:
-  - Tectonic
+  - Traverse
   - YUNG's better structures
-  - Repurposed Structures
   - Towns and Towers
-  - Alternative: Terralith / Traverse + Terrestria
-- Nether: Cinderscapes
-- End: Enderscape
+  - Alternative: Terralith
+- Nether: Better Nether
+  - Alternative: Cinderscapes
+- End: Better End
+  - Alternative: Enderscape
 
 ## Vanilla has a boring death mechanism
 
@@ -44,7 +45,7 @@
 - Awesome Experience: obelisk (to store & retrieve xp) & more.
 - Awesome Extras: baguette, elevator, magic lilypad, rope, all-in-one tool, void block...
 - Awesome Machines: breaker/placer, collector, crafter, cultivator, duplicator, factory, quarry, recycler, refinery & detectors...
-- Awesome Pack:
+- Awesome Pack (exclusive):
   - bow with infinity does not require any arrow
   - faithful textures
   - infinite villagers trading
@@ -98,3 +99,4 @@ Made by **ShkSchneider** with great help from open-sourced codes from the commun
 
 - Thanks to *Kaupenjoe*: https://github.com/Tutorials-By-Kaupenjoe
 - Thanks to *VanillaTweaks*: https://vanillatweaks.net
+- Packed using packwiz: https://packwiz.infra.link
