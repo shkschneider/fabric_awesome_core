@@ -1,0 +1,17 @@
+{
+  "noFriendlyFire": true,
+  "mobXray": true,
+  "monsterRangeMultiplier": 1.5,
+  "monsterGearScales": true,
+  "monsterAngerOnShove": true,
+  "buffGolems": true,
+  "mobsBreakBlocks": false,
+  "blockBreakingHardnessCutoff": 3.0,
+  "sleepApplyGlowing": false,
+  "sleepExtendToSeaLevel": false,
+  "sleepHorizontalSearchDistance": 50,
+  "sleepMinVerticalSearchDistance": 20,
+  "creepersBreachWalls": false,
+  "creepersRunFromShields": true,
+  "endermiteFlowerSpawn": false
+}

@@ -10,14 +10,11 @@
 ## Vanilla lacks biomes and points-of-interest
 
 - Overworld:
-  - Traverse
+  - Tectonic
   - YUNG's better structures
   - Towns and Towers
-  - Alternative: Terralith
 - Nether: Better Nether
-  - Alternative: Cinderscapes
 - End: Better End
-  - Alternative: Enderscape
 
 ## Vanilla has a boring death mechanism
 
@@ -38,7 +35,7 @@
 
 ## Vanilla lacks awesome mods
 
-- Create v0.4
+- Create v0.5
 - Awesome Commands: /sethome /home /back /enderchest /top...
 - Awesome Crystals: yields crystal for all ores (infinite resources)
 - Awesome Enchantments: critical, last stand, magnetism, sixth sense, unbreakable, vampirism, vein mining...
@@ -81,7 +78,8 @@
 - Simple Copper Pipes
 - Tax Free Levels: flatterns anvil/enchantment costs
 - ...
-- Faithful: available but not enabled by default (place below other mods)
+- I recommend Faithful texture pack: https://faithful.team/
+- I recommend MakeUp Ultra Fast shaders: https://www.curseforge.com/minecraft/customization/makeup-ultra-fast-shader
 
 ## What about performances ?
 

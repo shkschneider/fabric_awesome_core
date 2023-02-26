@@ -4,6 +4,7 @@
 *.iws
 *.launch
 run/
+*.mrpack
 .classpath
 .gradle/
 .idea/
