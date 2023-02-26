@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "config/bclib/client.json"
+hash = "bf2d8e792813de9fdd787feac239e1fb8827c99da8bff50201538d91c7a8fd12"
+
+[[files]]
 file = "config/create-common.toml"
 hash = "761808ae6084f31029c512dc727ae0838a06ebf237e89029001cea17524ae998"
 
@@ -17,16 +21,12 @@ file = "config/defaultoptions/options.txt"
 hash = "9ce969c97052f9a3f730a43f911eb2881224de49f12a7ca3d3269d2281a1a87b"
 
 [[files]]
-file = "config/defaultoptions/servers.dat"
-hash = "01b15d9437580a17aa6faf5cc9da4fa0a28756da91b98eef062224815ed00f5a"
-
-[[files]]
 file = "config/forgivingvoid.toml"
 hash = "13804f5c3c2fe708445e7631eae9295a8eaa73d625290b91de03da8e2425d953"
 
 [[files]]
 file = "config/inventoryhud.json"
-hash = "0565fc729b04a7a6280c7091c80c432f8ef3b8c91fd090b17626e79fb8312230"
+hash = "daeb7c5cca80bf96ea0f4de9913db0716e6be1b7a16096b5aa9660bfec42188d"
 
 [[files]]
 file = "config/inventorysorter/blacklist.json5"
@@ -34,7 +34,11 @@ hash = "274dcf155e9646094d42f860442f2c29f627145c90ad01d6ea10833915552687"
 
 [[files]]
 file = "config/inventorysorter/config.json5"
-hash = "3fb60858f28605a5a298bba8563c3e091079688d584fa166e48ca15419c76133"
+hash = "9878dcde619b575eb9c87eaf367af935f0a32308adc862161f15ec4272734e9e"
+
+[[files]]
+file = "config/leaves_us_in_peace.json"
+hash = "f8d2660ce6cc8dfc0646a6a996f99f75b3693bb73b0bb290232e93430ba4abdb"
 
 [[files]]
 file = "config/nox.json"
@@ -458,6 +462,11 @@ metafile = true
 [[files]]
 file = "mods/tectonic.pw.toml"
 hash = "4431ef7c60da5c305b06bc33f443f129f9a7d81f472b9543082b63b7eee301cc"
+metafile = true
+
+[[files]]
+file = "mods/time-in-a-bottle.pw.toml"
+hash = "79cb779be719f1a9c20794d09f348327ac5ceddb32ecf58115e574e09a9f3eba"
 metafile = true
 
 [[files]]
