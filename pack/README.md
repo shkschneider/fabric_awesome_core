@@ -64,7 +64,7 @@
 - Edit Sign: with a simple right click
 - Elytra Protection: allows chest armor enchantments
 - Jade: what am I looking at
-- JourneyMap: minimap
+- Xaeros (mini)map
 - Right Click Harvest
 
 ## Additional mods

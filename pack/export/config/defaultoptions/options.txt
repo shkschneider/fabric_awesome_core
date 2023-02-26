@@ -36,8 +36,8 @@ ao:2
 prioritizeChunkUpdates:0
 biomeBlendRadius:2
 renderClouds:false
-resourcePacks:["vanilla","Fabric Mods","loadmyresources.hiddenpack"]
-incompatibleResourcePacks:[]
+resourcePacks:["vanilla","file/Faithful 32x - 1.18.2.zip","file/Bushy Leaves for Faithful 32x V1.2.zip","Fabric Mods","charmonium/journeyman"]
+incompatibleResourcePacks:["file/Bushy Leaves for Faithful 32x V1.2.zip"]
 lastServer:
 lang:en_us
 soundDevice:""

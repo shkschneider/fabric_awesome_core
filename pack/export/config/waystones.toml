@@ -50,4 +50,4 @@ forceSpawnInVillages = false
 disableTextGlow = false
 disableParticles = false
 [compatibility]
-displayWaystonesOnJourneyMap = true
+displayWaystonesOnJourneyMap = false

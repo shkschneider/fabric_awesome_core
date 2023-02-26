@@ -5,12 +5,16 @@ file = "config/create-common.toml"
 hash = "761808ae6084f31029c512dc727ae0838a06ebf237e89029001cea17524ae998"
 
 [[files]]
+file = "config/defaultoptions.toml"
+hash = "3e93640912ed3a9ddf871b45ccf373d7d8db57e50bcc2798e9b7112b2e031c67"
+
+[[files]]
 file = "config/defaultoptions/keybindings.txt"
-hash = "f32126bcaf0f98631485583846ee215c3214a33f43541f82d62580d495626a9d"
+hash = "69e05868e42aaee55c0100783bb4b61d3c55c8e6c6cda2193fbf258c219a2f10"
 
 [[files]]
 file = "config/defaultoptions/options.txt"
-hash = "141e56a9a1f8b008e2dd3067419809c4d9d0def2ccaeb615b50e1c99ac247b55"
+hash = "9ce969c97052f9a3f730a43f911eb2881224de49f12a7ca3d3269d2281a1a87b"
 
 [[files]]
 file = "config/defaultoptions/servers.dat"
@@ -42,11 +46,20 @@ hash = "b01cb6d41326c1deb3265f844b8ba2bd801f717f6549691fa80e553da209ac3f"
 
 [[files]]
 file = "config/waystones.toml"
-hash = "9f194c659f449060948a4d9ab8afb212800a9a22e9f24d99e61164c871b62906"
+hash = "3667c50cae6093b9144175ca32ee0865b4a186400f72c4bf3b78b7bba285f209"
 
 [[files]]
 file = "config/waystones/config.json"
 hash = "501f879b63d6d1b1226fdc31a18a7a33e276199eab06fc4410dbea3853e512ba"
+
+[[files]]
+file = "config/xaerominimap.txt"
+hash = "30c4d5c04657f38ba3573e09a6f2a26d479dbd47f00270706ef88d021e4e77fd"
+
+[[files]]
+file = "mods/advancements-enlarger.pw.toml"
+hash = "2a892a23a2911316f082efb275c528d53bdd556b2f5c7dbaee15f40fd59c6670"
+metafile = true
 
 [[files]]
 file = "mods/awesome-commands.pw.toml"
@@ -150,6 +163,11 @@ metafile = true
 [[files]]
 file = "mods/comforts.pw.toml"
 hash = "b6112a9308fed6a091f2c5fcffc3c01405dfe2bfeae601382d7b96c6312cce72"
+metafile = true
+
+[[files]]
+file = "mods/cooperative-advancements.pw.toml"
+hash = "b30f47d4dbd27283a55edf539ecfaf58e4c7de6e590937a85b1d1ef42a5229ad"
 metafile = true
 
 [[files]]
@@ -300,11 +318,6 @@ metafile = true
 [[files]]
 file = "mods/jade.pw.toml"
 hash = "da079c4953fc1023fdeb3fcdba216c76dd9958c9cd30ed5b738932e7f6563a0c"
-metafile = true
-
-[[files]]
-file = "mods/journeymap.pw.toml"
-hash = "515eaa81eb48d832aad4348b907fad11992fc4b02498bca9aab15416e4056ecc"
 metafile = true
 
 [[files]]
@@ -465,6 +478,16 @@ metafile = true
 [[files]]
 file = "mods/waystones.pw.toml"
 hash = "e46fe89666446ba8d37493091131058c5785bc0e6dda0df3b000680540b0771d"
+metafile = true
+
+[[files]]
+file = "mods/xaeros-minimap-fair-play-edition.pw.toml"
+hash = "b36f3c97d5ab5247d336c4f38abec11f1c569d184a414a63ce66754d85e99cd9"
+metafile = true
+
+[[files]]
+file = "mods/xaeros-world-map.pw.toml"
+hash = "1e898ca5b525e9ff40758db421d502c99ada05f97e660e9f83dc75e7b8467b51"
 metafile = true
 
 [[files]]
