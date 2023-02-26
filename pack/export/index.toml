@@ -92,8 +92,8 @@ hash = "0ae159bf757b08af5a89fda40c5e030a7c5dd834f0a865a7389d5002da5538bd"
 metafile = true
 
 [[files]]
-file = "mods/awesome-pack-0.9.2+1.18.2.jar"
-hash = "3e53cba495c8bbd666dcea931b049592de1e5efef5cd24ce3ce7f03701330c1a"
+file = "mods/awesome-pack-0.9.3+1.18.2.jar"
+hash = "96ebd3acb983dea291a23d6182d987f1b2f4e2a0afcde482c27c5c00f768615c"
 
 [[files]]
 file = "mods/balm.pw.toml"
