@@ -42,7 +42,7 @@ hash = "b01cb6d41326c1deb3265f844b8ba2bd801f717f6549691fa80e553da209ac3f"
 
 [[files]]
 file = "config/waystones.toml"
-hash = "3f394e0aee0dc9ac230b7b7139d060a9722faf45788504a884e355aa62c8f6b4"
+hash = "9f194c659f449060948a4d9ab8afb212800a9a22e9f24d99e61164c871b62906"
 
 [[files]]
 file = "config/waystones/config.json"
@@ -500,4 +500,19 @@ metafile = true
 [[files]]
 file = "mods/yungs-better-witch-huts-fabric.pw.toml"
 hash = "8bcd6a559fe83e7639a8d0b716043be1dad66f3bdc7994602c94fb840c304b31"
+metafile = true
+
+[[files]]
+file = "resourcepacks/bushy-leaves-for-faithful-32x.pw.toml"
+hash = "a18ff66f795c4470fb6763c22101eaed473e1500eba3b83356e6e690cae30193"
+metafile = true
+
+[[files]]
+file = "resourcepacks/faithful-32x.pw.toml"
+hash = "3eba68216ade0d14b219deaf888f31c2ac646127837adad6dba97df19a573a6b"
+metafile = true
+
+[[files]]
+file = "shaderpacks/makeup-ultra-fast-shaders.pw.toml"
+hash = "a2a53fc93e00e8fb3c38c3d11dd30d777bc9dd92bfeca64c4eb42dacc34c6e7f"
 metafile = true
