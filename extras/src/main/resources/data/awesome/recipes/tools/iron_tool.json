@@ -4,8 +4,7 @@
     { "item": "minecraft:iron_axe" },
     { "item": "minecraft:iron_hoe" },
     { "item": "minecraft:iron_pickaxe" },
-    { "item": "minecraft:iron_shovel" },
-    { "item": "minecraft:iron_sword" }
+    { "item": "minecraft:iron_shovel" }
   ],
   "result": {
     "item": "awesome:iron_tool",

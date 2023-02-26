@@ -6,7 +6,6 @@ import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentTarget
-import net.minecraft.enchantment.Enchantments
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.LivingEntity
@@ -16,7 +15,7 @@ import net.minecraft.item.SwordItem
 
 class LastStandEnchantment : AwesomeEnchantment(
     id = AwesomeUtils.identifier("last_stand"),
-    Enchantments.MENDING.rarity,
+    Rarity.UNCOMMON,
     levels = 1 to 1,
     EnchantmentTarget.WEAPON,
     listOf(EquipmentSlot.MAINHAND),

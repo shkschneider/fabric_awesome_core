@@ -11,6 +11,7 @@ import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.Fertilizable
+import net.minecraft.block.GrassBlock
 import net.minecraft.block.KelpPlantBlock
 import net.minecraft.block.ShapeContext
 import net.minecraft.client.render.RenderLayer
@@ -60,10 +61,10 @@ class LilyPad : KelpPlantBlock(
         Box(blockPos).expand(1.0).positions().forEach { pos ->
             while (world.getBlockState(pos).block is Fertilizable) {
                 val block = world.getBlockState(pos).block as? Fertilizable ?: break
-                if (block.isFertilizable(world, pos, world.getBlockState(pos), world.isClient)) {
+                if (block !is GrassBlock && block.isFertilizable(world, pos, world.getBlockState(pos), world.isClient)) {
                     block.grow(world, random, pos, world.getBlockState(pos))
                 } else {
-                    break
+                    continue
                 }
             }
         }

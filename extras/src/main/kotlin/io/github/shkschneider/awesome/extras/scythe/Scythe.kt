@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome.extras.scythe
 
-import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeSounds
 import io.github.shkschneider.awesome.core.AwesomeUtils
@@ -10,10 +9,10 @@ import net.minecraft.block.Blocks
 import net.minecraft.block.PlantBlock
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.enchantment.Enchantments
+import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.item.MiningToolItem
 import net.minecraft.item.ToolMaterials
-import net.minecraft.item.Vanishable
 import net.minecraft.tag.BlockTags
 import net.minecraft.util.ActionResult
 import net.minecraft.util.math.BlockPos
@@ -23,35 +22,37 @@ class Scythe : MiningToolItem(
     /* attackSpeed */ -3F,
     ToolMaterials.WOOD,
     BlockTags.HOE_MINEABLE,
-    FabricItemSettings().maxDamage(ToolMaterials.STONE.durability),
-), Vanishable {
+    FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(ToolMaterials.WOOD.durability * 2),
+) {
 
     init {
-        AwesomeRegistries.item(AwesomeUtils.identifier("scythe"), this, Awesome.GROUP)
+        AwesomeRegistries.item(AwesomeUtils.identifier("scythe"), this, ItemGroup.TOOLS)
     }
 
     private fun check(block: Block): Boolean =
         block is PlantBlock
 
     override fun useOnBlock(context: ItemUsageContext): ActionResult {
-        if (context.world.isClient) return ActionResult.PASS
         val efficiency = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, context.player?.mainHandStack)
         val range = 2 + efficiency
         val yOffset = if (check(context.world.getBlockState(context.blockPos).block)) 0 else 1
-        var used = false
+        var used = 0
         (context.blockPos.x - range until context.blockPos.x + range).forEach { x ->
             (context.blockPos.z - range until context.blockPos.z + range).forEach { z ->
                 val pos = BlockPos(x, context.blockPos.y + yOffset, z)
                 val state = context.world.getBlockState(pos)
                 if (check(state.block)) {
                     mow(context, pos)
-                    used = true
+                    used++
                 }
             }
         }
-        return if (used) {
-            context.stack.damage(efficiency, context.player) { player -> player?.sendToolBreakStatus(context.hand) }
-            ActionResult.SUCCESS
+        return if (used > 0) {
+            if (!context.world.isClient) {
+                // FIXME actually unbreakable
+                context.stack.damage(efficiency, context.player) { player -> player?.sendToolBreakStatus(context.hand) }
+            }
+            ActionResult.success(context.world.isClient)
         } else {
             ActionResult.PASS
         }

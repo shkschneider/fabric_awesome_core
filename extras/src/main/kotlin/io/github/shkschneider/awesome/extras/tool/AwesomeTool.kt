@@ -1,9 +1,9 @@
 package io.github.shkschneider.awesome.extras.tool
 
-import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeInputs
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeUtils
+import io.github.shkschneider.awesome.core.ext.attackSpeed
 import io.github.shkschneider.awesome.core.ext.axe
 import io.github.shkschneider.awesome.core.ext.hoe
 import io.github.shkschneider.awesome.core.ext.name
@@ -13,6 +13,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.block.BlockState
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.item.MiningToolItem
@@ -24,49 +25,51 @@ import net.minecraft.util.Hand
 class AwesomeTool(
     private val material: ToolMaterial,
 ) : MiningToolItem(
-    /* attackDamage */ 5F,
-    /* attackSpeed */ -2.8F,
+    /* attackDamage */ tools(material).maxOf { it.attackDamage },
+    /* attackSpeed */ material.attackSpeed,
     material,
     BlockTags.PICKAXE_MINEABLE,
-    FabricItemSettings().maxDamage(material.durability),
+    FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(material.durability * tools(material).size),
 ) {
 
-    init {
-        AwesomeRegistries.item(AwesomeUtils.identifier("${material.name}_tool"), this, Awesome.GROUP)
+    companion object {
+
+        private fun tools(material: ToolMaterial): List<MiningToolItem> =
+            listOf(material.axe(), material.hoe(), material.pickaxe(), material.shovel()).let { tools ->
+                try {
+                    if (AwesomeInputs.shift() || AwesomeInputs.control()) tools.reversed() else tools
+                } catch (e: NullPointerException) { // if getWindow() is null (too early)
+                    tools
+                }
+            }
+
     }
 
-    private fun tools(): List<MiningToolItem> =
-        listOf(material.axe(), material.hoe(), material.pickaxe(), material.shovel()).let { tools ->
-            if (AwesomeInputs.shift() || AwesomeInputs.control()) tools.reversed() else tools
-        }
+    init {
+        AwesomeRegistries.item(AwesomeUtils.identifier("${material.name}_tool"), this, ItemGroup.TOOLS)
+    }
 
     override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float =
         if (isSuitableFor(stack, state)) miningSpeed else 1F
 
     override fun useOnBlock(context: ItemUsageContext): ActionResult {
-        tools().forEach { tool ->
-            when (tool.useOnBlock(context)) {
-                ActionResult.SUCCESS, ActionResult.CONSUME -> return ActionResult.success(context.world.isClient)
-                else -> {}
-            }
+        tools(material).forEach { tool ->
+            if (tool.useOnBlock(context).isAccepted) return ActionResult.success(context.world.isClient)
         }
         return ActionResult.FAIL
     }
 
     override fun useOnEntity(stack: ItemStack, user: PlayerEntity, entity: LivingEntity, hand: Hand): ActionResult {
-        tools().forEach { tool ->
-            when (tool.useOnEntity(stack, user, entity, hand)) {
-                ActionResult.SUCCESS, ActionResult.CONSUME -> return ActionResult.success(user.world.isClient)
-                else -> {}
-            }
+        tools(material).forEach { tool ->
+            if (tool.useOnEntity(stack, user, entity, hand).isAccepted) return ActionResult.success(user.world.isClient)
         }
         return ActionResult.FAIL
     }
 
     override fun isSuitableFor(state: BlockState): Boolean =
-        tools().any { it.isSuitableFor(state) }
+        tools(material).any { it.isSuitableFor(state) }
 
     override fun isSuitableFor(stack: ItemStack, state: BlockState): Boolean =
-        tools().any { it.isSuitableFor(stack, state) }
+        tools(material).any { it.isSuitableFor(stack, state) }
 
 }

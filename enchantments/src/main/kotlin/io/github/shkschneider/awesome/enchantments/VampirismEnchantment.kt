@@ -11,8 +11,8 @@ import net.minecraft.entity.player.PlayerEntity
 
 class VampirismEnchantment : AwesomeEnchantment(
     id = AwesomeUtils.identifier("vampirism"),
-    Enchantments.FORTUNE.rarity,
-    levels = 1 to 5,
+    Rarity.RARE,
+    levels = Enchantments.SHARPNESS.minLevel to Enchantments.SHARPNESS.maxLevel,
     EnchantmentTarget.WEAPON,
     listOf(EquipmentSlot.MAINHAND),
 ) {

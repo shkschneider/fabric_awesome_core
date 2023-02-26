@@ -10,6 +10,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 
 class InventoryCommand : AwesomeCommand.ForPlayer("inventory", Permissions.Admin) {
 
+    // FIXME closes at the moment it opens while multiplayer
     override fun run(context: CommandContext<ServerCommandSource>, player: ServerPlayerEntity): Int {
         val user = context.source?.player ?: return error(context.source, code = -1)
         user.openHandledScreen(SimpleNamedScreenHandlerFactory({ syncId, playerInventory, _ ->

@@ -5,7 +5,6 @@ import net.minecraft.item.HoeItem
 import net.minecraft.item.Items
 import net.minecraft.item.PickaxeItem
 import net.minecraft.item.ShovelItem
-import net.minecraft.item.SwordItem
 import net.minecraft.item.ToolMaterial
 import net.minecraft.item.ToolMaterials
 
@@ -59,12 +58,11 @@ fun ToolMaterial.shovel(): ShovelItem = when (this) {
     else -> throw IllegalStateException()
 } as ShovelItem
 
-fun ToolMaterial.sword(): SwordItem = when (this) {
-    ToolMaterials.WOOD -> Items.WOODEN_SWORD
-    ToolMaterials.STONE -> Items.STONE_SWORD
-    ToolMaterials.IRON -> Items.IRON_SWORD
-    ToolMaterials.GOLD -> Items.GOLDEN_SWORD
-    ToolMaterials.DIAMOND -> Items.DIAMOND_SWORD
-    ToolMaterials.NETHERITE -> Items.NETHERITE_SWORD
+
+val ToolMaterial.attackSpeed: Float get() = when (this) {
+    // axes
+    ToolMaterials.WOOD, ToolMaterials.STONE -> -3.2F
+    ToolMaterials.IRON -> -3.1F
+    ToolMaterials.GOLD, ToolMaterials.DIAMOND, ToolMaterials.NETHERITE -> -3.0F
     else -> throw IllegalStateException()
-} as SwordItem
+}

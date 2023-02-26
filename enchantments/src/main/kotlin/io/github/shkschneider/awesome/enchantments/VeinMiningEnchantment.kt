@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.enchantment.EnchantmentTarget
+import net.minecraft.enchantment.Enchantments
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
@@ -22,7 +23,7 @@ import kotlin.math.min
 class VeinMiningEnchantment : AwesomeEnchantment(
     id = AwesomeUtils.identifier("vein_mining"),
     Rarity.RARE,
-    levels = 1 to 3,
+    levels = Enchantments.EFFICIENCY.minLevel to Enchantments.EFFICIENCY.maxLevel,
     EnchantmentTarget.DIGGER,
     listOf(EquipmentSlot.MAINHAND),
 ) {
@@ -42,7 +43,7 @@ class VeinMiningEnchantment : AwesomeEnchantment(
         if (player.isSneaking) return
         val veinMining = EnchantmentHelper.getLevel(AwesomeEnchantments.veinMining, player.mainHandStack)
         if (veinMining > 0) {
-            if (state.isOre && state.isIn(BlockTags.PICKAXE_MINEABLE)) {
+            if (state.isOre) {
                 veinMining(world, pos, player, veinMining, state.block.asItem())
             } else if (state.isIn(BlockTags.LOGS) && state.isIn(BlockTags.AXE_MINEABLE)) {
                 veinMining(world, pos, player, veinMining * 2, state.block.asItem())

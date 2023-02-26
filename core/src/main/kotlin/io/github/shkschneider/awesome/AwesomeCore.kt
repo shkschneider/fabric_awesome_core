@@ -8,7 +8,7 @@ object AwesomeCore {
     operator fun invoke() {
         Awesome()
         AwesomeTime()
-        Dimensions()
+        if (Awesome.CONFIG.dimensions) Dimensions()
     }
 
 }

@@ -35,7 +35,7 @@ import net.minecraft.world.World
 
 class Prospector : AwesomeItem(
     id = AwesomeUtils.identifier(ID),
-    settings = FabricItemSettings().maxCount(1).rarity(Rarity.UNCOMMON),
+    settings = FabricItemSettings().group(Awesome.GROUP).maxCount(1).rarity(Rarity.UNCOMMON),
     group = Awesome.GROUP,
 ) {
 

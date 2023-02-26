@@ -5,12 +5,13 @@ import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.registry.FuelRegistry
 import net.minecraft.item.Item
+import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.util.Rarity
 
 class Flux : Item(
-    FabricItemSettings().maxCount(Minecraft.STACK).rarity(Rarity.UNCOMMON),
+    FabricItemSettings().group(ItemGroup.REDSTONE).maxCount(Minecraft.STACK).rarity(Rarity.UNCOMMON),
 ) {
 
     init {

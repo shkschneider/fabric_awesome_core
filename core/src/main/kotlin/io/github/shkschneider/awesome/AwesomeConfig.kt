@@ -11,6 +11,8 @@ data class AwesomeConfig(
     @SerializedName("machines") val machines: Machines = Machines(),
 ) {
 
+    @SerializedName("dimensions") val dimensions: Boolean = false
+
     data class Commands(
         @SerializedName("back") val back: Boolean = true,
         @SerializedName("broadcast") val broadcast: Boolean = true,
@@ -41,12 +43,9 @@ data class AwesomeConfig(
 
     data class Enchantments(
         @SerializedName("critical") val critical: Boolean = true,
-        @SerializedName("iceAspect") val iceAspect: Boolean = true,
         @SerializedName("infinity") val infinity: Boolean = true,
         @SerializedName("lastStand") val lastStand: Boolean = true,
         @SerializedName("magnetism") val magnetism: Boolean = true,
-        @SerializedName("paralysis") val paralysis: Boolean = true,
-        @SerializedName("poisonAspect") val poisonAspect: Boolean = true,
         @SerializedName("sixthSense") val sixthSense: Boolean = true,
         @SerializedName("unbreakable") val unbreakable: Boolean = true,
         @SerializedName("vampirism") val vampirism: Boolean = true,

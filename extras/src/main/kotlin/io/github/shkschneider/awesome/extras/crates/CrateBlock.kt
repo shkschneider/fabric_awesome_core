@@ -15,6 +15,7 @@ import net.minecraft.item.BlockItem
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtElement
 import net.minecraft.screen.ScreenHandler
+import net.minecraft.text.LiteralText
 import net.minecraft.text.Text
 import net.minecraft.text.TranslatableText
 import net.minecraft.util.Formatting
@@ -39,11 +40,10 @@ class CrateBlock(
         val n = tooltip.size
         BlockItem.getBlockEntityNbt(stack)?.let { nbt ->
             if (nbt.contains("Items", NbtElement.LIST_TYPE.toInt())) {
-                DefaultedList.ofSize(crate.size.total, ItemStack.EMPTY).apply {
+                val inventory = DefaultedList.ofSize(crate.size.total, ItemStack.EMPTY).apply {
                     Inventories.readNbt(nbt, this)
-                }.filter { !it.isEmpty }.forEach { itemStack ->
-                    tooltip.add(itemStack.name.copy().append(" x").append(itemStack.count.toString())) // TODO .formatted(Formatting.GRAY)
                 }
+                tooltip.add(LiteralText("${inventory.sumOf { it.count }} items").formatted(Formatting.GRAY))
             }
         }
         if (tooltip.size == n) {

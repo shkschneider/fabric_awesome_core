@@ -37,7 +37,7 @@ object AwesomeEntities {
     }
 
     private fun spawnEgg(name: String, colors: Pair<Int, Int>, entityType: EntityType<out MobEntity>, group: ItemGroup = Awesome.GROUP): SpawnEggItem {
-        val spawnEgg = SpawnEggItem(entityType, colors.first, colors.second, FabricItemSettings())
+        val spawnEgg = SpawnEggItem(entityType, colors.first, colors.second, FabricItemSettings().group(Awesome.GROUP))
         AwesomeRegistries.item(AwesomeUtils.identifier("${name}_spawn_egg"), spawnEgg, group)
         return spawnEgg
     }

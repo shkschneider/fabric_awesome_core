@@ -75,11 +75,10 @@
 - Kelp Fertilizer: behaves like bone meal
 - More End Cities
 - Repurposed Structures: improved vanilla structures
-- Simple Copper Pipes
 - Tax Free Levels: flatterns anvil/enchantment costs
 - ...
-- I recommend Faithful texture pack: https://faithful.team/
-- I recommend MakeUp Ultra Fast shaders: https://www.curseforge.com/minecraft/customization/makeup-ultra-fast-shader
+- Faithful texture pack: https://faithful.team/
+- MakeUp Ultra Fast shaders: https://www.curseforge.com/minecraft/customization/makeup-ultra-fast-shader
 
 ## What about performances ?
 
@@ -87,7 +86,7 @@
 - Entity Culling
 - Exordium
 - Indium + Lithium
-- Sodium (& Extras)
+- Sodium
 - Starlight + LambDynamicLights
 
 ## License & Credits
