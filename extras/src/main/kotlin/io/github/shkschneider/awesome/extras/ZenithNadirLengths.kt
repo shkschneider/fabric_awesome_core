@@ -26,6 +26,7 @@ object ZenithNadirLengths {
     }
 
     operator fun invoke() {
+        return // FIXME world hangs if doDaylightCycle=false and time set to noon
         @Event("ServerTickEvents.EndWorldTick")
         ServerTickEvents.END_WORLD_TICK.register(ServerTickEvents.EndWorldTick { world ->
             val clock = world.clock()
