@@ -96,7 +96,7 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-extras.pw.toml"
-hash = "891b1acd878c3409eb451906d4694d1d6e2a5b149397d6468d0344e22a4ad622"
+hash = "d96539652aaf25e6dd5eb4fa88de9dc3d827ec0c9d58c9a4695007280c704658"
 metafile = true
 
 [[files]]
@@ -527,10 +527,6 @@ metafile = true
 file = "mods/yungs-better-witch-huts-fabric.pw.toml"
 hash = "8bcd6a559fe83e7639a8d0b716043be1dad66f3bdc7994602c94fb840c304b31"
 metafile = true
-
-[[files]]
-file = "pack.sh"
-hash = "6e88ceac9721bba646df592642c2cf86d52fae220a8b25eef2e93c96d41dfe01"
 
 [[files]]
 file = "resourcepacks/bushy-leaves-for-faithful-32x.pw.toml"

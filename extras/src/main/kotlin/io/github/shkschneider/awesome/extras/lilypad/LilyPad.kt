@@ -58,14 +58,13 @@ class LilyPad : KelpPlantBlock(
 
     override fun randomTick(state: BlockState, world: ServerWorld, blockPos: BlockPos, random: Random) {
         if (world.isClient) return
+        return // FIXME world hangs
         Box(blockPos).expand(1.0).positions().forEach { pos ->
             while (world.getBlockState(pos).block is Fertilizable) {
-                val block = world.getBlockState(pos).block as? Fertilizable ?: break
-                if (block !is GrassBlock && block.isFertilizable(world, pos, world.getBlockState(pos), world.isClient)) {
-                    block.grow(world, random, pos, world.getBlockState(pos))
-                } else {
-                    continue
-                }
+                val block = world.getBlockState(pos).block as? Fertilizable ?: continue
+                if (block is LilyPad || block is GrassBlock) continue
+                if (!block.isFertilizable(world, pos, world.getBlockState(pos), world.isClient)) continue
+                block.grow(world, random, pos, world.getBlockState(pos))
             }
         }
     }
