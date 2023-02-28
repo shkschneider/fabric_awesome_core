@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "README.md"
+hash = "0b860c8059fa9025be088fdecc776b572ff10a2bc6df82f206255d0378ad85f1"
+
+[[files]]
 file = "config/bclib/client.json"
 hash = "bf2d8e792813de9fdd787feac239e1fb8827c99da8bff50201538d91c7a8fd12"
 
@@ -67,41 +71,41 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-commands.pw.toml"
-hash = "12dfc70de424a1293b16c2c662fa578f6eaa98135067a30dc976263e017fbe92"
+hash = "d0fe650c63821cc99c31156734f6c19fb710b8bc74c019319665c22ca4c2fd29"
 metafile = true
 
 [[files]]
 file = "mods/awesome-core.pw.toml"
-hash = "057f3fea2f7aee2b28ee300ee05bbfe0064bdaeec9485ac55a41d9686f761d29"
+hash = "c7561f6f7cd4708540e97c9d086ff41a7f3193206d6599e620d03aec965f209b"
 metafile = true
 
 [[files]]
 file = "mods/awesome-crystals.pw.toml"
-hash = "1926d2da4755b5c216fc0c13892ac0354487473194314897ac2031695e4e4bc2"
+hash = "2bd38152cc394b1a0d79779cdcf755aa083b7dc197d7ebbcae3561891d32d5e7"
 metafile = true
 
 [[files]]
 file = "mods/awesome-enchantments.pw.toml"
-hash = "bf81b69dcb053e0f9065959453675e41a704f740509c661681aa036273c11972"
+hash = "a571212a45039a6e29451484cce1e55cdf8bf4e911aa0660f493c66bc14dd546"
 metafile = true
 
 [[files]]
 file = "mods/awesome-experience.pw.toml"
-hash = "08ae1e526a52c12cd641db2b012bda081d6f4c84a7bc2eb704aea761dcbb6ad3"
+hash = "f6a3402f5a33192a4a3cc625f4ce9e740836719fc04619e8d0f7e637ca7e3f28"
 metafile = true
 
 [[files]]
 file = "mods/awesome-extras.pw.toml"
-hash = "0ae159bf757b08af5a89fda40c5e030a7c5dd834f0a865a7389d5002da5538bd"
+hash = "891b1acd878c3409eb451906d4694d1d6e2a5b149397d6468d0344e22a4ad622"
 metafile = true
 
 [[files]]
-file = "mods/awesome-pack-0.9.3+1.18.2.jar"
-hash = "96ebd3acb983dea291a23d6182d987f1b2f4e2a0afcde482c27c5c00f768615c"
+file = "mods/awesome-pack-0.9.6+1.18.2.jar"
+hash = "145bb94434a1ed2410d92616c9e37133394b3765899f58de259fc1788adaa64a"
 
 [[files]]
 file = "mods/balm.pw.toml"
-hash = "8d1d76749629a5405a6b11019e2fa2c8a22714d2ea2a83cddc763d6f099646de"
+hash = "bf2e5a3ab2a8848dcf997e72fb56c22880ed89f74accccddc91f5055ee31505d"
 metafile = true
 
 [[files]]
@@ -191,7 +195,7 @@ metafile = true
 
 [[files]]
 file = "mods/default-options.pw.toml"
-hash = "a17e25386e5a210d493a31e9d5af71e9a2161c6a0ce8b421c1acec73e2ce5882"
+hash = "77d4f4d154c64e82ca5151ea8c8b610ab9ffb31c93a51b84230a7f4162d20313"
 metafile = true
 
 [[files]]
@@ -291,7 +295,7 @@ metafile = true
 
 [[files]]
 file = "mods/inventory-essentials.pw.toml"
-hash = "047440a3ab436cc74ca43b470030613dedc541e461ee89a7495da5497eda5b46"
+hash = "c08d3598c2d46ac2596268a834dbcf109b595724c73ac23baae5dc3bf2a5fe52"
 metafile = true
 
 [[files]]
@@ -476,7 +480,7 @@ metafile = true
 
 [[files]]
 file = "mods/waystones.pw.toml"
-hash = "e46fe89666446ba8d37493091131058c5785bc0e6dda0df3b000680540b0771d"
+hash = "9b6bf07a331e545c851daba59eae89717a6aa63f319dc5ba7cec5d13c0ce630b"
 metafile = true
 
 [[files]]
@@ -523,6 +527,10 @@ metafile = true
 file = "mods/yungs-better-witch-huts-fabric.pw.toml"
 hash = "8bcd6a559fe83e7639a8d0b716043be1dad66f3bdc7994602c94fb840c304b31"
 metafile = true
+
+[[files]]
+file = "pack.sh"
+hash = "6e88ceac9721bba646df592642c2cf86d52fae220a8b25eef2e93c96d41dfe01"
 
 [[files]]
 file = "resourcepacks/bushy-leaves-for-faithful-32x.pw.toml"

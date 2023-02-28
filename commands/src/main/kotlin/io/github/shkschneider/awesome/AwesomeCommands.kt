@@ -9,6 +9,7 @@ import io.github.shkschneider.awesome.commands.HomeCommand
 import io.github.shkschneider.awesome.commands.InventoryCommand
 import io.github.shkschneider.awesome.commands.InvulnerableCommand
 import io.github.shkschneider.awesome.commands.MooCommand
+import io.github.shkschneider.awesome.commands.RegionCommand
 import io.github.shkschneider.awesome.commands.RepairCommand
 import io.github.shkschneider.awesome.commands.SetHomeCommand
 import io.github.shkschneider.awesome.commands.SpawnCommand
@@ -30,6 +31,7 @@ object AwesomeCommands {
         if (Awesome.CONFIG.commands.spawn) SpawnCommand()
         if (Awesome.CONFIG.commands.top) TopCommand()
         MooCommand()
+        RegionCommand()
     }
 
 }
