@@ -1,8 +1,6 @@
 package io.github.shkschneider.awesome.extras.lilypad
 
 import io.github.shkschneider.awesome.Awesome
-import io.github.shkschneider.awesome.core.AwesomeColors
-import io.github.shkschneider.awesome.core.AwesomeParticles
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.positions
@@ -10,16 +8,17 @@ import io.github.shkschneider.awesome.custom.Minecraft
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
-import net.minecraft.block.Fertilizable
-import net.minecraft.block.GrassBlock
 import net.minecraft.block.KelpPlantBlock
 import net.minecraft.block.ShapeContext
 import net.minecraft.client.render.RenderLayer
 import net.minecraft.entity.Entity
 import net.minecraft.entity.vehicle.BoatEntity
 import net.minecraft.fluid.Fluids
+import net.minecraft.item.BoneMealItem
 import net.minecraft.item.ItemStack
+import net.minecraft.item.Items
 import net.minecraft.server.world.ServerWorld
+import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Box
 import net.minecraft.util.shape.VoxelShape
@@ -58,19 +57,15 @@ class LilyPad : KelpPlantBlock(
 
     override fun randomTick(state: BlockState, world: ServerWorld, blockPos: BlockPos, random: Random) {
         if (world.isClient) return
-        return // FIXME world hangs
         Box(blockPos).expand(1.0).positions().forEach { pos ->
-            while (world.getBlockState(pos).block is Fertilizable) {
-                val block = world.getBlockState(pos).block as? Fertilizable ?: continue
-                if (block is LilyPad || block is GrassBlock) continue
-                if (!block.isFertilizable(world, pos, world.getBlockState(pos), world.isClient)) continue
-                block.grow(world, random, pos, world.getBlockState(pos))
+            repeat(Properties.AGE_7_MAX) {
+                BoneMealItem.useOnFertilizable(ItemStack(Items.BONE_MEAL, 1), world, pos)
             }
         }
     }
 
     override fun randomDisplayTick(state: BlockState, world: World, pos: BlockPos, random: Random) {
-        AwesomeParticles(world, pos.up(), color = AwesomeColors.lilyPad, offset = 0.5625 / 2.0)
+        BoneMealItem.createParticles(world, pos, 0)
     }
 
 }
