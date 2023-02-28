@@ -71,7 +71,7 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-commands.pw.toml"
-hash = "d0fe650c63821cc99c31156734f6c19fb710b8bc74c019319665c22ca4c2fd29"
+hash = "312ba040ebd748f14596a38bc1171f22fbbb61a28d394e8ee4240fd6def7553f"
 metafile = true
 
 [[files]]
@@ -96,7 +96,7 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-extras.pw.toml"
-hash = "d96539652aaf25e6dd5eb4fa88de9dc3d827ec0c9d58c9a4695007280c704658"
+hash = "9a60567fc3bfd9b5b55f637d763ca2aea9ccbc7884c6f7c42c3561f6cf6735b1"
 metafile = true
 
 [[files]]

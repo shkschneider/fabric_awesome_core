@@ -1,13 +1,13 @@
 name = "Awesome Commands"
-filename = "commands-0.9.6+1.18.2.jar"
+filename = "commands-0.9.10+1.18.2.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/xguoUZIo/versions/s4Iq7lMr/commands-0.9.6%2B1.18.2.jar"
+url = "https://cdn.modrinth.com/data/xguoUZIo/versions/DXVUxmVX/commands-0.9.10%2B1.18.2.jar"
 hash-format = "sha1"
-hash = "d584f83d335eab20fb057c372e67085cf63d77a7"
+hash = "80e39a28aa84d82877ece7d03199bd789bb01462"
 
 [update]
 [update.modrinth]
 mod-id = "xguoUZIo"
-version = "s4Iq7lMr"
+version = "DXVUxmVX"
