@@ -535,6 +535,6 @@ hash = "3eba68216ade0d14b219deaf888f31c2ac646127837adad6dba97df19a573a6b"
 metafile = true
 
 [[files]]
-file = "shaderpacks/makeup-ultra-fast-shaders.pw.toml"
-hash = "a2a53fc93e00e8fb3c38c3d11dd30d777bc9dd92bfeca64c4eb42dacc34c6e7f"
+file = "shaderpacks/complementary-shaders-v4.pw.toml"
+hash = "d468216fa4b4917769fae3179b7bb47656f8a65474e87352d5b379783384e0af"
 metafile = true
