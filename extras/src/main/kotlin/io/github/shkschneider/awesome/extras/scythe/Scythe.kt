@@ -9,6 +9,7 @@ import net.minecraft.block.Blocks
 import net.minecraft.block.PlantBlock
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.enchantment.Enchantments
+import net.minecraft.entity.EquipmentSlot
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.item.MiningToolItem
@@ -18,11 +19,11 @@ import net.minecraft.util.ActionResult
 import net.minecraft.util.math.BlockPos
 
 class Scythe : MiningToolItem(
-    /* attackDamage */ 0F,
+    /* attackDamage */ 1F,
     /* attackSpeed */ -3F,
     ToolMaterials.WOOD,
     BlockTags.HOE_MINEABLE,
-    FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(ToolMaterials.WOOD.durability * 2),
+    FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(ToolMaterials.WOOD.durability * 2),
 ) {
 
     init {
@@ -48,10 +49,7 @@ class Scythe : MiningToolItem(
             }
         }
         return if (used > 0) {
-            if (!context.world.isClient) {
-                // FIXME actually unbreakable
-                context.stack.damage(efficiency, context.player) { player -> player?.sendToolBreakStatus(context.hand) }
-            }
+            context.stack.damage(range, context.player) { player -> player?.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND) }
             ActionResult.success(context.world.isClient)
         } else {
             ActionResult.PASS

@@ -1,9 +1,14 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    { "item": "minecraft:wooden_hoe" },
-    { "item": "minecraft:shears" }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "11 ",
+    " 2 ",
+    " 2 "
   ],
+  "key": {
+    "1": { "item": "minecraft:iron_nugget" },
+    "2": { "item": "minecraft:stick" }
+  },
   "result": {
     "item": "awesome:scythe",
     "count": 1
