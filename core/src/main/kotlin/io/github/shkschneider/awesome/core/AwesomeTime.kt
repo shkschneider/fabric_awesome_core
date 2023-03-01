@@ -30,8 +30,8 @@ object AwesomeTime {
         EntitySleepEvents.START_SLEEPING.register(EntitySleepEvents.StartSleeping { livingEntity, _ ->
             (livingEntity as? PlayerEntity)?.let { player ->
                 player.world.players.filterNot { it.uuid == player.uuid }.forEach { otherPlayer ->
-                    AwesomeChat.message(player, Texts.join(listOf(
-                        Texts.toText(otherPlayer.gameProfile),
+                    AwesomeChat.message(otherPlayer, Texts.join(listOf(
+                        Texts.toText(player.gameProfile),
                         TranslatableText(AwesomeUtils.translatable("ui", "wants_to_sleep")).formatted(Formatting.GRAY),
                     ), Text.of(" ")))
                 }
