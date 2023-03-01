@@ -6,13 +6,17 @@ import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.positions
 import io.github.shkschneider.awesome.custom.Minecraft
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
+import net.minecraft.block.AbstractPlantBlock
+import net.minecraft.block.AbstractPlantStemBlock
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
-import net.minecraft.block.KelpPlantBlock
+import net.minecraft.block.Fertilizable
+import net.minecraft.block.GrassBlock
 import net.minecraft.block.ShapeContext
 import net.minecraft.client.render.RenderLayer
 import net.minecraft.entity.Entity
 import net.minecraft.entity.vehicle.BoatEntity
+import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
 import net.minecraft.item.BoneMealItem
 import net.minecraft.item.ItemStack
@@ -21,14 +25,19 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.state.property.Properties
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Box
+import net.minecraft.util.math.Direction
 import net.minecraft.util.shape.VoxelShape
+import net.minecraft.util.shape.VoxelShapes
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldView
 import java.util.Random
 
-class LilyPad : KelpPlantBlock(
+class LilyPad : AbstractPlantBlock(
     FabricBlockSettings.copyOf(Blocks.LILY_PAD).collidable(false).nonOpaque().ticksRandomly(),
+    Direction.UP,
+    VoxelShapes.fullCube(),
+    true
 ) {
 
     init {
@@ -36,9 +45,7 @@ class LilyPad : KelpPlantBlock(
         if (Minecraft.isClient) AwesomeRegistries.blockRenderer(block, RenderLayer.getCutout())
     }
 
-    override fun canAttachTo(state: BlockState): Boolean = false
-
-    override fun canGrow(world: World, random: Random, pos: BlockPos, state: BlockState): Boolean = false
+    override fun getStem(): AbstractPlantStemBlock = (Blocks.KELP as AbstractPlantStemBlock) // :nothingtoseehere:
 
     override fun getPickStack(world: BlockView, pos: BlockPos, state: BlockState): ItemStack =
         ItemStack(this, 1)
@@ -55,17 +62,24 @@ class LilyPad : KelpPlantBlock(
     override fun canPlaceAt(state: BlockState, world: WorldView, pos: BlockPos): Boolean =
         world.getFluidState(pos).fluid == Fluids.WATER && world.getFluidState(pos.up()).fluid == Fluids.EMPTY
 
+    override fun getFluidState(state: BlockState): FluidState = Fluids.WATER.getStill(false)
+
+    override fun canAttachTo(state: BlockState): Boolean = false
+
     override fun randomTick(state: BlockState, world: ServerWorld, blockPos: BlockPos, random: Random) {
         if (world.isClient) return
         Box(blockPos).expand(1.0).positions().forEach { pos ->
-            repeat(Properties.AGE_7_MAX) {
-                BoneMealItem.useOnFertilizable(ItemStack(Items.BONE_MEAL, 1), world, pos)
+            val block = world.getBlockState(pos).block
+            if (block is Fertilizable && block !is LilyPad && block !is GrassBlock) {
+                repeat(Properties.AGE_7_MAX) {
+                    BoneMealItem.useOnFertilizable(ItemStack(Items.BONE_MEAL, 1), world, pos)
+                }
             }
         }
     }
 
     override fun randomDisplayTick(state: BlockState, world: World, pos: BlockPos, random: Random) {
-        BoneMealItem.createParticles(world, pos, 0)
+        BoneMealItem.createParticles(world, pos, 1)
     }
 
 }
