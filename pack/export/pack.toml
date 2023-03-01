@@ -1,12 +1,12 @@
 name = "AwesomeModPack"
 author = "ShkSchneider"
-version = "0.9.10"
+version = "0.9.11"
 pack-format = "packwiz:1.1.0"
 
 [index]
 file = "index.toml"
 hash-format = "sha256"
-hash = "389ab2e5b2df914aa0deb1fed9175782b6203788e24319118dcf944f388dab8a"
+hash = "1f5e86821085db9290f1395e691000359b2c4569cc2b40faecb92abb2cd6e637"
 
 [versions]
 fabric = "0.14.14"

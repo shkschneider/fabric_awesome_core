@@ -1,13 +1,13 @@
 name = "Awesome Extras"
-filename = "extras-0.9.10+1.18.2.jar"
+filename = "extras-0.9.11+1.18.2.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/FmLw41EJ/versions/v2JMZD5F/extras-0.9.10%2B1.18.2.jar"
+url = "https://cdn.modrinth.com/data/FmLw41EJ/versions/p9LPNmHG/extras-0.9.11%2B1.18.2.jar"
 hash-format = "sha1"
-hash = "e739f1b7e3783f65c59ce797635a424083599773"
+hash = "2aca201ba3bf207a73f5181ba496315538492ffd"
 
 [update]
 [update.modrinth]
 mod-id = "FmLw41EJ"
-version = "v2JMZD5F"
+version = "p9LPNmHG"

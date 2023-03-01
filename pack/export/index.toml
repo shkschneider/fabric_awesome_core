@@ -76,7 +76,7 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-core.pw.toml"
-hash = "c7561f6f7cd4708540e97c9d086ff41a7f3193206d6599e620d03aec965f209b"
+hash = "be458c4770020ab87b88da1ffed2549f6c2e7116e012277966b8362502155a89"
 metafile = true
 
 [[files]]
@@ -96,7 +96,7 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-extras.pw.toml"
-hash = "9a60567fc3bfd9b5b55f637d763ca2aea9ccbc7884c6f7c42c3561f6cf6735b1"
+hash = "dac5259d3ee596f3388d9b8853eed25281ebfe0b18d9fc9b616ea09613b5eff0"
 metafile = true
 
 [[files]]
@@ -421,11 +421,6 @@ metafile = true
 [[files]]
 file = "mods/simple-chunkloader-fabric.pw.toml"
 hash = "a8542f89d7f5d404ccaf59b98a933a83fb5402ffdf4206ce7082f709752879f2"
-metafile = true
-
-[[files]]
-file = "mods/simple-copper-pipes.pw.toml"
-hash = "4b7d36013ae680d6a5cd76b7130fda02f75d05918273aa16ebbf778a093175c8"
 metafile = true
 
 [[files]]
