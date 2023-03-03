@@ -58,6 +58,7 @@ fun ToolMaterial.shovel(): ShovelItem = when (this) {
     else -> throw IllegalStateException()
 } as ShovelItem
 
+val ToolMaterial.size: Int get() = 4
 
 val ToolMaterial.attackSpeed: Float get() = when (this) {
     // axes

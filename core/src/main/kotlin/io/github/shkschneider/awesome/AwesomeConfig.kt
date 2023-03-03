@@ -86,7 +86,7 @@ data class AwesomeConfig(
         @SerializedName("duplicator") val duplicator: Boolean = true,
         @SerializedName("factory") val factory: Boolean = true,
         @SerializedName("imprisoner") val imprisoner: Boolean = true,
-        @SerializedName("prospector") val prospector: Boolean = false,
+        @SerializedName("prospector") val prospector: Boolean = true,
         @SerializedName("quarry") val quarry: Boolean = true,
         @SerializedName("recycler") val recycler: Boolean = true,
     )

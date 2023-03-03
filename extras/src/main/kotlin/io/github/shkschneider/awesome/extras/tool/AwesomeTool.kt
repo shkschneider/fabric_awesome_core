@@ -9,6 +9,7 @@ import io.github.shkschneider.awesome.core.ext.hoe
 import io.github.shkschneider.awesome.core.ext.name
 import io.github.shkschneider.awesome.core.ext.pickaxe
 import io.github.shkschneider.awesome.core.ext.shovel
+import io.github.shkschneider.awesome.core.ext.size
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.block.BlockState
 import net.minecraft.entity.LivingEntity
@@ -25,29 +26,21 @@ import net.minecraft.util.Hand
 class AwesomeTool(
     private val material: ToolMaterial,
 ) : MiningToolItem(
-    /* attackDamage */ tools(material).maxOf { it.attackDamage },
+    /* attackDamage */ material.axe().attackDamage,
     /* attackSpeed */ material.attackSpeed,
     material,
     BlockTags.PICKAXE_MINEABLE,
-    FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(material.durability * tools(material).size),
+    FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(material.durability * material.size),
 ) {
-
-    companion object {
-
-        private fun tools(material: ToolMaterial): List<MiningToolItem> =
-            listOf(material.axe(), material.hoe(), material.pickaxe(), material.shovel()).let { tools ->
-                try {
-                    if (AwesomeInputs.shift() || AwesomeInputs.control()) tools.reversed() else tools
-                } catch (e: NullPointerException) { // if getWindow() is null (too early)
-                    tools
-                }
-            }
-
-    }
 
     init {
         AwesomeRegistries.item(AwesomeUtils.identifier("${material.name}_tool"), this, ItemGroup.TOOLS)
     }
+
+    private fun tools(material: ToolMaterial): List<MiningToolItem> =
+        listOf(material.axe(), material.hoe(), material.pickaxe(), material.shovel()).let { tools ->
+            if (AwesomeInputs.shift() || AwesomeInputs.control()) tools.reversed() else tools
+        }
 
     override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float =
         if (isSuitableFor(stack, state)) miningSpeed else 1F
