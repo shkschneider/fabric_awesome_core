@@ -1,11 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "awesome:block/redstone_crystal"
-  },
-  "display": {
-    "head": {
-      "translation": [ 0, 14, -5 ]
-    }
-  }
+  "parent": "awesome:block/redstone_crystal"
 }

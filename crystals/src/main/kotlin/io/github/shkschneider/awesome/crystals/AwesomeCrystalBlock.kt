@@ -11,9 +11,12 @@ import net.minecraft.block.piston.PistonBehavior
 import net.minecraft.client.render.RenderLayer
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
+import net.minecraft.state.property.Properties
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
 import net.minecraft.world.World
+import net.minecraft.world.WorldView
 
 class AwesomeCrystalBlock(
     protected val id: Identifier,
@@ -38,5 +41,9 @@ class AwesomeCrystalBlock(
     }
 
     override fun getPistonBehavior(state: BlockState): PistonBehavior = PistonBehavior.NORMAL
+
+    @Suppress("DEPRECATION")
+    override fun canPlaceAt(state: BlockState, world: WorldView, pos: BlockPos): Boolean =
+        super.canPlaceAt(state, world, pos) && world.getBlockState(pos.offset((state.get(Properties.FACING) as Direction).opposite)).block is AwesomeBuddingBlock
 
 }
