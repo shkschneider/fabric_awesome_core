@@ -3,18 +3,17 @@ package io.github.shkschneider.awesome.enchantments
 import io.github.shkschneider.awesome.AwesomeEnchantments
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
 import io.github.shkschneider.awesome.core.AwesomeUtils
+import io.github.shkschneider.awesome.core.ext.id
 import io.github.shkschneider.awesome.core.ext.isOre
 import io.github.shkschneider.awesome.custom.Event
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.block.BlockState
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.enchantment.EnchantmentTarget
-import net.minecraft.enchantment.Enchantments
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.item.Item
-import net.minecraft.item.ItemStack
 import net.minecraft.tag.BlockTags
+import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import kotlin.math.max
@@ -23,7 +22,7 @@ import kotlin.math.min
 class VeinMiningEnchantment : AwesomeEnchantment(
     id = AwesomeUtils.identifier("vein_mining"),
     Rarity.RARE,
-    levels = Enchantments.EFFICIENCY.minLevel to Enchantments.EFFICIENCY.maxLevel,
+    levels = 1 to 5,
     EnchantmentTarget.DIGGER,
     listOf(EquipmentSlot.MAINHAND),
 ) {
@@ -44,32 +43,36 @@ class VeinMiningEnchantment : AwesomeEnchantment(
         val veinMining = EnchantmentHelper.getLevel(AwesomeEnchantments.veinMining, player.mainHandStack)
         if (veinMining > 0) {
             if (state.isOre) {
-                veinMining(world, pos, player, veinMining, state.block.asItem())
+                vein(world, pos, player, veinMining, state.block.id())
             } else if (state.isIn(BlockTags.LOGS) && state.isIn(BlockTags.AXE_MINEABLE)) {
-                veinMining(world, pos, player, veinMining * 2, state.block.asItem())
+                vein(world, pos, player, veinMining * 2, state.block.id())
             }
         }
     }
 
-    // TODO iterate while touching a similar item, not in a cube around and limit to 64
-    private fun veinMining(world: World, pos: BlockPos, playerEntity: PlayerEntity, level: Int, item: Item) {
+    private fun vein(world: World, blockPos: BlockPos, playerEntity: PlayerEntity, level: Int, type: Identifier) {
         isVeinMining = true
-        val start = pos.mutableCopy().add(-level, -level, -level)
-        val end = pos.mutableCopy().add(level, level, level)
-        val candidates = BlockPos.iterate(
+        val start = blockPos.mutableCopy().add(-level, -level, -level)
+        val end = blockPos.mutableCopy().add(level, level, level)
+        BlockPos.iterate(
             min(start.x, end.x), min(start.y, end.y), min(start.z, end.z),
-            max(start.x, end.x), max(start.y, end.y), max(start.z, end.z)
-        )
-        for (candidate in candidates) {
-            if (candidate.asLong() == pos.asLong()) continue
-            val other = world.getBlockState(candidate).block
-            if (other.asItem() === item) {
-                other.afterBreak(world, playerEntity, candidate, world.getBlockState(candidate), world.getBlockEntity(candidate), ItemStack.EMPTY)
-                world.removeBlock(candidate, false)
-                world.markDirty(candidate)
+            max(start.x, end.x), max(start.y, end.y), max(start.z, end.z),
+        ).forEach { pos ->
+            val state = world.getBlockState(pos)
+            if (state.block.id() == type) {
+                mine(world, state, pos, playerEntity)
             }
         }
         isVeinMining = false
+    }
+
+    private fun mine(world: World, state: BlockState, pos: BlockPos, player: PlayerEntity): Boolean {
+        // PlayerBlockBreakEvents.BEFORE.invoker().beforeBlockBreak(world, player, pos, state, null)
+        state.block.afterBreak(world, player, pos, state, world.getBlockEntity(pos), player.mainHandStack)
+        world.removeBlock(pos, false)
+        // PlayerBlockBreakEvents.AFTER.invoker().afterBlockBreak(world, player, pos, state, null)
+        world.markDirty(pos)
+        return true
     }
 
 }

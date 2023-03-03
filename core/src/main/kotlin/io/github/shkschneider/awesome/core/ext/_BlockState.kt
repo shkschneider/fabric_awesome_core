@@ -2,7 +2,6 @@ package io.github.shkschneider.awesome.core.ext
 
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
-import net.minecraft.block.Material
 import net.minecraft.block.OreBlock
 import net.minecraft.tag.BlockTags
 
@@ -23,5 +22,5 @@ val BlockState.isOre: Boolean get() =
         || this.block == Blocks.NETHER_QUARTZ_ORE
         || this.block == Blocks.ANCIENT_DEBRIS
         // lastly from other mods
-        || (this.material == Material.METAL && this.isToolRequired && this.block.id().path.endsWith("_ore"))
+        || (this.isToolRequired && this.block.id().path.endsWith("_ore"))
     )

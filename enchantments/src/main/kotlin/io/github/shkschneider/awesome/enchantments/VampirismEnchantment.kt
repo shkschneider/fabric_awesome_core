@@ -3,7 +3,6 @@ package io.github.shkschneider.awesome.enchantments
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.minecraft.enchantment.EnchantmentTarget
-import net.minecraft.enchantment.Enchantments
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.LivingEntity
@@ -12,7 +11,7 @@ import net.minecraft.entity.player.PlayerEntity
 class VampirismEnchantment : AwesomeEnchantment(
     id = AwesomeUtils.identifier("vampirism"),
     Rarity.RARE,
-    levels = Enchantments.SHARPNESS.minLevel to Enchantments.SHARPNESS.maxLevel,
+    levels = 1 to 5,
     EnchantmentTarget.WEAPON,
     listOf(EquipmentSlot.MAINHAND),
 ) {
