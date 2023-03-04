@@ -41,8 +41,7 @@ class Breaker : AwesomeMachine<BreakerBlock.Entity, BreakerScreen.Handler>(
 
     private fun place(blockEntity: BreakerBlock.Entity, world: ServerWorld, state: BlockState, pos: BlockPos) {
         val front = pos.offset(blockEntity.getPropertyState(state, Properties.HORIZONTAL_FACING))
-        if (world.getBlockState(front).isSolidBlock(world, front)) {
-            // TODO make him absorb loot
+        if (!world.getBlockState(front).isAir) {
             world.breakBlock(front, true)
         }
         blockEntity.progress = 0

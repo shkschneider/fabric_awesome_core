@@ -3,6 +3,7 @@ package io.github.shkschneider.awesome.machines
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeBlockEntity
 import io.github.shkschneider.awesome.core.AwesomeBlockWithEntity
+import io.github.shkschneider.awesome.core.AwesomeInputs
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.Block
@@ -30,7 +31,7 @@ abstract class AwesomeMachineBlock<BE : AwesomeBlockEntity.WithInventory, SH : A
 ) {
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState = defaultState
-        .with(Properties.HORIZONTAL_FACING, ctx.playerFacing.opposite)
+        .with(Properties.HORIZONTAL_FACING, if (AwesomeInputs.alt()) ctx.playerFacing else ctx.playerFacing.opposite)
         .with(Properties.LIT, false)
 
     override fun rotate(state: BlockState, rotation: BlockRotation): BlockState =

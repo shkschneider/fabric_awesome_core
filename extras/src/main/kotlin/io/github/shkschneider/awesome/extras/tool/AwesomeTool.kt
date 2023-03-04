@@ -39,7 +39,7 @@ class AwesomeTool(
 
     private fun tools(material: ToolMaterial): List<MiningToolItem> =
         listOf(material.axe(), material.hoe(), material.pickaxe(), material.shovel()).let { tools ->
-            if (AwesomeInputs.shift() || AwesomeInputs.control()) tools.reversed() else tools
+            if (AwesomeInputs.alt()) tools.reversed() else tools
         }
 
     override fun getMiningSpeedMultiplier(stack: ItemStack, state: BlockState): Float =

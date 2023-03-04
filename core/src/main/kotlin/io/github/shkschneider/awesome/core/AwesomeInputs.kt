@@ -21,7 +21,7 @@ object AwesomeInputs {
         Screen.hasControlDown()
 
     fun alt(): Boolean =
-        Screen.hasAltDown()
+        shift() || control() || Screen.hasAltDown()
 
     val enter = GLFW.GLFW_KEY_ENTER
     val delete = GLFW.GLFW_KEY_DELETE

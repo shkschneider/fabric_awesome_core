@@ -8,12 +8,10 @@ import io.github.shkschneider.awesome.machines.AwesomeMachineBlockEntity
 import net.minecraft.block.BlockState
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.SidedInventory
-import net.minecraft.item.ItemPlacementContext
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.screen.PropertyDelegate
 import net.minecraft.screen.ScreenHandler
-import net.minecraft.state.property.Properties
 import net.minecraft.text.Text
 import net.minecraft.text.TranslatableText
 import net.minecraft.util.Formatting
@@ -24,9 +22,6 @@ import net.minecraft.util.math.Direction
 class PlacerBlock(
     machine: AwesomeMachine<PlacerBlock.Entity, PlacerScreen.Handler>
 ) : AwesomeMachineBlock<PlacerBlock.Entity, PlacerScreen.Handler>(machine) {
-
-    override fun getPlacementState(ctx: ItemPlacementContext): BlockState =
-        super.getPlacementState(ctx).with(Properties.HORIZONTAL_FACING, ctx.playerFacing)
 
     override fun tooltips(stack: ItemStack): List<Text> = listOf(
         TranslatableText(AwesomeUtils.translatable("block", machine.id, "hint")).formatted(Formatting.GRAY),
