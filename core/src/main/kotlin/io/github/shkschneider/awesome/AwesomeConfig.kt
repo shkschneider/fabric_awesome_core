@@ -19,11 +19,11 @@ data class AwesomeConfig(
         @SerializedName("enderChest") val enderChest: Boolean = true,
         @SerializedName("fly") val fly: Boolean = true,
         @SerializedName("heal") val heal: Boolean = true,
-        @SerializedName("home") val home: Boolean = false,
+        @SerializedName("home") val home: Boolean = true,
         @SerializedName("inventory") val inventory: Boolean = false,
         @SerializedName("invulnerable") val invulnerable: Boolean = true,
         @SerializedName("repair") val repair: Boolean = true,
-        @SerializedName("setHome") val setHome: Boolean = false,
+        @SerializedName("setHome") val setHome: Boolean = true,
         @SerializedName("spawn") val spawn: Boolean = true,
         @SerializedName("top") val top: Boolean = true,
     )
