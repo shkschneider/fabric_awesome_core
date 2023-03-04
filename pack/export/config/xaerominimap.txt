@@ -7,7 +7,7 @@ debugEntityIcons:false
 debugEntityVariantIds:false
 radarHideInvisibleEntities:true
 #INGAME SETTINGS (DO NOT EDIT!)
-updateNotification:true
+updateNotification:false
 minimap:true
 caveMaps:2
 caveZoom:1
@@ -58,7 +58,7 @@ alwaysShowDistance:false
 showLightLevel:0
 renderLayerIndex:1
 crossDimensionalTp:true
-showTime:1
+showTime:0
 biomeColorsVanillaMode:false
 lookingAtAngle:10
 lookingAtAngleVertical:180

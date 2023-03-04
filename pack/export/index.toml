@@ -62,7 +62,11 @@ hash = "501f879b63d6d1b1226fdc31a18a7a33e276199eab06fc4410dbea3853e512ba"
 
 [[files]]
 file = "config/xaerominimap.txt"
-hash = "30c4d5c04657f38ba3573e09a6f2a26d479dbd47f00270706ef88d021e4e77fd"
+hash = "e2db47e87095dd27d422e75c72e26c51b27e9486f32ed97185037b66e2e4a68e"
+
+[[files]]
+file = "config/xaeroworldmap.txt"
+hash = "fde8eeef708860c1eeff8b907f3658565cd307585c5c0d90f8f83873da417e97"
 
 [[files]]
 file = "mods/advancements-enlarger.pw.toml"
@@ -76,17 +80,17 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-core.pw.toml"
-hash = "be458c4770020ab87b88da1ffed2549f6c2e7116e012277966b8362502155a89"
+hash = "5b8d3d329818281ae18cee04833ee228cf899de2bb6f14f1aae8c4f777a6f2b4"
 metafile = true
 
 [[files]]
 file = "mods/awesome-crystals.pw.toml"
-hash = "2bd38152cc394b1a0d79779cdcf755aa083b7dc197d7ebbcae3561891d32d5e7"
+hash = "8928042237e15119246f9339aee190777ddfef7bec542a49cdeec1dece392603"
 metafile = true
 
 [[files]]
 file = "mods/awesome-enchantments.pw.toml"
-hash = "a571212a45039a6e29451484cce1e55cdf8bf4e911aa0660f493c66bc14dd546"
+hash = "1eaa870241182cc382a25361e9ba340f9de5d8b1f0d2d60386c961260c79418d"
 metafile = true
 
 [[files]]
@@ -96,16 +100,16 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-extras.pw.toml"
-hash = "dac5259d3ee596f3388d9b8853eed25281ebfe0b18d9fc9b616ea09613b5eff0"
+hash = "29719f5f2b0608e27e4d54e60b770e3ce2acd40ced4614397ce6f47dce4ec3b8"
 metafile = true
 
 [[files]]
-file = "mods/awesome-pack-0.9.6+1.18.2.jar"
-hash = "145bb94434a1ed2410d92616c9e37133394b3765899f58de259fc1788adaa64a"
+file = "mods/awesome-pack-0.9.12+1.18.2.jar"
+hash = "d57307e97abb3cd9199b2d76a3b2201c994faf336734dca0f7a21ff2e73f657c"
 
 [[files]]
 file = "mods/balm.pw.toml"
-hash = "bf2e5a3ab2a8848dcf997e72fb56c22880ed89f74accccddc91f5055ee31505d"
+hash = "3110ffa1eb3961618c79a2cd0fe531b849d47f40d1f489dad8bc0f3182515d25"
 metafile = true
 
 [[files]]
@@ -475,7 +479,7 @@ metafile = true
 
 [[files]]
 file = "mods/waystones.pw.toml"
-hash = "9b6bf07a331e545c851daba59eae89717a6aa63f319dc5ba7cec5d13c0ce630b"
+hash = "1a77831c6c608171d013617b841d2b65a6a0714f0c52e8555469d4dca2c4a4a7"
 metafile = true
 
 [[files]]
@@ -485,7 +489,7 @@ metafile = true
 
 [[files]]
 file = "mods/xaeros-world-map.pw.toml"
-hash = "1e898ca5b525e9ff40758db421d502c99ada05f97e660e9f83dc75e7b8467b51"
+hash = "cc92fe26a88adab6f3328915ac6b602b2f9d514b716300807954042fb8514c59"
 metafile = true
 
 [[files]]
