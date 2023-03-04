@@ -44,6 +44,7 @@ class AwesomeBuddingBlock(
             val pos = blockPos.offset(side)
             if (world.getBlockState(pos).isAir) {
                 world.setBlockState(pos, block.defaultState.with(Properties.FACING, side))
+                return@forEach
             }
         }
     }

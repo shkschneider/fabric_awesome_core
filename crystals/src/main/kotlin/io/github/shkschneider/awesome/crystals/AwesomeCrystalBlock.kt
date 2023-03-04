@@ -9,13 +9,12 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.piston.PistonBehavior
 import net.minecraft.client.render.RenderLayer
-import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
+import net.minecraft.loot.context.LootContext
 import net.minecraft.state.property.Properties
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
-import net.minecraft.world.World
 import net.minecraft.world.WorldView
 
 class AwesomeCrystalBlock(
@@ -35,12 +34,11 @@ class AwesomeCrystalBlock(
         if (Minecraft.isClient) AwesomeRegistries.blockRenderer(this, RenderLayer.getCutout())
     }
 
-    override fun onBreak(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity) {
-        super.onBreak(world, pos, state, player)
-        if (!player.isCreative) dropStack(world, pos, output)
-    }
+    override fun getDroppedStacks(state: BlockState, builder: LootContext.Builder): MutableList<ItemStack> = mutableListOf(
+        output
+    )
 
-    override fun getPistonBehavior(state: BlockState): PistonBehavior = PistonBehavior.NORMAL
+    override fun getPistonBehavior(state: BlockState): PistonBehavior = PistonBehavior.DESTROY
 
     @Suppress("DEPRECATION")
     override fun canPlaceAt(state: BlockState, world: WorldView, pos: BlockPos): Boolean =

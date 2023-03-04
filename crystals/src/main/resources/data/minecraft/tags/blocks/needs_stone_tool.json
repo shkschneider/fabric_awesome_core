@@ -10,16 +10,6 @@
     "awesome:budding_lapis",
     "awesome:budding_netherite",
     "awesome:budding_quartz",
-    "awesome:budding_redstone",
-    "awesome:coal_crystal",
-    "awesome:copper_crystal",
-    "awesome:diamond_crystal",
-    "awesome:emerald_crystal",
-    "awesome:gold_crystal",
-    "awesome:iron_crystal",
-    "awesome:lapis_crystal",
-    "awesome:netherite_crystal",
-    "awesome:quartz_crystal",
-    "awesome:redstone_crystal"
+    "awesome:budding_redstone"
   ]
 }
