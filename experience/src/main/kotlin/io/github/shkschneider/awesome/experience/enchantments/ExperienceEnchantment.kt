@@ -1,7 +1,6 @@
 package io.github.shkschneider.awesome.experience.enchantments
 
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
-import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.Event
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
@@ -25,7 +24,6 @@ class ExperienceEnchantment : AwesomeEnchantment(
             val silkTouch = EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, player.mainHandStack)
             val experience = EnchantmentHelper.getLevel(this, player.mainHandStack)
             if (silkTouch == 0 && experience > 0) {
-                AwesomeLogger.debug("experience++")
                 player.addExperience(1)
             }
         })

@@ -1,9 +1,12 @@
 package io.github.shkschneider.awesome.experience.obelisk
 
+import com.google.common.base.Predicates
+import io.github.shkschneider.awesome.AwesomeExperience
 import io.github.shkschneider.awesome.core.AwesomeBlockWithEntity
 import io.github.shkschneider.awesome.core.AwesomeColors
 import io.github.shkschneider.awesome.core.AwesomeSounds
 import io.github.shkschneider.awesome.core.AwesomeUtils
+import io.github.shkschneider.awesome.core.ext.toBox
 import io.github.shkschneider.awesome.core.ext.toVec3d
 import io.github.shkschneider.awesome.core.ext.toVec3f
 import io.github.shkschneider.awesome.custom.Experience
@@ -22,8 +25,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.loot.context.LootContext
 import net.minecraft.loot.context.LootContextParameters
 import net.minecraft.particle.DustParticleEffect
+import net.minecraft.server.world.ServerWorld
 import net.minecraft.state.StateManager
-import net.minecraft.state.property.IntProperty
 import net.minecraft.text.Text
 import net.minecraft.text.TranslatableText
 import net.minecraft.util.ActionResult
@@ -35,21 +38,20 @@ import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Vec3d
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
-
-@Suppress("PrivatePropertyName")
-private val LEVELS: IntProperty get() = IntProperty.of("levels", 0, Minecraft.STACK)
+import java.util.Random
 
 class ObeliskBlock : AwesomeBlockWithEntity<ObeliskBlockEntity>(
     AwesomeUtils.identifier("obelisk"), FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque() // 1.19 noBlockBreakParticles()
-        .luminance { state -> state.get(LEVELS) / (Minecraft.STACK / 15) / 2 },
+        .luminance { state -> state.get(Obelisk.LEVELS) / (Minecraft.STACK / 15) / 2 }
+        .ticksRandomly(),
 ) {
 
     override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
-        super.appendProperties(builder.add(LEVELS))
+        super.appendProperties(builder.add(Obelisk.LEVELS))
     }
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState =
-        super.getPlacementState(ctx).with(LEVELS, 0)
+        super.getPlacementState(ctx).with(Obelisk.LEVELS, 0)
 
     override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {
         tooltip.add(TranslatableText(AwesomeUtils.translatable("block", id.path, "hint")).formatted(Formatting.GRAY))
@@ -60,7 +62,6 @@ class ObeliskBlock : AwesomeBlockWithEntity<ObeliskBlockEntity>(
     override fun createBlockEntity(pos: BlockPos, state: BlockState): ObeliskBlockEntity =
         ObeliskBlockEntity(id.path, entityType, pos, state, InputOutput(inputs = 1), 0 to 0)
 
-    @Suppress("DEPRECATION")
     override fun getDroppedStacks(state: BlockState, builder: LootContext.Builder): MutableList<ItemStack> = mutableListOf(
         ItemStack(this, 1).also {
             // do not spawn bottled experience
@@ -89,9 +90,25 @@ class ObeliskBlock : AwesomeBlockWithEntity<ObeliskBlockEntity>(
     }
 
     override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: ObeliskBlockEntity) {
-        if (!world.isClient) blockEntity.setPropertyState(state.with(LEVELS, blockEntity.bottles))
-        if (world.random.nextInt(LEVELS.values.max()) <= state.get(LEVELS)) {
+        if (!world.isClient) blockEntity.setPropertyState(state.with(Obelisk.LEVELS, blockEntity.bottles))
+        if (world.random.nextInt(Obelisk.LEVELS.values.max()) <= state.get(Obelisk.LEVELS)) {
             particle(world, pos)
+        }
+    }
+
+    override fun hasRandomTicks(state: BlockState): Boolean = state.get(Obelisk.LEVELS) < Obelisk.LEVELS.values.max()
+
+    override fun randomTick(state: BlockState, world: ServerWorld, pos: BlockPos, random: Random) {
+        var xp = 0L
+        world.getEntitiesByClass(ExperienceOrbEntity::class.java, pos.toBox(radius = Minecraft.CHUNK / 2.0), Predicates.alwaysTrue()).toList().forEach { orb ->
+            xp += orb.experienceAmount
+            val levels = AwesomeExperience.levelFromXp(xp)
+            val blockEntity = world.getBlockEntity(pos) as? ObeliskBlockEntity ?: return
+            if (levels > 0 && blockEntity.bottles < Obelisk.LEVELS.values.max()) {
+                blockEntity.bottles += levels
+                orb.discard()
+                xp = 0
+            }
         }
     }
 

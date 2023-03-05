@@ -35,6 +35,7 @@ dependencies {
     listOf(
         // projectId to fileId
         "emi-580555" to "4406948", // https://www.curseforge.com/minecraft/mc-mods/emi/files
+        "fat-experience-orbs-334873" to "3823226", // https://www.curseforge.com/minecraft/mc-mods/fat-experience-orbs/files
         "jade-324717" to "4160646", // https://www.curseforge.com/minecraft/mc-mods/jade/files
         "lazydfu-433518" to "3209972", // https://www.curseforge.com/minecraft/mc-mods/modmenu/files
         "xaeros-minimap-263420" to "4381120", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files

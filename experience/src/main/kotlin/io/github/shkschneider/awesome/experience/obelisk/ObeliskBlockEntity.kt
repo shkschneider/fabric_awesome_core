@@ -10,6 +10,7 @@ import net.minecraft.item.Items
 import net.minecraft.util.ActionResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
+import net.minecraft.util.math.MathHelper
 
 class ObeliskBlockEntity(
     id: String, type: BlockEntityType<out AwesomeBlockEntity>, pos: BlockPos, state: BlockState, io: InputOutput, delegates: Pair<Int, Int>,
@@ -17,7 +18,7 @@ class ObeliskBlockEntity(
 
     var bottles: Int
         get() = items[0].count
-        set(value) { items[0] = ItemStack(Items.EXPERIENCE_BOTTLE, value) }
+        set(value) { items[0] = ItemStack(Items.EXPERIENCE_BOTTLE, MathHelper.clamp(value, Obelisk.LEVELS.values.min(), Obelisk.LEVELS.values.max())) }
 
     private val stack: ItemStack get() = items[0]
 
