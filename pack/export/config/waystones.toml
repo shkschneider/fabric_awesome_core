@@ -23,7 +23,7 @@ dimensionalWarp = "ALLOW"
 dimensionalWarpAllowList = []
 dimensionalWarpDenyList = []
 allowWaystoneToWaystoneTeleport = true
-globalWaystoneSetupRequiresCreativeMode = true
+globalWaystoneSetupRequiresCreativeMode = false
 [cooldowns]
 globalWaystoneCooldownMultiplier = 1.0
 warpStoneCooldown = 300
@@ -45,9 +45,10 @@ dimensionDenyList = []
 nameGenerationMode = "PRESET_FIRST"
 customWaystoneNames = []
 spawnInVillages = true
-forceSpawnInVillages = false
+forceSpawnInVillages = true
 [client]
 disableTextGlow = false
 disableParticles = false
 [compatibility]
 displayWaystonesOnJourneyMap = false
+preferJourneyMapIntegration = true

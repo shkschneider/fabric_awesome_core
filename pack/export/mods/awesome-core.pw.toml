@@ -1,13 +1,13 @@
 name = "Awesome Core"
-filename = "core-0.9.12+1.18.2.jar"
+filename = "core-0.9.13+0.18.2.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/G4ABewGh/versions/kXCetPio/core-0.9.12%2B1.18.2.jar"
+url = "https://cdn.modrinth.com/data/G4ABewGh/versions/qeI5geKj/core-0.9.13%2B0.18.2.jar"
 hash-format = "sha1"
-hash = "c51cfd5866ac9a0bfb48284794032bda955849ca"
+hash = "6927832a7ed978dbeb98174bf4fcde3d18ca1f5e"
 
 [update]
 [update.modrinth]
 mod-id = "G4ABewGh"
-version = "kXCetPio"
+version = "qeI5geKj"

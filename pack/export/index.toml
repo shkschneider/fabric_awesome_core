@@ -5,6 +5,10 @@ file = "README.md"
 hash = "0b860c8059fa9025be088fdecc776b572ff10a2bc6df82f206255d0378ad85f1"
 
 [[files]]
+file = "config/awesome.json"
+hash = "be1ba082ca8fb69d56ba184605012e59bc65ba1ad8f1c6a5fb2856bfd8899ebe"
+
+[[files]]
 file = "config/bclib/client.json"
 hash = "bf2d8e792813de9fdd787feac239e1fb8827c99da8bff50201538d91c7a8fd12"
 
@@ -14,7 +18,7 @@ hash = "761808ae6084f31029c512dc727ae0838a06ebf237e89029001cea17524ae998"
 
 [[files]]
 file = "config/defaultoptions.toml"
-hash = "3e93640912ed3a9ddf871b45ccf373d7d8db57e50bcc2798e9b7112b2e031c67"
+hash = "291fed0d386b6de7076d4392314c3e3ee1f17afb55f74e7ed3ceeab73caa6118"
 
 [[files]]
 file = "config/defaultoptions/keybindings.txt"
@@ -22,7 +26,7 @@ hash = "69e05868e42aaee55c0100783bb4b61d3c55c8e6c6cda2193fbf258c219a2f10"
 
 [[files]]
 file = "config/defaultoptions/options.txt"
-hash = "9ce969c97052f9a3f730a43f911eb2881224de49f12a7ca3d3269d2281a1a87b"
+hash = "f3127f4eb280d4acd6154ab7e6c5a001ebaf178098f30377ad2088c9677a727e"
 
 [[files]]
 file = "config/forgivingvoid.toml"
@@ -54,11 +58,7 @@ hash = "b01cb6d41326c1deb3265f844b8ba2bd801f717f6549691fa80e553da209ac3f"
 
 [[files]]
 file = "config/waystones.toml"
-hash = "3667c50cae6093b9144175ca32ee0865b4a186400f72c4bf3b78b7bba285f209"
-
-[[files]]
-file = "config/waystones/config.json"
-hash = "501f879b63d6d1b1226fdc31a18a7a33e276199eab06fc4410dbea3853e512ba"
+hash = "c216bef150a164083cc59286d42746fa7918a00272244833ff7cf99cd64075aa"
 
 [[files]]
 file = "config/xaerominimap.txt"
@@ -80,12 +80,12 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-core.pw.toml"
-hash = "5b8d3d329818281ae18cee04833ee228cf899de2bb6f14f1aae8c4f777a6f2b4"
+hash = "fd086093c64a3c3dbcb19eca518093268062ceeaebd522ceb389c9e05516047e"
 metafile = true
 
 [[files]]
 file = "mods/awesome-crystals.pw.toml"
-hash = "8928042237e15119246f9339aee190777ddfef7bec542a49cdeec1dece392603"
+hash = "6219eca0bd480ca4902f5db044b2c63b59d3b06e8933db57157c2dd9d0e07088"
 metafile = true
 
 [[files]]
@@ -95,17 +95,17 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-experience.pw.toml"
-hash = "f6a3402f5a33192a4a3cc625f4ce9e740836719fc04619e8d0f7e637ca7e3f28"
+hash = "6412ef6e90debe16f4623fa9bf204a7301d3e24f476a8e7f1f1da0954c5ec043"
 metafile = true
 
 [[files]]
 file = "mods/awesome-extras.pw.toml"
-hash = "29719f5f2b0608e27e4d54e60b770e3ce2acd40ced4614397ce6f47dce4ec3b8"
+hash = "36f4274acd40782448d2560cea5e93f09e8519cc60bef31fa1d2d2b59630c0c4"
 metafile = true
 
 [[files]]
-file = "mods/awesome-pack-0.9.12+1.18.2.jar"
-hash = "d57307e97abb3cd9199b2d76a3b2201c994faf336734dca0f7a21ff2e73f657c"
+file = "mods/awesome-pack-0.9.13+1.18.2.jar"
+hash = "d1c0377a1bc22f088f10c017c7606d270a680c082ab17bb31b8b4019ad6266af"
 
 [[files]]
 file = "mods/balm.pw.toml"
@@ -169,7 +169,7 @@ metafile = true
 
 [[files]]
 file = "mods/collective.pw.toml"
-hash = "3eb2ba84e56f52b97ffd922997c8e1c4ee0443dd9cd14802a18e7dc11b88d99c"
+hash = "defee54a08c06ee9c1b0a90fe77bc35986d0195131d5973ca94ef73479eccac6"
 metafile = true
 
 [[files]]
@@ -260,6 +260,11 @@ metafile = true
 [[files]]
 file = "mods/fabric-language-kotlin.pw.toml"
 hash = "0fe83c99b29c952f464c7bfba9cc86cc4f834bef7834821433fe23ce3dd230e6"
+metafile = true
+
+[[files]]
+file = "mods/fat-experience-orbs.pw.toml"
+hash = "8598858055121fd9a14cc776d1a02df5ee8a07475769b822d0a4bdcf7d575ab7"
 metafile = true
 
 [[files]]
