@@ -112,6 +112,6 @@ Made by **ShkSchneider** with great help from open-sourced codes from the commun
 - Herobrine was made from Mojang's Steve's
 - Imprisoner from https://ftb.fandom.com/wiki/Mob_Imprisonment_Tool
 - Logo based off https://www.iconfinder.com/icons/185592/table_crafting_icon
-- Oblisk shape inspired by *Alchemistry*'s *Chemical Combiner*
+- Obelisk textures from https://github.com/Meridanus/fabric_xp_storage_1.18
 - Prospector based off https://www.iconfinder.com/icons/9044628/machine_learning_icon
 - Rope based off https://starbounder.org/Rope
