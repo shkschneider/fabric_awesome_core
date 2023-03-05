@@ -12,7 +12,9 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.Fertilizable
 import net.minecraft.block.GrassBlock
+import net.minecraft.block.PlantBlock
 import net.minecraft.block.ShapeContext
+import net.minecraft.block.SugarCaneBlock
 import net.minecraft.client.render.RenderLayer
 import net.minecraft.entity.Entity
 import net.minecraft.entity.vehicle.BoatEntity
@@ -69,10 +71,35 @@ class LilyPad : AbstractPlantBlock(
     override fun randomTick(state: BlockState, world: ServerWorld, blockPos: BlockPos, random: Random) {
         if (world.isClient) return
         Box(blockPos).expand(1.0).positions().forEach { pos ->
-            val block = world.getBlockState(pos).block
-            if (block is Fertilizable && block !is LilyPad && block !is GrassBlock) {
-                repeat(Properties.AGE_7_MAX) {
-                    BoneMealItem.useOnFertilizable(ItemStack(Items.BONE_MEAL, 1), world, pos)
+            tick(world, world.getBlockState(pos), pos, random)
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun tick(world: ServerWorld, state: BlockState, pos: BlockPos, random: Random) {
+        val repeats = listOf(
+            Properties.AGE_1_MAX,
+            Properties.AGE_2_MAX,
+            Properties.AGE_3_MAX,
+            Properties.AGE_5_MAX,
+            Properties.AGE_7_MAX,
+            Properties.AGE_15_MAX,
+            Properties.AGE_25_MAX,
+        ).random()
+        when (state.block) {
+            is LilyPad, is GrassBlock -> return
+            // sugar_cane
+            is SugarCaneBlock -> repeat(repeats) {
+                (state.block as SugarCaneBlock).randomTick(world.getBlockState(pos), world, pos, random)
+            }
+            // saplings, wheat...
+            is Fertilizable -> repeat(repeats) {
+                BoneMealItem.useOnFertilizable(ItemStack(Items.BONE_MEAL, 1), world, pos)
+            }
+            // nether_wart...
+            is PlantBlock -> {
+                if (state.block.hasRandomTicks(state)) repeat(repeats) {
+                    (state.block as PlantBlock).randomTick(world.getBlockState(pos), world, pos, random)
                 }
             }
         }
