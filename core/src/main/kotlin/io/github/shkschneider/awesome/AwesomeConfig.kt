@@ -15,6 +15,7 @@ data class AwesomeConfig(
 
     data class Commands(
         @SerializedName("back") val back: Boolean = true,
+        @SerializedName("backUponDeath") val backUponDeath: Boolean = false,
         @SerializedName("broadcast") val broadcast: Boolean = true,
         @SerializedName("enderChest") val enderChest: Boolean = true,
         @SerializedName("fly") val fly: Boolean = true,
@@ -23,7 +24,6 @@ data class AwesomeConfig(
         @SerializedName("inventory") val inventory: Boolean = false,
         @SerializedName("invulnerable") val invulnerable: Boolean = true,
         @SerializedName("repair") val repair: Boolean = true,
-        @SerializedName("setHome") val setHome: Boolean = true,
         @SerializedName("spawn") val spawn: Boolean = true,
         @SerializedName("top") val top: Boolean = true,
     )

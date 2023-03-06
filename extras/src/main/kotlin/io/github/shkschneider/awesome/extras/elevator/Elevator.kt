@@ -58,7 +58,7 @@ object Elevator {
     private fun teleport(player: PlayerEntity, target: BlockPos) {
         AwesomeLogger.debug("Teleporting to $target...")
         (player as ElevatorCooldownMixin).jumpingCooldown = Minecraft.TICKS
-        player.requestTeleportAndDismount(target.x + 0.5, target.y.toDouble(), target.z + 0.5)
+        player.requestTeleportAndDismount(target.x + 0.5, target.y.toDouble() + 0.25, target.z + 0.5)
         AwesomeSounds(player.world to target, AwesomeSounds.teleport)
     }
 

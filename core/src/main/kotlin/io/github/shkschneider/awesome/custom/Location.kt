@@ -22,22 +22,25 @@ data class Location(
         return "${key.value.path}:${x.roundToInt()},${y.roundToInt()},${z.roundToInt()}"
     }
 
-    fun safe() = copy(x = x.roundToInt().toDouble(), y = y.roundToInt().toDouble(), z = z.roundToInt().toDouble())
-
-    fun offset() = safe().copy(x = x + 0.5, y = y + 0.25, z = z + 0.5)
+    fun safe() = copy(x = x.roundToInt() + 0.5, y = y.roundToInt() + 0.25, z = z.roundToInt() + 0.5)
 
     companion object {
 
         fun <T : IEntityData> T.writeLocation(prefix: String): Location? {
             val entity = (this as? Entity) ?: return null
-            return Location(entity.world.registryKey, entity.x, entity.y, entity.z, entity.yaw, entity.pitch).also {
-                data.putString(AwesomeUtils.key(prefix, "dim"), entity.world.registryKey.value.toString())
-                data.putDouble(AwesomeUtils.key(prefix, "x"), entity.x)
-                data.putDouble(AwesomeUtils.key(prefix, "y"), entity.y)
-                data.putDouble(AwesomeUtils.key(prefix, "z"), entity.z)
-                data.putFloat(AwesomeUtils.key(prefix, "yaw"), entity.yaw)
-                data.putFloat(AwesomeUtils.key(prefix, "pitch"), entity.pitch)
-            }
+            val location = Location(entity.world.registryKey, entity.x, entity.y, entity.z, entity.yaw, entity.pitch)
+            data.writeLocation(location, prefix)
+            return location
+        }
+
+        fun NbtCompound.writeLocation(location: Location, prefix: String): NbtCompound {
+            this.putString(AwesomeUtils.key(prefix, "dim"), location.key.value.toString())
+            this.putDouble(AwesomeUtils.key(prefix, "x"), location.x)
+            this.putDouble(AwesomeUtils.key(prefix, "y"), location.y)
+            this.putDouble(AwesomeUtils.key(prefix, "z"), location.z)
+            this.putFloat(AwesomeUtils.key(prefix, "yaw"), location.yaw)
+            this.putFloat(AwesomeUtils.key(prefix, "pitch"), location.pitch)
+            return this
         }
 
         fun NbtCompound.readLocation(prefix: String): Location? {

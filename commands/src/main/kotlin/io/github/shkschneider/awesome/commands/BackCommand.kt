@@ -12,9 +12,9 @@ class BackCommand : AwesomeCommand("back", Permissions.Commands) {
 
     override fun run(context: CommandContext<ServerCommandSource>): Int {
         val player = context.source?.player ?: return error(context.source, code = -1)
-        if (player.isInTeleportationState || player.isOnGround.not()) return error(context.source, code = -2)
+        if (player.isInTeleportationState || player.isOnGround.not()) return error(context.source, "You must be on solid ground!", code = -2)
         val data = (player as IEntityData).data
-        val location = data.readLocation("back")?.safe() ?: run {
+        val location = data.readLocation("back") ?: run {
             return error(context.source, "Nowhere to go back to...", -3)
         }
         data.clearLocation("back")

@@ -12,4 +12,4 @@ fun Vec3d.toVec3f() =
     Vec3f(this.x.toFloat(), this.y.toFloat(), this.z.toFloat())
 
 fun Vec3d.toBlockPos() =
-    BlockPos(this.x + 0.5, this.y + 0.5, this.z + 0.5)
+    BlockPos(this.x, this.y, this.z)
