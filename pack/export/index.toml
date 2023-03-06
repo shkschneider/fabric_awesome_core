@@ -75,12 +75,12 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-commands.pw.toml"
-hash = "312ba040ebd748f14596a38bc1171f22fbbb61a28d394e8ee4240fd6def7553f"
+hash = "aa04b3e97de746cd559c25ffc35fa6b05d0a0b70d7bdbdeca80b657332b287f5"
 metafile = true
 
 [[files]]
 file = "mods/awesome-core.pw.toml"
-hash = "fd086093c64a3c3dbcb19eca518093268062ceeaebd522ceb389c9e05516047e"
+hash = "893aa60acb294aa6f30ee5e633c6c1338343c12b58e841dd60453eb99a950d4a"
 metafile = true
 
 [[files]]
@@ -494,7 +494,7 @@ metafile = true
 
 [[files]]
 file = "mods/xaeros-world-map.pw.toml"
-hash = "cc92fe26a88adab6f3328915ac6b602b2f9d514b716300807954042fb8514c59"
+hash = "15a0ae84357094ce724ff7c75d625d135f867f2692bd1923a96ee2ff4d7baac4"
 metafile = true
 
 [[files]]

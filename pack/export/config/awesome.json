@@ -1,15 +1,15 @@
 {
   "commands": {
-    "back": false,
+    "back": true,
+    "backUponDeath": false,
     "broadcast": true,
     "enderChest": false,
     "fly": true,
     "heal": false,
-    "home": false,
+    "home": true,
     "inventory": false,
     "invulnerable": false,
     "repair": false,
-    "setHome": false,
     "spawn": true,
     "top": false
   },
