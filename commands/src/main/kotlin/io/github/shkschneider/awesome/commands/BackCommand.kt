@@ -8,7 +8,7 @@ import io.github.shkschneider.awesome.custom.Location.Companion.readLocation
 import io.github.shkschneider.awesome.custom.Permissions
 import net.minecraft.server.command.ServerCommandSource
 
-class BackCommand : AwesomeCommand("back", Permissions.Commands) {
+class BackCommand : AwesomeCommand("back", Permissions.Anyone) {
 
     override fun run(context: CommandContext<ServerCommandSource>): Int {
         val player = context.source?.player ?: return error(context.source, code = -1)

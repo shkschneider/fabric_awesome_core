@@ -8,7 +8,7 @@ import net.minecraft.screen.GenericContainerScreenHandler
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory
 import net.minecraft.server.command.ServerCommandSource
 
-class EnderChestCommand : AwesomeCommand("enderchest", Permissions.Admin) {
+class EnderChestCommand : AwesomeCommand("enderchest", Permissions.GameMaster) {
 
     override fun run(context: CommandContext<ServerCommandSource>): Int {
         val player = context.source?.player ?: return error(context.source, code = -1)

@@ -11,7 +11,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-class TopCommand : AwesomeCommand.ForPlayer("top", Permissions.Moderator) {
+class TopCommand : AwesomeCommand.ForPlayer("top", Permissions.GameMaster) {
 
     override fun run(context: CommandContext<ServerCommandSource>, player: ServerPlayerEntity): Int {
         if (player.isOnGround.not()) return error(context.source, code = -2)

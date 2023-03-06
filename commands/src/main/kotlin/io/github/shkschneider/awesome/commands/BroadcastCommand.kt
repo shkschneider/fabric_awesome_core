@@ -7,7 +7,7 @@ import io.github.shkschneider.awesome.custom.Permissions
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.util.Formatting
 
-class BroadcastCommand : AwesomeCommand.WithText("broadcast", Permissions.Moderator) {
+class BroadcastCommand : AwesomeCommand.WithText("broadcast", Permissions.Admin) {
 
     override fun run(context: CommandContext<ServerCommandSource>, text: String): Int {
         context.source.world.players.forEach { player ->

@@ -15,7 +15,7 @@ class SavedHomes : PersistentState() {
     var homes: MutableMap<UUID, Location> = mutableMapOf()
 
     fun save(playerEntity: PlayerEntity, location: Location) {
-        homes[uuid(playerEntity.uuid)] = location
+        homes[playerEntity.uuid] = location
         markDirty()
     }
 
@@ -23,7 +23,7 @@ class SavedHomes : PersistentState() {
         val globalNbt = NbtCompound()
         homes.forEach { (uuid, location) ->
             val localNbt = NbtCompound().apply { writeLocation(location, LOCAL_PREFIX) }
-            globalNbt.put(uuid(uuid).toString(), localNbt)
+            globalNbt.put(uuid.toString(), localNbt)
         }
         nbt.put(GLOBAL_PREFIX, globalNbt)
         return nbt
@@ -34,9 +34,6 @@ class SavedHomes : PersistentState() {
         private const val LOCAL_PREFIX = "home"
         private const val GLOBAL_PREFIX = "homes"
 
-        private fun uuid(uuid: UUID): UUID =
-            if (Minecraft.isDevelopment) UUID.fromString("00000000-0000-0000-0000-000000000000") else uuid
-
         fun getServerState(server: MinecraftServer): SavedHomes? {
             // World.OVERWORLD stores the Location (which specifies the correct world's registry key)
             val manager = server.getWorld(World.OVERWORLD)?.persistentStateManager ?: return null
@@ -46,14 +43,14 @@ class SavedHomes : PersistentState() {
         }
 
         fun getClientState(playerEntity: PlayerEntity): Location? =
-            playerEntity.world.server?.let { server -> getServerState(server)?.homes?.get(uuid(playerEntity.uuid)) }
+            playerEntity.world.server?.let { server -> getServerState(server)?.homes?.get(playerEntity.uuid) }
 
         private fun readNbt(nbt: NbtCompound): SavedHomes {
             val state = SavedHomes()
             val globalNbt = nbt.getCompound(GLOBAL_PREFIX)
             globalNbt.keys.forEach { key ->
                 globalNbt.getCompound(key).readLocation(LOCAL_PREFIX)?.let { location ->
-                    state.homes[uuid(UUID.fromString(key))] = location
+                    state.homes[UUID.fromString(key)] = location
                 }
             }
             return state

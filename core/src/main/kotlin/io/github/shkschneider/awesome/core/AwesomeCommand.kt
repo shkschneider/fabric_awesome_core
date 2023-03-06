@@ -10,7 +10,7 @@ import net.minecraft.util.Formatting
 
 abstract class AwesomeCommand(
     val name: String,
-    permission: Permissions = Permissions.Commands,
+    permission: Permissions = Permissions.Anyone,
 ) {
 
     companion object {
@@ -48,7 +48,7 @@ abstract class AwesomeCommand(
 
     abstract class WithText(
         name: String,
-        permission: Permissions = Permissions.Commands,
+        permission: Permissions = Permissions.Anyone,
     ) : AwesomeCommand(name, permission) {
 
         init {
@@ -65,7 +65,7 @@ abstract class AwesomeCommand(
 
     abstract class ForPlayer(
         name: String,
-        permission: Permissions = Permissions.Commands,
+        permission: Permissions = Permissions.Anyone,
     ) : AwesomeCommand(name, permission) {
 
         init {
@@ -88,7 +88,7 @@ abstract class AwesomeCommand(
 
     abstract class ForPlayers(
         name: String,
-        permission: Permissions = Permissions.Commands,
+        permission: Permissions = Permissions.Anyone,
     ) : AwesomeCommand(name, permission) {
 
         init {

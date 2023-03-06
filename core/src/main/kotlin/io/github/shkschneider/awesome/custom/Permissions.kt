@@ -2,11 +2,10 @@ package io.github.shkschneider.awesome.custom
 
 sealed class Permissions(val level: Int) {
 
-    @Deprecated("You should specify at least Player -- Commands being recommended.")
     object Anyone : Permissions(0)
-    object Player : Permissions(1)
-    object Commands : Permissions(2)
-    object Moderator : Permissions(3)
-    object Admin : Permissions(4)
+    object Moderator : Permissions(1)
+    object GameMaster : Permissions(2)
+    object Admin : Permissions(3)
+    object Owner : Permissions(4)
 
 }

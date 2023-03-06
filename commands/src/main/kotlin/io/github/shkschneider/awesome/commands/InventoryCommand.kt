@@ -8,7 +8,7 @@ import net.minecraft.screen.SimpleNamedScreenHandlerFactory
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.server.network.ServerPlayerEntity
 
-class InventoryCommand : AwesomeCommand.ForPlayer("inventory", Permissions.Admin) {
+class InventoryCommand : AwesomeCommand.ForPlayer("inventory", Permissions.GameMaster) {
 
     // FIXME closes at the moment it opens while multiplayer
     override fun run(context: CommandContext<ServerCommandSource>, player: ServerPlayerEntity): Int {

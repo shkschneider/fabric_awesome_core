@@ -8,7 +8,7 @@ import io.github.shkschneider.awesome.custom.Permissions
 import io.github.shkschneider.awesome.custom.SavedHomes
 import net.minecraft.server.command.ServerCommandSource
 
-class HomeCommand : AwesomeCommand("home", Permissions.Commands) {
+class HomeCommand : AwesomeCommand("home", Permissions.Anyone) {
 
     override fun run(context: CommandContext<ServerCommandSource>): Int {
         val player = context.source?.player ?: return error(context.source, code = -1)

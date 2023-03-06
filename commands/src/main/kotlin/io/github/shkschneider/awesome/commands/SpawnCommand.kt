@@ -8,7 +8,7 @@ import io.github.shkschneider.awesome.custom.Location.Companion.writeLocation
 import io.github.shkschneider.awesome.custom.Permissions
 import net.minecraft.server.command.ServerCommandSource
 
-class SpawnCommand : AwesomeCommand("spawn", Permissions.Commands) {
+class SpawnCommand : AwesomeCommand("spawn", Permissions.Anyone) {
 
     override fun run(context: CommandContext<ServerCommandSource>): Int {
         val player = context.source?.player ?: return error(context.source, code = -1)
