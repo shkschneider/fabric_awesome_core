@@ -8,6 +8,7 @@ import io.github.shkschneider.awesome.core.AwesomeParticles
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.Event
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
+import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.enchantment.EnchantmentTarget
 import net.minecraft.entity.EquipmentSlot
@@ -42,5 +43,10 @@ class MagnetismEnchantment : AwesomeEnchantment(
                 AwesomeParticles(player.world, itemEntity.pos, color = listOf(AwesomeColors.red, AwesomeColors.blue).random(), offset = 0.0)
             }
     }
+
+    override fun canAccept(other: Enchantment): Boolean =
+        listOf(
+            AwesomeEnchantments.magnetism,
+        ).contains(other).not()
 
 }

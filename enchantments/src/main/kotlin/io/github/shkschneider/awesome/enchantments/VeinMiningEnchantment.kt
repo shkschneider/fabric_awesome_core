@@ -2,8 +2,10 @@ package io.github.shkschneider.awesome.enchantments
 
 import io.github.shkschneider.awesome.AwesomeEnchantments
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
+import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.id
+import io.github.shkschneider.awesome.core.ext.isLog
 import io.github.shkschneider.awesome.core.ext.isOre
 import io.github.shkschneider.awesome.custom.Event
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
@@ -12,12 +14,10 @@ import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.enchantment.EnchantmentTarget
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.tag.BlockTags
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import kotlin.math.max
-import kotlin.math.min
+import kotlin.math.pow
 
 class VeinMiningEnchantment : AwesomeEnchantment(
     id = AwesomeUtils.identifier("vein_mining"),
@@ -27,7 +27,7 @@ class VeinMiningEnchantment : AwesomeEnchantment(
     listOf(EquipmentSlot.MAINHAND),
 ) {
 
-    private var isVeinMining = false
+    private var veinMining = 0
 
     init {
         @Event("PlayerBlockBreakEvents")
@@ -38,41 +38,36 @@ class VeinMiningEnchantment : AwesomeEnchantment(
 
     private operator fun invoke(world: World, player: PlayerEntity, pos: BlockPos, state: BlockState) {
         if (!player.mainHandStack.isSuitableFor(state)) return
-        if (isVeinMining) return
-        if (player.isSneaking) return
+        if (this.veinMining > 0 || player.isSneaking) return
         val veinMining = EnchantmentHelper.getLevel(AwesomeEnchantments.veinMining, player.mainHandStack)
         if (veinMining > 0) {
+            this.veinMining = 1
+            AwesomeLogger.warn("veining")
             if (state.isOre) {
                 vein(world, pos, player, veinMining, state.block.id())
-            } else if (state.isIn(BlockTags.LOGS) && state.isIn(BlockTags.AXE_MINEABLE)) {
-                vein(world, pos, player, veinMining * 2, state.block.id())
+            } else if (state.isLog) {
+                vein(world, pos, player, veinMining, state.block.id())
             }
+            this.veinMining = 0
         }
     }
 
     private fun vein(world: World, blockPos: BlockPos, playerEntity: PlayerEntity, level: Int, type: Identifier) {
-        isVeinMining = true
-        val start = blockPos.mutableCopy().add(-level, -level, -level)
-        val end = blockPos.mutableCopy().add(level, level, level)
-        BlockPos.iterate(
-            min(start.x, end.x), min(start.y, end.y), min(start.z, end.z),
-            max(start.x, end.x), max(start.y, end.y), max(start.z, end.z),
-        ).forEach { pos ->
+        listOf(
+            blockPos.up(), blockPos.down(), blockPos.north(), blockPos.south(), blockPos.east(), blockPos.west(),
+        ).filter { pos -> world.getBlockState(pos).block.id() == type }.forEach { pos ->
+            AwesomeLogger.warn("mining @ $pos ...")
             val state = world.getBlockState(pos)
-            if (state.block.id() == type) {
-                mine(world, state, pos, playerEntity)
+            state.block.afterBreak(world, playerEntity, pos, state, world.getBlockEntity(pos), playerEntity.mainHandStack)
+            world.removeBlock(pos, false)
+            world.markDirty(pos)
+            if (++this.veinMining < 2.0.pow(1 + level)) {
+                vein(world, pos, playerEntity, level, type)
+            } else {
+                this.veinMining = 0
+                return@forEach
             }
         }
-        isVeinMining = false
-    }
-
-    private fun mine(world: World, state: BlockState, pos: BlockPos, player: PlayerEntity): Boolean {
-        // PlayerBlockBreakEvents.BEFORE.invoker().beforeBlockBreak(world, player, pos, state, null)
-        state.block.afterBreak(world, player, pos, state, world.getBlockEntity(pos), player.mainHandStack)
-        world.removeBlock(pos, false)
-        // PlayerBlockBreakEvents.AFTER.invoker().afterBlockBreak(world, player, pos, state, null)
-        world.markDirty(pos)
-        return true
     }
 
 }

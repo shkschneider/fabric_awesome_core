@@ -6,7 +6,7 @@ hash = "0b860c8059fa9025be088fdecc776b572ff10a2bc6df82f206255d0378ad85f1"
 
 [[files]]
 file = "config/awesome.json"
-hash = "be1ba082ca8fb69d56ba184605012e59bc65ba1ad8f1c6a5fb2856bfd8899ebe"
+hash = "8f1749d44f9e409815fe149bc618a1766c94c82db9b520d0c263740d94b86cb4"
 
 [[files]]
 file = "config/bclib/client.json"
@@ -26,7 +26,7 @@ hash = "69e05868e42aaee55c0100783bb4b61d3c55c8e6c6cda2193fbf258c219a2f10"
 
 [[files]]
 file = "config/defaultoptions/options.txt"
-hash = "f3127f4eb280d4acd6154ab7e6c5a001ebaf178098f30377ad2088c9677a727e"
+hash = "d04f33f9c6a01194240b017116b8e0e5b221e784a15f703966b61420f3254051"
 
 [[files]]
 file = "config/forgivingvoid.toml"

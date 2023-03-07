@@ -3,6 +3,7 @@ package io.github.shkschneider.awesome.core.ext
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.OreBlock
+import net.minecraft.block.PillarBlock
 import net.minecraft.tag.BlockTags
 
 val BlockState.isOre: Boolean get() =
@@ -23,4 +24,9 @@ val BlockState.isOre: Boolean get() =
         || this.block == Blocks.ANCIENT_DEBRIS
         // lastly from other mods
         || (this.isToolRequired && this.block.id().path.endsWith("_ore"))
+    )
+
+val BlockState.isLog: Boolean get() =
+    this.isIn(BlockTags.AXE_MINEABLE) && (
+        this.isIn(BlockTags.LOGS) || (this.block is PillarBlock && this.block.id().path.endsWith("_log"))
     )

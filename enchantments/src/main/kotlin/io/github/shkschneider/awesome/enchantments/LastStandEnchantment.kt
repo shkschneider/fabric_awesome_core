@@ -30,12 +30,6 @@ class LastStandEnchantment : AwesomeEnchantment(
         }
     }
 
-    override fun canAccept(other: Enchantment): Boolean =
-        listOf(
-            AwesomeEnchantments.critical,
-            AwesomeEnchantments.lastStand,
-        ).contains(other).not()
-
     private fun lastStand(playerEntity: PlayerEntity, livingEntity: LivingEntity) {
         val sword = (playerEntity.mainHandStack.item as? SwordItem) ?: return
         val ratio = (playerEntity.maxHealth / playerEntity.health) / 2F
@@ -45,5 +39,8 @@ class LastStandEnchantment : AwesomeEnchantment(
             livingEntity.damage(DamageSource.MAGIC, damage)
         }
     }
+
+    override fun canAccept(other: Enchantment): Boolean =
+        listOf(this, AwesomeEnchantments.critical).contains(other).not()
 
 }

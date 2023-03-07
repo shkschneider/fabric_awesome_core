@@ -15,7 +15,7 @@ import net.minecraft.item.SwordItem
 
 class CriticalEnchantment : AwesomeEnchantment(
     id = AwesomeUtils.identifier("critical"),
-    Rarity.RARE,
+    Rarity.UNCOMMON,
     levels = 1 to 1,
     EnchantmentTarget.WEAPON,
     listOf(EquipmentSlot.MAINHAND),
@@ -31,9 +31,6 @@ class CriticalEnchantment : AwesomeEnchantment(
     }
 
     override fun canAccept(other: Enchantment): Boolean =
-        listOf(
-            AwesomeEnchantments.critical,
-            AwesomeEnchantments.lastStand,
-        ).contains(other).not()
+        listOf(this, AwesomeEnchantments.lastStand).contains(other).not()
 
 }

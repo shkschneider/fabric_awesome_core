@@ -33,7 +33,8 @@ abstract class AwesomeEnchantment(
         super.onUserDamaged(user, attacker, level)
     }
 
-    override fun canAccept(other: Enchantment): Boolean = true
+    override fun canAccept(other: Enchantment): Boolean =
+        other != this
 
     override fun getMinLevel(): Int {
         return levels.first
