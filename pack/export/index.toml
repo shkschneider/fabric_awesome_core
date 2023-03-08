@@ -49,16 +49,24 @@ file = "config/leaves_us_in_peace.json"
 hash = "f8d2660ce6cc8dfc0646a6a996f99f75b3693bb73b0bb290232e93430ba4abdb"
 
 [[files]]
-file = "config/nox.json"
-hash = "573dac73b9da39dec2012fc69ec926ca5745648562a513e4b9cf579a6ec71be0"
+file = "config/nohostilesaroundcampfire.json5"
+hash = "9e7d49016f308a4f4e017e1f607e843170598c5c5f0c8bc18cebeb253071dce1"
 
 [[files]]
 file = "config/pickupnotifications.toml"
 hash = "b01cb6d41326c1deb3265f844b8ba2bd801f717f6549691fa80e553da209ac3f"
 
 [[files]]
+file = "config/realisticbees.json5"
+hash = "63469b9940a1b3d8d2e316869ef8a74c139ea413bd34d2853aa0cfab500fd686"
+
+[[files]]
 file = "config/waystones.toml"
 hash = "c216bef150a164083cc59286d42746fa7918a00272244833ff7cf99cd64075aa"
+
+[[files]]
+file = "config/weakerspiderwebs.json5"
+hash = "600a2af5af88ee5612fad9b6dd45c20f9146c126b72a6febb7cba49c998ba4c9"
 
 [[files]]
 file = "config/xaerominimap.txt"
@@ -80,7 +88,7 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-core.pw.toml"
-hash = "893aa60acb294aa6f30ee5e633c6c1338343c12b58e841dd60453eb99a950d4a"
+hash = "59632d9b5b65463e0de368ae6f2737966c4ee2ef04b86a738165a2d89fa99e94"
 metafile = true
 
 [[files]]
@@ -90,7 +98,7 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-enchantments.pw.toml"
-hash = "1eaa870241182cc382a25361e9ba340f9de5d8b1f0d2d60386c961260c79418d"
+hash = "f49f1504067ad70b8ca71c0f716fa381b5116c5e13df9603436dd433bb482f67"
 metafile = true
 
 [[files]]
@@ -104,8 +112,8 @@ hash = "36f4274acd40782448d2560cea5e93f09e8519cc60bef31fa1d2d2b59630c0c4"
 metafile = true
 
 [[files]]
-file = "mods/awesome-pack-0.9.13+1.18.2.jar"
-hash = "d1c0377a1bc22f088f10c017c7606d270a680c082ab17bb31b8b4019ad6266af"
+file = "mods/awesome-pack-0.9.15+1.18.2.jar"
+hash = "78ffc9ea1e4f6e8fc306dbc55bee3e9d53218d0cd7db884107e742a1205ecd14"
 
 [[files]]
 file = "mods/balm.pw.toml"
@@ -245,6 +253,11 @@ metafile = true
 [[files]]
 file = "mods/exordium.pw.toml"
 hash = "ef9ab1a9351ad20f6c5c061caa409d4024bcf8ad498dc4994d897ca1988c61ff"
+metafile = true
+
+[[files]]
+file = "mods/extended-bone-meal.pw.toml"
+hash = "433792b07d77764d687e0d6e589efa64df4f99315547ba85c32c3e785b2ddae6"
 metafile = true
 
 [[files]]
@@ -388,6 +401,11 @@ hash = "ec64297b6b7f82ede5ecc46a82e8a0e8dc8b730ee2ad763427b7043389b7a072"
 metafile = true
 
 [[files]]
+file = "mods/no-hostiles-around-campfire.pw.toml"
+hash = "176e0b6da3b150803b3b71016f3e1fea4a0bcfc15f00d95c449ad66d94829094"
+metafile = true
+
+[[files]]
 file = "mods/no-telemetry.pw.toml"
 hash = "e151fe842a9f578b400d9bdfcc3be782861098415aec5cc7909eb69ec425faa3"
 metafile = true
@@ -395,6 +413,11 @@ metafile = true
 [[files]]
 file = "mods/no-unused-chunks.pw.toml"
 hash = "d2ebad51415b68df171538249b61ea2c97d5167a6397b25837412a0dab50068f"
+metafile = true
+
+[[files]]
+file = "mods/passive-shield.pw.toml"
+hash = "ce36493cb8d50c50fa28a8d98110ca7b3c9155eb0cf74880c410d401a3ae247c"
 metafile = true
 
 [[files]]
@@ -443,6 +466,11 @@ hash = "d1480fd38a1ac53311baa2d57b92556834372f6ac04c355169441df9a59a161c"
 metafile = true
 
 [[files]]
+file = "mods/stack-refill.pw.toml"
+hash = "57541553bdb38b0b580240e57fbe536a2106a36495d154e454aca8e888d1b87c"
+metafile = true
+
+[[files]]
 file = "mods/starlight.pw.toml"
 hash = "99f9628800ccabd189b9bb28859f01caaf9ad672f247ae875e3eaa5f965f9406"
 metafile = true
@@ -463,13 +491,13 @@ hash = "4431ef7c60da5c305b06bc33f443f129f9a7d81f472b9543082b63b7eee301cc"
 metafile = true
 
 [[files]]
-file = "mods/time-in-a-bottle.pw.toml"
-hash = "79cb779be719f1a9c20794d09f348327ac5ceddb32ecf58115e574e09a9f3eba"
+file = "mods/towns-and-towers.pw.toml"
+hash = "82ef7b39324b83e4ab3e7953be0894b678fb9d0ca7a1a56762d566c7d1fe7933"
 metafile = true
 
 [[files]]
-file = "mods/towns-and-towers.pw.toml"
-hash = "82ef7b39324b83e4ab3e7953be0894b678fb9d0ca7a1a56762d566c7d1fe7933"
+file = "mods/vanilla-zoom.pw.toml"
+hash = "4f17b5b0213df52081d9245b4c490c34616f102df711c1fe242818ae7111da68"
 metafile = true
 
 [[files]]
@@ -485,6 +513,11 @@ metafile = true
 [[files]]
 file = "mods/waystones.pw.toml"
 hash = "1a77831c6c608171d013617b841d2b65a6a0714f0c52e8555469d4dca2c4a4a7"
+metafile = true
+
+[[files]]
+file = "mods/weaker-spiderwebs.pw.toml"
+hash = "9f395a31bb6ec556d637cddaad74c12047663902e61c10ca4535aaafd1d1c8aa"
 metafile = true
 
 [[files]]

@@ -1,0 +1,13 @@
+name = "Vanilla Zoom"
+filename = "vanillazoom-1.18.2-2.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/CDbpcSM6/versions/bJkgpb9y/vanillazoom-1.18.2-2.0.jar"
+hash-format = "sha1"
+hash = "f9548d6b15eb27a5b5bb4135d047d6fa738e7422"
+
+[update]
+[update.modrinth]
+mod-id = "CDbpcSM6"
+version = "bJkgpb9y"
