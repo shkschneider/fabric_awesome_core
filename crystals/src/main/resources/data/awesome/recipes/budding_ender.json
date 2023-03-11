@@ -7,10 +7,10 @@
   ],
   "key": {
     "1": { "item": "minecraft:amethyst_block" },
-    "2": { "item": "minecraft:obsidian" }
+    "2": { "item": "minecraft:coal_block" }
   },
   "result": {
-    "item": "minecraft:budding_amethyst",
+    "item": "awesome:budding_coal",
     "count": 1
   }
 }
