@@ -40,8 +40,8 @@ creativeWarpButtonY = 33
 [worldGen]
 worldGenStyle = "BIOME"
 frequency = 25
-dimensionAllowList = ["minecraft:overworld", "minecraft:the_nether", "minecraft:the_end"]
-dimensionDenyList = []
+dimensionAllowList = ["minecraft:overworld"]
+dimensionDenyList = ["minecraft:the_nether", "minecraft:the_end"]
 nameGenerationMode = "PRESET_FIRST"
 customWaystoneNames = []
 spawnInVillages = true
@@ -49,6 +49,3 @@ forceSpawnInVillages = true
 [client]
 disableTextGlow = false
 disableParticles = false
-[compatibility]
-displayWaystonesOnJourneyMap = false
-preferJourneyMapIntegration = true

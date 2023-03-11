@@ -1,13 +1,13 @@
 name = "Awesome Crystals"
-filename = "crystals-0.9.13+0.18.2.jar"
+filename = "crystals-0.9.16+1.18.2.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/tB2ycgOV/versions/YJVyWzmJ/crystals-0.9.13%2B0.18.2.jar"
+url = "https://cdn.modrinth.com/data/tB2ycgOV/versions/pJWQFMwx/crystals-0.9.16%2B1.18.2.jar"
 hash-format = "sha1"
-hash = "738d7a8bb007bfabfe11f788d44b326673e70d40"
+hash = "ebc7bd4c934490a016e2a83b2289708f5c0852c3"
 
 [update]
 [update.modrinth]
 mod-id = "tB2ycgOV"
-version = "YJVyWzmJ"
+version = "pJWQFMwx"

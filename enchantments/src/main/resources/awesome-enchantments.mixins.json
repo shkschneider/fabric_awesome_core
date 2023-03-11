@@ -4,9 +4,6 @@
   "package": "io.github.shkschneider.awesome.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "GrindstoneMixin",
-    "GrindstoneMixin$Slot2canInsertMixin",
-    "GrindstoneMixin$Slot3canInsertMixin",
     "ItemStackIsDamageableMixin",
     "PlayerSneakMixin"
   ],

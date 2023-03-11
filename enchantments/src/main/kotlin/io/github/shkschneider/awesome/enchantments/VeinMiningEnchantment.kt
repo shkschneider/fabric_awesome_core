@@ -2,7 +2,6 @@ package io.github.shkschneider.awesome.enchantments
 
 import io.github.shkschneider.awesome.AwesomeEnchantments
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
-import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.id
 import io.github.shkschneider.awesome.core.ext.isLog
@@ -42,7 +41,6 @@ class VeinMiningEnchantment : AwesomeEnchantment(
         val veinMining = EnchantmentHelper.getLevel(AwesomeEnchantments.veinMining, player.mainHandStack)
         if (veinMining > 0) {
             this.veinMining = 1
-            AwesomeLogger.warn("veining")
             if (state.isOre) {
                 vein(world, pos, player, veinMining, state.block.id())
             } else if (state.isLog) {
@@ -56,7 +54,6 @@ class VeinMiningEnchantment : AwesomeEnchantment(
         listOf(
             blockPos.up(), blockPos.down(), blockPos.north(), blockPos.south(), blockPos.east(), blockPos.west(),
         ).filter { pos -> world.getBlockState(pos).block.id() == type }.forEach { pos ->
-            AwesomeLogger.warn("mining @ $pos ...")
             val state = world.getBlockState(pos)
             state.block.afterBreak(world, playerEntity, pos, state, world.getBlockEntity(pos), playerEntity.mainHandStack)
             world.removeBlock(pos, false)

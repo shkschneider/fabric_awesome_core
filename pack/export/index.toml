@@ -22,7 +22,7 @@ hash = "291fed0d386b6de7076d4392314c3e3ee1f17afb55f74e7ed3ceeab73caa6118"
 
 [[files]]
 file = "config/defaultoptions/keybindings.txt"
-hash = "69e05868e42aaee55c0100783bb4b61d3c55c8e6c6cda2193fbf258c219a2f10"
+hash = "a81d14b4001772f0f9c95b8e7d5de38dd1eea2ec58e71a51f4b6a8838344e922"
 
 [[files]]
 file = "config/defaultoptions/options.txt"
@@ -62,7 +62,7 @@ hash = "63469b9940a1b3d8d2e316869ef8a74c139ea413bd34d2853aa0cfab500fd686"
 
 [[files]]
 file = "config/waystones.toml"
-hash = "c216bef150a164083cc59286d42746fa7918a00272244833ff7cf99cd64075aa"
+hash = "fabfb3707f0676a15803127ca45b6f60b2a213f46fa3a3a5cdd20ecf509428ef"
 
 [[files]]
 file = "config/weakerspiderwebs.json5"
@@ -88,17 +88,17 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-core.pw.toml"
-hash = "59632d9b5b65463e0de368ae6f2737966c4ee2ef04b86a738165a2d89fa99e94"
+hash = "a4a94c0c5fa67b91c4eeee7871e1c52f8ba6bcd1d01ab5490c3d657ae95ec6d8"
 metafile = true
 
 [[files]]
 file = "mods/awesome-crystals.pw.toml"
-hash = "6219eca0bd480ca4902f5db044b2c63b59d3b06e8933db57157c2dd9d0e07088"
+hash = "9eabf787de3235d5502db416ff6777c0d906288381b925b00c49a499c41d883e"
 metafile = true
 
 [[files]]
 file = "mods/awesome-enchantments.pw.toml"
-hash = "f49f1504067ad70b8ca71c0f716fa381b5116c5e13df9603436dd433bb482f67"
+hash = "5ae184c801f5d6df694b6d1e7897c61f8dc84e452a0f6dcfbe14a5399b7277b7"
 metafile = true
 
 [[files]]
@@ -108,12 +108,12 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-extras.pw.toml"
-hash = "36f4274acd40782448d2560cea5e93f09e8519cc60bef31fa1d2d2b59630c0c4"
+hash = "6a8959c3d1cbac607b268291275adf015375fed295a8d3b0e7000d640c7f5856"
 metafile = true
 
 [[files]]
-file = "mods/awesome-pack-0.9.15+1.18.2.jar"
-hash = "78ffc9ea1e4f6e8fc306dbc55bee3e9d53218d0cd7db884107e742a1205ecd14"
+file = "mods/awesome-pack-0.9.16+1.18.2.jar"
+hash = "4f6ca6d06bfcd98ee8f18259553e06630988208096cf2e4dd8b785a0b9384522"
 
 [[files]]
 file = "mods/balm.pw.toml"
@@ -177,7 +177,7 @@ metafile = true
 
 [[files]]
 file = "mods/collective.pw.toml"
-hash = "defee54a08c06ee9c1b0a90fe77bc35986d0195131d5973ca94ef73479eccac6"
+hash = "e910fce6f73f9b381fa59c550c910ba4f7baf2bbbaab37715a3225874140a859"
 metafile = true
 
 [[files]]
@@ -291,6 +291,11 @@ hash = "bc88773e533b94cbadd0a0f557cbbfd05cf2176a698c2952cd9e52c0e2e3f87b"
 metafile = true
 
 [[files]]
+file = "mods/grind-enchantments.pw.toml"
+hash = "6e24118555190943d1e793aeaa4c155d2a6fdb5f825bd3ccf41755289f1cd814"
+metafile = true
+
+[[files]]
 file = "mods/homing-ender-eye.pw.toml"
 hash = "201999fa9f40b992206a2465ce9f56010bc531a87985207241fd11446dd08f2d"
 metafile = true
@@ -401,8 +406,13 @@ hash = "ec64297b6b7f82ede5ecc46a82e8a0e8dc8b730ee2ad763427b7043389b7a072"
 metafile = true
 
 [[files]]
+file = "mods/mouse-tweaks.pw.toml"
+hash = "ce135ca85c8b940d23d2970ae1032a2a8f572a6b9f98d251ef671c5186a57ff8"
+metafile = true
+
+[[files]]
 file = "mods/no-hostiles-around-campfire.pw.toml"
-hash = "176e0b6da3b150803b3b71016f3e1fea4a0bcfc15f00d95c449ad66d94829094"
+hash = "ceb21770a523b37fe261cee9f2df97a41ddff38e6a989494d0d073a638d8d438"
 metafile = true
 
 [[files]]
@@ -522,7 +532,7 @@ metafile = true
 
 [[files]]
 file = "mods/xaeros-minimap-fair-play-edition.pw.toml"
-hash = "b36f3c97d5ab5247d336c4f38abec11f1c569d184a414a63ce66754d85e99cd9"
+hash = "c84b53acff0c2da6a1190c1539a1e50989497fd833c53b7a80e1531b4392bf7f"
 metafile = true
 
 [[files]]
@@ -532,7 +542,7 @@ metafile = true
 
 [[files]]
 file = "mods/yungs-api-fabric.pw.toml"
-hash = "4e7d9efec7dd89605f0836fddccb6f0b7a578891475cdee2d69a4de4e3bedf05"
+hash = "3959b6bcbd34100140035f121f860e43ed87cf4f7236f92fbc4bf26996017dcb"
 metafile = true
 
 [[files]]
