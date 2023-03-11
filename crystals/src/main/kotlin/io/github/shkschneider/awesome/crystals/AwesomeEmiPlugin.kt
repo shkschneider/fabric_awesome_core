@@ -26,6 +26,8 @@ class AwesomeEmiPlugin : EmiPlugin {
             AwesomeCrystals.copper,
             AwesomeCrystals.diamond,
             AwesomeCrystals.emerald,
+            AwesomeCrystals.ender,
+            AwesomeCrystals.glowstone,
             AwesomeCrystals.gold,
             AwesomeCrystals.iron,
             AwesomeCrystals.lapis,
@@ -62,7 +64,7 @@ class AwesomeEmiRecipe(
     )
 
     override fun getOutputs(): MutableList<EmiStack> = mutableListOf(
-        EmiStack.of(output)
+        EmiStack.of(output.copy())
     )
 
     override fun getDisplayWidth(): Int = 76

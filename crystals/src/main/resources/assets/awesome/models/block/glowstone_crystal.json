@@ -1,8 +1,8 @@
 {
   "credit": "Created by Stridey",
   "textures": {
-    "all": "awesome:block/ender_crystal",
-    "particle": "awesome:block/budding_ender"
+    "all": "awesome:block/glowstone_crystal",
+    "particle": "awesome:block/budding_glowstone"
   },
   "elements": [
     {

@@ -35,7 +35,7 @@ class AwesomeCrystalBlock(
     }
 
     override fun getDroppedStacks(state: BlockState, builder: LootContext.Builder): MutableList<ItemStack> = mutableListOf(
-        output
+        output.copy()
     )
 
     override fun getPistonBehavior(state: BlockState): PistonBehavior = PistonBehavior.DESTROY

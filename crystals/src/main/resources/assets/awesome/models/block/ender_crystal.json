@@ -1,8 +1,8 @@
 {
   "credit": "Created by Stridey",
   "textures": {
-    "all": "awesome:block/coal_crystal",
-    "particle": "awesome:block/budding_coal"
+    "all": "awesome:block/ender_crystal",
+    "particle": "awesome:block/budding_ender"
   },
   "elements": [
     {

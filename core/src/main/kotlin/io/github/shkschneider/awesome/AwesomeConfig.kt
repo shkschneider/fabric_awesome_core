@@ -33,6 +33,8 @@ data class AwesomeConfig(
         @SerializedName("copper") val copper: Int = 2,
         @SerializedName("diamond") val diamond: Int = 1,
         @SerializedName("emerald") val emerald: Int = 1,
+        @SerializedName("ender") val ender: Int = 1,
+        @SerializedName("glowstone") val glowstone: Int = 2,
         @SerializedName("gold") val gold: Int = 2,
         @SerializedName("iron") val iron: Int = 2,
         @SerializedName("lapis") val lapis: Int = 4,

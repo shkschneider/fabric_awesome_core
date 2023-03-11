@@ -1,28 +1,28 @@
 {
   "variants": {
     "facing=down": {
-      "model": "awesome:block/coal_crystal",
+      "model": "awesome:block/ender_crystal",
       "x": 180
     },
     "facing=east": {
-      "model": "awesome:block/coal_crystal",
+      "model": "awesome:block/ender_crystal",
       "x": 90,
       "y": 90
     },
     "facing=north": {
-      "model": "awesome:block/coal_crystal",
+      "model": "awesome:block/ender_crystal",
       "x": 90
     },
     "facing=south": {
-      "model": "awesome:block/coal_crystal",
+      "model": "awesome:block/ender_crystal",
       "x": 90,
       "y": 180
     },
     "facing=up": {
-      "model": "awesome:block/coal_crystal"
+      "model": "awesome:block/ender_crystal"
     },
     "facing=west": {
-      "model": "awesome:block/coal_crystal",
+      "model": "awesome:block/ender_crystal",
       "x": 90,
       "y": 270
     }

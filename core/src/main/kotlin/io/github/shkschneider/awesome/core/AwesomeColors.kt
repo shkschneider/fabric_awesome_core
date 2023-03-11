@@ -19,6 +19,7 @@ object AwesomeColors {
     val diamond = 0xc8ffff
     val emerald = 0x50ff50
     val ender = 0x258273
+    val glow = 0x94a061
     val gold = 0xffff1e
     val gray = 0x474f52
     val grayLight = 0x9d9d97

@@ -1,13 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "1 1",
-    " 2 ",
-    "1 1"
+    "131",
+    "323",
+    "131"
   ],
   "key": {
     "1": { "item": "minecraft:amethyst_block" },
-    "2": { "item": "minecraft:obsidian" }
+    "2": { "item": "minecraft:obsidian" },
+    "3": { "item": "minecraft:amethyst_shard" }
   },
   "result": {
     "item": "minecraft:budding_amethyst",

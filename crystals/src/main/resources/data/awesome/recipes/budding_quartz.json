@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "1 1",
-    " 2 ",
-    "1 1"
+    "222",
+    "212",
+    "222"
   ],
   "key": {
-    "1": { "item": "minecraft:amethyst_block" },
-    "2": { "item": "minecraft:quartz_block" }
+    "1": { "item": "minecraft:budding_amethyst" },
+    "2": { "item": "minecraft:quartz" }
   },
   "result": {
     "item": "awesome:budding_quartz",
