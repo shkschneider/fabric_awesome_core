@@ -10,7 +10,7 @@
 ## Vanilla lacks biomes and points-of-interest
 
 - Overworld:
-  - Tectonic
+  - Promenade + Tectonic
   - YUNG's better structures
   - Towns and Towers
 - Nether: Better Nether
@@ -18,7 +18,7 @@
 
 ## Vanilla has a boring death mechanism
 
-- Nox: increased mob hostility 
+- Difficulty: HARD
 - Keep Some Inventory: keep xp and tools upon death
   - Alternative: You're In Grave Danger
 
@@ -26,10 +26,11 @@
 
 - Enchanted Shulkers: siphon & refill
 - Extended Drawers
-- Hotbar Swap
-- Inventory Essentials: mouse improvements
+- Hotbar Swap (hit <tab>)
+- Inventory Essentials + Mouse Tweaks: mouse improvements
 - Inventory HUD
-- Inventory Sorter: yes please
+- Inventory Sorter: yes please (hit <z>)
+- Stack Refill
 - Slotlink: centralized storage interface (with remote)
   - Alternative: Tom's Simple Storage
 
@@ -39,17 +40,16 @@
 - Awesome Commands: /sethome /home /back /enderchest /top...
 - Awesome Crystals: yields crystal for all ores (infinite resources)
 - Awesome Enchantments: critical, last stand, magnetism, sixth sense, unbreakable, vampirism, vein mining...
-- Awesome Experience: obelisk (to store & retrieve xp) & more.
-- Awesome Extras: baguette, elevator, magic lilypad, rope, all-in-one tool, void block...
+- Awesome Experience: experience enchantment, obelisk (to store & retrieve xp)...
+- Awesome Extras: baguette, elevator, magic lilypad, rope, all-in-one tools, void block...
 - Awesome Machines: breaker/placer, collector, crafter, cultivator, duplicator, factory, quarry, recycler, refinery & detectors...
 - Awesome Pack (exclusive):
   - bow with infinity does not require any arrow
-  - faithful textures
+  - faithful textures + shaders
   - infinite villagers trading
-  - makeup ultrafast shaders
   - players drop heads
   - totem of undying working from inventory
-  - uncraftable vanilla recipes now craftable
+  - uncraftable vanilla recipes now craftable & more drops (wither_skeleton, ender_dragon, shulker...)
   - vanilla tweaks (.net)
   - villagers follow emerald block
 - Lootr: player-based chest loots
@@ -59,13 +59,14 @@
 
 - Blur: blurs the background while an inventory is open
 - Charmonium: ambient sounds
-- Dark Loading Screen + Seamless Loading Screen
 - EMI: recipes and block explorer
 - Edit Sign: with a simple right click
 - Elytra Protection: allows chest armor enchantments
 - Jade: what am I looking at
-- Xaeros (mini)map
+- Mouse tweaks for inventories
 - Right Click Harvest
+- Seamless Loading Screen
+- Xaeros (mini)map (fair-play edition)
 
 ## Additional mods
 
@@ -73,12 +74,13 @@
 - Forgiving Void: respawn at the top while hitting the bottom
 - Homing Ender Eye: broken ones will appear on the portal frames
 - Kelp Fertilizer: behaves like bone meal
-- More End Cities
-- Repurposed Structures: improved vanilla structures
+- Chunks Fade In
+- Grind Enchantments
+- Cooperative Advacements (hit <v>)
 - Tax Free Levels: flatterns anvil/enchantment costs
+- Passive Shield: hides it but uses it automatically
 - ...
-- Faithful texture pack: https://faithful.team/
-- MakeUp Ultra Fast shaders: https://www.curseforge.com/minecraft/customization/makeup-ultra-fast-shader
+- Faithful texture pack: https://faithful.team
 
 ## What about performances ?
 
@@ -86,8 +88,19 @@
 - Entity Culling
 - Exordium
 - Indium + Lithium
+- LazyDFU
 - Sodium
 - Starlight + LambDynamicLights
+
+## Keybindings
+
+- advancements: z
+- auto-jump: OFF
+- crouch: control
+- list players: l
+- sort inventory: z
+- sprint: shift
+- swap inventory: tab
 
 ## License & Credits
 

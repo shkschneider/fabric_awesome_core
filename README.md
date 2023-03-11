@@ -35,22 +35,19 @@ and finally **commands** for players, moderators and/or admins.
 - Awesome **Extras**
   - `/gamerule keepXp` upon death
   - a 2-way trash slot in your inventory that only clears upon closing
-  - all-in-one tool
+  - all-in-one tools
   - baguette: bread but better
   - configurable zenith (mid-day) and nadir (mid-night) times
   - coordinates on death screen
   - early game crates that retain inventory
   - elevators to teleport vertically
-  - extract enchantments using the grindstone
-  - hero... herobrine?!
-  - lily pad that grows nearby stuff
+  - lily_pad that grows nearby stuff
   - player heads on death (by another player)
-  - pvp
+  - pvp on/off
   - ropes than unroll and rollup vertically for exploration
   - scythe to clear grass
   - sleeping heals
   - sponges can absorb lava
-  - upgradable tools and armors using smithing table (using blocks)
   - villagers follow emerald blocks
   - villagers infinite trading
   - void block for decoration (like the end portal)
@@ -69,11 +66,8 @@ and finally **commands** for players, moderators and/or admins.
   - top [player]
 - Awesome **Enchantments**
   - critical
-  - ice & poison aspects
-  - infinity bow requires no arrow
   - last stand
   - magnetism
-  - silk touch spawners
   - sixth sense
   - unbreakable (truly unbreaking)
   - vampirism
@@ -88,6 +82,15 @@ and finally **commands** for players, moderators and/or admins.
   - item: prospector (to make ores glow)
   - quarry (with efficiency & fortune)
   - refinery: ore processing x1-x4
+- Awesome **Pack**
+  - bats drop membranes, ender_dragon drops elytra...
+  - infinity bow requires no arrow
+  - makes many uncraftables craftable: end_portal_frame, grass, mycelium...
+  - more netherite, more tnt, more wither_skeleton_skull, more shulker_shells...
+  - scoreboard: deathCount (player list)
+  - scoreboard: health (below name)
+  - silk touch does spawners and budding_amethyst
+  - upgradable tools and armors using smithing table (using blocks)
 
 ## Configuration
 
@@ -96,7 +99,7 @@ Almost everything is configurable via `config/awesome.json`.
 ## Ore Processing
 
 - Refinery processes ores with enchantments: x1-x4
-- Netherite Ingot from 1 Ancient Debris + 1 Gold Block
+- Netherite Ingot from 1 netherite_scrap + 1 gold_block
 
 ## License & Credits
 
