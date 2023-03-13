@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:netherrack" },
+    { "item": "minecraft:warped_wart_block" }
+  ],
+  "result": {
+    "item": "minecraft:warped_nylium",
+    "count": 1
+  }
+}

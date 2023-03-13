@@ -14,6 +14,7 @@ object GameRulesOverrides {
                 world.gameRules.get(GameRules.DO_DAYLIGHT_CYCLE).set(true, server)
                 world.gameRules.get(GameRules.DO_FIRE_TICK).set(false, server)
                 world.gameRules.get(GameRules.DO_IMMEDIATE_RESPAWN).set(false, server)
+                world.gameRules.get(GameRules.DO_INSOMNIA).set(false, server)
                 world.gameRules.get(GameRules.DO_MOB_GRIEFING).set(false, server)
                 // 1.19 world.gameRules.get(GameRules.LAVA_SOURCE_CONVERSION).set(true, server)
                 world.gameRules.get(GameRules.PLAYERS_SLEEPING_PERCENTAGE).set(50, server)
