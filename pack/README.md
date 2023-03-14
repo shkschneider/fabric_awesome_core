@@ -26,10 +26,10 @@
 
 - Enchanted Shulkers: siphon & refill
 - Extended Drawers
-- Hotbar Swap (hit <tab>)
+- Hotbar Swap
 - Inventory Essentials + Mouse Tweaks: mouse improvements
 - Inventory HUD
-- Inventory Sorter: yes please (hit <z>)
+- Inventory Sorter: yes please
 - Stack Refill
 - Slotlink: centralized storage interface (with remote)
   - Alternative: Tom's Simple Storage
@@ -37,7 +37,7 @@
 ## Vanilla lacks awesome mods
 
 - Create v0.5
-- Awesome Commands: /sethome /home /back /enderchest /top...
+- Awesome Commands: /sethome /home /back /enderchest...
 - Awesome Crystals: yields crystal for all ores (infinite resources)
 - Awesome Enchantments: critical, last stand, magnetism, sixth sense, unbreakable, vampirism, vein mining...
 - Awesome Experience: experience enchantment, obelisk (to store & retrieve xp)...
@@ -45,12 +45,11 @@
 - Awesome Machines: breaker/placer, collector, crafter, cultivator, duplicator, factory, quarry, recycler, refinery & detectors...
 - Awesome Pack (exclusive):
   - bow with infinity does not require any arrow
-  - faithful textures + shaders
+  - copper can replace iron in many crafts
   - infinite villagers trading
   - players drop heads
   - totem of undying working from inventory
   - uncraftable vanilla recipes now craftable & more drops (wither_skeleton, ender_dragon, shulker...)
-  - vanilla tweaks (.net)
   - villagers follow emerald block
 - Lootr: player-based chest loots
 - Waystones: to teleport around
@@ -64,6 +63,7 @@
 - Elytra Protection: allows chest armor enchantments
 - Jade: what am I looking at
 - Mouse tweaks for inventories
+- No hostiles around campfires
 - Right Click Harvest
 - Seamless Loading Screen
 - Xaeros (mini)map (fair-play edition)
@@ -76,25 +76,34 @@
 - Kelp Fertilizer: behaves like bone meal
 - Chunks Fade In
 - Grind Enchantments
-- Cooperative Advacements (hit <v>)
-- Tax Free Levels: flatterns anvil/enchantment costs
+- Cooperative Advancements
+- Tax Free Levels: flattens anvil/enchantment costs
 - Passive Shield: hides it but uses it automatically
 - ...
 - Faithful texture pack: https://faithful.team
 
+## And...
+
+- Faithful x32 texturepack (https://faithful.team)
+- VanillaTweaks(.net) texturepack (https://vanillatweaks.net)
+- Complementary (v4) shaders (https://www.complementary.dev)
+ 
 ## What about performances ?
 
-- Fabric + Iris Shaders
+- Fabric + Iris
 - Entity Culling
-- Exordium
-- Indium + Lithium
+- Exordium (GUIs)
+- FerriteCore (Memory)
+- Indium+Sodium (Rendering)
+- Krypton (Networking)
 - LazyDFU
-- Sodium
-- Starlight + LambDynamicLights
+- Lithium (Game Logic)
+- Smooth Boot (CPU)
+- Starlight + LambDynamicLights (Lightning)
 
 ## Keybindings
 
-- advancements: z
+- advancements: v
 - auto-jump: OFF
 - crouch: control
 - list players: l

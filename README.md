@@ -1,6 +1,6 @@
 # Awesome
 
-> Modularized Vanilla++ & machines mods for Minecraft.
+> Modularized Vanilla++ mods for Minecraft.
 
 ![Minecraft: 1.18.2](https://img.shields.io/badge/minecraft-1.18.2-637f40?style=for-the-badge)
 ![Mod loader: Fabric](https://img.shields.io/badge/modloader-fabric-926c4d?style=for-the-badge)
@@ -21,32 +21,33 @@ and finally **commands** for players, moderators and/or admins.
 ## Modules
 
 - Awesome **Core** (required!)
-  - Flux is a new fuel (from redstone and lapis) twice the power of Coal
-  - Splash screen made black
-  - Other mixins for various things
+  - flux is a new fuel (from redstone and lapis) twice the power of Coal
+  - numerous base classes
+  - other mixins for various things
 - Awesome **Crystals**
-  - Same logic as Budding Amethyst but for all ores!
-  - Craft budding blocks using amethyst blocks and a block of the resource
-  - Grows on all sides at once
+  - same logic as Budding Amethyst but for all ores!
+  - craft budding blocks using amethyst blocks and a block of the resource
+  - grows on all sides at once
 - Awesome **Experience**
   - experience enchantment that gives 1 xp per block mined
   - obelisk to store and retrieve xp
   - experience potions
 - Awesome **Extras**
   - `/gamerule keepXp` upon death
+  - `/gamerule pvp` on/off
   - a 2-way trash slot in your inventory that only clears upon closing
   - all-in-one tools
   - baguette: bread but better
   - configurable zenith (mid-day) and nadir (mid-night) times
   - coordinates on death screen
-  - early game crates that retain inventory
+  - crates that retain inventory
   - elevators to teleport vertically
   - lily_pad that grows nearby stuff
+  - omelette: egg but better
   - player heads on death (by another player)
-  - pvp on/off
   - ropes than unroll and rollup vertically for exploration
-  - scythe to clear grass
-  - sleeping heals
+  - scythe to clear grass and stuff
+  - sleeping can heal
   - sponges can absorb lava
   - villagers follow emerald blocks
   - villagers infinite trading
@@ -54,12 +55,14 @@ and finally **commands** for players, moderators and/or admins.
   - worldgen: randomium (random ore & teleports)
 - Awesome **Commands**
   - back
+  - broadcast
   - enderchest [player]
   - fly [player]
   - heal [player]
   - home
   - inventory [player]
   - invulnerable [player]
+  - region
   - repair [player]
   - sethome
   - spawn
@@ -84,13 +87,14 @@ and finally **commands** for players, moderators and/or admins.
   - refinery: ore processing x1-x4
 - Awesome **Pack**
   - bats drop membranes, ender_dragon drops elytra...
+  - copper can replace iron in many crafts
   - infinity bow requires no arrow
   - makes many uncraftables craftable: end_portal_frame, grass, mycelium...
   - more netherite, more tnt, more wither_skeleton_skull, more shulker_shells...
   - scoreboard: deathCount (player list)
   - scoreboard: health (below name)
-  - silk touch does spawners and budding_amethyst
-  - upgradable tools and armors using smithing table (using blocks)
+  - silk touch works on spawners and budding_amethyst
+  - upgradable tools and armors using smithing table (with blocks)
 
 ## Configuration
 

@@ -32,8 +32,8 @@ key_key.hotbar.6:key.keyboard.6:NONE
 key_key.hotbar.7:key.keyboard.7:NONE
 key_key.hotbar.8:key.keyboard.8:NONE
 key_key.hotbar.9:key.keyboard.9:NONE
-key_create.keyinfo.toolmenu:key.keyboard.unknown:NONE
-key_create.keyinfo.toolbelt:key.keyboard.unknown:NONE
+key_create.keyinfo.toolmenu:key.keyboard.i:NONE
+key_create.keyinfo.toolbelt:key.keyboard.u:NONE
 key_key.entityculling.toggle:key.keyboard.unknown:NONE
 key_key.hotbarswap.swap:key.keyboard.tab:NONE
 key_key.hotbarswap.single_swap:key.keyboard.unknown:NONE
