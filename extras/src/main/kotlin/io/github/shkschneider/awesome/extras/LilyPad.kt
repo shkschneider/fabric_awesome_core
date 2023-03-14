@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.extras.lilypad
+package io.github.shkschneider.awesome.extras
 
 import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeRegistries

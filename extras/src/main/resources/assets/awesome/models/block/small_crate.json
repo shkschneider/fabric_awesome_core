@@ -1,6 +1,21 @@
 {
-	"parent": "minecraft:block/cube_all",
+	"texture_size": [32, 32],
 	"textures": {
-		"all": "awesome:block/small_crate"
-	}
+		"0": "awesome:block/small_crate",
+		"particle": "awesome:block/small_crate"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 2],
+			"to": [14, 12, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		}
+	]
 }

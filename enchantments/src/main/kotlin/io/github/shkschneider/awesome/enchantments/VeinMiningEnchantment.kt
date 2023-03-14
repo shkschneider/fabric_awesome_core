@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome.enchantments
 
-import io.github.shkschneider.awesome.AwesomeEnchantments
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.core.ext.id
@@ -38,7 +37,7 @@ class VeinMiningEnchantment : AwesomeEnchantment(
     private operator fun invoke(world: World, player: PlayerEntity, pos: BlockPos, state: BlockState) {
         if (!player.mainHandStack.isSuitableFor(state)) return
         if (this.veinMining > 0 || player.isSneaking) return
-        val veinMining = EnchantmentHelper.getLevel(AwesomeEnchantments.veinMining, player.mainHandStack)
+        val veinMining = EnchantmentHelper.getLevel(this, player.mainHandStack)
         if (veinMining > 0) {
             this.veinMining = 1
             if (state.isOre) {

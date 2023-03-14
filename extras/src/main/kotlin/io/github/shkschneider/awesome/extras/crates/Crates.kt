@@ -1,5 +1,8 @@
 package io.github.shkschneider.awesome.extras.crates
 
+import net.minecraft.block.BlockWithEntity
+import net.minecraft.util.shape.VoxelShape
+
 // Inspired from the ShulkerBox -- retains inventory
 object Crates {
 
@@ -25,6 +28,12 @@ object Crates {
             Small -> 106
             Medium -> 142
             Large -> 196
+        }
+
+        val shape: VoxelShape get() = when (this) {
+            Small -> BlockWithEntity.createCuboidShape(2.0, 0.0, 2.0, 14.0, 12.0, 14.0)
+            Medium -> BlockWithEntity.createCuboidShape(1.0, 0.0, 1.0, 15.0, 14.0, 15.0)
+            Large -> BlockWithEntity.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 16.0)
         }
 
     }

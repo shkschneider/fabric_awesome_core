@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.extras.rope
+package io.github.shkschneider.awesome.extras
 
 import io.github.shkschneider.awesome.core.AwesomeBlock
 import io.github.shkschneider.awesome.core.AwesomeLogger

@@ -1,3 +1,6 @@
 {
-  "parent": "awesome:block/small_crate"
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "awesome:block/small_crate"
+  }
 }

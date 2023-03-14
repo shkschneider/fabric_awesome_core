@@ -1,14 +1,12 @@
 package io.github.shkschneider.awesome.enchantments
 
 import com.google.common.base.Predicates
-import io.github.shkschneider.awesome.AwesomeEnchantments
 import io.github.shkschneider.awesome.core.AwesomeColors
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
 import io.github.shkschneider.awesome.core.AwesomeParticles
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import io.github.shkschneider.awesome.custom.Event
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.enchantment.EnchantmentTarget
 import net.minecraft.entity.EquipmentSlot
@@ -27,7 +25,7 @@ class MagnetismEnchantment : AwesomeEnchantment(
         @Event("ServerTickEvents.EndTIck")
         ServerTickEvents.END_SERVER_TICK.register(ServerTickEvents.EndTick { server ->
             server.playerManager.playerList.forEach { player ->
-                val magnetism = EnchantmentHelper.getLevel(AwesomeEnchantments.magnetism, player.mainHandStack)
+                val magnetism = EnchantmentHelper.getLevel(this, player.mainHandStack)
                 if (player.isAlive && player.isSneaking.not() && magnetism > 0) {
                     magnetize(player, magnetism)
                 }
@@ -43,10 +41,5 @@ class MagnetismEnchantment : AwesomeEnchantment(
                 AwesomeParticles(player.world, itemEntity.pos, color = listOf(AwesomeColors.red, AwesomeColors.blue).random(), offset = 0.0)
             }
     }
-
-    override fun canAccept(other: Enchantment): Boolean =
-        listOf(
-            AwesomeEnchantments.magnetism,
-        ).contains(other).not()
 
 }

@@ -18,9 +18,8 @@ public abstract class PlayerSneakMixin {
 
     @Inject(method = "setSneaking", at = @At(value = "TAIL"))
     private void onSneak(boolean sneaking, CallbackInfo ci) {
-        final LivingEntity livingEntity = (LivingEntity) (Object) this;
-        if (livingEntity instanceof PlayerEntity && sneaking && Awesome.INSTANCE.getCONFIG().getEnchantments().getSixthSense()) {
-            final PlayerEntity player = (PlayerEntity) livingEntity;
+        @SuppressWarnings("DataFlowIssue") final LivingEntity livingEntity = (LivingEntity) (Object) this;
+        if (livingEntity instanceof final PlayerEntity player && sneaking && Awesome.INSTANCE.getCONFIG().getEnchantments().getSixthSense()) {
             if (EnchantmentHelper.getLevel(AwesomeEnchantments.INSTANCE.getSixthSense(), player.getEquippedStack(EquipmentSlot.HEAD)) > 0) {
                 SixthSenseEnchantment.Companion.invoke(player);
             }

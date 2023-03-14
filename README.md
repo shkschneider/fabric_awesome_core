@@ -110,7 +110,7 @@ Made by **ShkSchneider** with great help from open-sourced codes from the commun
 - Many textures are from *GregTech* under **LGPL3**: https://github.com/GregTechCE/GregTech
 - Many machines frames are from *Industrial Foregoing* under **MIT**: https://github.com/InnovativeOnlineIndustries/Industrial-Foregoing
 
-- Crate based off https://www.iconfinder.com/icons/3338964/business_tools_crate_box_wood_wood_box_icon
+- Crate based off https://www.iconfinder.com/icons/3338961/business_tools_crate_box_wood_wood_box_icon
 - Flux from **Thermal Foundation**'s *Cryotheum Dust* and *Signalum Blend*
 - Herobrine was made from Mojang's Steve's
 - Imprisoner from https://ftb.fandom.com/wiki/Mob_Imprisonment_Tool

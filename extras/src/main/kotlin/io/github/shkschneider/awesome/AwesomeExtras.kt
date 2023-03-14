@@ -1,16 +1,16 @@
 package io.github.shkschneider.awesome
 
+import io.github.shkschneider.awesome.extras.Baguette
+import io.github.shkschneider.awesome.extras.LilyPad
+import io.github.shkschneider.awesome.extras.Omelette
+import io.github.shkschneider.awesome.extras.Rope
+import io.github.shkschneider.awesome.extras.Scythe
 import io.github.shkschneider.awesome.extras.SleepingHeals
 import io.github.shkschneider.awesome.extras.ZenithNadirLengths
 import io.github.shkschneider.awesome.extras.crates.Crates
 import io.github.shkschneider.awesome.extras.elevator.Elevator
 import io.github.shkschneider.awesome.extras.entities.AwesomeEntities
-import io.github.shkschneider.awesome.extras.food.Baguette
-import io.github.shkschneider.awesome.extras.food.Omelette
-import io.github.shkschneider.awesome.extras.lilypad.LilyPad
 import io.github.shkschneider.awesome.extras.randomium.Randomium
-import io.github.shkschneider.awesome.extras.rope.Rope
-import io.github.shkschneider.awesome.extras.scythe.Scythe
 import io.github.shkschneider.awesome.extras.tool.AwesomeTools
 import io.github.shkschneider.awesome.extras.void.Void
 

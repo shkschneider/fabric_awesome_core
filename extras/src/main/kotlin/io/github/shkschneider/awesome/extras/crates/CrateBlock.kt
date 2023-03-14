@@ -7,6 +7,7 @@ import io.github.shkschneider.awesome.custom.InputOutput
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
+import net.minecraft.block.ShapeContext
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
@@ -22,6 +23,7 @@ import net.minecraft.util.Formatting
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
+import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
 
@@ -31,6 +33,9 @@ class CrateBlock(
 ) : AwesomeBlockWithEntity<CrateBlock.Entity>(
     crate.id, FabricBlockSettings.copy(Blocks.BARREL).nonOpaque(),
 ), AwesomeBlockWithEntity.RetainsInventory {
+
+    override fun getOutlineShape(state: BlockState, world: BlockView, pos: BlockPos, context: ShapeContext): VoxelShape =
+        crate.size.shape
 
     override fun createBlockEntity(pos: BlockPos, state: BlockState): CrateBlock.Entity =
         CrateBlock.Entity(crate, pos, state)

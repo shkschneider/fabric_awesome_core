@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome.enchantments
 
-import io.github.shkschneider.awesome.AwesomeEnchantments
 import io.github.shkschneider.awesome.core.AwesomeEnchantment
 import io.github.shkschneider.awesome.core.AwesomeLogger
 import io.github.shkschneider.awesome.core.AwesomeUtils
@@ -41,6 +40,6 @@ class LastStandEnchantment : AwesomeEnchantment(
     }
 
     override fun canAccept(other: Enchantment): Boolean =
-        listOf(this, AwesomeEnchantments.critical).contains(other).not()
+        super.canAccept(other) && other.translationKey == AwesomeUtils.translatable("critical")
 
 }

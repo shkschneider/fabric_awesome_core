@@ -14,8 +14,7 @@ public class ItemStackIsDamageableMixin {
 
     @Inject(method = "isDamageable", at = @At("HEAD"), cancellable = true)
     private void isDamageable(CallbackInfoReturnable<Boolean> cir) {
-        //noinspection ConstantConditions
-        final ItemStack itemStack = (ItemStack) (Object) this;
+        @SuppressWarnings("DataFlowIssue") final ItemStack itemStack = (ItemStack) (Object) this;
         if (Awesome.INSTANCE.getCONFIG().getEnchantments().getUnbreakable() && EnchantmentHelper.getLevel(AwesomeEnchantments.INSTANCE.getUnbreakable(), itemStack) > 0) {
             itemStack.setDamage(0);
             cir.setReturnValue(true);

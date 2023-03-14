@@ -6,7 +6,7 @@
     "111"
   ],
   "key": {
-    "1": { "item": "minecraft:stick" },
+    "1": { "tag": "minecraft:slabs" },
     "2": { "item": "minecraft:chest" }
   },
   "result": {
