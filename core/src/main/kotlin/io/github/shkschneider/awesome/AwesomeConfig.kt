@@ -68,6 +68,7 @@ data class AwesomeConfig(
         @SerializedName("entities") val entities: Boolean = false,
         @SerializedName("lilypad") val lilypad: Boolean = true,
         @SerializedName("nadirLengthInDays") val nadirLengthInDays: Float = 0F,
+        @SerializedName("omelette") val omelette: Boolean = true,
         @SerializedName("pvp") val pvp: Boolean = true,
         @SerializedName("randomium") val randomium: Boolean = true,
         @SerializedName("rope") val rope: Boolean = true,

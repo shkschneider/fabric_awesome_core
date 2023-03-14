@@ -21,7 +21,7 @@ version = version()
 
 repositories {
     maven(url = "https://api.modrinth.com/maven") { name = "modrinth" }
-    maven( url = "https://cursemaven.com" ) { name = "curseforge" }
+    maven(url = "https://cursemaven.com") { name = "curseforge" }
 }
 
 configurations.all {
@@ -34,6 +34,8 @@ dependencies {
     }
     listOf(
         // projectId to fileId
+        "appleskin-248787" to "3927566", // https://www.curseforge.com/minecraft/mc-mods/appleskin/files
+        "cloth-config-348521" to "3972425", // https://www.curseforge.com/minecraft/mc-mods/cloth-config/files
         "emi-580555" to "4406948", // https://www.curseforge.com/minecraft/mc-mods/emi/files
         "fat-experience-orbs-334873" to "3823226", // https://www.curseforge.com/minecraft/mc-mods/fat-experience-orbs/files
         "jade-324717" to "4160646", // https://www.curseforge.com/minecraft/mc-mods/jade/files

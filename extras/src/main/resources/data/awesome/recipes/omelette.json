@@ -1,10 +1,9 @@
 {
   "type": "minecraft:smelting",
-  "category": "misc",
   "cookingtime": 20,
   "experience": 0.1,
   "ingredient": {
-    "item": "awesome:flux_dust"
+    "item": "minecraft:egg"
   },
-  "result": "awesome:flux"
+  "result": "awesome:omelette"
 }

@@ -117,4 +117,4 @@ Made by **ShkSchneider** with great help from open-sourced codes from the commun
 - Logo based off https://www.iconfinder.com/icons/185592/table_crafting_icon
 - Obelisk textures from https://github.com/Meridanus/fabric_xp_storage_1.18
 - Prospector based off https://www.iconfinder.com/icons/9044628/machine_learning_icon
-- Rope based off https://starbounder.org/Rope
+- Rope based off https://starbounder.org/Rope / Omelette from https://starbounder.org/Omelette

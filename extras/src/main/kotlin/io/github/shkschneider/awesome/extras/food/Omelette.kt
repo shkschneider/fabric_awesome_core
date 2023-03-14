@@ -1,4 +1,4 @@
-package io.github.shkschneider.awesome.extras.baguette
+package io.github.shkschneider.awesome.extras.food
 
 import io.github.shkschneider.awesome.core.AwesomeItem
 import io.github.shkschneider.awesome.core.AwesomeUtils
@@ -13,13 +13,13 @@ import net.minecraft.text.TranslatableText
 import net.minecraft.util.Formatting
 import net.minecraft.world.World
 
-class Baguette : AwesomeItem(
-    id = AwesomeUtils.identifier("baguette"),
+class Omelette : AwesomeItem(
+    id = AwesomeUtils.identifier("omelette"),
     settings = FabricItemSettings()
         .group(ItemGroup.FOOD)
         .food(FoodComponent.Builder()
-            .hunger(FoodComponents.BREAD.hunger * 3)
-            .saturationModifier(FoodComponents.BREAD.saturationModifier)
+            .hunger(FoodComponents.APPLE.hunger)
+            .saturationModifier(FoodComponents.APPLE.saturationModifier * 2)
             .build()
         ),
     group = ItemGroup.FOOD,
