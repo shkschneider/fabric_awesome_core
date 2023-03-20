@@ -57,10 +57,6 @@ file = "config/pickupnotifications.toml"
 hash = "b01cb6d41326c1deb3265f844b8ba2bd801f717f6549691fa80e553da209ac3f"
 
 [[files]]
-file = "config/realisticbees.json5"
-hash = "63469b9940a1b3d8d2e316869ef8a74c139ea413bd34d2853aa0cfab500fd686"
-
-[[files]]
 file = "config/waystones.toml"
 hash = "fabfb3707f0676a15803127ca45b6f60b2a213f46fa3a3a5cdd20ecf509428ef"
 
@@ -93,7 +89,7 @@ metafile = true
 
 [[files]]
 file = "mods/awesome-crystals.pw.toml"
-hash = "36947ae5e444955030d96c5bd223ccf86edd910df11c05785b654d34b337c290"
+hash = "5210a410807f2f6662869038f9ba96895749d6af7173efe04fb4a7dd04c218fb"
 metafile = true
 
 [[files]]
@@ -112,8 +108,8 @@ hash = "32e198c38caa92c98d851225090884d473f22c1269420bdf6af89c196f23a18a"
 metafile = true
 
 [[files]]
-file = "mods/awesome-pack-0.9.16+1.18.2.jar"
-hash = "4f6ca6d06bfcd98ee8f18259553e06630988208096cf2e4dd8b785a0b9384522"
+file = "mods/awesome-pack-0.9.17+1.18.2.jar"
+hash = "a0081946200de2bd1d55d02745142dc421768eb06ab795e5f4a179231ad0fef9"
 
 [[files]]
 file = "mods/balm.pw.toml"
@@ -173,11 +169,6 @@ metafile = true
 [[files]]
 file = "mods/chunks-fade-in.pw.toml"
 hash = "30b26a7770675fb0e00b94a6d69abeeb26945d4b00f8cffb47c11fa30a839fb6"
-metafile = true
-
-[[files]]
-file = "mods/cloth-config.pw.toml"
-hash = "77bd9b9ae2bf78481ba939cc78e5e4c0d9528516aa791305eecb39eb56e13125"
 metafile = true
 
 [[files]]
@@ -376,11 +367,6 @@ hash = "c93273eec27f683d39a6014c66c4f5e53bfaec9cb52c2007f7f4e941078e4e88"
 metafile = true
 
 [[files]]
-file = "mods/krypton.pw.toml"
-hash = "219d4425679c60fd2855a6a39a6fccb6db3948dcc57b9da7c20907c855c5bd3d"
-metafile = true
-
-[[files]]
 file = "mods/lambdynamiclights.pw.toml"
 hash = "3c3f1788a62da45c975e150cc851ca6639c7d0dec10c43c9500f933ad15b1768"
 metafile = true
@@ -403,16 +389,6 @@ metafile = true
 [[files]]
 file = "mods/lootr-fabric.pw.toml"
 hash = "7154b0157b492f51427845a28530ad4c5181b98f5ceae42d800a83e27167f4ce"
-metafile = true
-
-[[files]]
-file = "mods/memoryleakfix.pw.toml"
-hash = "078836cba69713f4f9381d37fb32eefcfc1f19184878afdfefb14d8611def32b"
-metafile = true
-
-[[files]]
-file = "mods/midnightlib.pw.toml"
-hash = "47c92b4cfd41908adff40fe773908eccebe0332bb94c31072a4382f4f735c599"
 metafile = true
 
 [[files]]
@@ -456,11 +432,6 @@ hash = "a2e489271b3403986e674fac1e811147534885d97656e5538f8e6424db56f3f1"
 metafile = true
 
 [[files]]
-file = "mods/realistic-bees.pw.toml"
-hash = "6a14153ef922dd71d9b56d266124ac5fd0fbd867f9c7d9cd95b34f509f1cba8c"
-metafile = true
-
-[[files]]
 file = "mods/right-click-harvest.pw.toml"
 hash = "1b05810e30a220182a020210f3e79f70fcbc6590624d782ff93c72f6e2774d02"
 metafile = true
@@ -488,11 +459,6 @@ metafile = true
 [[files]]
 file = "mods/slotlink.pw.toml"
 hash = "a37f122aa6bc7f9583874de8f54b11e348156091f85a37c922086a820d23fc4f"
-metafile = true
-
-[[files]]
-file = "mods/smoothboot-fabric.pw.toml"
-hash = "98bed93269e490532d84cf27cff645a531d0d27a1088816298517e5f1afcd621"
 metafile = true
 
 [[files]]
