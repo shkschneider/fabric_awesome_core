@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "12 ",
+    "   ",
+    "   "
+  ],
+  "key": {
+    "1": { "item": "minecraft:copper_ingot" },
+    "2": { "item": "minecraft:flint" }
+  },
+  "result": {
+    "item": "minecraft:flint_and_steel",
+    "count": 1
+  }
+}

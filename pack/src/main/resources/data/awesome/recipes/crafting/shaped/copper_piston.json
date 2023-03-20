@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "111",
+    "232",
+    "242"
+  ],
+  "key": {
+    "1": { "tag": "minecraft:planks" },
+    "2": { "item": "minecraft:cobblestone" },
+    "3": { "item": "minecraft:copper_ingot" },
+    "4": { "item": "minecraft:redstone" }
+  },
+  "result": {
+    "item": "minecraft:piston",
+    "count": 1
+  }
+}

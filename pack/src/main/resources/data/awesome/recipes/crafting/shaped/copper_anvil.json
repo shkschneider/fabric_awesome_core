@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "111",
+    " 2 ",
+    "222"
+  ],
+  "key": {
+    "1": { "item": "minecraft:copper_block" },
+    "2": { "item": "minecraft:copper_ingot" }
+  },
+  "result": {
+    "item": "minecraft:anvil",
+    "count": 1
+  }
+}

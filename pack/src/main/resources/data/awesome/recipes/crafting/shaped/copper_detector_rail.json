@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "1 1",
+    "121",
+    "131"
+  ],
+  "key": {
+    "1": { "item": "minecraft:copper_ingot" },
+    "2": { "item": "minecraft:stone_pressure_plate" },
+    "3": { "item": "minecraft:redstone" }
+  },
+  "result": {
+    "item": "minecraft:detector_rail",
+    "count": 6
+  }
+}
