@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.extras
 
+import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeSounds
 import io.github.shkschneider.awesome.core.AwesomeUtils
@@ -10,7 +11,6 @@ import net.minecraft.block.PlantBlock
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.enchantment.Enchantments
 import net.minecraft.entity.EquipmentSlot
-import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.item.MiningToolItem
 import net.minecraft.item.ToolMaterials
@@ -23,11 +23,11 @@ class Scythe : MiningToolItem(
     /* attackSpeed */ -3F,
     ToolMaterials.WOOD,
     BlockTags.HOE_MINEABLE,
-    FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(ToolMaterials.WOOD.durability * 2),
+    FabricItemSettings().group(Awesome.GROUP).maxCount(1).maxDamage(ToolMaterials.WOOD.durability * 2),
 ) {
 
     init {
-        AwesomeRegistries.item(AwesomeUtils.identifier("scythe"), this, ItemGroup.TOOLS)
+        AwesomeRegistries.item(AwesomeUtils.identifier("scythe"), this, Awesome.GROUP)
     }
 
     private fun check(block: Block): Boolean =

@@ -2,20 +2,20 @@ package io.github.shkschneider.awesome.core.ext
 
 import io.github.shkschneider.awesome.core.AwesomeClock
 import io.github.shkschneider.awesome.core.AwesomeTime
-import io.github.shkschneider.awesome.custom.Dimensions
 import io.github.shkschneider.awesome.custom.Location
+import io.github.shkschneider.awesome.custom.Travels
 import net.minecraft.world.World
 
 fun World.id(): Int {
     val identifier = registryKey.value
     return when (identifier.namespace) {
         "minecraft" -> when (identifier.path) {
-            World.NETHER.value.namespace -> Dimensions.NETHER
-            World.OVERWORLD.value.namespace -> Dimensions.OVERWORLD
-            World.END.value.namespace -> Dimensions.END
+            World.NETHER.value.namespace -> Travels.NETHER
+            World.OVERWORLD.value.namespace -> Travels.OVERWORLD
+            World.END.value.namespace -> Travels.END
             else -> throw IllegalStateException()
         }
-        else -> Dimensions.UNKNOWN
+        else -> Travels.UNKNOWN
     }
 }
 

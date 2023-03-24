@@ -11,7 +11,7 @@ data class AwesomeConfig(
     @SerializedName("machines") val machines: Machines = Machines(),
 ) {
 
-    @SerializedName("dimensions") val dimensions: Boolean = false
+    @SerializedName("travels") val travels: Boolean = false
 
     data class Commands(
         @SerializedName("back") val back: Boolean = true,

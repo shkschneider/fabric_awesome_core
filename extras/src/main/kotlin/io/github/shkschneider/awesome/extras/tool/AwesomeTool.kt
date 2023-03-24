@@ -1,5 +1,6 @@
 package io.github.shkschneider.awesome.extras.tool
 
+import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeInputs
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeUtils
@@ -14,7 +15,6 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.block.BlockState
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.item.MiningToolItem
@@ -30,11 +30,11 @@ class AwesomeTool(
     /* attackSpeed */ material.attackSpeed,
     material,
     BlockTags.PICKAXE_MINEABLE,
-    FabricItemSettings().group(ItemGroup.TOOLS).maxDamage(material.durability * material.size),
+    FabricItemSettings().group(Awesome.GROUP).maxDamage(material.durability * material.size),
 ) {
 
     init {
-        AwesomeRegistries.item(AwesomeUtils.identifier("${material.name}_tool"), this, ItemGroup.TOOLS)
+        AwesomeRegistries.item(AwesomeUtils.identifier("${material.name}_tool"), this, Awesome.GROUP)
     }
 
     private fun tools(material: ToolMaterial): List<MiningToolItem> =

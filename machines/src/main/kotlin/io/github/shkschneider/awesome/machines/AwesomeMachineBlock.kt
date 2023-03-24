@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome.machines
 
-import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeBlockEntity
 import io.github.shkschneider.awesome.core.AwesomeBlockWithEntity
 import io.github.shkschneider.awesome.core.AwesomeInputs
@@ -27,7 +26,6 @@ abstract class AwesomeMachineBlock<BE : AwesomeBlockEntity.WithInventory, SH : A
 ) : AwesomeBlockWithEntity.WithInventory<BE>(
     id = AwesomeUtils.identifier(machine.id),
     settings = settings,
-    group = Awesome.GROUP,
 ) {
 
     override fun getPlacementState(ctx: ItemPlacementContext): BlockState = defaultState

@@ -29,7 +29,6 @@ import net.minecraft.world.event.GameEvent
 class Imprisoner : AwesomeItem(
     id = AwesomeUtils.identifier(ID),
     settings = FabricItemSettings().group(Awesome.GROUP).maxCount(1).rarity(Rarity.UNCOMMON),
-    group = Awesome.GROUP,
 ) {
 
     companion object {

@@ -14,7 +14,7 @@ import net.minecraft.world.World
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-object Dimensions {
+object Travels {
 
     const val NETHER = -1
     const val OVERWORLD = 0

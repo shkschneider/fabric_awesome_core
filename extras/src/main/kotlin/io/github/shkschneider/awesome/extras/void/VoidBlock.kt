@@ -1,6 +1,5 @@
 package io.github.shkschneider.awesome.extras.void
 
-import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeBlockWithEntity
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -17,7 +16,6 @@ class VoidBlock : AwesomeBlockWithEntity<VoidBlockEntity>(
         .requiresTool() // 1.19 noBlockBreakParticles()
         .sounds(BlockSoundGroup.GLASS)
         .allowsSpawning { _, _, _, _ -> false },
-    group = Awesome.GROUP,
 ) {
 
     // FIXME cannot place one on top of another
