@@ -20,8 +20,9 @@ class CriticalEnchantment : AwesomeEnchantment(
     listOf(EquipmentSlot.MAINHAND),
 ) {
 
-    override fun onTargetDamaged(user: LivingEntity, target: Entity, level: Int) {
+    override fun onTargetDamaged(user: LivingEntity, target: Entity?, level: Int) {
         super.onTargetDamaged(user, target, level)
+        target ?: return
         ((user as? PlayerEntity)?.mainHandStack?.item as? SwordItem)?.let { sword ->
             val damage = sword.attackDamage / 2
             AwesomeLogger.debug("critical: $damage")

@@ -20,8 +20,9 @@ class LastStandEnchantment : AwesomeEnchantment(
     listOf(EquipmentSlot.MAINHAND),
 ) {
 
-    override fun onTargetDamaged(user: LivingEntity, target: Entity, level: Int) {
+    override fun onTargetDamaged(user: LivingEntity, target: Entity?, level: Int) {
         if (user.world.isClient) return
+        target ?: return
         (user as? PlayerEntity)?.takeIf { it.isAlive }?.let { playerEntity ->
             (target as? LivingEntity)?.takeIf { it.isAlive }?.let { livingEntity ->
                 lastStand(playerEntity, livingEntity)

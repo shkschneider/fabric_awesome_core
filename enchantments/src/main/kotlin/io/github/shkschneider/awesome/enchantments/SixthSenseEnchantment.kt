@@ -25,8 +25,9 @@ class SixthSenseEnchantment : AwesomeEnchantment(
     listOf(EquipmentSlot.HEAD),
 ) {
 
-    override fun onUserDamaged(user: LivingEntity, attacker: Entity, level: Int) {
+    override fun onUserDamaged(user: LivingEntity, attacker: Entity?, level: Int) {
         if (user.world.isClient) return
+        attacker ?: return
         (user as? PlayerEntity)?.let(::invoke)
     }
 
