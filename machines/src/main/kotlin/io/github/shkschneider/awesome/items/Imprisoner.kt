@@ -10,7 +10,8 @@ import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.SpawnReason
-import net.minecraft.entity.mob.Monster
+import net.minecraft.entity.boss.WitherEntity
+import net.minecraft.entity.boss.dragon.EnderDragonEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
@@ -35,7 +36,6 @@ class Imprisoner : AwesomeItem(
 
         const val ID = "imprisoner"
         const val IMPRISONED = "Imprisoned"
-        private val EXPERIENCE = 1
         val COOLDOWN = AwesomeUtils.secondsToTicks(1)
 
     }
@@ -61,9 +61,10 @@ class Imprisoner : AwesomeItem(
     override fun useOnEntity(stack: ItemStack, user: PlayerEntity, entity: LivingEntity, hand: Hand): ActionResult {
         if (user.world.isClient) return ActionResult.PASS
         if (isEmpty(stack).not()) return ActionResult.FAIL
-        if (user.isCreative.not() && user.experienceLevel < EXPERIENCE) return ActionResult.FAIL
-        if (entity is Monster || entity.isBaby || entity.isDead || entity.isUndead) return ActionResult.FAIL
-        if (entity is PlayerEntity || entity.isAttackable.not()) return ActionResult.FAIL
+        if (entity is PlayerEntity) return ActionResult.FAIL
+        if (entity.isBaby || entity.isDead) return ActionResult.FAIL
+        if (entity.isAttackable.not()) return ActionResult.FAIL
+        if (entity is WitherEntity || entity is EnderDragonEntity) return ActionResult.FAIL // 1.19 WardenEntity
         return if (capture(user, hand, stack, entity)) {
             user.itemCooldownManager.set(this, COOLDOWN)
             ActionResult.CONSUME
@@ -80,8 +81,7 @@ class Imprisoner : AwesomeItem(
         }
         // I probably got something wrong about server<>client sync
         player.mainHandStack.nbt = stack.nbt.also { player.inventory.markDirty() }
-        player.addExperienceLevels(-EXPERIENCE)
-        entity.remove(Entity.RemovalReason.KILLED)
+        entity.remove(Entity.RemovalReason.DISCARDED)
         AwesomeSounds(player.world to entity.blockPos, AwesomeSounds.teleport)
         return true
     }
