@@ -3,9 +3,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     // https://github.com/JetBrains/kotlin/releases
-    kotlin("jvm") version "1.8.10"
+    kotlin("jvm") version "1.8.20"
     // https://maven.fabricmc.net/fabric-loom/fabric-loom.gradle.plugin/
-    id("fabric-loom") version "1.0.17"
+    id("fabric-loom") version "1.1.12"
 }
 
 fun version(): String {
@@ -34,13 +34,12 @@ dependencies {
     }
     listOf(
         // projectId to fileId
-        "appleskin-248787" to "3927566", // https://www.curseforge.com/minecraft/mc-mods/appleskin/files
+        "appleskin-248787" to "3927564", // https://www.curseforge.com/minecraft/mc-mods/appleskin/files
         "cloth-config-348521" to "3972425", // https://www.curseforge.com/minecraft/mc-mods/cloth-config/files
-        "emi-580555" to "4406948", // https://www.curseforge.com/minecraft/mc-mods/emi/files
-        "fat-experience-orbs-334873" to "3823226", // https://www.curseforge.com/minecraft/mc-mods/fat-experience-orbs/files
+        "emi-580555" to "4466710", // https://www.curseforge.com/minecraft/mc-mods/emi/files
         "jade-324717" to "4160646", // https://www.curseforge.com/minecraft/mc-mods/jade/files
-        "lazydfu-433518" to "3209972", // https://www.curseforge.com/minecraft/mc-mods/modmenu/files
-        "xaeros-minimap-263420" to "4381120", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files
+        "lazydfu-433518" to "3209972", // https://www.curseforge.com/minecraft/mc-mods/lazydfu/files
+        "xaeros-minimap-263420" to "4470050", // https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap/files
     ).forEach { mod ->
         modRuntimeOnly("curse.maven:${mod.first}:${mod.second}") { exclude(group = "net.fabricmc") }
     }
