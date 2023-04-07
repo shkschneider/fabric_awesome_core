@@ -78,38 +78,48 @@ hash = "2a892a23a2911316f082efb275c528d53bdd556b2f5c7dbaee15f40fd59c6670"
 metafile = true
 
 [[files]]
+file = "mods/appleskin.pw.toml"
+hash = "80e7c9fd868c28612d6e9945044e274399579ab0007285f2ec50caf006c771f3"
+metafile = true
+
+[[files]]
 file = "mods/awesome-commands.pw.toml"
-hash = "d5aa1900daeabe2eaa1ca5efdb497223bfaa0c72cf5d35fd441a7942638f888e"
+hash = "7d51f9bb7ce603538c12be9fd47bbed9307a7c8ab04333282ac5100e2d090d17"
 metafile = true
 
 [[files]]
 file = "mods/awesome-core.pw.toml"
-hash = "140b084074b88895c7b3d1221ec05dfa0560ef012a32058076b142f3e5ddc10d"
+hash = "f1ad70a39744eeb93dc94a9066bcc87e3ab62f5da76f95a9f1ae86d41ab0e9cc"
 metafile = true
 
 [[files]]
 file = "mods/awesome-crystals.pw.toml"
-hash = "5210a410807f2f6662869038f9ba96895749d6af7173efe04fb4a7dd04c218fb"
+hash = "63014dd5cc0088a86494146ba995ece748c49140c143e3b5b7df823e4d72f1a1"
 metafile = true
 
 [[files]]
 file = "mods/awesome-enchantments.pw.toml"
-hash = "7d05ff9e57eb55c3e8ceffea0c69f72e644ca908eacd807ecfb062f4af33d71f"
+hash = "f183a444aa5236c7d48f0793ddc21292bcabda1ad1cdccf84ddac3f209d6868f"
 metafile = true
 
 [[files]]
 file = "mods/awesome-experience.pw.toml"
-hash = "a3519e39b035b773e60c17b7b52a5e672e47538603bfe618cfba31420dbbc7d2"
+hash = "55b4a332e139173e3db0d7f0f294a6d7db34c6c939fecc4bb84162bab35e7b39"
 metafile = true
 
 [[files]]
 file = "mods/awesome-extras.pw.toml"
-hash = "32e198c38caa92c98d851225090884d473f22c1269420bdf6af89c196f23a18a"
+hash = "c8c70ae8b21e8f6de702579206c07a6a64bab3173e484630cf94461f666867b7"
 metafile = true
 
 [[files]]
-file = "mods/awesome-pack-0.9.17+1.18.2.jar"
-hash = "a0081946200de2bd1d55d02745142dc421768eb06ab795e5f4a179231ad0fef9"
+file = "mods/awesome-machines.pw.toml"
+hash = "a8d99608dda0f1308e90da5fbdbe65af879e4703eb8ff7e62747669cb139bbec"
+metafile = true
+
+[[files]]
+file = "mods/awesome-pack-0.10.0+1.18.2.jar"
+hash = "83e9f839dc4ac8b8cb62fa5760b434c0f81a1bff8ec8bab4188c629c7539b05b"
 
 [[files]]
 file = "mods/balm.pw.toml"
@@ -182,13 +192,8 @@ hash = "b6112a9308fed6a091f2c5fcffc3c01405dfe2bfeae601382d7b96c6312cce72"
 metafile = true
 
 [[files]]
-file = "mods/cooperative-advancements.pw.toml"
-hash = "b30f47d4dbd27283a55edf539ecfaf58e4c7de6e590937a85b1d1ef42a5229ad"
-metafile = true
-
-[[files]]
 file = "mods/create-fabric.pw.toml"
-hash = "97edebb98ececc37c50b661eb557297e5c375fc229ca681fdb4b944d0077ac57"
+hash = "adb8adc2bcc25d3bcaa6a181d77171d214395d05faa2398406b6914e8ce649c3"
 metafile = true
 
 [[files]]
@@ -228,7 +233,7 @@ metafile = true
 
 [[files]]
 file = "mods/emi.pw.toml"
-hash = "4ae4d684becffa3a7ca680694f3856ed508ac4408031cc43419c567bebdfe592"
+hash = "69175f0e0e1bc3a738bc9d49f81df04a6b2917d87d6503c91b9384989ae4a377"
 metafile = true
 
 [[files]]
@@ -268,7 +273,7 @@ metafile = true
 
 [[files]]
 file = "mods/fabric-language-kotlin.pw.toml"
-hash = "3ecd59b2ab957aadc6759fdb82b82d63c03dfef49c1199f271078659e94cdbf1"
+hash = "62360beac5e427be02b732421c9e4fe53819bc6f5e2cc821fd6f2d9278c5485b"
 metafile = true
 
 [[files]]
@@ -288,7 +293,7 @@ metafile = true
 
 [[files]]
 file = "mods/gildedarmor.pw.toml"
-hash = "bc88773e533b94cbadd0a0f557cbbfd05cf2176a698c2952cd9e52c0e2e3f87b"
+hash = "a1b01e6c61d465c891c48506d6d5fc208ba63c166997815fe89498b4ea6870f2"
 metafile = true
 
 [[files]]
@@ -328,7 +333,7 @@ metafile = true
 
 [[files]]
 file = "mods/inventory-hud-forge.pw.toml"
-hash = "53409b8a256bc275d449020d32d8ba9ea5a6b39bc7ace93cd91094491d48e85f"
+hash = "b76b03d4a02fb19476632e0bdf0ba69d467b97d3e320686e9349734db6f3d638"
 metafile = true
 
 [[files]]
@@ -408,7 +413,7 @@ metafile = true
 
 [[files]]
 file = "mods/no-telemetry.pw.toml"
-hash = "e151fe842a9f578b400d9bdfcc3be782861098415aec5cc7909eb69ec425faa3"
+hash = "5f9870a1b70f585f7ca5ca97d5369056f6f6ab84d9897a35b545b0311e69c213"
 metafile = true
 
 [[files]]
@@ -428,7 +433,7 @@ metafile = true
 
 [[files]]
 file = "mods/raised.pw.toml"
-hash = "a2e489271b3403986e674fac1e811147534885d97656e5538f8e6424db56f3f1"
+hash = "c9f705f26e7ef483b2a206351eff4fb6bb0a4326d7f0d3396e7779e0f4d3eb5f"
 metafile = true
 
 [[files]]
@@ -528,12 +533,12 @@ metafile = true
 
 [[files]]
 file = "mods/xaeros-minimap-fair-play-edition.pw.toml"
-hash = "c84b53acff0c2da6a1190c1539a1e50989497fd833c53b7a80e1531b4392bf7f"
+hash = "414bfeed28dad9fbf47185770255baca11c644bb3d914618344ef9f8a73beb69"
 metafile = true
 
 [[files]]
 file = "mods/xaeros-world-map.pw.toml"
-hash = "15a0ae84357094ce724ff7c75d625d135f867f2692bd1923a96ee2ff4d7baac4"
+hash = "1a280f25d8b7113e34a44c94f106fd5772f06c05019642166c570719b34f70df"
 metafile = true
 
 [[files]]
@@ -554,6 +559,11 @@ metafile = true
 [[files]]
 file = "mods/yungs-better-mineshafts-fabric.pw.toml"
 hash = "7eb509430f5866b8ebfef43e21cd4b9a73cf6056d18b0cf2cb4ae3cb884dfe06"
+metafile = true
+
+[[files]]
+file = "mods/yungs-better-nether-fortresses.pw.toml"
+hash = "6c316a010ab08dc2b2fc91d82d0748c2a968fc410364784442f538cab6325a67"
 metafile = true
 
 [[files]]
@@ -578,7 +588,7 @@ metafile = true
 
 [[files]]
 file = "resourcepacks/faithful-32x.pw.toml"
-hash = "3eba68216ade0d14b219deaf888f31c2ac646127837adad6dba97df19a573a6b"
+hash = "5450b49b887695403542ef6ecd3e1ce5d1e0501640fdd53f74e11bebf2609ecf"
 metafile = true
 
 [[files]]

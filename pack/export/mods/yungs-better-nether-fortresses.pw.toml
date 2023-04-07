@@ -1,0 +1,13 @@
+name = "YUNG's Better Nether Fortresses"
+filename = "YungsBetterNetherFortresses-1.18.2-Fabric-1.0.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/Z2mXHnxP/versions/gTTPcjUR/YungsBetterNetherFortresses-1.18.2-Fabric-1.0.0.jar"
+hash-format = "sha1"
+hash = "1b78de045c3144cf0bb4bae6b6ab717d4311aeaf"
+
+[update]
+[update.modrinth]
+mod-id = "Z2mXHnxP"
+version = "gTTPcjUR"

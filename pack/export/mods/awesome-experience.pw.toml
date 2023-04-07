@@ -1,13 +1,13 @@
 name = "Awesome Experience"
-filename = "experience-0.9.17+1.18.2.jar"
+filename = "experience-0.10.0+1.18.2.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/U2kOXjO6/versions/ArwMTm3E/experience-0.9.17%2B1.18.2.jar"
+url = "https://cdn.modrinth.com/data/U2kOXjO6/versions/Sufjvo3e/experience-0.10.0%2B1.18.2.jar"
 hash-format = "sha1"
-hash = "ef707d7597a0ae8cd3c90a67f8eec7d14da0dace"
+hash = "9b478e16863691fb031095f39d6264bb7f7d93bf"
 
 [update]
 [update.modrinth]
 mod-id = "U2kOXjO6"
-version = "ArwMTm3E"
+version = "Sufjvo3e"

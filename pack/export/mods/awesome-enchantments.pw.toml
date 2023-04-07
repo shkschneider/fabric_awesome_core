@@ -1,13 +1,13 @@
 name = "Awesome Enchantments"
-filename = "enchantments-0.9.17+1.18.2.jar"
+filename = "enchantments-0.10.0+1.18.2.jar"
 side = "both"
 
 [download]
-url = "https://cdn.modrinth.com/data/5PiMSKIX/versions/zVQYaNiB/enchantments-0.9.17%2B1.18.2.jar"
+url = "https://cdn.modrinth.com/data/5PiMSKIX/versions/yIPneRW3/enchantments-0.10.0%2B1.18.2.jar"
 hash-format = "sha1"
-hash = "2a938635a25fdfd646783a040fe2435b33616241"
+hash = "4abeeb3bc4158974cdfd423a62e27053e4c5c370"
 
 [update]
 [update.modrinth]
 mod-id = "5PiMSKIX"
-version = "zVQYaNiB"
+version = "yIPneRW3"

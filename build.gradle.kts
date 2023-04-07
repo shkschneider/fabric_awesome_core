@@ -94,11 +94,10 @@ allprojects {
             from("LICENSE")
         }
         withType<JavaCompile> {
-            options.release.set(JavaVersion.VERSION_17.toString().toInt())
             options.encoding = "UTF-8"
         }
         withType<KotlinCompile> {
-            kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
+            kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
         }
     }
 }
