@@ -1,17 +1,17 @@
 package io.github.shkschneider.awesome.custom
 
-import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.registry.FuelRegistry
 import net.minecraft.item.Item
+import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.util.Rarity
 
 class Flux : Item(
-    FabricItemSettings().group(Awesome.GROUP).maxCount(Minecraft.STACK).rarity(Rarity.UNCOMMON),
+    FabricItemSettings().group(ItemGroup.MISC).maxCount(Minecraft.STACK).rarity(Rarity.UNCOMMON),
 ) {
 
     init {

@@ -87,7 +87,7 @@ data class AwesomeConfig(
     data class Machines(
         @SerializedName("crafter") val crafter: Boolean = true,
         @SerializedName("duplicator") val duplicator: Boolean = true,
-        @SerializedName("factory") val factory: Boolean = true,
+        @SerializedName("factory") val factory: Boolean = false,
         @SerializedName("imprisoner") val imprisoner: Boolean = true,
         @SerializedName("prospector") val prospector: Boolean = true,
         @SerializedName("quarry") val quarry: Boolean = true,

@@ -1,15 +1,15 @@
 package io.github.shkschneider.awesome.custom
 
-import io.github.shkschneider.awesome.Awesome
 import io.github.shkschneider.awesome.core.AwesomeRegistries
 import io.github.shkschneider.awesome.core.AwesomeUtils
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.minecraft.item.Item
+import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.util.Rarity
 
 class FluxDust : Item(
-    FabricItemSettings().group(Awesome.GROUP).maxCount(Minecraft.STACK).rarity(Rarity.UNCOMMON),
+    FabricItemSettings().group(ItemGroup.MISC).maxCount(Minecraft.STACK).rarity(Rarity.UNCOMMON),
 ) {
 
     init {
